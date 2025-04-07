@@ -90,7 +90,7 @@ export default function WikiPage() {
           </Card>
         </Link>
 
-        <Link href="/cards">
+        <Link href="/characters">
           <Card className="h-full hover:shadow-lg transition-shadow">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -116,16 +116,16 @@ export default function WikiPage() {
 
       <h2 className="text-2xl font-bold mb-6">Game Mechanics</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-        <Link href="/mechanics/mana-system">
+        <Link href="/mechanics/empower-system">
           <Button
             variant="outline"
             className="w-full justify-start h-auto py-3"
           >
             <Sparkles className="mr-2 h-4 w-4 text-blue-500" />
             <div className="text-left">
-              <div className="font-medium">Mana System</div>
+              <div className="font-medium">Empower System</div>
               <div className="text-xs text-muted-foreground">
-                Resource management
+                Cards empowering
               </div>
             </div>
           </Button>
