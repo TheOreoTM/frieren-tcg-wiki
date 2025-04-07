@@ -2,6 +2,7 @@ import {
   CharacterEmoji,
   CharacterID,
   CharacterName,
+  CharacterType,
   StatsEnum,
 } from "@/lib/enums";
 import type { Character } from "@/lib/types";
@@ -12,6 +13,7 @@ export const Himmel: Character = {
   id: "himmel",
   name: CharacterName.Himmel,
   description: "Only character that has the Rally ability.",
+  type: CharacterType.Hero,
   cosmetic: {
     emoji: CharacterEmoji.HIMMEL,
     color: 0xb4c9e7,

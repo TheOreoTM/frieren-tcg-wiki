@@ -56,3 +56,8 @@ export enum StatsEnum {
   SPD = "SPD",
   Ability = "Ability",
 }
+
+export enum CharacterType {
+  Hero = "Hero",
+  Demon = "Demon",
+}

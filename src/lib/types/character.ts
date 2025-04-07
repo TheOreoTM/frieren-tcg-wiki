@@ -2,6 +2,7 @@ import type {
   CharacterEmoji,
   CharacterID,
   CharacterName,
+  CharacterType,
   StatsEnum,
 } from "../enums";
 import type { Ability } from "./ability";
@@ -21,6 +22,7 @@ export type Character = {
   id: `${CharacterID}`;
   name: CharacterName;
   description: string;
+  type: CharacterType;
   cosmetic: CharacterCosmetic;
   deck: Card[];
   stats: Stats;

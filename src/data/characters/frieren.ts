@@ -2,6 +2,7 @@ import {
   CharacterEmoji,
   CharacterID,
   CharacterName,
+  CharacterType,
   StatsEnum,
 } from "@/lib/enums";
 import type { Character } from "@/lib/types";
@@ -13,10 +14,11 @@ export const Frieren: Character = {
   id: "frieren",
   name: CharacterName.Frieren,
   description: "The only character that has the Analyst ability.",
+  type: CharacterType.Hero,
   cosmetic: {
     emoji: CharacterEmoji.FRIEREN,
     color: 0xc5c3cc,
-    imageUrl: "/FrierenCard.png",
+    imageUrl: "/cards/FrierenCard.png",
   },
   stats: {
     [StatsEnum.HP]: 100.0,

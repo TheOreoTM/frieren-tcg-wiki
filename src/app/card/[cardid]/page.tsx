@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Characters } from "@/data/characters";
+import { StatsEnum, type CharacterName } from "@/lib/enums";
 
 // Card data (same as in cards/page.tsx)
 const cards = [
@@ -158,48 +160,26 @@ const cards = [
   },
 ];
 
-// Helper function for rarity color
-function getRarityColor(rarity: string) {
-  switch (rarity) {
-    case "Common":
-      return "bg-slate-200 text-slate-800";
-    case "Uncommon":
-      return "bg-green-200 text-green-800";
-    case "Rare":
-      return "bg-blue-200 text-blue-800";
-    case "Epic":
-      return "bg-purple-200 text-purple-800";
-    case "Legendary":
-      return "bg-amber-200 text-amber-800";
-    case "Mythic":
-      return "bg-red-200 text-red-800";
-    default:
-      return "bg-slate-200 text-slate-800";
-  }
-}
-
-// Helper function for element color
-function getElementColor(element: string) {
-  switch (element) {
-    case "Arcane":
-      return "bg-violet-100 text-violet-800";
-    case "Nature":
+function getStatColor(stat: StatsEnum) {
+  switch (stat) {
+    case StatsEnum.HP:
       return "bg-emerald-100 text-emerald-800";
-    case "Physical":
-      return "bg-amber-100 text-amber-800";
-    case "Divine":
-      return "bg-yellow-100 text-yellow-800";
-    case "Fire":
+    case StatsEnum.ATK:
       return "bg-red-100 text-red-800";
-    case "Dark":
-      return "bg-slate-800 text-slate-100";
+    case StatsEnum.DEF:
+      return "bg-blue-100 text-blue-800";
+    case StatsEnum.SPD:
+      return "bg-purple-100 text-purple-800";
+    case StatsEnum.Ability:
+      return "bg-amber-100 text-amber-800";
     default:
       return "bg-gray-100 text-gray-800";
   }
 }
 
 export default function CardPage({ params }: { params: { cardid: string } }) {
-  const card = cards.find((c) => c.id === params.cardid);
+  const Cards = Array.from(Characters.values());
+  const card = Cards.find((c) => c.id === params.cardid);
 
   if (!card) {
     notFound();
@@ -216,9 +196,9 @@ export default function CardPage({ params }: { params: { cardid: string } }) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="relative aspect-[2/3] rounded-lg overflow-hidden shadow-lg">
+        <div className="relative aspect-[18/23] rounded-lg overflow-hidden shadow-lg">
           <Image
-            src={card.image || "/placeholder.svg"}
+            src={card.cosmetic.imageUrl || "/placeholder.svg"}
             alt={card.name}
             fill
             className="object-cover"
@@ -227,33 +207,59 @@ export default function CardPage({ params }: { params: { cardid: string } }) {
 
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <Badge className={getElementColor(card.element)}>
-              {card.element}
-            </Badge>
-            <Badge className={getRarityColor(card.rarity)}>{card.rarity}</Badge>
             <Badge variant="outline">{card.type}</Badge>
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold mb-1">{card.name}</h1>
-          <p className="text-xl text-muted-foreground mb-6">{card.title}</p>
+          <p className="text-xl text-muted-foreground mb-6">
+            {"Title Goes Here"}
+          </p>
 
           <div className="flex gap-6 mb-6">
             <div className="text-center">
-              <div className="bg-red-100 text-red-800 rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1">
-                {card.power}
+              <div
+                className={`${getStatColor(
+                  StatsEnum.HP
+                )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
+              >
+                {card.stats.HP}
               </div>
-              <span className="text-sm text-muted-foreground">Power</span>
+              <span className="text-sm text-muted-foreground">Health</span>
             </div>
             <div className="text-center">
-              <div className="bg-blue-100 text-blue-800 rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1">
-                {card.defense}
+              <div
+                className={`${getStatColor(
+                  StatsEnum.ATK
+                )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
+              >
+                {card.stats.ATK}
+              </div>
+              <span className="text-sm text-muted-foreground">Attack</span>
+            </div>
+            <div className="text-center">
+              <div
+                className={`${getStatColor(
+                  StatsEnum.DEF
+                )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
+              >
+                {card.stats.DEF}
               </div>
               <span className="text-sm text-muted-foreground">Defense</span>
+            </div>
+            <div className="text-center">
+              <div
+                className={`${getStatColor(
+                  StatsEnum.SPD
+                )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
+              >
+                {card.stats.SPD}
+              </div>
+              <span className="text-sm text-muted-foreground">Speed</span>
             </div>
           </div>
 
           <div className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">Effect</h2>
+            <h2 className="text-lg font-semibold mb-2">Description</h2>
             <p className="p-4 bg-slate-100 dark:bg-slate-800 rounded-md">
               {card.description}
             </p>
@@ -268,17 +274,17 @@ export default function CardPage({ params }: { params: { cardid: string } }) {
               value="lore"
               className="p-4 bg-slate-50 dark:bg-slate-900 rounded-md mt-2"
             >
-              <p>{card.lore}</p>
+              <p>{"Card Lore (not finalised)"}</p>
             </TabsContent>
             <TabsContent
               value="strategy"
               className="p-4 bg-slate-50 dark:bg-slate-900 rounded-md mt-2"
             >
-              <p>{card.strategy}</p>
+              <p>{"Card Strategy"}</p>
             </TabsContent>
           </Tabs>
 
-          <div className="mt-6 pt-6 border-t">
+          {/* <div className="mt-6 pt-6 border-t">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <h3 className="text-sm font-semibold text-muted-foreground">
@@ -293,7 +299,7 @@ export default function CardPage({ params }: { params: { cardid: string } }) {
                 <p>{card.artist}</p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {card.relatedCards && card.relatedCards.length > 0 && (
             <div className="mt-6">
