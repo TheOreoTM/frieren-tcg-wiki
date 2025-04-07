@@ -206,15 +206,15 @@ export default function WikiPage() {
         <Link href="/wiki/strategy/deck-building">
           <Card className="h-full hover:shadow-lg transition-shadow">
             <CardHeader>
-              <CardTitle>Deck Building Guide</CardTitle>
+              <CardTitle>Combat Guide</CardTitle>
               <CardDescription>
-                Learn how to construct effective decks
+                Learn how to fight against specific opponents
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Understand the principles of deck construction, including mana
-                curve, card synergies, and strategy.
+                Understand the principles of combat, including strategy,
+                tactics, and mechanics.
               </p>
             </CardContent>
           </Card>
@@ -222,15 +222,15 @@ export default function WikiPage() {
         <Link href="/wiki/strategy/archetypes">
           <Card className="h-full hover:shadow-lg transition-shadow">
             <CardHeader>
-              <CardTitle>Deck Archetypes</CardTitle>
+              <CardTitle>Lorem Impsum</CardTitle>
               <CardDescription>
-                Popular deck strategies and playstyles
+                Lorem ipsum dolor sit amet, consectetur
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Explore the major deck archetypes in Frieren TCG, from
-                aggressive to control to combo strategies.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Perspiciatis, dolorum.
               </p>
             </CardContent>
           </Card>
@@ -253,14 +253,14 @@ export default function WikiPage() {
             </div>
           </Button>
         </Link>
-        <Link href="/wiki/characters/villains">
+        <Link href="/wiki/characters/demons">
           <Button
             variant="outline"
             className="w-full justify-start h-auto py-3"
           >
             <Users className="mr-2 h-4 w-4 text-red-600" />
             <div className="text-left">
-              <div className="font-medium">Villains</div>
+              <div className="font-medium">Demons</div>
               <div className="text-xs text-muted-foreground">Antagonists</div>
             </div>
           </Button>
