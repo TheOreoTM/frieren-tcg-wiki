@@ -21,8 +21,8 @@ const navItems = [
     icon: <Home className="h-5 w-5" />,
   },
   {
-    name: "Cards",
-    href: "/cards",
+    name: "Characters",
+    href: "/characters",
     icon: <Cards className="h-5 w-5" />,
   },
   {

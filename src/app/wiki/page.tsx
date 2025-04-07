@@ -107,7 +107,7 @@ export default function WikiPage() {
             </CardContent>
             <CardFooter>
               <Button variant="ghost" className="w-full">
-                Browse Cards
+                Browse Character Cards
               </Button>
             </CardFooter>
           </Card>

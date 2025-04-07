@@ -13,110 +13,7 @@ import {
 import { Characters } from "@/data/characters";
 import { StatsEnum } from "@/lib/enums";
 
-// Card data
-const cards = [
-  {
-    id: "frieren",
-    name: "Frieren",
-    title: "Immortal Mage",
-    type: "Hero",
-    rarity: "Legendary",
-    element: "Arcane",
-    power: 7,
-    defense: 5,
-    description: "When played, add a random spell from your deck to your hand.",
-    image: "/placeholder.svg?height=400&width=300",
-  },
-  {
-    id: "fern",
-    name: "Fern",
-    title: "Apprentice Mage",
-    type: "Hero",
-    rarity: "Rare",
-    element: "Nature",
-    power: 4,
-    defense: 3,
-    description:
-      "Gains +1/+1 for each spell you cast while this card is in play.",
-    image: "/placeholder.svg?height=400&width=300",
-  },
-  {
-    id: "stark",
-    name: "Stark",
-    title: "Warrior Prodigy",
-    type: "Hero",
-    rarity: "Rare",
-    element: "Physical",
-    power: 6,
-    defense: 6,
-    description: "When attacked, deal 2 damage to the attacker.",
-    image: "/placeholder.svg?height=400&width=300",
-  },
-  {
-    id: "himmel",
-    name: "Himmel",
-    title: "Hero of the North",
-    type: "Hero",
-    rarity: "Legendary",
-    element: "Divine",
-    power: 8,
-    defense: 7,
-    description:
-      "When played, all your other heroes gain +2/+2 until end of turn.",
-    image: "/placeholder.svg?height=400&width=300",
-  },
-  {
-    id: "heiter",
-    name: "Heiter",
-    title: "Priest of the South",
-    type: "Hero",
-    rarity: "Epic",
-    element: "Divine",
-    power: 3,
-    defense: 6,
-    description:
-      "At the start of your turn, restore 2 health to a random friendly hero.",
-    image: "/placeholder.svg?height=400&width=300",
-  },
-  {
-    id: "sein",
-    name: "Sein",
-    title: "Master Mage",
-    type: "Hero",
-    rarity: "Epic",
-    element: "Arcane",
-    power: 5,
-    defense: 4,
-    description: "Your spells cost 1 less mana while this card is in play.",
-    image: "/placeholder.svg?height=400&width=300",
-  },
-  {
-    id: "flamme",
-    name: "Flamme",
-    title: "Flame Mage",
-    type: "Hero",
-    rarity: "Epic",
-    element: "Fire",
-    power: 6,
-    defense: 3,
-    description: "When played, deal 3 damage to all enemy heroes.",
-    image: "/placeholder.svg?height=400&width=300",
-  },
-  {
-    id: "ubel",
-    name: "Übel",
-    title: "Demon King",
-    type: "Villain",
-    rarity: "Mythic",
-    element: "Dark",
-    power: 9,
-    defense: 8,
-    description: "When played, destroy a random enemy hero.",
-    image: "/placeholder.svg?height=400&width=300",
-  },
-];
-
-const Cards = Array.from(Characters.values());
+const characters = Array.from(Characters.values());
 
 // Helper function for rarity color
 function getRarityColor(rarity: string) {
@@ -175,7 +72,7 @@ function getStatColor(stat: StatsEnum) {
   }
 }
 
-export default function CardsPage() {
+export default function CharactersPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-3xl md:text-4xl font-bold mb-8">Card Collection</h1>
@@ -219,13 +116,13 @@ export default function CardsPage() {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {Cards.map((card) => (
-          <Link href={`/card/${card.id}`} key={card.id}>
+        {characters.map((character) => (
+          <Link href={`/character/${character.id}`} key={character.id}>
             <Card className="hover:shadow-lg transition-shadow overflow-hidden">
               <div className="relative pt-[150%]">
                 <Image
-                  src={"/placeholder.svg"}
-                  alt={card.name}
+                  src={character.cosmetic.icon || "/placeholder.svg"}
+                  alt={character.name}
                   fill
                   className="object-cover"
                 />
@@ -234,47 +131,49 @@ export default function CardsPage() {
                     variant="secondary"
                     className={getStatColor(StatsEnum.HP)}
                   >
-                    {card.stats.HP}
+                    {character.stats.HP}
                   </Badge>
                   <Badge
                     variant="secondary"
                     className={getStatColor(StatsEnum.ATK)}
                   >
-                    {card.stats.ATK}
+                    {character.stats.ATK}
                   </Badge>
                   <Badge
                     variant="secondary"
                     className={getStatColor(StatsEnum.DEF)}
                   >
-                    {card.stats.DEF}
+                    {character.stats.DEF}
                   </Badge>
                   <Badge
                     variant="secondary"
                     className={getStatColor(StatsEnum.SPD)}
                   >
-                    {card.stats.SPD}
+                    {character.stats.SPD}
                   </Badge>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                  <h3 className="text-white font-bold text-lg">{card.name}</h3>
+                  <h3 className="text-white font-bold text-lg">
+                    {character.name}
+                  </h3>
                   {/* <p className="text-white/80 text-sm">{card.title}</p> */}
                 </div>
               </div>
               <CardContent className="pt-4">
                 <div className="flex justify-between mb-2">
                   <div className="bg-red-100 text-red-800 rounded-full h-8 w-8 flex items-center justify-center font-bold">
-                    {card.stats.ATK}
+                    {character.stats.ATK}
                   </div>
                   <div className="bg-blue-100 text-blue-800 rounded-full h-8 w-8 flex items-center justify-center font-bold">
-                    {card.stats.DEF}
+                    {character.stats.DEF}
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground line-clamp-2">
-                  {card.description}
+                  {character.description}
                 </p>
               </CardContent>
               <CardFooter className="text-xs text-muted-foreground">
-                {card.id}
+                {character.id}
               </CardFooter>
             </Card>
           </Link>

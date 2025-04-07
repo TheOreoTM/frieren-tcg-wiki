@@ -19,6 +19,7 @@ export const Frieren: Character = {
     emoji: CharacterEmoji.FRIEREN,
     color: 0xc5c3cc,
     imageUrl: "/cards/FrierenCard.png",
+    icon: "https://static.wikia.nocookie.net/frieren/images/9/9c/Frieren_anime_portrait.png/revision/latest?cb=20231017083523",
   },
   stats: {
     [StatsEnum.HP]: 100.0,
@@ -38,7 +39,7 @@ export const Frieren: Character = {
         After an attack is used, Analysis stacks is reset to 0.
         A maximum of ${ANALYSIS_STACK_CAP} Analysis stacks can be held at any time.`,
   },
-  relatedCards: [CharacterID.Himmel, CharacterID.Serie],
+  relatedCharacters: [CharacterID.Himmel, CharacterID.Serie],
   additionalMetadata: {
     accessToDefaultCardOptions: true,
     manaSuppressed: true,

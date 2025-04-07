@@ -19,6 +19,7 @@ export const Himmel: Character = {
     color: 0xb4c9e7,
     imageUrl:
       "https://static.wikia.nocookie.net/frieren/images/9/96/Himmel_anime_portrait.png/revision/latest?cb=20231017083515",
+    icon: "https://static.wikia.nocookie.net/frieren/images/9/96/Himmel_anime_portrait.png/revision/latest?cb=20231017083515",
   },
   stats: {
     [StatsEnum.HP]: 100.0,
@@ -35,7 +36,7 @@ export const Himmel: Character = {
           HIMMEL_HERO_PARTY_DAMAGE_BONUS * 100
         ).toFixed(2)}% damage.`,
   },
-  relatedCards: [CharacterID.Frieren],
+  relatedCharacters: [CharacterID.Frieren],
   additionalMetadata: {
     accessToDefaultCardOptions: true,
     manaSuppressed: false,

@@ -33,22 +33,22 @@ export default function Home() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Cards className="h-5 w-5" />
-              Cards
+              Characters
             </CardTitle>
             <CardDescription>
-              Browse the complete card collection
+              Browse the complete character card collection
             </CardDescription>
           </CardHeader>
           <CardContent>
             <p>
-              Discover cards featuring Frieren, Fern, Stark, Himmel and other
-              characters from the series.
+              Discover characters featuring Frieren, Fern, Stark, Himmel and
+              other characters from the series.
             </p>
           </CardContent>
           <CardFooter>
-            <Link href="/cards" className="w-full">
+            <Link href="/characters" className="w-full">
               <Button variant="outline" className="w-full">
-                View Cards <ArrowRight className="ml-2 h-4 w-4" />
+                View Characters <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </CardFooter>
@@ -137,8 +137,8 @@ export default function Home() {
           <Link href="/wiki/getting-started">
             <Button>Getting Started Guide</Button>
           </Link>
-          <Link href="/cards">
-            <Button variant="outline">Browse Cards</Button>
+          <Link href="/characters">
+            <Button variant="outline">Browse Character Cards</Button>
           </Link>
         </div>
       </div>

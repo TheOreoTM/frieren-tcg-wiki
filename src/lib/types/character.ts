@@ -16,6 +16,7 @@ export type CharacterCosmetic = {
   emoji: CharacterEmoji;
   color: number;
   imageUrl: string;
+  icon: string;
 };
 
 export type Character = {
@@ -27,7 +28,7 @@ export type Character = {
   deck: Card[];
   stats: Stats;
   ability: Ability;
-  relatedCards: `${CharacterID}`[];
+  relatedCharacters: `${CharacterID}`[];
   additionalMetadata: CharacterAdditionalMetadata;
 };
 
