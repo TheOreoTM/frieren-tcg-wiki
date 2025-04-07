@@ -1,7 +1,19 @@
-import Link from "next/link"
-import { ArrowRight, BookOpen, WalletCardsIcon as Cards, ScrollText } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from "next/link";
+import {
+  ArrowRight,
+  BookOpen,
+  WalletCardsIcon as Cards,
+  ScrollText,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -11,7 +23,8 @@ export default function Home() {
           Frieren TCG
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl">
-          The trading card game inspired by the journey of the immortal mage Frieren and her companions.
+          A fan-made trading card game inspired by the anime Frieren: Beyond
+          Journeys End
         </p>
       </div>
 
@@ -22,10 +35,15 @@ export default function Home() {
               <Cards className="h-5 w-5" />
               Cards
             </CardTitle>
-            <CardDescription>Browse the complete card collection</CardDescription>
+            <CardDescription>
+              Browse the complete card collection
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Discover cards featuring Frieren, Fern, Stark, Himmel and other characters from the series.</p>
+            <p>
+              Discover cards featuring Frieren, Fern, Stark, Himmel and other
+              characters from the series.
+            </p>
           </CardContent>
           <CardFooter>
             <Link href="/cards" className="w-full">
@@ -45,7 +63,10 @@ export default function Home() {
             <CardDescription>Learn how to play the game</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Understand the core mechanics, spell casting, combat, and special abilities in Frieren TCG.</p>
+            <p>
+              Understand the core mechanics, spell casting, combat, and special
+              abilities in Frieren TCG.
+            </p>
           </CardContent>
           <CardFooter>
             <Link href="/mechanics" className="w-full">
@@ -65,7 +86,10 @@ export default function Home() {
             <CardDescription>Dive into the lore and strategy</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Explore in-depth articles about game strategy, card synergies, and the world of Frieren.</p>
+            <p>
+              Explore in-depth articles about game strategy, card synergies, and
+              the world of Frieren.
+            </p>
           </CardContent>
           <CardFooter>
             <Link href="/wiki" className="w-full">
@@ -82,15 +106,22 @@ export default function Home() {
         <ul className="space-y-2">
           <li className="flex items-start gap-2">
             <span className="text-emerald-600">•</span>
-            <span>New expansion: "Beyond the Wasteland" featuring 60 new cards!</span>
+            <span>
+              New expansion: "Beyond the Wasteland" featuring 60 new cards!
+            </span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-emerald-600">•</span>
-            <span>Tournament rules updated for the upcoming Regional Championship</span>
+            <span>
+              Tournament rules updated for the upcoming Regional Championship
+            </span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-emerald-600">•</span>
-            <span>Balance changes to Himmel's "Divine Blade" and Stark's "Warrior's Resolve"</span>
+            <span>
+              Balance changes to Himmel's "Divine Blade" and Stark's "Warrior's
+              Resolve"
+            </span>
           </li>
         </ul>
       </div>
@@ -98,8 +129,9 @@ export default function Home() {
       <div className="text-center">
         <h2 className="text-2xl font-bold mb-4">Begin Your Journey</h2>
         <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-          Whether you're a seasoned card player or new to TCGs, Frieren TCG offers a magical experience that captures
-          the essence of the beloved series.
+          Whether you're a seasoned card player or new to TCGs, Frieren TCG
+          offers a magical experience that captures the essence of the beloved
+          series.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Link href="/wiki/getting-started">
@@ -111,6 +143,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

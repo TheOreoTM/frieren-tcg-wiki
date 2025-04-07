@@ -10,6 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Characters } from "@/data/characters";
+import { StatsEnum } from "@/lib/enums";
 
 // Card data
 const cards = [
@@ -114,6 +116,8 @@ const cards = [
   },
 ];
 
+const Cards = Array.from(Characters.values());
+
 // Helper function for rarity color
 function getRarityColor(rarity: string) {
   switch (rarity) {
@@ -154,6 +158,23 @@ function getElementColor(element: string) {
   }
 }
 
+function getStatColor(stat: StatsEnum) {
+  switch (stat) {
+    case StatsEnum.HP:
+      return "bg-emerald-100 text-emerald-800";
+    case StatsEnum.ATK:
+      return "bg-red-100 text-red-800";
+    case StatsEnum.DEF:
+      return "bg-blue-100 text-blue-800";
+    case StatsEnum.SPD:
+      return "bg-purple-100 text-purple-800";
+    case StatsEnum.Ability:
+      return "bg-amber-100 text-amber-800";
+    default:
+      return "bg-gray-100 text-gray-800";
+  }
+}
+
 export default function CardsPage() {
   return (
     <div className="container mx-auto px-4 py-12">
@@ -163,7 +184,7 @@ export default function CardsPage() {
         <div className="w-full md:w-1/3">
           <Input placeholder="Search cards..." />
         </div>
-        <div className="w-full md:w-1/3">
+        {/* <div className="w-full md:w-1/3">
           <Select>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Filter by element" />
@@ -194,40 +215,58 @@ export default function CardsPage() {
               <SelectItem value="mythic">Mythic</SelectItem>
             </SelectContent>
           </Select>
-        </div>
+        </div> */}
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {cards.map((card) => (
+        {Cards.map((card) => (
           <Link href={`/card/${card.id}`} key={card.id}>
             <Card className="hover:shadow-lg transition-shadow overflow-hidden">
               <div className="relative pt-[150%]">
                 <Image
-                  src={card.image || "/placeholder.svg"}
+                  src={"/placeholder.svg"}
                   alt={card.name}
                   fill
                   className="object-cover"
                 />
                 <div className="absolute top-2 left-2 flex gap-2">
-                  <Badge className={getElementColor(card.element)}>
-                    {card.element}
+                  <Badge
+                    variant="secondary"
+                    className={getStatColor(StatsEnum.HP)}
+                  >
+                    {card.stats.HP}
                   </Badge>
-                  <Badge className={getRarityColor(card.rarity)}>
-                    {card.rarity}
+                  <Badge
+                    variant="secondary"
+                    className={getStatColor(StatsEnum.ATK)}
+                  >
+                    {card.stats.ATK}
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className={getStatColor(StatsEnum.DEF)}
+                  >
+                    {card.stats.DEF}
+                  </Badge>
+                  <Badge
+                    variant="secondary"
+                    className={getStatColor(StatsEnum.SPD)}
+                  >
+                    {card.stats.SPD}
                   </Badge>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                   <h3 className="text-white font-bold text-lg">{card.name}</h3>
-                  <p className="text-white/80 text-sm">{card.title}</p>
+                  {/* <p className="text-white/80 text-sm">{card.title}</p> */}
                 </div>
               </div>
               <CardContent className="pt-4">
                 <div className="flex justify-between mb-2">
                   <div className="bg-red-100 text-red-800 rounded-full h-8 w-8 flex items-center justify-center font-bold">
-                    {card.power}
+                    {card.stats.ATK}
                   </div>
                   <div className="bg-blue-100 text-blue-800 rounded-full h-8 w-8 flex items-center justify-center font-bold">
-                    {card.defense}
+                    {card.stats.DEF}
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground line-clamp-2">

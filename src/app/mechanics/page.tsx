@@ -1,46 +1,41 @@
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { ArrowRight, BookOpen, Flame, Shield, Sparkles, Swords, Zap } from "lucide-react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import {
+  ArrowRight,
+  BookOpen,
+  Flame,
+  Shield,
+  Sparkles,
+  Swords,
+  Zap,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 // Mechanics data
 const mechanics = [
   {
-    id: "mana",
-    name: "Mana System",
-    description: "The resource system used to play cards in Frieren TCG.",
+    id: "empower",
+    name: "Empower System",
+    description:
+      "A system where your cards get stronger over the course of the game.",
     icon: <Sparkles className="h-6 w-6 text-blue-500" />,
-    slug: "mana-system",
+    slug: "empower-system",
   },
   {
     id: "combat",
     name: "Combat",
-    description: "How heroes battle against each other on the field.",
+    description: "How characters battle against each other on the field.",
     icon: <Swords className="h-6 w-6 text-red-500" />,
     slug: "combat",
   },
-  {
-    id: "spells",
-    name: "Spell Casting",
-    description: "How spells work and their various types.",
-    icon: <Zap className="h-6 w-6 text-purple-500" />,
-    slug: "spell-casting",
-  },
-  {
-    id: "elements",
-    name: "Elements",
-    description: "The different magical elements and their interactions.",
-    icon: <Flame className="h-6 w-6 text-orange-500" />,
-    slug: "elements",
-  },
-  {
-    id: "abilities",
-    name: "Hero Abilities",
-    description: "Special powers that heroes can use during the game.",
-    icon: <Shield className="h-6 w-6 text-green-500" />,
-    slug: "hero-abilities",
-  },
-]
+];
 
 export default function MechanicsPage() {
   return (
@@ -61,7 +56,8 @@ export default function MechanicsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Click to learn more about how {mechanic.name.toLowerCase()} works in Frieren TCG.
+                  Click to learn more about how {mechanic.name.toLowerCase()}{" "}
+                  works in Frieren TCG.
                 </p>
               </CardContent>
               <CardFooter>
@@ -80,13 +76,13 @@ export default function MechanicsPage() {
           <h2 className="text-2xl font-bold">Core Rulebook</h2>
         </div>
         <p className="mb-4">
-          For a comprehensive guide to all game mechanics and rules, check out the official Frieren TCG Core Rulebook.
+          For a comprehensive guide to all game mechanics and rules, check out
+          the official Frieren TCG Core Rulebook.
         </p>
         <Link href="/wiki/rulebook">
           <Button>View Rulebook</Button>
         </Link>
       </div>
     </div>
-  )
+  );
 }
-

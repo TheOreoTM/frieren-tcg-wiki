@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Frieren TCG",
   description:
-    "The fan-made trading card game inspired by the anime Frieren: Beyond Journeys End",
+    "A fan-made trading card game inspired by the anime Frieren: Beyond Journeys End",
 };
 
 export default function RootLayout({
@@ -20,10 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <main>{children}</main>
-        </ThemeProvider>
+        <Navbar />
+        <main>{children}</main>
       </body>
     </html>
   );
