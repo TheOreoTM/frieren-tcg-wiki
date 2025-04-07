@@ -28,12 +28,14 @@ function getStatColor(stat: StatsEnum) {
   }
 }
 
-export default function CardPage({
+export default async function CardPage({
   params,
 }: {
   params: { characterid: string };
 }) {
-  const character = characters.find((c) => c.id === params.characterid);
+  const { characterid } = await params;
+
+  const character = characters.find((c) => c.id === characterid);
 
   if (!character) {
     notFound();
