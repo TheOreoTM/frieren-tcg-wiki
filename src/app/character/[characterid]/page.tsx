@@ -9,6 +9,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Characters } from "@/data/characters";
 import { StatsEnum, type CharacterName } from "@/lib/enums";
 
+interface PageProps {
+  params: {
+    characterid: string;
+  };
+}
+
 const characters = Array.from(Characters.values());
 
 function getStatColor(stat: StatsEnum) {
@@ -28,11 +34,7 @@ function getStatColor(stat: StatsEnum) {
   }
 }
 
-export default async function CardPage({
-  params,
-}: {
-  params: { characterid: string };
-}) {
+export default async function CardPage({ params }: PageProps) {
   const { characterid } = await params;
 
   const character = characters.find((c) => c.id === characterid);
