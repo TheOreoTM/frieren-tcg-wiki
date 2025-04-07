@@ -125,7 +125,7 @@ export default function WikiPage() {
             <div className="text-left">
               <div className="font-medium">Empower System</div>
               <div className="text-xs text-muted-foreground">
-                Cards empowering
+                Card empowering
               </div>
             </div>
           </Button>
