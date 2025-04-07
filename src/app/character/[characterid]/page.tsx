@@ -10,9 +10,7 @@ import { Characters } from "@/data/characters";
 import { StatsEnum, type CharacterName } from "@/lib/enums";
 
 interface PageProps {
-  params: {
-    characterid: string;
-  };
+  params: Promise<{ characterid: string }>;
 }
 
 const characters = Array.from(Characters.values());
