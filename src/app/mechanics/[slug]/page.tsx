@@ -12,6 +12,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
 // Mechanics data
 const mechanics = [
   {
@@ -40,8 +44,10 @@ const mechanics = [
   },
 ];
 
-export default function MechanicPage({ params }: { params: { slug: string } }) {
-  const mechanic = mechanics.find((m) => m.slug === params.slug);
+export default async function MechanicPage({ params }: PageProps) {
+  const { slug } = await params;
+
+  const mechanic = mechanics.find((m) => m.slug === slug);
 
   if (!mechanic) {
     notFound();
