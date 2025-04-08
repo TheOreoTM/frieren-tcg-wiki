@@ -130,16 +130,16 @@ export default function CharactersPage() {
                 />
                 <div className="absolute top-2 left-2 flex gap-2">
                   <Badge variant="secondary" className={getStatColor(Stat.HP)}>
-                    {character.stats.HP} {StatEmoji.HP}
+                    {character.stats.HP}
                   </Badge>
                   <Badge variant="secondary" className={getStatColor(Stat.ATK)}>
-                    {character.stats.ATK} {StatEmoji.ATK}
+                    {character.stats.ATK}
                   </Badge>
                   <Badge variant="secondary" className={getStatColor(Stat.DEF)}>
-                    {character.stats.DEF} {StatEmoji.DEF}
+                    {character.stats.DEF}
                   </Badge>
                   <Badge variant="secondary" className={getStatColor(Stat.SPD)}>
-                    {character.stats.SPD} {StatEmoji.SPD}
+                    {character.stats.SPD}
                   </Badge>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
