@@ -3,7 +3,7 @@ import {
   CharacterID,
   CharacterName,
   CharacterType,
-  StatsEnum,
+  Stat,
 } from "@/lib/enums";
 import type { Character } from "@/lib/types";
 
@@ -18,15 +18,15 @@ export const Frieren: Character = {
   cosmetic: {
     emoji: CharacterEmoji.FRIEREN,
     color: 0xc5c3cc,
-    imageUrl: "/cards/FrierenCard.png",
+    imageUrl: "/cards/Frieren.png",
     icon: "https://static.wikia.nocookie.net/frieren/images/9/9c/Frieren_anime_portrait.png/revision/latest?cb=20231017083523",
   },
   stats: {
-    [StatsEnum.HP]: 100.0,
-    [StatsEnum.ATK]: 12.0,
-    [StatsEnum.DEF]: 12.0,
-    [StatsEnum.SPD]: 12.0,
-    [StatsEnum.Ability]: 0.0,
+    [Stat.HP]: 100.0,
+    [Stat.ATK]: 12.0,
+    [Stat.DEF]: 12.0,
+    [Stat.SPD]: 12.0,
+    [Stat.Ability]: 0.0,
   },
   deck: [],
   ability: {
@@ -39,7 +39,7 @@ export const Frieren: Character = {
         After an attack is used, Analysis stacks is reset to 0.
         A maximum of ${ANALYSIS_STACK_CAP} Analysis stacks can be held at any time.`,
   },
-  relatedCharacters: [CharacterID.Himmel, CharacterID.Serie],
+  relatedCharacters: [CharacterID.Himmel, CharacterID.Serie, CharacterID.Sein],
   additionalMetadata: {
     accessToDefaultCardOptions: true,
     manaSuppressed: true,

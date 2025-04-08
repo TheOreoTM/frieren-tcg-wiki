@@ -7,7 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Characters } from "@/data/characters";
-import { StatsEnum, type CharacterName } from "@/lib/enums";
+import { Stat, type CharacterName } from "@/lib/enums";
+import StyledDescription from "@/components/styled-description";
 
 interface PageProps {
   params: Promise<{ characterid: string }>;
@@ -15,17 +16,17 @@ interface PageProps {
 
 const characters = Array.from(Characters.values());
 
-function getStatColor(stat: StatsEnum) {
+function getStatColor(stat: Stat) {
   switch (stat) {
-    case StatsEnum.HP:
+    case Stat.HP:
       return "bg-emerald-100 text-emerald-800";
-    case StatsEnum.ATK:
+    case Stat.ATK:
       return "bg-red-100 text-red-800";
-    case StatsEnum.DEF:
+    case Stat.DEF:
       return "bg-blue-100 text-blue-800";
-    case StatsEnum.SPD:
+    case Stat.SPD:
       return "bg-purple-100 text-purple-800";
-    case StatsEnum.Ability:
+    case Stat.Ability:
       return "bg-amber-100 text-amber-800";
     default:
       return "bg-gray-100 text-gray-800";
@@ -77,7 +78,7 @@ export default async function CardPage({ params }: PageProps) {
             <div className="text-center">
               <div
                 className={`${getStatColor(
-                  StatsEnum.HP
+                  Stat.HP
                 )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
               >
                 {character.stats.HP}
@@ -87,7 +88,7 @@ export default async function CardPage({ params }: PageProps) {
             <div className="text-center">
               <div
                 className={`${getStatColor(
-                  StatsEnum.ATK
+                  Stat.ATK
                 )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
               >
                 {character.stats.ATK}
@@ -97,7 +98,7 @@ export default async function CardPage({ params }: PageProps) {
             <div className="text-center">
               <div
                 className={`${getStatColor(
-                  StatsEnum.DEF
+                  Stat.DEF
                 )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
               >
                 {character.stats.DEF}
@@ -107,7 +108,7 @@ export default async function CardPage({ params }: PageProps) {
             <div className="text-center">
               <div
                 className={`${getStatColor(
-                  StatsEnum.SPD
+                  Stat.SPD
                 )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
               >
                 {character.stats.SPD}
@@ -123,16 +124,33 @@ export default async function CardPage({ params }: PageProps) {
             </p>
           </div>
 
-          <Tabs defaultValue="lore">
+          <Tabs defaultValue="ability">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="lore">Lore</TabsTrigger>
+              <TabsTrigger value="ability">Ability</TabsTrigger>
               <TabsTrigger value="strategy">Strategy</TabsTrigger>
             </TabsList>
             <TabsContent
-              value="lore"
+              value="ability"
               className="p-4 bg-slate-50 dark:bg-slate-900 rounded-md mt-2"
             >
-              <p>{"Card Lore (not finalised)"}</p>
+              <h2 className="text-lg md:text-xl font-bold">
+                <StyledDescription text={character.ability.abilityName} />
+              </h2>
+              <p className="text-sm font-mono">
+                {character.ability.abilityEffectString}
+              </p>
+              {character.subAbility && (
+                <>
+                  <h2 className="text-md md:text-lg font-bold pt-2">
+                    <StyledDescription
+                      text={character.subAbility.abilityName}
+                    />
+                  </h2>
+                  <p className="text-sm font-mono">
+                    {character.subAbility.abilityEffectString}
+                  </p>
+                </>
+              )}
             </TabsContent>
             <TabsContent
               value="strategy"

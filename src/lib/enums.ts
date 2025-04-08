@@ -49,7 +49,7 @@ export enum CharacterEmoji {
   SEIN_SERIE = "🤝",
 }
 
-export enum StatsEnum {
+export enum Stat {
   HP = "HP",
   ATK = "ATK",
   DEF = "DEF",
@@ -57,7 +57,16 @@ export enum StatsEnum {
   Ability = "Ability",
 }
 
+export const StatEmoji: Record<Stat, string> = {
+  [Stat.HP]: "❤️",
+  [Stat.ATK]: "⚔️",
+  [Stat.DEF]: "🛡️",
+  [Stat.SPD]: "⚡",
+  [Stat.Ability]: "✨",
+};
+
 export enum CharacterType {
   Hero = "Hero",
   Demon = "Demon",
+  Other = "Other",
 }

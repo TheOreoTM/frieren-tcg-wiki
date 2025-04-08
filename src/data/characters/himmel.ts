@@ -3,7 +3,7 @@ import {
   CharacterID,
   CharacterName,
   CharacterType,
-  StatsEnum,
+  Stat,
 } from "@/lib/enums";
 import type { Character } from "@/lib/types";
 
@@ -22,11 +22,11 @@ export const Himmel: Character = {
     icon: "https://static.wikia.nocookie.net/frieren/images/9/96/Himmel_anime_portrait.png/revision/latest?cb=20231017083515",
   },
   stats: {
-    [StatsEnum.HP]: 100.0,
-    [StatsEnum.ATK]: 10.0,
-    [StatsEnum.DEF]: 10.0,
-    [StatsEnum.SPD]: 16.0,
-    [StatsEnum.Ability]: 0.0,
+    [Stat.HP]: 100.0,
+    [Stat.ATK]: 10.0,
+    [Stat.DEF]: 10.0,
+    [Stat.SPD]: 16.0,
+    [Stat.Ability]: 0.0,
   },
   deck: [],
   ability: {

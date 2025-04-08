@@ -1,9 +1,25 @@
-import { CharacterEmoji, CharacterName, StatsEnum } from "@/lib/enums";
+import { CharacterEmoji, CharacterName, Stat } from "@/lib/enums";
 import type { Character } from "@/lib/types";
 import { Frieren } from "./characters/frieren";
 import { Himmel } from "./characters/himmel";
+import { Denken } from "./characters/denken";
+import { Laufen } from "./characters/laufen";
+import { Linie } from "./characters/linie";
+import { Sein } from "./characters/sein";
+import { Sense } from "./characters/sense";
+import { Serie } from "./characters/serie";
+import { Stark } from "./characters/stark";
+import { Stille } from "./characters/stille";
 
 export const Characters: Map<CharacterName, Character> = new Map([
   [CharacterName.Frieren, Frieren],
   [CharacterName.Himmel, Himmel],
+  [CharacterName.Denken, Denken],
+  [CharacterName.Laufen, Laufen],
+  [CharacterName.Linie, Linie],
+  [CharacterName.Sein, Sein],
+  [CharacterName.Sense, Sense],
+  [CharacterName.Serie, Serie],
+  [CharacterName.Stark, Stark],
+  [CharacterName.Stille, Stille],
 ]);

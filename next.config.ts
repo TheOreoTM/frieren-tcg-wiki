@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "static.wikia.nocookie.net",
         pathname: "/frieren/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.discordapp.com",
+        pathname: "/attachments/**",
+      },
     ],
   },
 };

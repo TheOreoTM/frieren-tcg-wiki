@@ -3,13 +3,13 @@ import type {
   CharacterID,
   CharacterName,
   CharacterType,
-  StatsEnum,
+  Stat,
 } from "../enums";
 import type { Ability } from "./ability";
 import type { Card } from "./card";
 
 export type Stats = {
-  [key in StatsEnum]: number;
+  [key in Stat]: number;
 };
 
 export type CharacterCosmetic = {
@@ -28,6 +28,7 @@ export type Character = {
   deck: Card[];
   stats: Stats;
   ability: Ability;
+  subAbility?: Ability;
   relatedCharacters: `${CharacterID}`[];
   additionalMetadata: CharacterAdditionalMetadata;
 };

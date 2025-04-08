@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Characters } from "@/data/characters";
-import { StatsEnum } from "@/lib/enums";
+import { Stat, StatEmoji } from "@/lib/enums";
 
 const characters = Array.from(Characters.values());
 
@@ -55,17 +55,17 @@ function getElementColor(element: string) {
   }
 }
 
-function getStatColor(stat: StatsEnum) {
+function getStatColor(stat: Stat) {
   switch (stat) {
-    case StatsEnum.HP:
+    case Stat.HP:
       return "bg-emerald-100 text-emerald-800";
-    case StatsEnum.ATK:
+    case Stat.ATK:
       return "bg-red-100 text-red-800";
-    case StatsEnum.DEF:
+    case Stat.DEF:
       return "bg-blue-100 text-blue-800";
-    case StatsEnum.SPD:
+    case Stat.SPD:
       return "bg-purple-100 text-purple-800";
-    case StatsEnum.Ability:
+    case Stat.Ability:
       return "bg-amber-100 text-amber-800";
     default:
       return "bg-gray-100 text-gray-800";
@@ -75,11 +75,13 @@ function getStatColor(stat: StatsEnum) {
 export default function CharactersPage() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl md:text-4xl font-bold mb-8">Card Collection</h1>
+      <h1 className="text-3xl md:text-4xl font-bold mb-8">
+        Character Collection
+      </h1>
 
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <div className="w-full md:w-1/3">
-          <Input placeholder="Search cards..." />
+          <Input placeholder="Search characters..." />
         </div>
         {/* <div className="w-full md:w-1/3">
           <Select>
@@ -118,7 +120,7 @@ export default function CharactersPage() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {characters.map((character) => (
           <Link href={`/character/${character.id}`} key={character.id}>
-            <Card className="hover:shadow-lg transition-shadow overflow-hidden">
+            <Card className="hover:shadow-lg transition-shadow h-full overflow-hidden">
               <div className="relative pt-[150%]">
                 <Image
                   src={character.cosmetic.icon || "/placeholder.svg"}
@@ -127,29 +129,17 @@ export default function CharactersPage() {
                   className="object-cover"
                 />
                 <div className="absolute top-2 left-2 flex gap-2">
-                  <Badge
-                    variant="secondary"
-                    className={getStatColor(StatsEnum.HP)}
-                  >
-                    {character.stats.HP}
+                  <Badge variant="secondary" className={getStatColor(Stat.HP)}>
+                    {character.stats.HP} {StatEmoji.HP}
                   </Badge>
-                  <Badge
-                    variant="secondary"
-                    className={getStatColor(StatsEnum.ATK)}
-                  >
-                    {character.stats.ATK}
+                  <Badge variant="secondary" className={getStatColor(Stat.ATK)}>
+                    {character.stats.ATK} {StatEmoji.ATK}
                   </Badge>
-                  <Badge
-                    variant="secondary"
-                    className={getStatColor(StatsEnum.DEF)}
-                  >
-                    {character.stats.DEF}
+                  <Badge variant="secondary" className={getStatColor(Stat.DEF)}>
+                    {character.stats.DEF} {StatEmoji.DEF}
                   </Badge>
-                  <Badge
-                    variant="secondary"
-                    className={getStatColor(StatsEnum.SPD)}
-                  >
-                    {character.stats.SPD}
+                  <Badge variant="secondary" className={getStatColor(Stat.SPD)}>
+                    {character.stats.SPD} {StatEmoji.SPD}
                   </Badge>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">

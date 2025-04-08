@@ -24,7 +24,7 @@ export default function Home() {
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl">
           A fan-made trading card game inspired by the anime Frieren: Beyond
-          Journeys End
+          Journey's End
         </p>
       </div>
 
@@ -64,8 +64,8 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <p>
-              Understand the core mechanics, spell casting, combat, and special
-              abilities in Frieren TCG.
+              Understand the core mechanics, card empowering, combat, and
+              special abilities in Frieren TCG.
             </p>
           </CardContent>
           <CardFooter>
@@ -83,13 +83,10 @@ export default function Home() {
               <BookOpen className="h-5 w-5" />
               Wiki
             </CardTitle>
-            <CardDescription>Dive into the lore and strategy</CardDescription>
+            <CardDescription>Dive into and strategy</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>
-              Explore in-depth articles about game strategy, card synergies, and
-              the world of Frieren.
-            </p>
+            <p>Explore in-depth articles about game strategy and synergies</p>
           </CardContent>
           <CardFooter>
             <Link href="/wiki" className="w-full">
@@ -107,21 +104,16 @@ export default function Home() {
           <li className="flex items-start gap-2">
             <span className="text-emerald-600">•</span>
             <span>
-              New expansion: "Beyond the Wasteland" featuring 60 new cards!
+              First Edition of the Frierencord TCG Tournament Series takes place
             </span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-emerald-600">•</span>
-            <span>
-              Tournament rules updated for the upcoming Regional Championship
-            </span>
+            <span>TCG Bot comes out of closed beta</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-emerald-600">•</span>
-            <span>
-              Balance changes to Himmel's "Divine Blade" and Stark's "Warrior's
-              Resolve"
-            </span>
+            <span>Release of Denken and Himmel</span>
           </li>
         </ul>
       </div>
