@@ -297,7 +297,8 @@ export default function GettingStartedPage() {
               <div>
                 <p className="font-medium">Defeat your opponent</p>
                 <p className="text-sm text-muted-foreground">
-                  Take down your opponent usually by making their HP reach 0.
+                  Take down your opponent {"(usually)"} by making their HP reach
+                  0.
                 </p>
               </div>
             </li>
