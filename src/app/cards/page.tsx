@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, Filter, X } from "lucide-react";
+import { Search, Filter, X, Grid, List } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CardMap, allCards } from "@/data/cards";
+import { allCards } from "@/data/cards";
 import CardPreview from "@/components/card/card-preview";
+import CardListItem from "@/components/card/card-list-item";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
     Sheet,
@@ -18,6 +19,7 @@ import {
     SheetFooter,
     SheetClose,
 } from "@/components/ui/sheet";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Image from "next/image";
 
 export default function CardsPage() {
@@ -26,6 +28,7 @@ export default function CardsPage() {
     const [priorityFilter, setPriorityFilter] = useState<string | null>(null);
     const [filteredCards, setFilteredCards] = useState(allCards);
     const [activeFilters, setActiveFilters] = useState(0);
+    const [viewMode, setViewMode] = useState<"grid" | "list">("list");
 
     // Get unique emojis for filtering
     const uniqueEmojis = Array.from(new Set(allCards.map((item) => item.card.emoji)));
@@ -81,8 +84,27 @@ export default function CardsPage() {
 
     return (
         <div className="container mx-auto px-4 py-12">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">Cards</h1>
-            <p className="text-muted-foreground mb-8">Browse all cards in the Frieren TCG</p>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                <div>
+                    <h1 className="text-3xl md:text-4xl font-bold mb-2">Cards</h1>
+                    <p className="text-muted-foreground">Browse all cards in the Frieren TCG</p>
+                </div>
+
+                <div className="mt-4 md:mt-0">
+                    <ToggleGroup
+                        type="single"
+                        value={viewMode}
+                        onValueChange={(value) => value && setViewMode(value as "grid" | "list")}
+                    >
+                        <ToggleGroupItem value="grid" aria-label="Grid view">
+                            <Grid className="h-4 w-4" />
+                        </ToggleGroupItem>
+                        <ToggleGroupItem value="list" aria-label="List view">
+                            <List className="h-4 w-4" />
+                        </ToggleGroupItem>
+                    </ToggleGroup>
+                </div>
+            </div>
 
             <div className="flex flex-col md:flex-row gap-4 mb-8">
                 <div className="w-full md:w-2/3 relative">
@@ -124,7 +146,7 @@ export default function CardsPage() {
                                 <SheetDescription>Refine your card search with these filters</SheetDescription>
                             </SheetHeader>
 
-                            <div className="py-6 px-3 space-y-6">
+                            <div className="py-6 space-y-6 px-3">
                                 <div className="space-y-2">
                                     <h3 className="text-sm font-medium">Card Type</h3>
                                     <Select
@@ -201,8 +223,8 @@ export default function CardsPage() {
                     )}
 
                     {emojiFilter && (
-                        <Badge variant="secondary" className="flex items-center gap-1">
-                            Type: <Image src={emojiFilter} alt={emojiFilter} width={20} height={20} />
+                        <Badge variant="outline" className="flex items-center gap-1">
+                            Type: {emojiFilter}
                             <Button
                                 variant="ghost"
                                 size="icon"
@@ -239,7 +261,7 @@ export default function CardsPage() {
                     {uniqueEmojis.map((emoji, index) => (
                         <Badge
                             key={index}
-                            className={`bg-slate-200 hover:bg-emerald-200 text-black dark:bg-emerals-800 cursor-pointer ${
+                            className={`bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 cursor-pointer ${
                                 emojiFilter === emoji ? "ring-2 ring-primary" : ""
                             }`}
                             onClick={() => setEmojiFilter(emojiFilter === emoji ? null : emoji)}
@@ -267,10 +289,16 @@ export default function CardsPage() {
                     <p className="text-muted-foreground mb-4">Try adjusting your filters or search term</p>
                     <Button onClick={resetFilters}>Reset All Filters</Button>
                 </div>
-            ) : (
+            ) : viewMode === "grid" ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {filteredCards.map((item, index) => (
                         <CardPreview key={index} card={item.card} count={item.count} />
+                    ))}
+                </div>
+            ) : (
+                <div>
+                    {filteredCards.map((item, index) => (
+                        <CardListItem key={index} card={item.card} count={item.count} />
                     ))}
                 </div>
             )}
