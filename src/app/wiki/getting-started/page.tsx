@@ -81,7 +81,7 @@ export default function GettingStartedPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
-                  <span>Reduce your opponent's life points to 0 to win*</span>
+                  <span>Reduce your opponent's health to 0 to win*</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
