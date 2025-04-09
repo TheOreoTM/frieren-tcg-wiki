@@ -1,4 +1,4 @@
-export type Card = {
+export type DeckCardProps = {
   title: string;
   description: string;
   priority: number;
