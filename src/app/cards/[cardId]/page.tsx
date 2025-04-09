@@ -1,7 +1,7 @@
 // app/cards/[cardId]/page.tsx
 import { notFound } from "next/navigation";
 import { CardMap } from "@/data/cards";
-import { CardDetailClient } from "@/components/card-detail-client";
+import { CardDetailClient } from "@/components/card/card-detail-client";
 
 type PageProps = {
     params: { cardId: string };

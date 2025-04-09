@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tag } from "@/components/tag";
-import { CardEmpowerCalculator } from "@/components/card-empower-calculator";
+import { CardEmpowerCalculator } from "@/components/card/card-empower-calculator";
 import { CardMap } from "@/data/cards";
 import { notFound } from "next/navigation";
 
@@ -44,7 +44,9 @@ export function CardDetailClient({ cardId }: Props) {
                         </Badge>
                     )}
 
-                    <h1 className="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-2">{card.title}</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-2">
+                        {card.title} + {empowerLevel}
+                    </h1>
 
                     <div className="mb-6 p-4 bg-slate-100 dark:bg-slate-800 rounded-md">
                         <h2 className="text-lg font-semibold mb-2">Effect</h2>

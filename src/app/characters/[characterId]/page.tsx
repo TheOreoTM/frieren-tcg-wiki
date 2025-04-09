@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Characters } from "@/data/characters";
 import { Stat } from "@/lib/enums";
 import StyledDescription from "@/components/styled-description";
-import CardPreview from "@/components/card-preview";
+import CardPreview from "@/components/card/card-preview";
 
 interface PageProps {
     params: Promise<{ characterId: string }>;
@@ -196,16 +196,6 @@ export default async function CharacterPage({ params }: PageProps) {
                     </h2>
 
                     <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-lg mb-6">
-                        <div className="flex flex-wrap gap-2 mb-4">
-                            {Array.from(new Set(character.cards.map((item) => item.card.emoji))).map((emoji, index) => (
-                                <Badge key={index} className="bg-slate-800 dark:bg-slate-200">
-                                    <Image src={emoji} alt={emoji} width={40} height={40} />
-                                    {character.cards
-                                        .filter((item) => item.card.emoji === emoji)
-                                        .reduce((acc, item) => acc + item.count, 0)}
-                                </Badge>
-                            ))}
-                        </div>
                         <div className="flex justify-between pb-2">
                             <div className="text-sm text-muted-foreground">
                                 Total Cards: {character.cards.reduce((acc, item) => acc + item.count, 0)}
@@ -215,7 +205,7 @@ export default async function CharacterPage({ params }: PageProps) {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                             {character.cards.map((item, index) => (
-                                <CardPreview key={index} card={item.card} count={item.count} />
+                                <CardPreview key={index} card={item.card} count={item.count} showCount />
                             ))}
                         </div>
                     </div>
