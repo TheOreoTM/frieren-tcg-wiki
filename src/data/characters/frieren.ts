@@ -6,6 +6,7 @@ import {
   Stat,
 } from "@/lib/enums";
 import type { Character } from "@/lib/types";
+import { frierenDeck } from "../decks/frieren";
 
 const ANALYSIS_BOOST = 0.05;
 const ANALYSIS_STACK_CAP = 20;
@@ -18,7 +19,7 @@ export const Frieren: Character = {
   cosmetic: {
     emoji: CharacterEmoji.FRIEREN,
     color: 0xc5c3cc,
-    imageUrl: "/cards/Frieren.png",
+    imageUrl: "/cards/Frieren.webp",
     icon: "https://static.wikia.nocookie.net/frieren/images/9/9c/Frieren_anime_portrait.png/revision/latest?cb=20231017083523",
   },
   stats: {
@@ -28,7 +29,7 @@ export const Frieren: Character = {
     [Stat.SPD]: 12.0,
     [Stat.Ability]: 0.0,
   },
-  deck: [],
+  cards: frierenDeck,
   ability: {
     abilityName: "Analysis",
     abilityEffectString: `At the end of every turn, gain 1 Analysis stack.

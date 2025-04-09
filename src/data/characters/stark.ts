@@ -25,7 +25,7 @@ export const Stark: Character = {
     [Stat.SPD]: 8.0,
     [Stat.Ability]: 0.0,
   },
-  deck: [],
+  cards: [],
   ability: {
     abilityName: "Bravest Coward",
     abilityEffectString: `Using attacks without (Resolve) reduces its DMG by 20%.

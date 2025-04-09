@@ -9,6 +9,7 @@ import {
   WalletCardsIcon as Cards,
   ScrollText,
   X,
+  Users,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -21,9 +22,14 @@ const navItems = [
     icon: <Home className="h-5 w-5" />,
   },
   {
+    name: "Cards",
+    href: "/cards",
+    icon: <Cards className="h-5 w-5" />,
+  },
+  {
     name: "Characters",
     href: "/characters",
-    icon: <Cards className="h-5 w-5" />,
+    icon: <Users className="h-5 w-5" />,
   },
   {
     name: "Mechanics",

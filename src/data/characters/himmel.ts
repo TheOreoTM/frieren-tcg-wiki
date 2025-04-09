@@ -28,7 +28,7 @@ export const Himmel: Character = {
     [Stat.SPD]: 16.0,
     [Stat.Ability]: 0.0,
   },
-  deck: [],
+  cards: [],
   ability: {
     abilityName: "The Hero Party",
     abilityEffectString: `For each one of Frieren/Heiter/Eisen active as a timed effect,

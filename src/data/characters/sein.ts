@@ -18,7 +18,7 @@ export const Sein: Character = {
   cosmetic: {
     emoji: CharacterEmoji.SEIN,
     color: 0xa3caca,
-    imageUrl: "/cards/Sein.png",
+    imageUrl: "/cards/Sein.webp",
     icon: "https://static.wikia.nocookie.net/frieren/images/3/3c/Sein_anime_portrait.png/revision/latest?cb=20231128092945",
   },
   stats: {
@@ -28,7 +28,7 @@ export const Sein: Character = {
     [Stat.SPD]: 10.0,
     [Stat.Ability]: 0.0,
   },
-  deck: [],
+  cards: [],
   ability: {
     abilityName: "Goddess' Blessing",
     abilityEffectString: `Heal for ${SEIN_BASE_HEALING}HP + ${SEIN_BASE_HEALING} * (Turn Count * ${(

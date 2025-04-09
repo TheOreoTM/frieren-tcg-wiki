@@ -6,6 +6,7 @@ import {
   Stat,
 } from "@/lib/enums";
 import type { Character } from "@/lib/types";
+import { denkenDeck } from "../decks/denken";
 
 const DENKEN_STEEL_YOURSELF_TURN_COUNT = 3;
 
@@ -28,7 +29,7 @@ export const Denken: Character = {
     [Stat.SPD]: 10.0,
     [Stat.Ability]: 0.0,
   },
-  deck: [],
+  cards: denkenDeck,
   ability: {
     abilityName: "Steel Yourself",
     abilityEffectString: `This character only loses after their HP is <= 0 for ${DENKEN_STEEL_YOURSELF_TURN_COUNT} turns in a row.`,

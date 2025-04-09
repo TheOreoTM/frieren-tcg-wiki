@@ -25,7 +25,7 @@ export const Stille: Character = {
     [Stat.SPD]: 99.0,
     [Stat.Ability]: 0.0,
   },
-  deck: [],
+  cards: [],
   ability: {
     abilityName: "High-speed Escape",
     abilityEffectString: `When the opponent attacks, roll a D100. 

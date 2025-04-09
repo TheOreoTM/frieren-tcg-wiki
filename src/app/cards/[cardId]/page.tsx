@@ -1,0 +1,110 @@
+import Link from "next/link";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { CardMap } from "@/data/cards";
+
+type PageProps = {
+    params: Promise<{ cardId: string }>;
+};
+
+export default async function CardDetailPage({ params }: PageProps) {
+    const { cardId } = await params;
+
+    const card = CardMap.get(cardId);
+
+    if (!card) {
+        notFound();
+    }
+
+    const imageSource = card.getImageSource();
+
+    return (
+        <div className="container mx-auto px-4 py-12">
+            <div className="mb-6">
+                <Link href="/cards">
+                    <Button variant="ghost" className="pl-0">
+                        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Cards
+                    </Button>
+                </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-lg">
+                    <Image src={imageSource || "/placeholder.svg"} alt={card.title} fill className="object-cover" />
+                </div>
+
+                <div>
+                    <div className="flex items-center gap-2 mb-2">
+                        {card.priority > 0 && (
+                            <Badge variant="outline" className="bg-amber-50">
+                                Priority +{card.priority}
+                            </Badge>
+                        )}
+                    </div>
+                    <h1 className="text-3xl md:text-4xl font-bold mb-4 inline-flex items-center gap-2">{card.title}</h1>
+
+                    <div className="mb-6 p-4 bg-slate-100 dark:bg-slate-800 rounded-md">
+                        <h2 className="text-lg font-semibold mb-2">Effect</h2>
+                        <p>{card.getDescription()}</p>
+                    </div>
+
+                    {Object.keys(card.tags).length > 0 && (
+                        <div className="mb-6">
+                            <h2 className="text-lg font-semibold mb-2">Tags</h2>
+                            <div className="flex flex-wrap gap-2">
+                                {Object.entries(card.tags).map(([tag, value]) => (
+                                    <Badge key={tag} className="bg-violet-100 text-violet-800 hover:bg-violet-200">
+                                        {tag}: {value}
+                                    </Badge>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="mb-6">
+                        <h2 className="text-lg font-semibold mb-2">Base Effects</h2>
+                        <div className="grid grid-cols-2 gap-4">
+                            {card.effects.map((effect, index) => (
+                                <div key={index} className="p-3 bg-slate-50 dark:bg-slate-900 rounded-md">
+                                    <div className="font-mono text-lg text-center">{effect}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="mb-6">
+                        <h2 className="text-lg font-semibold mb-2">Empower</h2>
+                        <div className="grid grid-cols-3 gap-4">
+                            {[1, 2, 3].map((level) => (
+                                <div key={level} className="p-3 bg-slate-50 dark:bg-slate-900 rounded-md">
+                                    <div className="text-sm text-muted-foreground mb-1">Level {level}</div>
+                                    <div className="font-mono text-sm">
+                                        {card.effects.map((effect, index) => {
+                                            const empowered = effect * (1 + level * card.EMPOWER_BOOST);
+                                            return (
+                                                <div key={index}>
+                                                    {effect.toFixed(2)} → {empowered.toFixed(2)}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="mt-6">
+                        <Link href="/cards">
+                            <Button variant="outline" className="w-full">
+                                View All Cards
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

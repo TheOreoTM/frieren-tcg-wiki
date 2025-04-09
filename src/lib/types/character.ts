@@ -1,3 +1,4 @@
+import type { Card } from "../classes/Card";
 import type {
   CharacterEmoji,
   CharacterID,
@@ -6,7 +7,7 @@ import type {
   Stat,
 } from "../enums";
 import type { Ability } from "./ability";
-import type { DeckCardProps } from "./card";
+import type { CardProps } from "./card";
 
 export type Stats = {
   [key in Stat]: number;
@@ -25,7 +26,7 @@ export type Character = {
   description: string;
   type: CharacterType;
   cosmetic: CharacterCosmetic;
-  deck: DeckCardProps[];
+  cards: { card: Card; count: number }[];
   stats: Stats;
   ability: Ability;
   subAbility?: Ability;

@@ -27,7 +27,7 @@ export const Sense: Character = {
     [Stat.SPD]: 8.0,
     [Stat.Ability]: 0.0,
   },
-  deck: [],
+  cards: [],
   ability: {
     abilityName: "Pacifist",
     abilityEffectString: `When this character has 2 Tea Time Snacks, skip the turn for both characters.

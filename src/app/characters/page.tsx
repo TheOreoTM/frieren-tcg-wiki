@@ -119,7 +119,7 @@ export default function CharactersPage() {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {characters.map((character) => (
-          <Link href={`/character/${character.id}`} key={character.id}>
+          <Link href={`/characters/${character.id}`} key={character.id}>
             <Card className="hover:shadow-lg transition-shadow h-full overflow-hidden">
               <div className="relative pt-[150%]">
                 <Image

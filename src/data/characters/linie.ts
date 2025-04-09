@@ -27,7 +27,7 @@ export const Linie: Character = {
     [Stat.SPD]: 12.0,
     [Stat.Ability]: 0.0,
   },
-  deck: [],
+  cards: [],
   ability: {
     abilityName: "Chain Attack",
     abilityEffectString: `After this character uses an attack, gain 1 Chain stack.

@@ -25,7 +25,7 @@ export const Laufen: Character = {
     [Stat.SPD]: 30.0,
     [Stat.Ability]: 0.0,
   },
-  deck: [],
+  cards: [],
   ability: {
     abilityName: "Evasive",
     abilityEffectString: `When the opponent attacks, roll a D100.

@@ -17,7 +17,7 @@ export const Serie: Character = {
   cosmetic: {
     emoji: CharacterEmoji.SERIE,
     color: 0xe8b961,
-    imageUrl: "/cards/Serie.png",
+    imageUrl: "/cards/Serie.webp",
     icon: "/icons/Serie.webp",
   },
   stats: {
@@ -27,7 +27,7 @@ export const Serie: Character = {
     [Stat.SPD]: 14.0,
     [Stat.Ability]: 0.0,
   },
-  deck: [],
+  cards: [],
   ability: {
     abilityName: "Toying Around",
     abilityEffectString: `Any attack used by this character has its DMG+${(
