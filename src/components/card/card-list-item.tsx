@@ -6,9 +6,10 @@ import Image from "next/image";
 interface CardListItemProps {
     card: Card;
     count?: number;
+    showCount?: boolean;
 }
 
-export default function CardListItem({ card, count }: CardListItemProps) {
+export default function CardListItem({ card, count, showCount }: CardListItemProps) {
     // Create a URL-friendly ID from the card title
     const cardId = card.getId ? card.getId() : card.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
@@ -24,7 +25,7 @@ export default function CardListItem({ card, count }: CardListItemProps) {
                 <div className="flex-grow mr-4">
                     <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-bold">{card.title}</h3>
-                        {count !== undefined && (
+                        {count !== undefined && showCount && (
                             <Badge variant="outline" className="bg-slate-100">
                                 ×{count}
                             </Badge>
