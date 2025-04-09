@@ -4,7 +4,7 @@ import { CardMap } from "@/data/cards";
 import { CardDetailClient } from "@/components/card/card-detail-client";
 
 type PageProps = {
-    params: { cardId: string };
+    params: Promise<{ cardId: string }>;
 };
 
 export default async function CardDetailPage({ params }: PageProps) {
