@@ -23,8 +23,8 @@ export function CardEmpowerCalculator({
     }, [empowerLevel, onLevelChange]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = parseInt(e.target.value) || 0;
-        setEmpowerLevel(value);
+        const cleaned = parseInt(e.target.value || "0", 10);
+        setEmpowerLevel(cleaned);
     };
 
     return (
@@ -33,7 +33,6 @@ export function CardEmpowerCalculator({
                 Empower Level Calculator
                 <input
                     type="number"
-                    min={0}
                     value={empowerLevel}
                     onChange={handleChange}
                     className="ml-2 px-2 py-1 w-20 text-sm rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800"

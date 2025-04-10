@@ -32,3 +32,9 @@ export const forfeitCard = new Card({
     cardCategories: [CardCategory.DEFAULT],
     printEmpower: false,
 });
+
+export const defaultCards = [
+    { card: discardCard, count: 1 },
+    { card: waitCard, count: 1 },
+    { card: forfeitCard, count: 1 },
+];

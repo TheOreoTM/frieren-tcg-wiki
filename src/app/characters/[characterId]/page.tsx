@@ -128,13 +128,18 @@ export default async function CharacterPage({ params }: PageProps) {
                             <h2 className="text-lg md:text-xl font-bold">
                                 <StyledDescription text={character.ability.abilityName} />
                             </h2>
-                            <p className="text-sm font-mono">{character.ability.abilityEffectString}</p>
+
+                            <div className="text-sm font-mono">
+                                <StyledDescription text={character.ability.abilityEffectString} />
+                            </div>
                             {character.subAbility && (
                                 <>
                                     <h2 className="text-md md:text-lg font-bold pt-2">
                                         <StyledDescription text={character.subAbility.abilityName} />
                                     </h2>
-                                    <p className="text-sm font-mono">{character.subAbility.abilityEffectString}</p>
+                                    <div className="text-sm font-mono">
+                                        <StyledDescription text={character.subAbility.abilityEffectString} />
+                                    </div>
                                 </>
                             )}
                         </TabsContent>

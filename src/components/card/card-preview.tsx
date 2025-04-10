@@ -20,7 +20,7 @@ export default function CardPreview({ card, count, showCount }: CardPreviewProps
                     <Image src={imageSource || "/placeholder.svg"} alt={card.title} fill className="object-cover" />
                     {count !== undefined && showCount && (
                         <div className="absolute top-2 right-2 bg-black/70 text-white rounded-full h-8 w-8 flex items-center justify-center font-bold">
-                            x{count}
+                            ×{count}
                         </div>
                     )}
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">

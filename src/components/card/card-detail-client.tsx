@@ -21,6 +21,7 @@ export function CardDetailClient({ cardId }: Props) {
     if (!card) return notFound();
     const [empowerLevel, setEmpowerLevel] = useState(5);
     const imageSource = card.getImageSource();
+    const hasEmpowerEffects = card.effects.length > 0;
 
     return (
         <div className="container mx-auto px-4 py-12">
@@ -45,7 +46,7 @@ export function CardDetailClient({ cardId }: Props) {
                     )}
 
                     <h1 className="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-2">
-                        {card.title} + {empowerLevel}
+                        {card.title} {hasEmpowerEffects ? `+ ${empowerLevel}` : ""}
                     </h1>
 
                     <div className="mb-6 p-4 bg-slate-100 dark:bg-slate-800 rounded-md">
@@ -68,32 +69,41 @@ export function CardDetailClient({ cardId }: Props) {
 
                     <div className="mb-6">
                         <h2 className="text-lg font-semibold mb-2">Empower</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-                            {[1, 3].map((level) => (
-                                <div key={level} className="p-3 bg-slate-50 dark:bg-slate-900 rounded-md">
-                                    <div className="text-sm text-muted-foreground mb-1">Level {level}</div>
-                                    <div className="font-mono text-sm">
-                                        {card.effects.map((effect, index) => {
-                                            const empowered = effect * (1 + level * card.EMPOWER_BOOST);
-                                            return (
-                                                <div key={index}>
-                                                    {effect.toFixed(2)} → {empowered.toFixed(2)}{" "}
-                                                    {card.effectNames[index]}
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
+                        {hasEmpowerEffects && (
+                            <>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                                    {[1, 3].map((level) => (
+                                        <div key={level} className="p-3 bg-slate-50 dark:bg-slate-900 rounded-md">
+                                            <div className="text-sm text-muted-foreground mb-1">Level {level}</div>
+                                            <div className="font-mono text-sm">
+                                                {card.effects.map((effect, index) => {
+                                                    const empowered = effect * (1 + level * card.EMPOWER_BOOST);
+                                                    return (
+                                                        <div key={index}>
+                                                            {effect.toFixed(2)} → {empowered.toFixed(2)}{" "}
+                                                            {card.effectNames[index]}
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
 
-                        <CardEmpowerCalculator
-                            empowerLevel={empowerLevel}
-                            effects={card.effects}
-                            effectNames={card.effectNames}
-                            EMPOWER_BOOST={card.EMPOWER_BOOST}
-                            onLevelChange={setEmpowerLevel}
-                        />
+                                <CardEmpowerCalculator
+                                    empowerLevel={empowerLevel}
+                                    effects={card.effects}
+                                    effectNames={card.effectNames}
+                                    EMPOWER_BOOST={card.EMPOWER_BOOST}
+                                    onLevelChange={setEmpowerLevel}
+                                />
+                            </>
+                        )}
+                        {!hasEmpowerEffects && (
+                            <div className="p-3 bg-slate-50 dark:bg-slate-900 rounded-md text-muted-foreground">
+                                Empower has no effect on this card
+                            </div>
+                        )}
                     </div>
 
                     <div className="mt-6">
