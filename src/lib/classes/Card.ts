@@ -1,5 +1,5 @@
 import { CardEmoji } from "../enums";
-import type { CardCosmetic, CardProps } from "../types";
+import type { CardCategory, CardCosmetic, CardProps } from "../types";
 
 export class Card implements CardProps {
     readonly EMPOWER_BOOST = 0.1;
@@ -13,6 +13,7 @@ export class Card implements CardProps {
     printEmpower: boolean;
     priority: number;
     tags: Record<string, number>;
+    cardCategories: CardCategory[];
     cosmetic?: CardCosmetic | undefined;
 
     constructor(props: CardProps) {
@@ -26,6 +27,7 @@ export class Card implements CardProps {
         this.priority = props.priority ?? 0;
         this.tags = props.tags ?? {};
         this.cosmetic = props.cosmetic;
+        this.cardCategories = props.cardCategories;
     }
 
     /**

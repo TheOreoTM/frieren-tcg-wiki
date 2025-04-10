@@ -1,5 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
+import { CardCategory } from "@/lib/types";
 
 export const discardCard = new Card({
     title: "Discard",
@@ -8,6 +9,7 @@ export const discardCard = new Card({
     effects: [],
     effectNames: [],
     emoji: CardEmoji.RECYCLE,
+    cardCategories: [CardCategory.DEFAULT],
     printEmpower: false,
 });
 
@@ -17,6 +19,7 @@ export const waitCard = new Card({
     effects: [],
     effectNames: [],
     emoji: CardEmoji.WAIT,
+    cardCategories: [CardCategory.DEFAULT],
     printEmpower: false,
 });
 
@@ -26,5 +29,6 @@ export const forfeitCard = new Card({
     effects: [],
     effectNames: [],
     emoji: CardEmoji.RANDOM,
+    cardCategories: [CardCategory.DEFAULT],
     printEmpower: false,
 });

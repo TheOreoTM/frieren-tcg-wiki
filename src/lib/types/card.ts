@@ -9,9 +9,18 @@ export type CardProps = {
     printEmpower?: boolean;
     empowerLevel?: number;
     cosmetic?: CardCosmetic;
+    cardCategories: CardCategory[];
 };
 
 export interface CardCosmetic {
     cardImageUrl?: string;
     cardGif?: string;
+}
+
+export enum CardCategory {
+    ATTACK = "Attack",
+    UTILITY = "Utility",
+    DEFENSE = "Defense",
+    HEALING = "Healing",
+    DEFAULT = "Default",
 }

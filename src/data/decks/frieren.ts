@@ -1,5 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
+import { CardCategory } from "@/lib/types";
 
 export const a_zoltraak = new Card({
     title: "Offensive Magic Analysis: Zoltraak",
@@ -10,6 +11,7 @@ export const a_zoltraak = new Card({
     },
     tags: { PostAnalysis: 2 },
     effects: [7],
+    cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
 });
 
@@ -24,6 +26,7 @@ export const fieldOfFlower = new Card({
     },
     emoji: CardEmoji.FLOWER_FIELD,
     effects: [5, 3],
+    cardCategories: [CardCategory.UTILITY, CardCategory.HEALING],
     effectNames: ["HP", "HP"],
 });
 
@@ -36,6 +39,7 @@ export const a_judradjim = new Card({
     },
     tags: { PostAnalysis: 1 },
     effects: [12],
+    cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
 });
 
@@ -47,6 +51,7 @@ export const a_vollzanbel = new Card({
         cardImageUrl: "/cards/Hellfire_Summoning_Vollzanbel.webp",
     },
     effects: [18],
+    cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
 });
 
@@ -59,6 +64,7 @@ export const barrierMagicAnalysis = new Card({
     },
     effects: [2, 1, 1],
     tags: { Analysis: 2 },
+    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE],
     effectNames: ["ATK", "SPD", "DEF"],
 });
 
@@ -71,6 +77,7 @@ export const demonMagicAnalysis = new Card({
     },
     effects: [2, 2, 1],
     tags: { Analysis: 2 },
+    cardCategories: [CardCategory.UTILITY],
     effectNames: ["ATK", "SPD", "DEF"],
 });
 
@@ -83,6 +90,7 @@ const ordinaryDefensiveMagic = new Card({
     },
     effects: [20],
     effectNames: ["DEF"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE],
     priority: 2,
 });
 
@@ -97,6 +105,7 @@ export const a_theHeightOfMagic = new Card({
     priority: 1,
     effects: [30],
     effectNames: ["DMG"],
+    cardCategories: [CardCategory.ATTACK],
 });
 
 export const frierenDeck = [
