@@ -4,11 +4,14 @@ import { CardMap } from "@/data/cards";
 import { CardDetailClient } from "@/components/card/card-detail-client";
 import type { Metadata, ResolvingMetadata } from "next";
 
-export async function generateMetadata(
-    { params }: { params: { cardId: string } },
-    parent: ResolvingMetadata
-): Promise<Metadata> {
-    const card = CardMap.get(params.cardId);
+type PageProps = {
+    params: Promise<{ cardId: string }>;
+};
+
+export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+    const { cardId } = await params;
+
+    const card = CardMap.get(cardId);
 
     if (!card) {
         return {
@@ -39,10 +42,6 @@ export async function generateMetadata(
         },
     };
 }
-
-type PageProps = {
-    params: Promise<{ cardId: string }>;
-};
 
 export default async function CardDetailPage({ params }: PageProps) {
     const { cardId } = await params;
