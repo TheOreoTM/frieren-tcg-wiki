@@ -7,13 +7,6 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Frieren TCG Cards Collection",
         description: "Explore all cards from the Frieren Trading Card Game",
-        images: [
-            {
-                url: "/og-cards.jpg",
-                width: 1200,
-                height: 630,
-            },
-        ],
     },
 };
 

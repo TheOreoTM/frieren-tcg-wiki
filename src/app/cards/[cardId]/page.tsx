@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
             description: description,
             images: [
                 {
-                    url: card.cosmetic?.cardImageUrl || card.cosmetic?.cardGif || "/placeholder.svg",
+                    url: card.cosmetic?.cardImageUrl || card.emoji || card.cosmetic?.cardGif || "/placeholder.svg",
                     width: 800,
                     height: 1000,
                     alt: card.title,
