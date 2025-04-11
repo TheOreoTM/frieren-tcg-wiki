@@ -10,9 +10,42 @@ import { Characters } from "@/data/characters";
 import { Stat } from "@/lib/enums";
 import StyledDescription from "@/components/styled-description";
 import CardPreview from "@/components/card/card-preview";
+import type { Metadata, ResolvingMetadata } from "next";
 
 interface PageProps {
     params: Promise<{ characterId: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+    const { characterId } = await params;
+
+    const characters = Array.from(Characters.values());
+    const character = characters.find((c) => c.id === characterId);
+    console.log(characterId);
+
+    if (!character) {
+        return {
+            title: "Character Not Found",
+            description: "The requested character could not be found",
+        };
+    }
+
+    return {
+        title: `${character.name} | Frieren TCG`,
+        description: character.description || `Learn about ${character.name} in the Frieren TCG universe`,
+        openGraph: {
+            title: character.name,
+            description: character.description,
+            images: [
+                {
+                    url: character.cosmetic.imageUrl || "/placeholder.svg",
+                    width: 800,
+                    height: 1000,
+                    alt: character.name,
+                },
+            ],
+        },
+    };
 }
 
 const characters = Array.from(Characters.values());
