@@ -44,38 +44,76 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  /* Soft pastel color palette in OKLCH format */
+  --radius: 1rem;
+
+  /* Background and foreground */
+  --background: oklch(0.98 0.02 80);
+  /* Soft cream background */
+  --foreground: oklch(0.45 0.04 340);
+  /* Soft mauve text */
+
+  /* Card colors */
+  --card: oklch(0.99 0.01 40);
+  /* Very light lavender */
+  --card-foreground: oklch(0.45 0.04 340);
+  /* Same as foreground */
+
+  /* Popover colors */
+  --popover: oklch(0.99 0.01 40);
+  --popover-foreground: oklch(0.45 0.04 340);
+
+  /* Primary colors - Soft lavender */
+  --primary: oklch(0.85 0.1 300);
+  /* Soft lavender */
+  --primary-foreground: oklch(0.3 0.05 280);
+  /* Dark lavender */
+
+  /* Secondary colors - Soft mint */
+  --secondary: oklch(0.9 0.05 160);
+  /* Soft mint */
+  --secondary-foreground: oklch(0.3 0.05 160);
+  /* Dark mint */
+
+  /* Muted colors - Soft blue */
+  --muted: oklch(0.93 0.03 210);
+  /* Soft blue */
+  --muted-foreground: oklch(0.55 0.05 210);
+  /* Muted blue */
+
+  /* Accent colors - Soft pink */
+  --accent: oklch(0.9 0.1 340);
+  /* Soft pink */
+  --accent-foreground: oklch(0.4 0.15 340);
+  /* Deep pink */
+
+  /* Destructive colors */
+  --destructive: oklch(0.7 0.2 27.325);
+  /* Soft red */
+
+  /* Border, input, and ring colors */
+  --border: oklch(0.9 0.02 340);
+  /* Very light mauve */
+  --input: oklch(0.9 0.02 340);
+  --ring: oklch(0.8 0.1 300);
+  /* Light lavender */
+
+  /* Chart colors */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Sidebar colors */
+  --sidebar: oklch(0.99 0.01 40);
+  --sidebar-foreground: oklch(0.45 0.04 340);
+  --sidebar-primary: oklch(0.85 0.1 300);
+  --sidebar-primary-foreground: oklch(0.3 0.05 280);
+  --sidebar-accent: oklch(0.9 0.1 340);
+  --sidebar-accent-foreground: oklch(0.4 0.15 340);
+  --sidebar-border: oklch(0.9 0.02 340);
+  --sidebar-ring: oklch(0.8 0.1 300);
 }
 
 .dark {
@@ -116,7 +154,49 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    /* Gradient background */
+    background: linear-gradient(135deg, oklch(0.97 0.05 300) 0%, oklch(0.98 0.02 80) 50%, oklch(0.97 0.05 340) 100%);
+    background-attachment: fixed;
+    position: relative;
+  }
+
+  /* Add a subtle noise texture overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.4;
+  }
+}
+
+/* Custom styles for our cozy theme */
+@layer components {
+  .card {
+    @apply shadow-md hover:shadow-lg transition-shadow border border-border/40;
+  }
+
+  .btn-cozy {
+    @apply rounded-full px-6 py-2 transition-all duration-300 ease-in-out;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-[oklch(0.8_0.15_340)] via-[oklch(0.8_0.15_300)] to-[oklch(0.8_0.1_210)] bg-clip-text text-transparent;
+  }
+
+  .cozy-section {
+    @apply rounded-3xl p-8 shadow-md;
+  }
+
+  .cozy-border {
+    @apply border-2 border-primary/20 rounded-2xl;
   }
 }
