@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -46,18 +47,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className="light">
+        <html lang="en" suppressHydrationWarning>
             <body className="min-h-screen">
-                <Navbar />
-                <main>{children}</main>
-                <footer className="py-8 px-4 mt-12 border-t border-primary/10 bg-white/60 backdrop-blur-sm">
-                    <div className="container mx-auto text-center">
-                        <p className="text-sm text-muted-foreground">Created with ❤️ for Frieren fans</p>
-                        <p className="text-xs text-muted-foreground mt-2">
-                            A fan-made trading card game inspired by the anime Frieren: Beyond Journey's End
-                        </p>
-                    </div>
-                </footer>
+                <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+                    <Navbar />
+                    <main>{children}</main>
+                    <Footer />
+                </ThemeProvider>
             </body>
         </html>
     );

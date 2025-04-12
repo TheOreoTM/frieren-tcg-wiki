@@ -114,40 +114,85 @@
   --sidebar-accent-foreground: oklch(0.4 0.15 340);
   --sidebar-border: oklch(0.9 0.02 340);
   --sidebar-ring: oklch(0.8 0.1 300);
+
+    /* Gradient variables for dynamic backgrounds */
+      --gradient-start: oklch(0.97 0.05 300);
+      /* Deep indigo */
+      --gradient-mid: oklch(0.98 0.02 80);
+      /* Near-black purple */
+      --gradient-end: oklch(0.97 0.05 340);
+      /* Royal violet */
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: oklch(0.18 0.02 260);
+  /* Deep navy */
+  --foreground: oklch(0.98 0.01 280);
+  /* Light lavender-gray */
+
+  --card: oklch(0.22 0.015 260);
+  /* Slightly lighter than background */
+  --card-foreground: oklch(0.98 0.01 280);
+
+  --popover: oklch(0.22 0.015 260);
+  --popover-foreground: oklch(0.98 0.01 280);
+
+  --primary: oklch(0.7 0.12 280);
+  /* Muted purple */
+  --primary-foreground: oklch(0.15 0.03 260);
+  /* Almost black-purple */
+
+  --secondary: oklch(0.45 0.08 180);
+  /* Muted teal */
+  --secondary-foreground: oklch(0.98 0.01 180);
+  /* Light mint */
+
+  --muted: oklch(0.26 0.03 250);
+  /* Dark slate blue */
+  --muted-foreground: oklch(0.6 0.05 260);
+  /* Desaturated violet */
+
+  --accent: oklch(0.5 0.08 340);
+  /* Dusty rose */
+  --accent-foreground: oklch(0.98 0.01 340);
+  /* Very light pink */
+
+  --destructive: oklch(0.48 0.15 25);
+  /* Muted red-orange */
+
+  --border: oklch(0.25 0.02 260);
+  --input: oklch(0.25 0.02 260);
+  --ring: oklch(0.6 0.15 280);
+  /* Bright violet */
+
+  --chart-1: oklch(0.5 0.22 300);
+  /* Orchid */
+  --chart-2: oklch(0.6 0.14 160);
+  /* Seafoam */
+  --chart-3: oklch(0.5 0.15 230);
+  /* Azure */
+  --chart-4: oklch(0.7 0.2 100);
+  /* Goldish */
+  --chart-5: oklch(0.65 0.18 20);
+  /* Rust red */
+
+  --sidebar: oklch(0.2 0.01 260);
+  /* Near black with color hint */
+  --sidebar-foreground: oklch(0.98 0.01 280);
+  --sidebar-primary: oklch(0.7 0.12 280);
+  --sidebar-primary-foreground: oklch(0.15 0.03 260);
+  --sidebar-accent: oklch(0.5 0.08 340);
+  --sidebar-accent-foreground: oklch(0.98 0.01 340);
+  --sidebar-border: oklch(0.25 0.02 260);
+  --sidebar-ring: oklch(0.6 0.15 280);
+
+  /* Gradient variables for dynamic backgrounds */
+  --gradient-start: oklch(0.22 0.05 260);
+  /* Deep indigo */
+  --gradient-mid: oklch(0.18 0.02 250);
+  /* Near-black purple */
+  --gradient-end: oklch(0.26 0.04 300);
+  /* Royal violet */
 }
 
 @layer base {
@@ -155,13 +200,16 @@
     @apply border-border outline-ring/50;
   }
 
-  body {
-    @apply bg-background text-foreground;
-    /* Gradient background */
-    background: linear-gradient(135deg, oklch(0.97 0.05 300) 0%, oklch(0.98 0.02 80) 50%, oklch(0.97 0.05 340) 100%);
-    background-attachment: fixed;
-    position: relative;
-  }
+    body {
+      @apply bg-background text-foreground;
+  
+      background: linear-gradient(135deg,
+          var(--gradient-start) 0%,
+          var(--gradient-mid) 50%,
+          var(--gradient-end) 100%);
+      background-attachment: fixed;
+      position: relative;
+    }
 
   /* Add a subtle noise texture overlay */
   body::before {

@@ -82,7 +82,7 @@ export default function Home() {
                 </Card>
             </div>
 
-            <div className="bg-gradient-to-r from-emerald-50 to-purple-50 dark:from-emerald-950/30 dark:to-purple-950/30 rounded-lg p-8 mb-12">
+            <div className="bg-gradient-to-r from-primary/30 to-accent/30 rounded-lg p-8 mb-12">
                 <h2 className="text-2xl font-bold mb-4">Latest Updates</h2>
                 <ul className="space-y-2">
                     <li className="flex items-start gap-2">

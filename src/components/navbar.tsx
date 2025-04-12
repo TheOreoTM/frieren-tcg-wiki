@@ -6,6 +6,7 @@ import { BookOpen, Home, Menu, WalletCardsIcon as Cards, ScrollText, X, Users, N
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "./mode-toggle";
 
 const navItems = [
     {
@@ -73,6 +74,7 @@ export function Navbar() {
                                 </Button>
                             </Link>
                         ))}
+                        <ModeToggle />
                     </div>
 
                     {/* Mobile menu button */}
