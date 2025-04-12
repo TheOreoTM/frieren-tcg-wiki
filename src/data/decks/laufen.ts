@@ -9,6 +9,7 @@ const a_staffStrike = new Card({
     effects: [2, 10],
     cardCategories: ["Attack"],
     effectNames: ["SPD", "DMG"],
+    deck: "laufen",
 });
 
 const a_staffBash = new Card({
@@ -18,6 +19,7 @@ const a_staffBash = new Card({
     effects: [2, 8],
     cardCategories: ["Attack"],
     effectNames: ["SPD", "DMG"],
+    deck: "laufen",
 });
 
 export const a_whip = new Card({
@@ -27,6 +29,7 @@ export const a_whip = new Card({
     effects: [1, 6],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["SPD", "DMG"],
+    deck: "laufen",
 });
 
 export const hide = new Card({
@@ -37,6 +40,7 @@ export const hide = new Card({
     effects: [3, 7, 12],
     cardCategories: [CardCategory.UTILITY],
     effectNames: ["SPD", "SPD Buff", "HP"],
+    deck: "laufen",
 });
 
 export const a_supersonicStrike = new Card({
@@ -46,6 +50,7 @@ export const a_supersonicStrike = new Card({
     effects: [3, 10],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["SPD", "DMG"],
+    deck: "laufen",
 });
 
 const quickDodge = new Card({
@@ -57,6 +62,7 @@ const quickDodge = new Card({
     priority: 2,
     cardCategories: [CardCategory.UTILITY],
     effectNames: ["SPD", "SPD Buff"],
+    deck: "laufen",
 });
 
 const parry = new Card({
@@ -67,6 +73,7 @@ const parry = new Card({
     priority: 2,
     cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE, "Block"],
     effectNames: ["DEF"],
+    deck: "laufen",
 });
 
 export const jilwer = new Card({
@@ -76,6 +83,7 @@ export const jilwer = new Card({
     effects: [50],
     cardCategories: [CardCategory.UTILITY],
     effectNames: ["SPD"],
+    deck: "laufen",
 });
 
 export const laufenDeck = [

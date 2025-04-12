@@ -1,4 +1,4 @@
-import { CardEmoji } from "../enums";
+import { CardEmoji, type CharacterID } from "../enums";
 import type { CardCategory, CardCosmetic, CardProps } from "../types";
 
 export class Card implements CardProps {
@@ -15,6 +15,7 @@ export class Card implements CardProps {
     tags: Record<string, number>;
     cardCategories: `${CardCategory}`[];
     cosmetic?: CardCosmetic | undefined;
+    deck?: `${CharacterID}`;
 
     constructor(props: CardProps) {
         this.title = props.title;
@@ -28,6 +29,7 @@ export class Card implements CardProps {
         this.tags = props.tags ?? {};
         this.cosmetic = props.cosmetic;
         this.cardCategories = props.cardCategories;
+        this.deck = props.deck ?? "default";
     }
 
     /**

@@ -12,6 +12,7 @@ export const a_livingGrimoireOffensive = new Card({
     effects: [],
     cardCategories: ["Attack"],
     effectNames: [],
+    deck: "serie",
 });
 
 export const a_livingGrimoireUtility = new Card({
@@ -24,6 +25,7 @@ export const a_livingGrimoireUtility = new Card({
     effects: [],
     cardCategories: ["Utility"],
     effectNames: [],
+    deck: "serie",
 });
 
 export const a_livingGrimoireOffensive1 = new Card({
@@ -32,6 +34,7 @@ export const a_livingGrimoireOffensive1 = new Card({
         cardImageUrl: "/cards/Living_Grimoire1.webp",
     },
     empowerLevel: 1,
+    deck: "serie",
 });
 
 const a_livingGrimoireOffensive2 = new Card({
@@ -40,6 +43,7 @@ const a_livingGrimoireOffensive2 = new Card({
     cosmetic: {
         cardImageUrl: "/cards/Living_Grimoire2.webp",
     },
+    deck: "serie",
 });
 
 export const basicDefensiveMagic = new Card({
@@ -51,8 +55,9 @@ export const basicDefensiveMagic = new Card({
     },
     effects: [30],
     priority: 2,
-    cardCategories: ["Utility", "Defense"],
+    cardCategories: ["Utility", "Defense", "Block"],
     effectNames: ["DEF"],
+    deck: "serie",
 });
 
 export const unbreakableBarrier = new Card({
@@ -66,6 +71,7 @@ export const unbreakableBarrier = new Card({
     effects: [5, 5, 5],
     cardCategories: ["Utility", "Defense"],
     effectNames: ["ATK", "DEF", "-OpponentSPD"],
+    deck: "serie",
 });
 
 export const ancientBarrierMagic = new Card({
@@ -79,6 +85,7 @@ export const ancientBarrierMagic = new Card({
     effects: [7, 7, 7],
     cardCategories: ["Utility", "Defense"],
     effectNames: ["ATK", "DEF", "-OpponentSPD"],
+    deck: "serie",
 });
 
 export const mock = new Card({
@@ -91,6 +98,7 @@ export const mock = new Card({
     effects: [3, 2, 1],
     cardCategories: ["Utility"],
     effectNames: ["HP", "-OpponentDEF", "-OpponentSPD"],
+    deck: "serie",
 });
 
 export const serieDeck = [

@@ -8,6 +8,7 @@ export const a_hairWhip = new Card({
     emoji: CardEmoji.PUNCH,
     cardCategories: ["Attack"],
     effectNames: ["DEF", "DMG"],
+    deck: "sense",
 });
 
 export const harden = new Card({
@@ -17,6 +18,7 @@ export const harden = new Card({
     emoji: CardEmoji.SHIELD,
     cardCategories: ["Utility", "Defense"],
     effectNames: ["DEF"],
+    deck: "sense",
 });
 
 export const rest = new Card({
@@ -26,6 +28,7 @@ export const rest = new Card({
     emoji: CardEmoji.HEART,
     cardCategories: ["Utility", "Healing"],
     effectNames: ["Heal HP"],
+    deck: "sense",
 });
 
 export const a_pierce = new Card({
@@ -36,6 +39,7 @@ export const a_pierce = new Card({
     emoji: CardEmoji.PUNCH,
     cardCategories: ["Attack"],
     effectNames: ["DEF", "DMG"],
+    deck: "sense",
 });
 
 const hairBarrier = new Card({
@@ -46,6 +50,7 @@ const hairBarrier = new Card({
     priority: 2,
     cardCategories: ["Utility", "Defense", "Block"],
     effectNames: ["DEF"],
+    deck: "sense",
 });
 
 export const teaTime = new Card({
@@ -57,6 +62,7 @@ export const teaTime = new Card({
     emoji: CardEmoji.HEART,
     cardCategories: ["Utility", "Healing"],
     effectNames: ["ATK", "HP"],
+    deck: "sense",
 });
 
 export const teaParty = new Card({
@@ -68,6 +74,7 @@ export const teaParty = new Card({
     emoji: CardEmoji.RANDOM,
     cardCategories: ["Utility", "Healing"],
     effectNames: ["ATK", "HP"],
+    deck: "sense",
 });
 
 export const a_piercingDrill = new Card({
@@ -77,6 +84,7 @@ export const a_piercingDrill = new Card({
     emoji: CardEmoji.PUNCH,
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "sense",
 });
 
 export const senseDeck = [

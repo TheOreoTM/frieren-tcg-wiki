@@ -9,6 +9,7 @@ const a_axeSwipe = new Card({
     effects: [9],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "stark",
 });
 
 const offensiveStance = new Card({
@@ -19,6 +20,7 @@ const offensiveStance = new Card({
     tags: { Resolve: 1 },
     cardCategories: ["Utility"],
     effectNames: ["ATK", "SPD"],
+    deck: "stark",
 });
 
 const defensiveStance = new Card({
@@ -29,6 +31,7 @@ const defensiveStance = new Card({
     tags: { Resolve: 1 },
     cardCategories: ["Utility"],
     effectNames: ["DEF", "SPD"],
+    deck: "stark",
 });
 
 const jumboBerrySpecialBreak = new Card({
@@ -38,6 +41,7 @@ const jumboBerrySpecialBreak = new Card({
     effects: [2, 10],
     cardCategories: ["Utility", "Healing"],
     effectNames: ["DEF", "HP"],
+    deck: "stark",
 });
 
 const block = new Card({
@@ -48,6 +52,7 @@ const block = new Card({
     priority: 2,
     cardCategories: ["Utility", "Defense", "Block"],
     effectNames: ["DEF"],
+    deck: "stark",
 });
 
 const concentration = new Card({
@@ -58,6 +63,7 @@ const concentration = new Card({
     tags: { Resolve: 2 },
     cardCategories: ["Utility"],
     effectNames: ["SPD"],
+    deck: "stark",
 });
 
 const a_ordensSlashTechnique = new Card({
@@ -68,6 +74,7 @@ const a_ordensSlashTechnique = new Card({
     effects: [12],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "stark",
 });
 
 const fearBroughtMeThisFar = new Card({
@@ -78,6 +85,7 @@ const fearBroughtMeThisFar = new Card({
     tags: { Resolve: 2 },
     cardCategories: ["Utility"],
     effectNames: ["ATK+DEF"],
+    deck: "stark",
 });
 
 const a_eisensAxeCleave = new Card({
@@ -88,6 +96,7 @@ const a_eisensAxeCleave = new Card({
     effects: [17],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "stark",
 });
 
 const a_lightningStrike = new Card({
@@ -100,6 +109,7 @@ const a_lightningStrike = new Card({
     effects: [22],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "stark",
 });
 
 export const starkDeck = [

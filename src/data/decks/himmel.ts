@@ -10,6 +10,7 @@ const a_FrierenStrikeTheirWeakpoint = new Card({
     effects: [7],
     effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
+    deck: "himmel",
 });
 
 const a_FrierenBackMeUp = new Card({
@@ -20,6 +21,7 @@ const a_FrierenBackMeUp = new Card({
     effects: [3],
     effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
+    deck: "himmel",
 });
 
 const a_EisenTheEnemysOpen = new Card({
@@ -29,6 +31,7 @@ const a_EisenTheEnemysOpen = new Card({
     effects: [2, 10],
     effectNames: ["DEF", "DMG"],
     cardCategories: [CardCategory.ATTACK],
+    deck: "himmel",
 });
 
 const a_EisenCoverMyBack = new Card({
@@ -39,6 +42,7 @@ const a_EisenCoverMyBack = new Card({
     effects: [3, 5],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DEF", "DMG"],
+    deck: "himmel",
 });
 
 const eisenHoldTheLine = new Card({
@@ -48,6 +52,7 @@ const eisenHoldTheLine = new Card({
     effects: [4],
     cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE],
     effectNames: ["DEF"],
+    deck: "himmel",
 });
 
 const heiterEmergency = new Card({
@@ -57,6 +62,7 @@ const heiterEmergency = new Card({
     effects: [6],
     effectNames: ["HP"],
     cardCategories: [CardCategory.HEALING, CardCategory.UTILITY],
+    deck: "himmel",
 });
 
 const a_heiterThreeSpears = new Card({
@@ -66,6 +72,7 @@ const a_heiterThreeSpears = new Card({
     effects: [5],
     effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
+    deck: "himmel",
 });
 
 const heiterTrustYou = new Card({
@@ -75,6 +82,7 @@ const heiterTrustYou = new Card({
     effects: [4],
     cardCategories: [CardCategory.UTILITY],
     effectNames: ["ATK +", "SPD +"],
+    deck: "himmel",
 });
 
 const quickBlock = new Card({
@@ -85,6 +93,7 @@ const quickBlock = new Card({
     effects: [25],
     cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE, CardCategory.BLOCK],
     effectNames: ["DEF"],
+    deck: "himmel",
 });
 
 const rally = new Card({
@@ -95,6 +104,7 @@ const rally = new Card({
     effects: [2, 1],
     effectNames: ["+ HP ", "+ STAT"],
     cardCategories: [CardCategory.ATTACK, CardCategory.HEALING, CardCategory.UTILITY],
+    deck: "himmel",
 });
 
 export const a_extremeSpeed = new Card({
@@ -105,6 +115,7 @@ export const a_extremeSpeed = new Card({
     effects: [12],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
+    deck: "himmel",
 });
 
 export const a_realHeroSwing = new Card({
@@ -114,6 +125,7 @@ export const a_realHeroSwing = new Card({
     effects: [20],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
+    deck: "himmel",
 });
 
 export const himmelDeck = [

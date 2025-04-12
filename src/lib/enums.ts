@@ -1,4 +1,5 @@
 export enum CharacterName {
+    Default = "Default",
     Frieren = "Frieren",
     Sense = "Sense",
     Stille = "Stille",
@@ -12,6 +13,7 @@ export enum CharacterName {
 }
 
 export enum CharacterID {
+    Default = "default",
     Frieren = "frieren",
     Sense = "sense",
     Stille = "stille",
@@ -23,6 +25,20 @@ export enum CharacterID {
     Denken = "denken",
     Himmel = "himmel",
 }
+
+export const CharacterIdToName: Record<`${CharacterID}`, CharacterName> = {
+    default: CharacterName.Default,
+    frieren: CharacterName.Frieren,
+    sense: CharacterName.Sense,
+    stille: CharacterName.Stille,
+    serie: CharacterName.Serie,
+    linie: CharacterName.Linie,
+    sein: CharacterName.Sein,
+    stark: CharacterName.Stark,
+    laufen: CharacterName.Laufen,
+    denken: CharacterName.Denken,
+    himmel: CharacterName.Himmel,
+};
 
 export enum CharacterEmoji {
     FRIEREN = "https://cdn.discordapp.com/emojis/790429364570423346.webp", // Frieren3

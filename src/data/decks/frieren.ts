@@ -13,6 +13,7 @@ export const a_zoltraak = new Card({
     effects: [7],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
+    deck: "frieren",
 });
 
 export const fieldOfFlower = new Card({
@@ -28,6 +29,7 @@ export const fieldOfFlower = new Card({
     effects: [5, 3],
     cardCategories: [CardCategory.UTILITY, CardCategory.HEALING],
     effectNames: ["HP", "HP"],
+    deck: "frieren",
 });
 
 export const a_judradjim = new Card({
@@ -41,6 +43,7 @@ export const a_judradjim = new Card({
     effects: [12],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
+    deck: "frieren",
 });
 
 export const a_vollzanbel = new Card({
@@ -53,6 +56,7 @@ export const a_vollzanbel = new Card({
     effects: [18],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
+    deck: "frieren",
 });
 
 export const barrierMagicAnalysis = new Card({
@@ -66,6 +70,7 @@ export const barrierMagicAnalysis = new Card({
     tags: { Analysis: 2 },
     cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE],
     effectNames: ["ATK", "SPD", "DEF"],
+    deck: "frieren",
 });
 
 export const demonMagicAnalysis = new Card({
@@ -79,6 +84,7 @@ export const demonMagicAnalysis = new Card({
     tags: { Analysis: 2 },
     cardCategories: [CardCategory.UTILITY],
     effectNames: ["ATK", "SPD", "DEF"],
+    deck: "frieren",
 });
 
 const ordinaryDefensiveMagic = new Card({
@@ -90,8 +96,9 @@ const ordinaryDefensiveMagic = new Card({
     },
     effects: [20],
     effectNames: ["DEF"],
-    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE],
+    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE, CardCategory.BLOCK],
     priority: 2,
+    deck: "frieren",
 });
 
 export const a_theHeightOfMagic = new Card({
@@ -106,6 +113,7 @@ export const a_theHeightOfMagic = new Card({
     effects: [30],
     effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
+    deck: "frieren",
 });
 
 export const frierenDeck = [

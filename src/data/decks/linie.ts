@@ -8,6 +8,7 @@ const imitate = new Card({
     effects: [],
     effectNames: [],
     cardCategories: ["Utility"],
+    deck: "linie",
 });
 
 export const adapt = new Card({
@@ -18,6 +19,7 @@ export const adapt = new Card({
     effects: [2, 2, 10],
     cardCategories: ["Utility"],
     effectNames: ["SPD", "ATK+DEF", "HP"],
+    deck: "linie",
 });
 
 export const manaDetection = new Card({
@@ -28,6 +30,7 @@ export const manaDetection = new Card({
     effects: [2, 2, 1],
     cardCategories: ["Utility"],
     effectNames: ["SPD", "STAT INC", "STAT inc"],
+    deck: "linie",
 });
 
 const parry = new Card({
@@ -38,6 +41,7 @@ const parry = new Card({
     priority: 2,
     cardCategories: ["Utility", "Defense", "Block"],
     effectNames: ["DEF"],
+    deck: "linie",
 });
 
 export const a_erfassenAxe = new Card({
@@ -47,6 +51,7 @@ export const a_erfassenAxe = new Card({
     effects: [11],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "linie",
 });
 
 export const a_erfassenSword = new Card({
@@ -56,6 +61,7 @@ export const a_erfassenSword = new Card({
     effects: [9],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "linie",
 });
 
 export const a_erfassenSpear = new Card({
@@ -65,6 +71,7 @@ export const a_erfassenSpear = new Card({
     effects: [7],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "linie",
 });
 
 export const a_erfassenKnife = new Card({
@@ -74,6 +81,7 @@ export const a_erfassenKnife = new Card({
     effects: [5],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "linie",
 });
 
 export const linieDeck = [

@@ -12,6 +12,7 @@ export const a_trustInYourAllyFrierensZoltraak = new Card({
     effects: [5],
     effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
+    deck: "sein",
 });
 
 export const a_trustInYourAllyFernsBarrage = new Card({
@@ -24,6 +25,7 @@ export const a_trustInYourAllyFernsBarrage = new Card({
     effects: [3],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "sein",
 });
 
 const a_trustInYourAllyStarksLightningStrike = new Card({
@@ -37,6 +39,7 @@ const a_trustInYourAllyStarksLightningStrike = new Card({
     priority: -1,
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    deck: "sein",
 });
 
 export const mugOfBeer = new Card({
@@ -49,6 +52,7 @@ export const mugOfBeer = new Card({
     effects: [6, 2],
     effectNames: ["HP", "ATK"],
     cardCategories: ["Utility", "Healing"],
+    deck: "sein",
 });
 
 export const smokeBreak = new Card({
@@ -61,6 +65,7 @@ export const smokeBreak = new Card({
     effects: [3, 2, 2],
     effectNames: ["ATK", "DEF", "SPD"],
     cardCategories: ["Utility"],
+    deck: "sein",
 });
 
 export const awakening = new Card({
@@ -73,6 +78,7 @@ export const awakening = new Card({
     effects: [2, 1, 2],
     effectNames: ["ATK", "DEF", "SPD"],
     cardCategories: ["Utility"],
+    deck: "sein",
 });
 
 export const poisonCure = new Card({
@@ -85,6 +91,7 @@ export const poisonCure = new Card({
     effects: [10],
     cardCategories: ["Utility", "Healing"],
     effectNames: ["HP"],
+    deck: "sein",
 });
 
 export const braceYourself = new Card({
@@ -98,6 +105,7 @@ export const braceYourself = new Card({
     effects: [20],
     cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE, CardCategory.BLOCK],
     effectNames: ["DEF"],
+    deck: "sein",
 });
 
 export const a_threeSpearsOfTheGoddess = new Card({
@@ -110,6 +118,7 @@ export const a_threeSpearsOfTheGoddess = new Card({
     effects: [5],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
+    deck: "sein",
 });
 
 export const seinDeck = [

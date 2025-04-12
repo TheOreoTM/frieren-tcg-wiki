@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import type { Card } from "@/lib/classes/Card";
 import Image from "next/image";
+import { CharacterID, CharacterIdToName, CharacterName } from "@/lib/enums";
+import { Dot } from "lucide-react";
 
 interface CardListItemProps {
     card: Card;
@@ -10,10 +12,10 @@ interface CardListItemProps {
 }
 
 export default function CardListItem({ card, count, showCount }: CardListItemProps) {
-    // Create a URL-friendly ID from the card title
     const cardId = card.getId ? card.getId() : card.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-
-    // Get description
+    const characterName = card.deck ? CharacterIdToName[card.deck] : CharacterName.Default;
+    const showSepertor =
+        card.deck && card.deck !== CharacterID.Default && ((count !== undefined && showCount) || card.priority > 0);
     const description =
         typeof card.getDescription === "function"
             ? card.getDescription()
@@ -23,8 +25,16 @@ export default function CardListItem({ card, count, showCount }: CardListItemPro
         <Link href={`/cards/${cardId}`} className="p-0.5">
             <div className="flex items-center p-4 rounded-lg border hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors">
                 <div className="flex-grow mr-4">
-                    <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-bold">{card.title}</h3>
+                    <div className="flex items-center gap-1 mb-1">
+                        <div className="flex items-center">
+                            <h3 className="font-bold pr-1">{card.title} </h3>
+                        </div>
+                        {card.deck && card.deck !== CharacterID.Default && (
+                            <Badge variant="secondary" className="text-xs">
+                                {characterName}
+                            </Badge>
+                        )}
+                        {showSepertor && <Dot />}
                         {count !== undefined && showCount && (
                             <Badge variant="outline" className="bg-slate-100">
                                 ×{count}

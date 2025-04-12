@@ -1,3 +1,5 @@
+import type { CharacterID } from "../enums";
+
 export type CardProps = {
     title: string;
     description: (formattedEffects: string[]) => string;
@@ -10,6 +12,7 @@ export type CardProps = {
     empowerLevel?: number;
     cosmetic?: CardCosmetic;
     cardCategories: `${CardCategory}`[];
+    deck?: `${CharacterID}`;
 };
 
 export interface CardCosmetic {

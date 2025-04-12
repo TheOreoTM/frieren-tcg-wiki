@@ -9,6 +9,7 @@ const a_jab = new Card({
     effectNames: ["HP", "DEF", "SPD", "DMG"],
     cardCategories: [CardCategory.ATTACK],
     effects: [2, 1, 1, 2],
+    deck: "denken",
 });
 
 const a_hook = new Card({
@@ -18,6 +19,7 @@ const a_hook = new Card({
     effects: [2, 2, 2],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["HP", "ATK", "DMG"],
+    deck: "denken",
 });
 
 const a_uppercut = new Card({
@@ -27,6 +29,7 @@ const a_uppercut = new Card({
     effects: [2, 1, 1, 3],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["HP", "ATK", "SPD", "DMG"],
+    deck: "denken",
 });
 
 const bareHandedBlock = new Card({
@@ -36,8 +39,9 @@ const bareHandedBlock = new Card({
     emoji: CardEmoji.DENKEN_CARD,
     priority: 2,
     effects: [2, 8],
-    cardCategories: [CardCategory.DEFENSE, CardCategory.UTILITY],
+    cardCategories: [CardCategory.DEFENSE, CardCategory.UTILITY, "Block"],
     effectNames: ["DEF", "DEF"],
+    deck: "denken",
 });
 
 export const a_waldgose = new Card({
@@ -48,6 +52,7 @@ export const a_waldgose = new Card({
     effects: [3],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
+    deck: "denken",
 });
 
 export const a_daosdorg = new Card({
@@ -58,6 +63,7 @@ export const a_daosdorg = new Card({
     effects: [12, 3],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG", "DMG"],
+    deck: "denken",
 });
 
 export const a_catastravia = new Card({
@@ -68,6 +74,7 @@ export const a_catastravia = new Card({
     effects: [4],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
+    deck: "denken",
 });
 
 const elementaryDefensiveMagic = new Card({
@@ -79,6 +86,7 @@ const elementaryDefensiveMagic = new Card({
     effects: [20],
     cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE],
     effectNames: ["DEF"],
+    deck: "denken",
 });
 
 export const a_concentratedOffensiveMagicZoltraak = new Card({
@@ -88,6 +96,7 @@ export const a_concentratedOffensiveMagicZoltraak = new Card({
     effects: [14],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
+    deck: "denken",
 });
 
 export const denkenDeck = [
