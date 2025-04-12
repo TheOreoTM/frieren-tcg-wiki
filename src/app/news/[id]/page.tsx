@@ -8,8 +8,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getNewsArticleById, getLatestNews } from "@/data/news";
 import type { Metadata, ResolvingMetadata } from "next";
 
+type PageProps = {
+    params: Promise<{ id: string }>;
+};
+
 // Generate dynamic metadata
-export async function generateMetadata(params: Promise<{ id: string }>, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
     const { id } = await params;
 
     const article = getNewsArticleById(id);
@@ -71,7 +75,7 @@ function getCategoryColor(category: string): string {
     }
 }
 
-export default async function NewsArticlePage(params: Promise<{ id: string }>) {
+export default async function NewsArticlePage({ params }: PageProps) {
     const { id } = await params;
     const article = getNewsArticleById(id);
 
