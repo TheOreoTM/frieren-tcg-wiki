@@ -23,6 +23,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import Image from "next/image";
 import { CardCategory } from "@/lib/types";
+import { CharacterID, CharacterIdToName } from "@/lib/enums";
 
 const allCategories: CardCategory[] = [
     CardCategory.ATTACK,
@@ -33,17 +34,27 @@ const allCategories: CardCategory[] = [
     CardCategory.BLOCK,
 ];
 
+const allCharacters: CharacterID[] = [
+    CharacterID.Denken,
+    CharacterID.Frieren,
+    CharacterID.Himmel,
+    CharacterID.Laufen,
+    CharacterID.Linie,
+    CharacterID.Sein,
+    CharacterID.Sense,
+    CharacterID.Serie,
+    CharacterID.Stark,
+    CharacterID.Stille,
+];
+
 export default function CardsClientPage() {
     const [searchTerm, setSearchTerm] = useState("");
-    const [emojiFilter, setEmojiFilter] = useState<string | null>(null);
+    const [characterFilter, setCharacterFilter] = useState<string | null>(null);
     const [priorityFilter, setPriorityFilter] = useState<string | null>(null);
     const [categoryFilters, setCategoryFilters] = useState<CardCategory[]>([]);
     const [filteredCards, setFilteredCards] = useState(allCards);
     const [activeFilters, setActiveFilters] = useState(0);
     const [viewMode, setViewMode] = useState<"grid" | "list">("list");
-
-    // Get unique emojis for filtering
-    const uniqueEmojis = Array.from(new Set(allCards.map((item) => item.card.emoji)));
 
     // Toggle a category in the filter
     const toggleCategory = (category: CardCategory) => {
@@ -71,8 +82,8 @@ export default function CardsClientPage() {
         }
 
         // Apply emoji filter
-        if (emojiFilter) {
-            result = result.filter((item) => item.card.emoji === emojiFilter);
+        if (characterFilter) {
+            result = result.filter((item) => item.card.deck === characterFilter);
         }
 
         // Apply priority filter
@@ -96,16 +107,16 @@ export default function CardsClientPage() {
         // Count active filters
         let count = 0;
         if (searchTerm) count++;
-        if (emojiFilter) count++;
+        if (characterFilter) count++;
         if (priorityFilter) count++;
         if (categoryFilters.length > 0) count++;
         setActiveFilters(count);
-    }, [searchTerm, emojiFilter, priorityFilter, categoryFilters]);
+    }, [searchTerm, characterFilter, priorityFilter, categoryFilters]);
 
     // Reset all filters
     const resetFilters = () => {
         setSearchTerm("");
-        setEmojiFilter(null);
+        setCharacterFilter(null);
         setPriorityFilter(null);
         setCategoryFilters([]);
     };
@@ -180,22 +191,23 @@ export default function CardsClientPage() {
                                     <div className="space-y-2">
                                         <h3 className="text-sm font-medium">Card Type</h3>
                                         <Select
-                                            value={emojiFilter || "all"}
-                                            onValueChange={(value) => setEmojiFilter(value === "all" ? null : value)}
+                                            value={characterFilter || "all"}
+                                            onValueChange={(value) =>
+                                                setCharacterFilter(value === "all" ? null : value)
+                                            }
                                         >
                                             <SelectTrigger>
-                                                <SelectValue placeholder="All types" />
+                                                <SelectValue placeholder="All characters" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="all">All types</SelectItem>
-                                                {uniqueEmojis.map((emoji, index) => (
-                                                    <SelectItem key={index} value={emoji}>
-                                                        <Image
-                                                            src={emoji || "/placeholder.svg"}
-                                                            alt={emoji}
-                                                            width={20}
-                                                            height={20}
-                                                        />
+                                                <SelectItem value="all">All characters</SelectItem>
+                                                {allCharacters.map((characterId, index) => (
+                                                    <SelectItem key={index} value={characterId}>
+                                                        <div>
+                                                            <p className="text-black text-sm">
+                                                                {CharacterIdToName[characterId]}
+                                                            </p>
+                                                        </div>
                                                     </SelectItem>
                                                 ))}
                                             </SelectContent>
@@ -319,21 +331,14 @@ export default function CardsClientPage() {
                         </Badge>
                     )}
 
-                    {emojiFilter && (
+                    {characterFilter && (
                         <Badge variant="outline" className="flex items-center gap-1">
-                            Type:{" "}
-                            <Image
-                                src={emojiFilter || "/placeholder.svg"}
-                                alt={emojiFilter}
-                                width={16}
-                                height={16}
-                                className="mx-1"
-                            />
+                            Character: <p>{CharacterIdToName[characterFilter as CharacterID]}</p>
                             <Button
                                 variant="ghost"
                                 size="icon"
                                 className="h-4 w-4 ml-1 p-0"
-                                onClick={() => setEmojiFilter(null)}
+                                onClick={() => setCharacterFilter(null)}
                             >
                                 <X className="h-3 w-3" />
                             </Button>
