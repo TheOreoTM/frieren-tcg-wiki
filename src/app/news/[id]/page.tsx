@@ -71,8 +71,9 @@ function getCategoryColor(category: string): string {
     }
 }
 
-export default function NewsArticlePage({ params }: { params: { id: string } }) {
-    const article = getNewsArticleById(params.id);
+export default async function NewsArticlePage(params: Promise<{ id: string }>) {
+    const { id } = await params;
+    const article = getNewsArticleById(id);
 
     if (!article) {
         notFound();
