@@ -1,15 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, User } from "lucide-react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { newsArticles, getLatestNews } from "@/data/news";
+import { getAllNewsArticles, getCategoryColor, getLatestNews } from "@/lib/news";
 import type { Metadata } from "next";
+import { formatDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
-    title: "News & Updates | Frieren TCG",
+    title: "News & Updates",
     description: "Stay up to date with the latest news, expansions, tournaments, and balance changes for Frieren TCG",
     keywords: ["Frieren", "TCG", "news", "updates", "expansions", "tournaments", "balance changes"],
     openGraph: {
@@ -33,34 +34,28 @@ export const metadata: Metadata = {
     },
 };
 
-function formatDate(dateString: string): string {
-    const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "long", day: "numeric" };
-    return new Date(dateString).toLocaleDateString("en-US", options);
-}
-
-function getCategoryColor(category: string): string {
-    switch (category) {
-        case "Expansion":
-            return "bg-purple-100 text-purple-800 hover:bg-purple-200";
-        case "Tournament":
-            return "bg-blue-100 text-blue-800 hover:bg-blue-200";
-        case "Balance":
-            return "bg-amber-100 text-amber-800 hover:bg-amber-200";
-        case "Community":
-            return "bg-green-100 text-green-800 hover:bg-green-200";
-        case "Feature":
-            return "bg-red-100 text-red-800 hover:bg-red-200";
-        default:
-            return "bg-gray-100 text-gray-800 hover:bg-gray-200";
-    }
-}
-
 export default function NewsPage() {
+    const allArticles = getAllNewsArticles();
+
+    if (allArticles.length === 0) {
+        return (
+            <div className="container mx-auto px-4 py-12">
+                <h1 className="text-3xl md:text-4xl font-bold mb-2">News & Updates</h1>
+                <p className="text-muted-foreground mb-8">Stay up to date with the latest from Frieren TCG</p>
+
+                <div className="text-center py-12">
+                    <h2 className="text-xl font-medium mb-4">No news articles found</h2>
+                    <p className="text-muted-foreground mb-6">
+                        News articles will appear here once they are published.
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
     const featuredArticle = getLatestNews(1)[0];
 
-    const sortedArticles = [...newsArticles].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-    const categories = Array.from(new Set(newsArticles.map((article) => article.category)));
+    const categories = Array.from(new Set(allArticles.map((article) => article.category)));
 
     return (
         <div className="container mx-auto px-4 py-12">
@@ -70,7 +65,9 @@ export default function NewsPage() {
             {/* Featured Article */}
             <div className="mb-12">
                 <h2 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded text-sm mr-2">Featured</span>
+                    <span className="bg-secondary text-secondary-foreground px-2 py-1 rounded text-sm mr-2">
+                        Featured
+                    </span>
                     Latest Update
                 </h2>
                 <Link href={`/news/${featuredArticle.id}`}>
@@ -122,7 +119,7 @@ export default function NewsPage() {
 
                 <TabsContent value="all">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {sortedArticles.map((article) => (
+                        {allArticles.map((article) => (
                             <Link href={`/news/${article.id}`} key={article.id}>
                                 <Card className="h-full hover:shadow-lg transition-shadow">
                                     <div className="relative aspect-video">
@@ -175,7 +172,7 @@ export default function NewsPage() {
                 {categories.map((category) => (
                     <TabsContent key={category} value={category}>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {sortedArticles
+                            {allArticles
                                 .filter((article) => article.category === category)
                                 .map((article) => (
                                     <Link href={`/news/${article.id}`} key={article.id}>

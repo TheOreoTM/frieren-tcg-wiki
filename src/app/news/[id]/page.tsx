@@ -5,17 +5,16 @@ import { ArrowLeft, Calendar, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { getNewsArticleById, getLatestNews } from "@/data/news";
+import { getNewsArticleById, getLatestNews, getCategoryColor } from "../../../lib/news";
+import MarkdownContent from "@/components/markdown-content";
 import type { Metadata, ResolvingMetadata } from "next";
+import { formatDate } from "@/lib/utils";
 
-type PageProps = {
-    params: Promise<{ id: string }>;
-};
-
-// Generate dynamic metadata
-export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+    { params }: { params: Promise<{ id: string }> },
+    parent: ResolvingMetadata
+): Promise<Metadata> {
     const { id } = await params;
-
     const article = getNewsArticleById(id);
 
     if (!article) {
@@ -26,7 +25,7 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
     }
 
     return {
-        title: `${article.title} | Frieren TCG News`,
+        title: `${article.title}`,
         description: article.excerpt,
         openGraph: {
             title: article.title,
@@ -35,14 +34,14 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
             publishedTime: article.date,
             authors: [article.author],
             tags: article.tags,
-            images: [
-                {
-                    url: article.image || "/placeholder.svg",
-                    width: 1200,
-                    height: 630,
-                    alt: article.title,
-                },
-            ],
+            // images: [
+            //     {
+            //         url: article.image || "/placeholder.svg",
+            //         width: 1200,
+            //         height: 630,
+            //         alt: article.title,
+            //     },
+            // ],
         },
         twitter: {
             card: "summary_large_image",
@@ -53,29 +52,7 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
     };
 }
 
-function formatDate(dateString: string): string {
-    const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "long", day: "numeric" };
-    return new Date(dateString).toLocaleDateString("en-US", options);
-}
-
-function getCategoryColor(category: string): string {
-    switch (category) {
-        case "Expansion":
-            return "bg-purple-100 text-purple-800 hover:bg-purple-200";
-        case "Tournament":
-            return "bg-blue-100 text-blue-800 hover:bg-blue-200";
-        case "Balance":
-            return "bg-amber-100 text-amber-800 hover:bg-amber-200";
-        case "Community":
-            return "bg-green-100 text-green-800 hover:bg-green-200";
-        case "Feature":
-            return "bg-red-100 text-red-800 hover:bg-red-200";
-        default:
-            return "bg-gray-100 text-gray-800 hover:bg-gray-200";
-    }
-}
-
-export default async function NewsArticlePage({ params }: PageProps) {
+export default async function NewsArticlePage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const article = getNewsArticleById(id);
 
@@ -114,19 +91,16 @@ export default async function NewsArticlePage({ params }: PageProps) {
                     </div>
                 </div>
 
-                <div className="relative aspect-video mb-8">
+                {/* <div className="relative aspect-video mb-8">
                     <Image
                         src={article.image || "/placeholder.svg"}
                         alt={article.title}
                         fill
                         className="object-cover rounded-lg"
                     />
-                </div>
+                </div> */}
 
-                <div
-                    className="prose prose-lg max-w-none mb-12"
-                    dangerouslySetInnerHTML={{ __html: article.content }}
-                />
+                <MarkdownContent content={article.content} className="mb-12" />
 
                 <div className="flex flex-wrap gap-2 mb-12">
                     <span className="text-sm font-medium">Tags:</span>

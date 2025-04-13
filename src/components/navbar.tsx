@@ -52,9 +52,7 @@ export function Navbar() {
                     {/* Logo and brand */}
                     <div className="flex items-center">
                         <Link href="/" className="flex items-center gap-2">
-                            <span className="font-bold text-xl bg-gradient-to-r from-emerald-600 to-purple-600 bg-clip-text text-transparent">
-                                Frieren TCG
-                            </span>
+                            <span className="font-bold text-xl gradient-text">Frieren TCG</span>
                         </Link>
                     </div>
 
