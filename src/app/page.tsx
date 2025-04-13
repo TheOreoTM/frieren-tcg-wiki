@@ -3,6 +3,23 @@ import { ArrowRight, BookOpen, WalletCardsIcon as Cards, ScrollText } from "luci
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { FrierenTCG } from "@/components/frieren-tcg";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    openGraph: {
+        images: [
+            {
+                url: "/thumbnail.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Frieren TCG",
+            },
+        ],
+    },
+    twitter: {
+        images: ["/thumbnail.jpg"],
+    },
+};
 
 export default function Home() {
     return (

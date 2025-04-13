@@ -5,8 +5,6 @@ import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
     title: {
         template: "%s | Frieren TCG",
@@ -22,20 +20,11 @@ export const metadata: Metadata = {
         siteName: "Frieren TCG",
         title: "Frieren TCG - Trading Card Game",
         description: "The fan-made trading card game inspired by the anime Frieren: Beyond Journey's End",
-        images: [
-            {
-                url: "/thumbnail.jpg",
-                width: 1200,
-                height: 630,
-                alt: "Frieren TCG",
-            },
-        ],
     },
     twitter: {
         card: "summary_large_image",
         title: "Frieren TCG - Trading Card Game",
         description: "The fan-made trading card game inspired by the anime Frieren: Beyond Journey's End",
-        images: ["/thumbnail.jpg"],
     },
     icons: {
         icon: "/favicon.ico",
@@ -44,6 +33,8 @@ export const metadata: Metadata = {
     },
     manifest: "/site.webmanifest",
 };
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
