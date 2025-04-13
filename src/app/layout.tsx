@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         description: "The fan-made trading card game inspired by the anime Frieren: Beyond Journey's End",
         images: [
             {
-                url: "/og-image.jpg",
+                url: "/thumbnail.jpg",
                 width: 1200,
                 height: 630,
                 alt: "Frieren TCG",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Frieren TCG - Trading Card Game",
         description: "The fan-made trading card game inspired by the anime Frieren: Beyond Journey's End",
-        images: ["/og-image.jpg"],
+        images: ["/thumbnail.jpg"],
     },
     icons: {
         icon: "/favicon.ico",

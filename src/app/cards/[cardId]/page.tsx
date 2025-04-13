@@ -26,9 +26,20 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
             : card.description(card.effects.map((e) => e.toString()));
 
     return {
-        title: `${card.title} | Frieren TCG`,
+        title: `${card.title}`,
         description: description || `Learn about the ${card.title} card in Frieren TCG`,
         openGraph: {
+            title: card.title,
+            description: description,
+            images: [
+                {
+                    url: card.cosmetic?.cardImageUrl || card.emoji || card.cosmetic?.cardGif || "/placeholder.svg",
+                    alt: card.title,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
             title: card.title,
             description: description,
             images: [

@@ -21,7 +21,6 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
 
     const characters = Array.from(Characters.values());
     const character = characters.find((c) => c.id === characterId);
-    console.log(characterId);
 
     if (!character) {
         return {
@@ -31,16 +30,14 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
     }
 
     return {
-        title: `${character.name} | Frieren TCG`,
+        title: `${character.name}`,
         description: character.description || `Learn about ${character.name} in the Frieren TCG universe`,
         openGraph: {
             title: character.name,
             description: character.description,
             images: [
                 {
-                    url: character.cosmetic.imageUrl || "/placeholder.svg",
-                    width: 800,
-                    height: 1000,
+                    url: character.cosmetic.imageUrl || character.cosmetic.icon || "/placeholder.svg",
                     alt: character.name,
                 },
             ],
