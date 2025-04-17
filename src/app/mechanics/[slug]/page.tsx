@@ -3,13 +3,54 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, Flame, Shield, Sparkles, Swords, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getMechanicData, type Mechanic } from "@/lib/mechanics";
+import { getMechanicData, getMechanicOverview, type Mechanic } from "@/lib/mechanics";
 import type { JSX } from "react";
 import MarkdownContent from "@/components/markdown-content";
 import Image from "next/image";
+import type { Metadata, ResolvingMetadata } from "next";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+    const { slug } = await params;
+    const mechanic = getMechanicOverview(slug);
+
+    if (!mechanic) {
+        return {
+            title: "Mechanic Not Found",
+            description: "The requested mechanic could not be found",
+            openGraph: {
+                title: "Mechanic Not Found",
+                description: "The requested mechanic could not be found",
+            },
+        };
+    }
+
+    return {
+        title: `${mechanic.name}`,
+        description: `Learn more about the ${mechanic.name} mechanic in Frieren TCG`,
+        openGraph: {
+            title: mechanic.name,
+            description: `Learn more about the ${mechanic.name} mechanic in Frieren TCG`,
+            type: "article",
+            authors: [mechanic.author],
+            // images: [
+            //     {
+            //         url: article.image || "/placeholder.svg",
+            //         width: 1200,
+            //         height: 630,
+            //         alt: article.title,
+            //     },
+            // ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: mechanic.name,
+            description: `Learn more about the ${mechanic.name} mechanic in Frieren TCG`,
+        },
+    };
 }
 
 const mechanicIcons: Record<string, JSX.Element> = {
