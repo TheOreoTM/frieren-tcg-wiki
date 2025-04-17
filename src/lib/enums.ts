@@ -26,7 +26,7 @@ export enum CharacterID {
     Himmel = "himmel",
 }
 
-export const CharacterIdToName: Record<`${CharacterID}`, CharacterName> = {
+export const CharacterIdToName: Record<CharacterID, CharacterName> = {
     default: CharacterName.Default,
     frieren: CharacterName.Frieren,
     sense: CharacterName.Sense,
