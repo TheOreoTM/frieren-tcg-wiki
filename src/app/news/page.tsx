@@ -127,8 +127,9 @@ export default function NewsPage() {
                                             src={article.image || "/placeholder.svg"}
                                             alt={article.title}
                                             fill
-                                            className="object-cover rounded-t-lg"
+                                            className="object-cover rounded-t-lg "
                                         />
+                                        <div className="absolute top-0 left-0 right-0 h-32 rounded-t-lg bg-gradient-to-b from-black/70 to-transparent pointer-events-none" />
                                         <div className="absolute top-2 left-2">
                                             <Badge className={getCategoryColor(article.category)}>
                                                 {article.category}

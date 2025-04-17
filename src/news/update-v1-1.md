@@ -5,6 +5,7 @@ excerpt: "See what changed in the first patch of the game"
 date: "2025-04-05"
 author: "Hexa"
 category: "Patch Note"
+image: "/himmel-v-linie-chain.png"
 tags: ["balance", "nerfs", "buffs", "characters"]
 ---
 
