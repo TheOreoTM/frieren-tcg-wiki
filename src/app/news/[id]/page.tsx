@@ -100,7 +100,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ id
                         />
                     </div>
                 )}
-                <MarkdownContent content={article.content} className="mb-12" />x
+                <MarkdownContent content={article.content} className="mb-12" />
                 <div className="flex flex-wrap gap-2 mb-12">
                     <span className="text-sm font-medium">Tags:</span>
                     {article.tags.map((tag) => (
