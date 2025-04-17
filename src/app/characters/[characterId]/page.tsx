@@ -31,7 +31,9 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
 
     return {
         title: `${character.name}`,
-        description: character.description || `Learn about ${character.name} in the Frieren TCG universe`,
+        description:
+            character.description ||
+            `"${character.title}"\n\nLearn about ${character.name} in the Frieren TCG universe`,
         openGraph: {
             title: character.name,
             description: character.description,
@@ -99,7 +101,7 @@ export default async function CharacterPage({ params }: PageProps) {
                     </div>
 
                     <h1 className="text-3xl md:text-4xl font-bold mb-1">{character.name}</h1>
-                    <p className="text-xl text-muted-foreground mb-6">{"Title Goes Here"}</p>
+                    <p className="text-xl text-muted-foreground mb-6">{character.title}</p>
 
                     <div className="flex gap-6 mb-6">
                         <div className="text-center">
