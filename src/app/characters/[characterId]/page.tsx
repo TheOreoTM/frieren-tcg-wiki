@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
     return {
         title: `${character.name}`,
         description:
-            character.description ||
-            `"${character.title}"\n\nLearn about ${character.name} in the Frieren TCG universe`,
+            `"${character.title}"\n\n${character.description}` ||
+            `Learn about ${character.name} in the Frieren TCG universe`,
         openGraph: {
             title: character.name,
             description: character.description,
