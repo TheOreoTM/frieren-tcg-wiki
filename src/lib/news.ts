@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const newsDirectory = path.join(process.cwd(), "src/news");
+const newsDirectory = path.join(process.cwd(), "src/content/news");
 
 export interface NewsArticle {
     id: string;
