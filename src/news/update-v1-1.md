@@ -1,18 +1,35 @@
 ---
-id: "balance-changes"
-title: "April Balance Changes"
-excerpt: "Balance changes to 7 characters aimed at improving gameplay diversity."
+id: "patch-1-1-notes"
+title: "April Release - Patch 1.1 Notes"
+excerpt: "See what changed in the first patch of the game"
 date: "2025-04-05"
-author: "Balance Team"
-category: "Balance"
+author: "Hexa"
+category: "Patch Note"
 tags: ["balance", "nerfs", "buffs", "characters"]
 ---
 
-## Balance Changes
+The first update of the game has been released. It includes a lot of balance changes and new characters.
 
-The first wave of balance changes have hit. Everyone run!
+---
 
-### Sense
+## New characters
+
+This patch brings two new characters to the game.
+
+-   **Himmel**:
+
+    -   Himmel's kit is based around his allies, Frieren, Heiter and Eisen. The more of his allies are active, the more damage the entire party deals.
+    -   He's also very fast.
+    -   Check out his [character page](/characters/himmel) for more information.
+
+-   **Denken**:
+    -   Denken's kit is based around multi-turn attacks, and a bunch of ways to throw hands
+    -   He also never has it in him to give up. Denken will only lose if his HP is <= 0 for 3 consecutive turns
+    -   Check out his [character page](/characters/denken) for more information.
+
+---
+
+## Balance Notes
 
 -   Rest: DEF-4 > DEF-2
 -   Tea Time: DEF+1 for both characters > ATK+2 for both characters.
@@ -70,13 +87,13 @@ Both characters do not have access to Default moves (Discard/Wait)
 
 -   SPD: 40 > **30**
 -   Staff Strike:
-    HP-2. Strike for DMG 10+SPD/8 > HP **-4**. Strike for **DMG 10 + SPD/6**
+    HP-2. Strike for DMG 10+SPD/8 > HP-**4**. Strike for **DMG 10 + SPD/6**
 -   Staff Bash:
-    SPD+3. HP-2. DMG 7+SPD/7 > SPD **+2.** HP **-4**. **DMG 8 + SPD/5**
+    SPD+3. HP-2. DMG 7+SPD/7 > SPD+**2.** HP-**4**. **DMG 8 + SPD/5**
 -   Whip:
-    HP-3. DMG 5+SPD/5 > HP **-5**. **DMG 6 + SPD/4**
+    HP-3. DMG 5+SPD/5 > HP-**5**. **DMG 6 + SPD/4**
 -   Supersonic Strike:
-    SPD+5. DMG 10 + SPD/4 > SPD **+3**. DMG 10 + **SPD/3**
+    SPD+5. DMG 10 + SPD/4 > SPD+**3**. DMG 10 + **SPD/3**
 -   Hide:
     SPD+3. Increases SPD by an additional 20 until the end of turn. Heal 10HP > SPD+3. Increases SPD by an additional**7** until the end of turn. Heal **12HP**.
 -   Jilwer:
