@@ -9,6 +9,7 @@ export const Himmel: Character = {
     name: CharacterName.Himmel,
     description: "A versatile setup character with access to (too) many tools.",
     type: CharacterType.Hero,
+    title: "The Setup Hero",
     cosmetic: {
         emoji: CharacterEmoji.HIMMEL,
         color: 0xb4c9e7,

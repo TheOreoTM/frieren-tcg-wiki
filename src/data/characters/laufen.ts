@@ -7,6 +7,7 @@ export const Laufen: Character = {
     name: CharacterName.Laufen,
     description: "A glass cannon unique for her ability to dodge incoming attacks and high speed.",
     type: CharacterType.Hero,
+    title: "The Elusive Striker",
     cosmetic: {
         emoji: CharacterEmoji.LAUFEN,
         color: 0xcf7457,

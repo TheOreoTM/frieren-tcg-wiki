@@ -7,6 +7,7 @@ export const Stark: Character = {
     name: CharacterName.Stark,
     description: "A brave bruiser whose damage relies on finding the courage to commit.",
     type: CharacterType.Hero,
+    title: "The Fearful Brave",
     cosmetic: {
         emoji: CharacterEmoji.STARK,
         color: 0xb30c0c,

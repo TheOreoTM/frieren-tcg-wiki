@@ -7,6 +7,7 @@ export const Stille: Character = {
     name: CharacterName.Stille,
     description: "A fragile but untouchable trickster who punishes attackers for trying.",
     type: CharacterType.Other,
+    title: "Just play laufen",
     cosmetic: {
         emoji: CharacterEmoji.STILLE,
         color: 0xe74c3c,

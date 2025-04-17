@@ -9,6 +9,7 @@ export const Serie: Character = {
     name: CharacterName.Serie,
     description: "An offensive powerhouse who comes with many risks.",
     type: CharacterType.Hero,
+    title: "The Reckless Force",
     cosmetic: {
         emoji: CharacterEmoji.SERIE,
         color: 0xe8b961,

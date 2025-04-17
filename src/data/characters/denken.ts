@@ -8,6 +8,7 @@ export const Denken: Character = {
     id: "denken",
     name: CharacterName.Denken,
     description: "A character who specialize in multi-hit and extreme aggression.",
+    title: "The Relentless",
     type: CharacterType.Hero,
     cosmetic: {
         emoji: CharacterEmoji.DENKEN,

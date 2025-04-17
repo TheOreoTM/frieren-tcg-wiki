@@ -10,6 +10,7 @@ export const Sein: Character = {
     name: CharacterName.Sein,
     description: "A passive support who steadily heals and can overheal to outlast opponents.",
     type: CharacterType.Hero,
+    title: "The Corrupt Priest",
     cosmetic: {
         emoji: CharacterEmoji.SEIN,
         color: 0xa3caca,

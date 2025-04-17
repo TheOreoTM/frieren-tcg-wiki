@@ -8,6 +8,7 @@ export const Linie: Character = {
     id: "linie",
     name: CharacterName.Linie,
     description: "A damage-scaling characters who grows stronger with every consecutive strike.",
+    title: "The Chain Weaver",
     type: CharacterType.Demon,
     cosmetic: {
         emoji: CharacterEmoji.LINIE,

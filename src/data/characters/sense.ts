@@ -9,6 +9,7 @@ export const Sense: Character = {
     name: CharacterName.Sense,
     description: " A defensive character with a passive win condition, but still fully capable of fighting back.",
     type: CharacterType.Hero,
+    title: "The Peaceful Victor",
     cosmetic: {
         emoji: CharacterEmoji.SENSE,
         color: 0xb6a493,

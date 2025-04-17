@@ -11,6 +11,7 @@ export const Frieren: Character = {
     description:
         "A setup character who can dish out ridiculous damage that requires careful planning and calculations.",
     type: CharacterType.Hero,
+    title: "The Calculated Cataclysm",
     cosmetic: {
         emoji: CharacterEmoji.FRIEREN,
         color: 0xc5c3cc,

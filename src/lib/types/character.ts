@@ -1,42 +1,37 @@
 import type { Card } from "../classes/Card";
-import type {
-  CharacterEmoji,
-  CharacterID,
-  CharacterName,
-  CharacterType,
-  Stat,
-} from "../enums";
+import type { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from "../enums";
 import type { Ability } from "./ability";
 import type { CardProps } from "./card";
 
 export type Stats = {
-  [key in Stat]: number;
+    [key in Stat]: number;
 };
 
 export type CharacterCosmetic = {
-  emoji: CharacterEmoji;
-  color: number;
-  imageUrl: string;
-  icon: string;
+    emoji: CharacterEmoji;
+    color: number;
+    imageUrl: string;
+    icon: string;
 };
 
 export type Character = {
-  id: `${CharacterID}`;
-  name: CharacterName;
-  description: string;
-  type: CharacterType;
-  cosmetic: CharacterCosmetic;
-  cards: { card: Card; count: number }[];
-  stats: Stats;
-  ability: Ability;
-  subAbility?: Ability;
-  relatedCharacters: `${CharacterID}`[];
-  additionalMetadata: CharacterAdditionalMetadata;
+    id: `${CharacterID}`;
+    name: CharacterName;
+    description: string;
+    title: string;
+    type: CharacterType;
+    cosmetic: CharacterCosmetic;
+    cards: { card: Card; count: number }[];
+    stats: Stats;
+    ability: Ability;
+    subAbility?: Ability;
+    relatedCharacters: `${CharacterID}`[];
+    additionalMetadata: CharacterAdditionalMetadata;
 };
 
 export type CharacterAdditionalMetadata = {
-  manaSuppressed: boolean;
-  accessToDefaultCardOptions: boolean;
-  teaTimeStacks?: number;
-  overheal?: boolean;
+    manaSuppressed: boolean;
+    accessToDefaultCardOptions: boolean;
+    teaTimeStacks?: number;
+    overheal?: boolean;
 };
