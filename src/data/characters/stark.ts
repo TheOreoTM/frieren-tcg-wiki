@@ -5,7 +5,7 @@ import { starkDeck } from "../decks/stark";
 export const Stark: Character = {
     id: "stark",
     name: CharacterName.Stark,
-    description: "Stark the warrior",
+    description: "A brave bruiser whose damage relies on finding the courage to commit.",
     type: CharacterType.Hero,
     cosmetic: {
         emoji: CharacterEmoji.STARK,

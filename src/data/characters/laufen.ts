@@ -5,7 +5,7 @@ import { laufenDeck } from "../decks/laufen";
 export const Laufen: Character = {
     id: "laufen",
     name: CharacterName.Laufen,
-    description: "Best girl?",
+    description: "A glass cannon unique for her ability to dodge incoming attacks and high speed.",
     type: CharacterType.Hero,
     cosmetic: {
         emoji: CharacterEmoji.LAUFEN,

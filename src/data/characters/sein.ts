@@ -8,7 +8,7 @@ const SEIN_HEALING_RAMP = 0.1;
 export const Sein: Character = {
     id: "sein",
     name: CharacterName.Sein,
-    description: "OMG He is so handsome",
+    description: "A passive support who steadily heals and can overheal to outlast opponents.",
     type: CharacterType.Hero,
     cosmetic: {
         emoji: CharacterEmoji.SEIN,

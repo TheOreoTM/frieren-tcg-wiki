@@ -7,7 +7,7 @@ const PACIFIST_TURN_COUNT = 15;
 export const Sense: Character = {
     id: "sense",
     name: CharacterName.Sense,
-    description: "Steampunk Sense",
+    description: " A defensive character with a passive win condition, but still fully capable of fighting back.",
     type: CharacterType.Hero,
     cosmetic: {
         emoji: CharacterEmoji.SENSE,

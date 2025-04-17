@@ -7,7 +7,7 @@ const HIMMEL_HERO_PARTY_DAMAGE_BONUS = 0.2;
 export const Himmel: Character = {
     id: "himmel",
     name: CharacterName.Himmel,
-    description: "Only character that has the Rally ability.",
+    description: "A versatile setup character with access to (too) many tools.",
     type: CharacterType.Hero,
     cosmetic: {
         emoji: CharacterEmoji.HIMMEL,

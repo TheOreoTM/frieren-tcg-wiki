@@ -7,7 +7,7 @@ const SERIE_TOYING_DAMAGE_BONUS = 0.3;
 export const Serie: Character = {
     id: "serie",
     name: CharacterName.Serie,
-    description: "Great Mage from the Mythical Era",
+    description: "An offensive powerhouse who comes with many risks.",
     type: CharacterType.Hero,
     cosmetic: {
         emoji: CharacterEmoji.SERIE,

@@ -7,7 +7,7 @@ const LINIE_CHAIN_BONUS = 0.08;
 export const Linie: Character = {
     id: "linie",
     name: CharacterName.Linie,
-    description: ":)",
+    description: "A damage-scaling characters who grows stronger with every consecutive strike.",
     type: CharacterType.Demon,
     cosmetic: {
         emoji: CharacterEmoji.LINIE,
