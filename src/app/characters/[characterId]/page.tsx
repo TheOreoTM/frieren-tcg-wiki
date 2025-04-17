@@ -31,12 +31,10 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
 
     return {
         title: `${character.name}`,
-        description:
-            `"${character.title}"\n\n${character.description}` ||
-            `Learn about ${character.name} in the Frieren TCG universe`,
+        description: `"${character.title}"\n\n${character.description}`,
         openGraph: {
             title: character.name,
-            description: character.description,
+            description: `"${character.title}"\n\n${character.description}`,
             images: [
                 {
                     url: character.cosmetic.imageUrl || character.cosmetic.icon || "/placeholder.svg",
