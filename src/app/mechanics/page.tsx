@@ -12,13 +12,6 @@ const mechanics = [
         icon: <Sparkles className="h-6 w-6 text-blue-500" />,
         slug: "empower",
     },
-    {
-        id: "combat",
-        name: "Combat",
-        description: "How characters battle against each other on the field.",
-        icon: <Swords className="h-6 w-6 text-red-500" />,
-        slug: "combat",
-    },
 ];
 
 export default function MechanicsPage() {
