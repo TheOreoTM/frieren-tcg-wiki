@@ -122,20 +122,8 @@ export default function Home() {
                 <ul className="space-y-3">
                     <li className="flex items-start gap-2 bg-white/50 p-3 rounded-2xl hover:bg-white/80 transition-colors">
                         <span className="text-primary">•</span>
-                        <Link href="/news/beyond-the-wasteland" className="hover:underline">
-                            <span>New expansion: "Beyond the Wasteland" featuring 60 new cards!</span>
-                        </Link>
-                    </li>
-                    <li className="flex items-start gap-2 bg-white/50 p-3 rounded-2xl hover:bg-white/80 transition-colors">
-                        <span className="text-primary">•</span>
-                        <Link href="/news/tournament-rules-update" className="hover:underline">
-                            <span>Tournament rules updated for the upcoming Regional Championship</span>
-                        </Link>
-                    </li>
-                    <li className="flex items-start gap-2 bg-white/50 p-3 rounded-2xl hover:bg-white/80 transition-colors">
-                        <span className="text-primary">•</span>
-                        <Link href="/news/balance-changes" className="hover:underline">
-                            <span>Balance changes to Himmel's "Divine Blade" and Stark's "Warrior's Resolve"</span>
+                        <Link href="/news/update-v1-1" className="hover:underline">
+                            <span>New patch: Himmel and Denken enter the battle! And some balance changes!</span>
                         </Link>
                     </li>
                 </ul>
