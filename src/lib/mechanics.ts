@@ -57,7 +57,6 @@ export function getMechanicRules(mechanic: string): Mechanic | undefined {
             authorAvatar: data.authorAvatar,
         };
     } catch (error) {
-        console.error(`Error reading mechanic ${mechanic}:`, error);
         return undefined;
     }
 }
@@ -77,7 +76,6 @@ export function getMechanicExamples(mechanic: string): Mechanic | undefined {
             authorAvatar: data.authorAvatar,
         };
     } catch (error) {
-        console.error(`Error reading mechanic ${mechanic}:`, error);
         return undefined;
     }
 }
@@ -94,7 +92,6 @@ export function getMechanicData(mechanic: string) {
             examples,
         };
     } catch (error) {
-        console.error(`Error reading mechanic ${mechanic}:`, error);
         return undefined;
     }
 }

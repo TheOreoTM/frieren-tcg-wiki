@@ -31,8 +31,8 @@ export default async function MechanicPage({ params }: PageProps) {
     }
 
     const mechanicIcon = mechanicIcons[slug];
-    const rulesTabDisabled = !mechanic.rules;
-    const examplesTabDisabled = !mechanic.examples;
+    const rulesTabDisabled = !mechanic.rules?.content || mechanic.rules.content === "";
+    const examplesTabDisabled = !mechanic.examples?.content || mechanic.examples.content === "";
 
     return (
         <div className="container mx-auto px-4 py-12">
