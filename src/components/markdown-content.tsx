@@ -20,6 +20,9 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
                 h3: ({ className, ...props }) => (
                     <h3 className={cn("text-xl font-bold mt-6 mb-3", className)} {...props} />
                 ),
+                code: ({ className, ...props }) => (
+                    <code className={cn("whitespace-pre-wrap break-words", className)} {...props} />
+                ),
                 pre: ({ className, ...props }) => (
                     <pre className={cn("my-4 p-4 bg-accent/50 rounded-md", className)} {...props} />
                 ),
