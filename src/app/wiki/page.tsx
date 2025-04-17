@@ -102,7 +102,7 @@ export default function WikiPage() {
 
             <h2 className="text-2xl font-bold mb-6">Game Mechanics</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-                <Link href="/mechanics/empower-system">
+                <Link href="/mechanics/empower">
                     <Button variant="outline" className="w-full justify-start h-auto py-3">
                         <Sparkles className="mr-2 h-4 w-4 text-blue-500" />
                         <div className="text-left">
@@ -111,43 +111,7 @@ export default function WikiPage() {
                         </div>
                     </Button>
                 </Link>
-                <Link href="/mechanics/combat">
-                    <Button variant="outline" className="w-full justify-start h-auto py-3">
-                        <Swords className="mr-2 h-4 w-4 text-red-500" />
-                        <div className="text-left">
-                            <div className="font-medium">Combat</div>
-                            <div className="text-xs text-muted-foreground">Battle mechanics</div>
-                        </div>
-                    </Button>
-                </Link>
-                <Link href="/mechanics/spell-casting">
-                    <Button variant="outline" className="w-full justify-start h-auto py-3">
-                        <Zap className="mr-2 h-4 w-4 text-purple-500" />
-                        <div className="text-left">
-                            <div className="font-medium">Spell Casting</div>
-                            <div className="text-xs text-muted-foreground">Magic and spells</div>
-                        </div>
-                    </Button>
-                </Link>
-                <Link href="/mechanics/elements">
-                    <Button variant="outline" className="w-full justify-start h-auto py-3">
-                        <Flame className="mr-2 h-4 w-4 text-orange-500" />
-                        <div className="text-left">
-                            <div className="font-medium">Elements</div>
-                            <div className="text-xs text-muted-foreground">Elemental interactions</div>
-                        </div>
-                    </Button>
-                </Link>
-                <Link href="/mechanics/hero-abilities">
-                    <Button variant="outline" className="w-full justify-start h-auto py-3">
-                        <Shield className="mr-2 h-4 w-4 text-green-500" />
-                        <div className="text-left">
-                            <div className="font-medium">Hero Abilities</div>
-                            <div className="text-xs text-muted-foreground">Special powers</div>
-                        </div>
-                    </Button>
-                </Link>
-                <Link href="/wiki/mechanics">
+                <Link href="/mechanics">
                     <Button variant="outline" className="w-full justify-start h-auto py-3">
                         <div className="text-left">
                             <div className="font-medium">View All Mechanics</div>
@@ -159,7 +123,7 @@ export default function WikiPage() {
 
             <h2 className="text-2xl font-bold mb-6">Strategy Guides</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <Link href="/wiki/strategy/deck-building">
+                <Link href="/wiki/strategy/combat">
                     <Card className="h-full hover:shadow-lg transition-shadow">
                         <CardHeader>
                             <CardTitle>Combat Guide</CardTitle>
@@ -172,7 +136,7 @@ export default function WikiPage() {
                         </CardContent>
                     </Card>
                 </Link>
-                <Link href="/wiki/strategy/archetypes">
+                <Link href="/wiki/strategy/lorem">
                     <Card className="h-full hover:shadow-lg transition-shadow">
                         <CardHeader>
                             <CardTitle>Lorem Impsum</CardTitle>
@@ -184,36 +148,6 @@ export default function WikiPage() {
                             </p>
                         </CardContent>
                     </Card>
-                </Link>
-            </div>
-
-            <h2 className="text-2xl font-bold mb-6">Characters & Lore</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Link href="/wiki/characters/heroes">
-                    <Button variant="outline" className="w-full justify-start h-auto py-3">
-                        <Users className="mr-2 h-4 w-4 text-emerald-600" />
-                        <div className="text-left">
-                            <div className="font-medium">Heroes</div>
-                            <div className="text-xs text-muted-foreground">Main characters</div>
-                        </div>
-                    </Button>
-                </Link>
-                <Link href="/wiki/characters/demons">
-                    <Button variant="outline" className="w-full justify-start h-auto py-3">
-                        <Users className="mr-2 h-4 w-4 text-red-600" />
-                        <div className="text-left">
-                            <div className="font-medium">Demons</div>
-                            <div className="text-xs text-muted-foreground">Antagonists</div>
-                        </div>
-                    </Button>
-                </Link>
-                <Link href="/wiki/world">
-                    <Button variant="outline" className="w-full justify-start h-auto py-3">
-                        <div className="text-left">
-                            <div className="font-medium">World</div>
-                            <div className="text-xs text-muted-foreground">Setting and locations</div>
-                        </div>
-                    </Button>
                 </Link>
             </div>
         </div>
