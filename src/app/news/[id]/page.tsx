@@ -90,18 +90,17 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ id
                         </div>
                     </div>
                 </div>
-
-                {/* <div className="relative aspect-video mb-8">
-                    <Image
-                        src={article.image || "/placeholder.svg"}
-                        alt={article.title}
-                        fill
-                        className="object-cover rounded-lg"
-                    />
-                </div> */}
-
-                <MarkdownContent content={article.content} className="mb-12" />
-
+                {article.pageImage && (
+                    <div className="relative aspect-video mb-8">
+                        <Image
+                            src={article.image || "/placeholder.svg"}
+                            alt={article.title}
+                            fill
+                            className="object-cover rounded-lg"
+                        />
+                    </div>
+                )}
+                <MarkdownContent content={article.content} className="mb-12" />x
                 <div className="flex flex-wrap gap-2 mb-12">
                     <span className="text-sm font-medium">Tags:</span>
                     {article.tags.map((tag) => (
@@ -110,7 +109,6 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ id
                         </Badge>
                     ))}
                 </div>
-
                 {relatedArticles.length > 0 && (
                     <div>
                         <h2 className="text-2xl font-bold mb-6">Related Articles</h2>

@@ -11,8 +11,9 @@ export interface NewsArticle {
     content: string;
     date: string;
     author: string;
-    category: "Expansion" | "Tournament" | "Balance" | "Community" | "Feature";
+    category: "Patch" | "Tournament" | "Balance" | "Community" | "Feature";
     image?: string;
+    pageImage?: boolean;
     tags: string[];
 }
 
