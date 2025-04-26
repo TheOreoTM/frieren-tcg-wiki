@@ -24,7 +24,7 @@ export type Character = {
     cards: { card: Card; count: number }[];
     stats: Stats;
     ability: Ability;
-    subAbility?: Ability;
+    subAbilities?: Ability[];
     relatedCharacters: `${CharacterID}`[];
     additionalMetadata: CharacterAdditionalMetadata;
 };
@@ -36,4 +36,5 @@ export type CharacterAdditionalMetadata = {
     pierceFactor?: number;
     overheal?: boolean;
     sureHit?: UbelHit;
+    ignoreManaSuppressed?: boolean;
 };

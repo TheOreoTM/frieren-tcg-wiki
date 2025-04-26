@@ -28,10 +28,10 @@ export const Stille: Character = {
         If the result is less than the character's SPD minus the opponent's SPD, ignore the attack.
         Afterwards, attack the opponent with DMG equivalent to 1/2 * (opponent's ATK + opponent's move DMG).`,
     },
-    subAbility: {
+    subAbilities: [{
         abilityName: "Birdwatching",
         abilityEffectString: "Both characters don't have access to default card options (Discard/Wait).",
-    },
+    }],
     relatedCharacters: [CharacterID.Frieren],
     additionalMetadata: {
         accessToDefaultCardOptions: true,

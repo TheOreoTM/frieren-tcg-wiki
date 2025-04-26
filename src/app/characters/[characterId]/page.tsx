@@ -159,19 +159,20 @@ export default async function CharacterPage({ params }: PageProps) {
                                 <StyledDescription text={character.ability.abilityName} />
                             </h2>
 
-                            <div className="text-sm font-mono">
+                            <div className="text-sm">
                                 <StyledDescription text={character.ability.abilityEffectString} />
                             </div>
-                            {character.subAbility && (
-                                <>
-                                    <h2 className="text-md md:text-lg font-bold pt-2">
-                                        <StyledDescription text={character.subAbility.abilityName} />
-                                    </h2>
-                                    <div className="text-sm font-mono">
-                                        <StyledDescription text={character.subAbility.abilityEffectString} />
+                            {character.subAbilities &&
+                                character.subAbilities.map((subAbility, i) => (
+                                    <div key={i}>
+                                        <h2 className="text-md md:text-md font-bold pt-2">
+                                            <StyledDescription text={character.subAbilities![i].abilityName} />
+                                        </h2>
+                                        <div className="text-sm font-mono">
+                                            <StyledDescription text={character.subAbilities![i].abilityEffectString} />
+                                        </div>
                                     </div>
-                                </>
-                            )}
+                                ))}
                         </TabsContent>
                         <TabsContent value="strategy" className="p-4 bg-slate-50 dark:bg-slate-900 rounded-md mt-2">
                             <p>{"Card Strategy"}</p>

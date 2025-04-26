@@ -1,11 +1,16 @@
-import { X } from "lucide-react";
 import React from "react";
 
-const StyledDescription = ({ text }: { text: string }) => {
-    let styled = text;
-    styled = styled.replaceAll("*", "×");
-
-    return <p>{styled}</p>;
-};
+export function StyledDescription({ text }: { text: string }) {
+    return (
+        <div>
+            {text.split("\n").map((line, idx) => (
+                <span key={idx}>
+                    {line}
+                    <br />
+                </span>
+            ))}
+        </div>
+    );
+}
 
 export default StyledDescription;

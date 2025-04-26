@@ -11,6 +11,7 @@ import { serieDeck } from "./decks/serie";
 import { starkDeck } from "./decks/stark";
 import { stilleDeck } from "./decks/stille";
 import { ubelDeck } from "./decks/ubel";
+import { fernDeck } from "./decks/fern";
 
 export const allCards: { card: Card; count: number }[] = [
     ...defaultCards,
@@ -25,6 +26,7 @@ export const allCards: { card: Card; count: number }[] = [
     ...starkDeck,
     ...stilleDeck,
     ...ubelDeck,
+    ...fernDeck,
 ];
 
 const cards: Map<string, Card> = new Map([]);

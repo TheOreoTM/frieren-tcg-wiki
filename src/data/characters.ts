@@ -11,6 +11,7 @@ import { Serie } from "./characters/serie";
 import { Stark } from "./characters/stark";
 import { Stille } from "./characters/stille";
 import { Ubel } from "./characters/ubel";
+import { Fern } from "./characters/fern";
 
 export const Characters: Map<CharacterName, Character> = new Map([
     [CharacterName.Frieren, Frieren],
@@ -24,4 +25,5 @@ export const Characters: Map<CharacterName, Character> = new Map([
     [CharacterName.Stark, Stark],
     [CharacterName.Stille, Stille],
     [CharacterName.Ubel, Ubel],
+    [CharacterName.Fern, Fern],
 ]);

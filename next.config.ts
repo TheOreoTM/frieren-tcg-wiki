@@ -20,6 +20,11 @@ const nextConfig: NextConfig = {
                 hostname: "discord.com",
                 pathname: "/assets/**",
             },
+            {
+                protocol: "https",
+                hostname: "c.tenor.com",
+                pathname: "/**",
+            },
         ],
     },
 };
