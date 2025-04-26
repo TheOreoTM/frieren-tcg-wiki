@@ -5,21 +5,30 @@ import { Nature } from "@/lib/types";
 export const empathyFailureName = "Stalking";
 
 const a_reelseiden = new Card({
-    title: "Reelseiden",
-    description: ([dmg]) => `HP-4 Has a 20% of missing if the opponent didn't attack last turn. DMG ${dmg}.`,
+    title: "Shallow Slash",
+    description: ([dmg]) =>
+        `HP-4. If used by Übel, has a 20% of missing if the opponent didn't use an Attack card before this move is used. DMG ${dmg}.`,
     emoji: CardEmoji.UBEL_CARD,
     effects: [8],
+    cardMetadata: {
+        nature: Nature.Attack,
+        ubelFailureRate: 20,
+    },
     tags: {
         FailureRate: 20,
     },
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
     deck: "ubel",
+    cosmetic: {
+        cardGif: "/cards/Reelseiden.gif",
+    },
 });
 
 const a_cleave = new Card({
     title: "Cleave",
-    description: ([dmg]) => `HP-6. Has a 40% of missing if the opponent didn't attack last turn. DMG ${dmg}.`,
+    description: ([dmg]) =>
+        `HP-6. If used by Übel,has a 40% of missing if the opponent didn't use an Attack card before this move is used. DMG ${dmg}.`,
     emoji: CardEmoji.UBEL_CARD,
     effects: [12],
     effectNames: ["DMG"],
@@ -27,11 +36,15 @@ const a_cleave = new Card({
     cardCategories: ["Attack"],
     hpCost: 6,
     deck: "ubel",
+    cosmetic: {
+        // cardGif: "/cards/Cleave.gif", // This shit is 37MB
+    },
 });
 
 const a_dismantle = new Card({
     title: "Dismantle",
-    description: ([dmg]) => `HP-8. Has a 60% of missing if the opponent didn't attack last turn. DMG ${dmg}.`,
+    description: ([dmg]) =>
+        `HP-8. If used by Übel, has a 60% of missing if the opponent didn't use an Attack card before this move is used. DMG ${dmg}.`,
     emoji: CardEmoji.UBEL_CARD,
     effects: [16],
     effectNames: ["DMG"],
@@ -45,7 +58,7 @@ export const rushdown = new Card({
     title: "Rushdown",
     cardMetadata: { nature: Nature.Util },
     description: ([spd]) =>
-        `Increases SPD by ${spd} for 3 turns. Attacks will not miss during this period. At the end of every turn, HP-5.`,
+        `Increases SPD by ${spd} for 3 turns. Attacks will not miss during this period. At the end of every turn, HP-4.`,
     emoji: CardEmoji.UBEL_CARD,
     cardCategories: ["Utility"],
     effects: [10],
@@ -53,14 +66,15 @@ export const rushdown = new Card({
     deck: "ubel",
 });
 
-const recompose = new Card({
-    title: "Recompose",
+const slowdown = new Card({
+    title: "Slow Down",
     cardMetadata: { nature: Nature.Util },
-    description: ([hp]) => `SPD-10 for 2 turns. Heal ${hp}HP, then ${0.5 * Number(hp)}HP at the end of each turn.`,
+    description: ([hp, endOfTurnHp]) =>
+        `SPD-10 for 2 turns. Heal ${hp}HP, then ${endOfTurnHp} HP at the end of each turn. Attacks will not hit while this effect is active.`,
     emoji: CardEmoji.UBEL_CARD,
-    effects: [10],
+    effects: [10, 5],
+    effectNames: ["HP", "HP"],
     cardCategories: ["Utility", "Healing"],
-    effectNames: ["HP"],
     deck: "ubel",
 });
 
@@ -79,7 +93,8 @@ const defend = new Card({
 export const sorganeil = new Card({
     title: "Sorganeil",
     cardMetadata: { nature: Nature.Util },
-    description: () => `Priority-1. Opponent can only wait next turn. Attacks will hit with 100% certainty.`,
+    description: () =>
+        `Priority-2. Will fail if the opponent's SPD is higher than your SPD by 35 or more. Set opponent's SPD to 1. Clear opponent's timed effects. Opponent can only wait next turn. Attacks will hit with 100% certainty.`,
     emoji: CardEmoji.UBEL_CARD,
     priority: -2,
     effects: [],
@@ -121,8 +136,8 @@ export const ubelDeck = [
     { card: a_dismantle, count: 2 },
     { card: a_malevolentShrine, count: 1 },
     { card: rushdown, count: 2 },
-    { card: defend, count: 1 },
-    { card: recompose, count: 2 },
+    { card: defend, count: 2 },
+    { card: slowdown, count: 2 },
     { card: sorganeil, count: 1 },
     { card: empathy, count: 1 },
 ];
