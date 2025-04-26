@@ -24,6 +24,7 @@ const a_cleave = new Card({
     effects: [12],
     effectNames: ["DMG"],
     cardMetadata: { nature: Nature.Attack, ubelFailureRate: 40 },
+    cardCategories: ["Attack"],
     hpCost: 6,
     deck: "ubel",
 });
@@ -35,6 +36,7 @@ const a_dismantle = new Card({
     effects: [16],
     effectNames: ["DMG"],
     cardMetadata: { nature: Nature.Attack, ubelFailureRate: 60 },
+    cardCategories: ["Attack"],
     hpCost: 8,
     deck: "ubel",
 });
@@ -45,6 +47,7 @@ export const rushdown = new Card({
     description: ([spd]) =>
         `Increases SPD by ${spd} for 3 turns. Attacks will not miss during this period. At the end of every turn, HP-5.`,
     emoji: CardEmoji.UBEL_CARD,
+    cardCategories: ["Utility"],
     effects: [10],
     effectNames: ["SPD"],
     deck: "ubel",
@@ -56,6 +59,7 @@ const recompose = new Card({
     description: ([hp]) => `SPD-10 for 2 turns. Heal ${hp}HP, then ${0.5 * Number(hp)}HP at the end of each turn.`,
     emoji: CardEmoji.UBEL_CARD,
     effects: [10],
+    cardCategories: ["Utility", "Healing"],
     effectNames: ["HP"],
     deck: "ubel",
 });
@@ -67,6 +71,7 @@ const defend = new Card({
     emoji: CardEmoji.UBEL_CARD,
     effects: [20],
     priority: 2,
+    cardCategories: ["Utility", "Defense", "Block"],
     effectNames: ["DEF"],
     deck: "ubel",
 });
@@ -78,6 +83,7 @@ export const sorganeil = new Card({
     emoji: CardEmoji.UBEL_CARD,
     priority: -2,
     effects: [],
+    cardCategories: ["Utility"],
     effectNames: [],
     deck: "ubel",
 });
@@ -88,6 +94,7 @@ export const empathy = new Card({
     description: () =>
         `Will fail if used before turn 5. Use the opponent's signature move at this card's empower level -2.`,
     emoji: CardEmoji.UBEL_CARD,
+    cardCategories: ["Utility"],
     effects: [],
     effectNames: [],
     deck: "ubel",
@@ -103,6 +110,7 @@ const a_malevolentShrine = new Card({
     cardMetadata: { nature: Nature.Attack, signature: true, ubelFailureRate: 80 },
     effects: [22],
     effectNames: ["DMG"],
+    cardCategories: ["Attack"],
     hpCost: 11,
     deck: "ubel",
 });

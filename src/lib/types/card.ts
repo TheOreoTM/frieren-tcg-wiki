@@ -15,10 +15,7 @@ export type CardProps = {
     printEmpower?: boolean;
     empowerLevel?: number;
     cosmetic?: CardCosmetic;
-    /**
-     * @deprecated Use {@link CardMetadata} instead or dont
-     */
-    cardCategories?: `${CardCategory}`[];
+    cardCategories: `${CardCategory}`[];
     hpCost?: number;
     deck?: `${CharacterID}`;
 };

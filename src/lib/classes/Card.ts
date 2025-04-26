@@ -13,7 +13,7 @@ export class Card implements CardProps {
     printEmpower: boolean;
     priority: number;
     tags: Record<string, number>;
-    cardCategories?: `${CardCategory}`[];
+    cardCategories: `${CardCategory}`[];
     hpCost?: number;
     cosmetic?: CardCosmetic | undefined;
     cardMetadata?: CardMetadata;
