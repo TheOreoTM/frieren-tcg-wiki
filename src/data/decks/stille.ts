@@ -1,5 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
+import { Nature } from "@/lib/types";
 
 const a_peck = new Card({
     title: "Peck",
@@ -71,6 +72,7 @@ export const a_geisel = new Card({
     effects: [15],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
+    cardMetadata: { nature: Nature.Attack, signature: true },
     deck: "stille",
 });
 

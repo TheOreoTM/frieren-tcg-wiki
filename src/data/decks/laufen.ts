@@ -1,6 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
-import { CardCategory } from "@/lib/types";
+import { CardCategory, Nature } from "@/lib/types";
 
 const a_staffStrike = new Card({
     title: "Staff Strike",
@@ -81,6 +81,7 @@ export const jilwer = new Card({
     description: ([spd]) => `Increases SPD by ${spd} for 2 turns. At the end of every turn, HP-10.`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [50],
+    cardMetadata: { nature: Nature.Util, signature: true },
     cardCategories: [CardCategory.UTILITY],
     effectNames: ["SPD"],
     deck: "laufen",

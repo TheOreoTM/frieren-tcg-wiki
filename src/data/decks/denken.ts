@@ -1,6 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
-import { CardCategory } from "@/lib/types";
+import { CardCategory, Nature } from "@/lib/types";
 
 const a_jab = new Card({
     title: "Jab",
@@ -8,6 +8,7 @@ const a_jab = new Card({
     emoji: CardEmoji.DENKEN_CARD,
     effectNames: ["HP", "DEF", "SPD", "DMG"],
     cardCategories: [CardCategory.ATTACK],
+    cardMetadata: { nature: Nature.Attack },
     effects: [2, 1, 1, 2],
     deck: "denken",
 });
@@ -17,6 +18,7 @@ const a_hook = new Card({
     description: ([hp, atk, dmg]) => `HP+${hp}. ATK+${atk}. DMG ${dmg}.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [2, 2, 2],
+    cardMetadata: { nature: Nature.Attack },
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["HP", "ATK", "DMG"],
     deck: "denken",
@@ -27,6 +29,7 @@ const a_uppercut = new Card({
     description: ([hp, atk, spd, dmg]) => `HP+${hp}. ATK+${atk}. SPD+${spd}. DMG ${dmg}.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [2, 1, 1, 3],
+    cardMetadata: { nature: Nature.Attack },
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["HP", "ATK", "SPD", "DMG"],
     deck: "denken",
@@ -39,6 +42,7 @@ const bareHandedBlock = new Card({
     emoji: CardEmoji.DENKEN_CARD,
     priority: 2,
     effects: [2, 8],
+    cardMetadata: { nature: Nature.Defense },
     cardCategories: [CardCategory.DEFENSE, CardCategory.UTILITY, "Block"],
     effectNames: ["DEF", "DEF"],
     deck: "denken",
@@ -50,6 +54,7 @@ export const a_waldgose = new Card({
         `HP-7. DMG ${dmg}. At the next 3 turn ends, deal ${dmg} DMG. Treat this card as "Jab" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [3],
+    cardMetadata: { nature: Nature.Attack },
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "denken",
@@ -61,6 +66,7 @@ export const a_daosdorg = new Card({
         `HP-9. DMG ${dmg}. If Waldgose is active, increase its turn end damage by ${waldgoseDmgBonus}. Treat this card as "Hook" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [12, 3],
+    cardMetadata: { nature: Nature.Attack },
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG", "DMG"],
     deck: "denken",
@@ -72,6 +78,7 @@ export const a_catastravia = new Card({
         `HP-15. DMG ${dmg}. At the next 5 turn ends, deal ${dmg} DMG. Treat this card as "Uppercut" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [4],
+    cardMetadata: { nature: Nature.Attack, signature: true},
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "denken",
@@ -84,6 +91,7 @@ const elementaryDefensiveMagic = new Card({
     emoji: CardEmoji.DENKEN_CARD,
     priority: 2,
     effects: [20],
+    cardMetadata: { nature: Nature.Defense },
     cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE],
     effectNames: ["DEF"],
     deck: "denken",
@@ -94,6 +102,7 @@ export const a_concentratedOffensiveMagicZoltraak = new Card({
     description: ([dmg]) => `HP-8. DMG ${dmg}.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [14],
+    cardMetadata: { nature: Nature.Attack },
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "denken",

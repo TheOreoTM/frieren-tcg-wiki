@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, WalletCardsIcon as Cards, ScrollText, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { FrierenTCG } from "@/components/frieren-tcg";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

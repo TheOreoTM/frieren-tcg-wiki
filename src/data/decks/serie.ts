@@ -1,6 +1,7 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
 import { fieldOfFlower } from "./frieren";
+import { Nature } from "@/lib/types";
 
 export const a_livingGrimoireOffensive = new Card({
     title: "Living Grimoire: Offense Chapter",
@@ -83,6 +84,7 @@ export const ancientBarrierMagic = new Card({
         cardImageUrl: "/cards/Ancient_Barrier_Magic.webp",
     },
     effects: [7, 7, 7],
+    cardMetadata: { nature: Nature.Attack, signature: true },
     cardCategories: ["Utility", "Defense"],
     effectNames: ["ATK", "DEF", "-OpponentSPD"],
     deck: "serie",

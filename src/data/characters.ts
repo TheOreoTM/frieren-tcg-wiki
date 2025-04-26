@@ -10,16 +10,18 @@ import { Sense } from "./characters/sense";
 import { Serie } from "./characters/serie";
 import { Stark } from "./characters/stark";
 import { Stille } from "./characters/stille";
+import { Ubel } from "./characters/ubel";
 
 export const Characters: Map<CharacterName, Character> = new Map([
-  [CharacterName.Frieren, Frieren],
-  [CharacterName.Himmel, Himmel],
-  [CharacterName.Denken, Denken],
-  [CharacterName.Laufen, Laufen],
-  [CharacterName.Linie, Linie],
-  [CharacterName.Sein, Sein],
-  [CharacterName.Sense, Sense],
-  [CharacterName.Serie, Serie],
-  [CharacterName.Stark, Stark],
-  [CharacterName.Stille, Stille],
+    [CharacterName.Frieren, Frieren],
+    [CharacterName.Himmel, Himmel],
+    [CharacterName.Denken, Denken],
+    [CharacterName.Laufen, Laufen],
+    [CharacterName.Linie, Linie],
+    [CharacterName.Sein, Sein],
+    [CharacterName.Sense, Sense],
+    [CharacterName.Serie, Serie],
+    [CharacterName.Stark, Stark],
+    [CharacterName.Stille, Stille],
+    [CharacterName.Ubel, Ubel],
 ]);

@@ -1,6 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
-import { CardCategory } from "@/lib/types";
+import { CardCategory, Nature } from "@/lib/types";
 
 export const a_zoltraak = new Card({
     title: "Offensive Magic Analysis: Zoltraak",
@@ -11,6 +11,7 @@ export const a_zoltraak = new Card({
     },
     tags: { PostAnalysis: 2 },
     effects: [7],
+    cardMetadata: { nature: Nature.Attack },
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "frieren",
@@ -27,6 +28,7 @@ export const fieldOfFlower = new Card({
     },
     emoji: CardEmoji.FLOWER_FIELD,
     effects: [5, 3],
+    cardMetadata: { nature: Nature.Util },
     cardCategories: [CardCategory.UTILITY, CardCategory.HEALING],
     effectNames: ["HP", "HP"],
     deck: "frieren",
@@ -41,6 +43,7 @@ export const a_judradjim = new Card({
     },
     tags: { PostAnalysis: 1 },
     effects: [12],
+    cardMetadata: { nature: Nature.Attack },
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "frieren",
@@ -54,6 +57,7 @@ export const a_vollzanbel = new Card({
         cardImageUrl: "/cards/Hellfire_Summoning_Vollzanbel.webp",
     },
     effects: [18],
+    cardMetadata: { nature: Nature.Attack },
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "frieren",
@@ -68,7 +72,8 @@ export const barrierMagicAnalysis = new Card({
     },
     effects: [2, 1, 1],
     tags: { Analysis: 2 },
-    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE],
+    cardMetadata: { nature: Nature.Util },
+    cardCategories: [CardCategory.UTILITY],
     effectNames: ["ATK", "SPD", "DEF"],
     deck: "frieren",
 });
@@ -82,6 +87,7 @@ export const demonMagicAnalysis = new Card({
     },
     effects: [2, 2, 1],
     tags: { Analysis: 2 },
+    cardMetadata: { nature: Nature.Util },
     cardCategories: [CardCategory.UTILITY],
     effectNames: ["ATK", "SPD", "DEF"],
     deck: "frieren",
@@ -96,6 +102,7 @@ const ordinaryDefensiveMagic = new Card({
     },
     effects: [20],
     effectNames: ["DEF"],
+    cardMetadata: { nature: Nature.Defense },
     cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE, CardCategory.BLOCK],
     priority: 2,
     deck: "frieren",
@@ -112,6 +119,7 @@ export const a_theHeightOfMagic = new Card({
     priority: 1,
     effects: [30],
     effectNames: ["DMG"],
+    cardMetadata: { nature: Nature.Attack, signature: true },
     cardCategories: [CardCategory.ATTACK],
     deck: "frieren",
 });

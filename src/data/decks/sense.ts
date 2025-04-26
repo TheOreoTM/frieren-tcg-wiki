@@ -1,5 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
+import { Nature } from "@/lib/types";
 
 export const a_hairWhip = new Card({
     title: "Hair Whip",
@@ -85,6 +86,7 @@ export const a_piercingDrill = new Card({
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
     deck: "sense",
+    cardMetadata: { nature: Nature.Attack, signature: true },
 });
 
 export const senseDeck = [

@@ -1,6 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
-import { CardCategory } from "@/lib/types";
+import { CardCategory, Nature } from "@/lib/types";
 
 const a_FrierenStrikeTheirWeakpoint = new Card({
     title: "Frieren! Strike Their Weakpoint!",
@@ -123,6 +123,7 @@ export const a_realHeroSwing = new Card({
     description: ([dmg]) => `HP-12. DMG ${dmg}`,
     emoji: CardEmoji.HIMMEL_CARD,
     effects: [20],
+    cardMetadata: { nature: Nature.Attack, signature: true },
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "himmel",

@@ -7,11 +7,19 @@ export type CardProps = {
     effectNames: string[];
     priority?: number;
     emoji?: string;
+    /**
+     * @deprecated Use {@link CardMetadata} instead or dont
+     */
     tags?: Record<string, number>;
+    cardMetadata?: CardMetadata;
     printEmpower?: boolean;
     empowerLevel?: number;
     cosmetic?: CardCosmetic;
-    cardCategories: `${CardCategory}`[];
+    /**
+     * @deprecated Use {@link CardMetadata} instead or dont
+     */
+    cardCategories?: `${CardCategory}`[];
+    hpCost?: number;
     deck?: `${CharacterID}`;
 };
 
@@ -27,4 +35,25 @@ export enum CardCategory {
     HEALING = "Healing",
     BLOCK = "Block",
     DEFAULT = "Default",
+}
+
+export type CardMetadata = {
+    nature: Nature;
+    seriePool?: "Common" | "Rare" | "Ultra-rare";
+    signature?: boolean;
+    analysis?: boolean;
+    postAnalysis?: boolean;
+    waldgoseDamage?: number;
+    himmelPartyMember?: "Heiter" | "Eisen" | "Frieren";
+    teaTime?: number;
+    resolve?: number;
+    signatureMoveOf?: CharacterID;
+    ubelFailureRate?: number;
+};
+
+export enum Nature {
+    Attack = "Attack",
+    Defense = "Defense",
+    Default = "Default",
+    Util = "Util",
 }

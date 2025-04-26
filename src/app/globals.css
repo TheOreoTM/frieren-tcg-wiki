@@ -41,6 +41,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+
+  /* Custom colors */
+  --color-signature: oklch(0.88 0.17 95.33);
 }
 
 :root {
@@ -226,7 +230,22 @@
   }
 }
 
-/* Custom styles for our cozy theme */
+/* Custom styles*/
+
+.glow-effect {
+  animation: glow-animation 1.2s infinite alternate;
+}
+
+@keyframes glow-animation {
+  0% {
+    box-shadow: 0 0 10px oklch(0.88 0.17 95.33 / 70%);
+  }
+
+  100% {
+    box-shadow: 0 0 30px oklch(0.88 0.17 95.33);
+  }
+}
+
 @layer components {
   .card {
     @apply shadow-md hover:shadow-lg transition-shadow border border-border/40;

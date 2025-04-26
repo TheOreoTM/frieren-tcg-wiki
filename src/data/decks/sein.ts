@@ -1,6 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
-import { CardCategory } from "@/lib/types";
+import { CardCategory, Nature } from "@/lib/types";
 
 export const a_trustInYourAllyFrierensZoltraak = new Card({
     title: "Trust in Your Ally: Frieren's Zoltraak",
@@ -116,6 +116,7 @@ export const a_threeSpearsOfTheGoddess = new Card({
         cardImageUrl: "/cards/Three_Spears_of_the_Godess.webp",
     },
     effects: [5],
+    cardMetadata: { nature: Nature.Attack, signature: true },
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "sein",

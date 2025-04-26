@@ -1,10 +1,12 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
+import { Nature } from "@/lib/types";
 
 const imitate = new Card({
     title: "Imitate",
     description: () => `Use the card the opponent used last turn at this card's empower level -2.`,
     emoji: CardEmoji.LINIE_CARD,
+    cardMetadata: { nature: Nature.Util, signature: true },
     effects: [],
     effectNames: [],
     cardCategories: ["Utility"],

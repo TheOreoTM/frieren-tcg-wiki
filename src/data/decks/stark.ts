@@ -1,5 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
+import { Nature } from "@/lib/types";
 
 const a_axeSwipe = new Card({
     title: "Axe Swipe",
@@ -107,6 +108,7 @@ const a_lightningStrike = new Card({
     tags: { Resolve: -2 },
     priority: 1,
     effects: [22],
+    cardMetadata: { nature: Nature.Attack, signature: true },
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
     deck: "stark",

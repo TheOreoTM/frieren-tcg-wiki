@@ -1,5 +1,5 @@
 import type { Card } from "../classes/Card";
-import type { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from "../enums";
+import type { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat, UbelHit } from "../enums";
 import type { Ability } from "./ability";
 import type { CardProps } from "./card";
 
@@ -33,5 +33,7 @@ export type CharacterAdditionalMetadata = {
     manaSuppressed: boolean;
     accessToDefaultCardOptions: boolean;
     teaTimeStacks?: number;
+    pierceFactor?: number;
     overheal?: boolean;
+    sureHit?: UbelHit;
 };
