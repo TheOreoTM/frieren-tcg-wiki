@@ -27,6 +27,7 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
                     <pre className={cn("my-4 p-4 bg-accent/50 rounded-md", className)} {...props} />
                 ),
                 p: ({ className, ...props }) => <p className={cn("my-4", className)} {...props} />,
+                ol: ({ className, ...props }) => <ol className={cn("my-4 list-decimal pl-6", className)} {...props} />,
                 ul: ({ className, ...props }) => <ul className={cn("my-4 list-disc pl-6", className)} {...props} />,
                 li: ({ className, ...props }) => <li className={cn("my-1", className)} {...props} />,
                 a: ({ className, ...props }) => <a className={cn("font-semibold underline", className)} {...props} />,
