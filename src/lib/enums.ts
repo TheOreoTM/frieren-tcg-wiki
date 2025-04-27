@@ -131,3 +131,10 @@ export enum UbelHit {
     SureMiss = "sureMiss",
     Regular = "regular",
 }
+
+export const EXTERNAL_LINKS = {
+    DISCORD: "https://discord.gg/YQ6VMuDCpA",
+    TOURNAMENTS: {
+        APRIL_2025: "https://challonge.com/ahgu6yk7",
+    },
+};

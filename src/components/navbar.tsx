@@ -43,6 +43,7 @@ const navItems = [
 
 export function Navbar() {
     const pathname = usePathname();
+    const currentPath = `/${pathname.split("/")[1]}`;
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
@@ -64,7 +65,7 @@ export function Navbar() {
                                     variant="ghost"
                                     className={cn(
                                         "flex items-center gap-2",
-                                        pathname === item.href && "bg-accent text-accent-foreground"
+                                        currentPath === item.href && "bg-accent text-accent-foreground"
                                     )}
                                 >
                                     {item.icon}
@@ -99,7 +100,7 @@ export function Navbar() {
                                     variant="ghost"
                                     className={cn(
                                         "w-full justify-start gap-2",
-                                        pathname === item.href && "bg-accent text-accent-foreground"
+                                        pathname.split("/")[0] === item.href && "bg-accent text-accent-foreground"
                                     )}
                                 >
                                     {item.icon}

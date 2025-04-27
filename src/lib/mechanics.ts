@@ -13,6 +13,23 @@ export interface Mechanic {
     authorAvatar: string;
 }
 
+export function getAllMechanics() {
+    try {
+        const mechanics = fs.readdirSync(mechanicsDirectory);
+        const allMechanics = mechanics.map((mechanic) => {
+            const data = getMechanicData(mechanic);
+            if (data) {
+                return data;
+            }
+        });
+
+        return allMechanics.filter((mechanic) => mechanic !== undefined);
+    } catch (error) {
+        console.error("Error reading mechanics directory:", error);
+        return [];
+    }
+}
+
 export function getMechanicFiles(mechanic: string) {
     try {
         return fs.readdirSync(`${mechanicsDirectory}/${mechanic}`);

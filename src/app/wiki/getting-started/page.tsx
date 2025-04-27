@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DiscordTag } from "@/components/discord-tag";
+import { EXTERNAL_LINKS } from "@/lib/enums";
 
 export default function GettingStartedPage() {
     return (
@@ -52,12 +53,7 @@ export default function GettingStartedPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div className="relative aspect-video rounded-lg overflow-hidden">
-                            <Image
-                                src="/placeholder.svg?height=300&width=500"
-                                alt="Frieren TCG gameplay"
-                                fill
-                                className="object-cover"
-                            />
+                            <Image src="/thumbnail.jpg" alt="Frieren TCG gameplay" fill className="object-fit" />
                         </div>
                         <div>
                             <h3 className="text-xl font-semibold mb-2">Game Overview</h3>
@@ -392,7 +388,7 @@ export default function GettingStartedPage() {
                                     players.
                                 </p>
                                 <div className="flex justify-end">
-                                    <Link href="/wiki/community">
+                                    <Link href={EXTERNAL_LINKS.DISCORD}>
                                         <Button variant="outline" size="sm">
                                             Discord
                                         </Button>

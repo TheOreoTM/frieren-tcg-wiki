@@ -1,22 +1,14 @@
 import Link from "next/link";
-import {
-    BookOpen,
-    WalletCardsIcon as Cards,
-    FileText,
-    Flame,
-    Search,
-    Shield,
-    Sparkles,
-    Swords,
-    Users,
-    Zap,
-} from "lucide-react";
+import { BookOpen, WalletCardsIcon as Cards, FileText, Search, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { FrierenTCGWiki } from "@/components/frieren-tcg-wiki";
+import { getAllMechanics, getMechanicFiles } from "@/lib/mechanics";
 
 export default function WikiPage() {
+    const mechanics = getAllMechanics();
+
     return (
         <div className="container mx-auto px-4 py-12">
             <div className="flex flex-col items-center text-center mb-12">
@@ -82,9 +74,9 @@ export default function WikiPage() {
                         <CardHeader>
                             <CardTitle className="flex items-center gap-2">
                                 <Cards className="h-5 w-5 text-emerald-600" />
-                                Card Database
+                                Character Database
                             </CardTitle>
-                            <CardDescription>Browse all available cards</CardDescription>
+                            <CardDescription>Browse all available characters</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <p className="text-sm text-muted-foreground">
@@ -102,15 +94,17 @@ export default function WikiPage() {
 
             <h2 className="text-2xl font-bold mb-6">Game Mechanics</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-                <Link href="/mechanics/empower">
-                    <Button variant="outline" className="w-full justify-start h-auto py-3">
-                        <Sparkles className="mr-2 h-4 w-4 text-blue-500" />
-                        <div className="text-left">
-                            <div className="font-medium">Empower System</div>
-                            <div className="text-xs text-muted-foreground">Card empowering</div>
-                        </div>
-                    </Button>
-                </Link>
+                {mechanics.map((mechanic) => (
+                    <Link key={mechanic.overview?.id} href={`/mechanics/${mechanic.overview?.id}`}>
+                        <Button variant="outline" className="w-full justify-start h-auto py-3">
+                            <Sparkles className="mr-2 h-4 w-4 text-blue-500" />
+                            <div className="text-left">
+                                <div className="font-medium">{mechanic.overview?.name}</div>
+                                <div className="text-xs text-muted-foreground">{mechanic.overview?.description}</div>
+                            </div>
+                        </Button>
+                    </Link>
+                ))}
                 <Link href="/mechanics">
                     <Button variant="outline" className="w-full justify-start h-auto py-3">
                         <div className="text-left">
@@ -132,19 +126,6 @@ export default function WikiPage() {
                         <CardContent>
                             <p className="text-sm text-muted-foreground">
                                 Understand the principles of combat, including strategy, tactics, and mechanics.
-                            </p>
-                        </CardContent>
-                    </Card>
-                </Link>
-                <Link href="/wiki/strategy/lorem">
-                    <Card className="h-full hover:shadow-lg transition-shadow">
-                        <CardHeader>
-                            <CardTitle>Lorem Impsum</CardTitle>
-                            <CardDescription>Lorem ipsum dolor sit amet, consectetur</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-sm text-muted-foreground">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, dolorum.
                             </p>
                         </CardContent>
                     </Card>
