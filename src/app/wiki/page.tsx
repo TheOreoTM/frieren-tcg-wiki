@@ -16,13 +16,6 @@ export default function WikiPage() {
                 <p className="text-xl text-muted-foreground max-w-2xl">Your comprehensive guide to the Frieren TCG.</p>
             </div>
 
-            <div className="max-w-2xl mx-auto mb-12">
-                <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                    <Input placeholder="Search the wiki..." className="pl-10" />
-                </div>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 <Link href="/wiki/getting-started">
                     <Card className="h-full hover:shadow-lg transition-shadow">
