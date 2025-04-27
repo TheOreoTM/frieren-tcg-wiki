@@ -3,6 +3,7 @@ import { ArrowRight, BookOpen, WalletCardsIcon as Cards, ScrollText, Sparkles } 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Metadata } from "next";
+import { getLatestNews } from "@/lib/news";
 
 export const metadata: Metadata = {
     openGraph: {
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+    const latestNews = getLatestNews(5);
+
     return (
         <div className="container mx-auto px-4 py-12">
             <div className="flex flex-col items-center text-center mb-12">
@@ -112,19 +115,25 @@ export default function Home() {
             <div className="cozy-section bg-white/60 backdrop-blur-sm shadow-md border border-primary/10 mb-12">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-2xl font-bold">Latest Updates</h2>
+
                     <Link href="/news">
                         <Button variant="outline" size="sm" className="rounded-full hover:bg-primary/10">
                             View All News
                         </Button>
                     </Link>
                 </div>
-                <ul className="space-y-3">
-                    <li className="flex items-start gap-2 bg-white/50 p-3 rounded-2xl hover:bg-white/80 transition-colors">
-                        <span className="text-primary">•</span>
-                        <Link href="/news/update-v1-1" className="hover:underline">
-                            <span>New patch: Himmel and Denken enter the battle! And some balance changes!</span>
+                <ul>
+                    {latestNews.map((article) => (
+                        <Link href={`/news/${article.id}`} key={article.id}>
+                            <li className="flex items-start bg-accent/20 p-2.5 rounded-2xl hover:bg-secondary/60 transition-colors my-2">
+                                <div className="flex flex-row gap-2 items-center">
+                                    <span className="text-primary">•</span>
+                                    <span className="font-semibold">{article.title}:</span>
+                                    <span className="text-muted-foreground text-sm">{article.excerpt}</span>
+                                </div>
+                            </li>
                         </Link>
-                    </li>
+                    ))}
                 </ul>
             </div>
 
