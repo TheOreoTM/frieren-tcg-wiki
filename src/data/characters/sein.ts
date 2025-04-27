@@ -2,7 +2,7 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { seinDeck } from "../decks/sein";
 
-const SEIN_BASE_HEALING = 3;
+const SEIN_BASE_HEALING = 2;
 const SEIN_HEALING_RAMP = 0.1;
 
 export const Sein: Character = {

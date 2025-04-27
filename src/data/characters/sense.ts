@@ -2,7 +2,9 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { senseDeck } from "../decks/sense";
 
-const PACIFIST_TURN_COUNT = 15;
+const PROCTOR_STACK_COUNT = 15;
+const PROCTOR_STACK_ATTACK_DEDUCTION = 1;
+const TEA_TIME_STACK_TURN_SKIP = 3;
 
 export const Sense: Character = {
     id: "sense",
@@ -25,10 +27,16 @@ export const Sense: Character = {
     },
     cards: senseDeck,
     ability: {
-        abilityName: "Pacifist",
-        abilityEffectString: `When this character has 2 Tea Time Snacks, skip the turn for both characters.
-        This character wins if they don't attack for ${PACIFIST_TURN_COUNT} turns in a row.`,
+        abilityName: "Proctor",
+        abilityEffectString: `Every turn this character doesn't attack, gain 1 observation. Every turn this character attacks, lose ${PROCTOR_STACK_ATTACK_DEDUCTION} observation. (min 0)
+	This character wins when the test is over after ${PROCTOR_STACK_COUNT} observations.`,
     },
+    subAbilities: [
+        {
+            abilityName: "Tea Time",
+            abilityEffectString: `When this character has ${TEA_TIME_STACK_TURN_SKIP} Tea Time Snacks, skip the turn for both characters and eat ${TEA_TIME_STACK_TURN_SKIP} Tea Time Snacks.`,
+        },
+    ],
     relatedCharacters: [CharacterID.Serie],
     additionalMetadata: {
         accessToDefaultCardOptions: true,

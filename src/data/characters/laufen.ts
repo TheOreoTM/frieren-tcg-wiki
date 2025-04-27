@@ -23,9 +23,9 @@ export const Laufen: Character = {
     },
     cards: laufenDeck,
     ability: {
-        abilityName: "Evasive",
-        abilityEffectString: `When the opponent attacks, roll a D100.
-        If the result is less than the character's speed minus the opponent's speed, the attack deals 0 damage.`,
+        abilityName: "Graze",
+        abilityEffectString: `DMG to this character is reduced by (this character's SPD - the opponent's SPD)%.
+        The minimum damage reduction is 0%, and the maximum is 100%.`,
     },
     relatedCharacters: [CharacterID.Denken],
     additionalMetadata: {

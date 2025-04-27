@@ -31,9 +31,14 @@ export const Serie: Character = {
         )}%. 
       The turn after this character performs any attack, DMG-${(SERIE_TOYING_DAMAGE_BONUS * 100).toFixed(2)}%.`,
     },
+    subAbilities: [
+        { abilityName: "Mana Suppresion", abilityEffectString: "Hide the amount of HP this character has." },
+        { abilityName: "Keen Eye", abilityEffectString: "See past the opponent's Mana Suppression." },
+    ],
     relatedCharacters: [CharacterID.Frieren, CharacterID.Sense],
     additionalMetadata: {
         accessToDefaultCardOptions: true,
         manaSuppressed: true,
+        ignoreManaSuppressed: false,
     },
 };

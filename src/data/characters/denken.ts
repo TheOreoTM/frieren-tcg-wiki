@@ -2,7 +2,8 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { denkenDeck } from "../decks/denken";
 
-const DENKEN_STEEL_YOURSELF_TURN_COUNT = 3;
+const DENKEN_PRESERVERANCE_COUNT = 3;
+export const DENKEN_DEATH_HP = -50;
 
 export const Denken: Character = {
     id: "denken",
@@ -22,12 +23,16 @@ export const Denken: Character = {
         [Stat.ATK]: 11.0,
         [Stat.DEF]: 11.0,
         [Stat.SPD]: 10.0,
-        [Stat.Ability]: 0.0,
+        [Stat.Ability]: DENKEN_PRESERVERANCE_COUNT,
     },
     cards: denkenDeck,
     ability: {
-        abilityName: "Steel Yourself",
-        abilityEffectString: `This character only loses after their HP is <= 0 for ${DENKEN_STEEL_YOURSELF_TURN_COUNT} turns in a row.`,
+        abilityName: "Preserverance",
+        abilityEffectString: `
+        This character starts with ${DENKEN_PRESERVERANCE_COUNT} Preserverance stacks.
+        1 Stack is taken away when the character's HP is <= 0 at the end of the turn. 
+        An additional stack is taken away when the character's HP is <= ${DENKEN_DEATH_HP / 2}. 
+        The character loses when the number of Preserverance stack is 0, or if the character's HP is <= ${DENKEN_DEATH_HP}.`,
     },
     relatedCharacters: [CharacterID.Laufen],
     additionalMetadata: {

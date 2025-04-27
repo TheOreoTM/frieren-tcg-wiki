@@ -2,7 +2,7 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat, UbelHi
 import type { Character } from "@/lib/types";
 import { ubelDeck } from "../decks/ubel";
 
-const PIERCE_FACTOR = 0.5;
+const PIERCE_FACTOR = 1.0;
 
 export const Ubel: Character = {
     id: "ubel",

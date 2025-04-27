@@ -36,9 +36,14 @@ export const Frieren: Character = {
         After an attack is used, Analysis stacks is reset to 0.
         A maximum of ${ANALYSIS_STACK_CAP} Analysis stacks can be held at any time.`,
     },
+    subAbilities: [
+        { abilityName: "Mana Suppresion", abilityEffectString: "Hide the amount of HP this character has." },
+        { abilityName: "Keen Eye", abilityEffectString: "See past the opponent's Mana Suppression." },
+    ],
     relatedCharacters: [CharacterID.Himmel, CharacterID.Serie, CharacterID.Sein],
     additionalMetadata: {
         accessToDefaultCardOptions: true,
         manaSuppressed: true,
+        ignoreManaSuppressed: false,
     },
 };
