@@ -134,7 +134,7 @@ export const frierenDeck = [
     { card: a_vollzanbel, count: 2 },
     { card: barrierMagicAnalysis, count: 3 },
     { card: demonMagicAnalysis, count: 2 },
-    { card: ordinaryDefensiveMagic, count: 1 },
+    { card: ordinaryDefensiveMagic, count: 2 },
     { card: fieldOfFlower, count: 2 },
     { card: a_theHeightOfMagic, count: 1 },
 ];

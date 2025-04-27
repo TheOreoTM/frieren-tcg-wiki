@@ -108,14 +108,26 @@ export const a_concentratedOffensiveMagicZoltraak = new Card({
     deck: "denken",
 });
 
+export const thisIsNoPlaceToGiveUp = new Card({
+    title: "This Is No Place To Give Up",
+    cardMetadata: { nature: Nature.Util },
+    description: ([hp]) => `Heal ${hp}HP. Heal an additional ${hp}HP and gain 1 Preserverance stack if HP <= 0.`,
+    emoji: CardEmoji.DENKEN_CARD,
+    effects: [7],
+    cardCategories: [CardCategory.HEALING],
+    effectNames: ["HP"],
+    deck: "denken",
+});
+
 export const denkenDeck = [
     { card: a_jab, count: 2 },
     { card: a_hook, count: 2 },
-    { card: a_uppercut, count: 2 },
+    { card: a_uppercut, count: 1 },
     { card: bareHandedBlock, count: 1 },
     { card: a_waldgose, count: 2 },
     { card: a_daosdorg, count: 2 },
     { card: a_catastravia, count: 1 },
-    { card: elementaryDefensiveMagic, count: 1 },
+    { card: elementaryDefensiveMagic, count: 2 },
     { card: a_concentratedOffensiveMagicZoltraak, count: 2 },
+    { card: thisIsNoPlaceToGiveUp, count: 1 },
 ];

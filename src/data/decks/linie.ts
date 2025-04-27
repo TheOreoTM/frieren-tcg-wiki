@@ -2,11 +2,11 @@ import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
 import { Nature } from "@/lib/types";
 
-const imitate = new Card({
+export const imitate = new Card({
     title: "Imitate",
+    cardMetadata: { nature: Nature.Util },
     description: () => `Use the card the opponent used last turn at this card's empower level -2.`,
     emoji: CardEmoji.LINIE_CARD,
-    cardMetadata: { nature: Nature.Util, signature: true },
     effects: [],
     effectNames: [],
     cardCategories: ["Utility"],
@@ -15,6 +15,7 @@ const imitate = new Card({
 
 export const adapt = new Card({
     title: "Adapt",
+    cardMetadata: { nature: Nature.Util },
     description: ([spd, atkDef, hp]) =>
         `SPD+${spd}. If HP > 50, ATK+${atkDef}, DEF+${atkDef}. If HP <= 50, heal ${hp} HP.`,
     emoji: CardEmoji.LINIE_CARD,
@@ -26,9 +27,10 @@ export const adapt = new Card({
 
 export const manaDetection = new Card({
     title: "Mana Detection",
+    cardMetadata: { nature: Nature.Util },
     description: ([spd, bigNumber, smallNumber]) =>
-        `SPD+${spd}. If Opp's DEF >= Opp's ATK, ATK+${bigNumber}, DEF+${smallNumber}. Otherwise, ATK+${smallNumber}, DEF+${bigNumber}.`,
-    emoji: CardEmoji.LINIE_CARD,
+        `SPD+${spd}. If Opp's DEF >= Opp's ATK, ATK+${bigNumber}, DEF+${smallNumber}. Otherwise, ATK+${smallNumber}, DEF+${bigNumber}. Reveal the opponent's highest empowered card.`,
+    emoji: CardEmoji.MANA_CARD,
     effects: [2, 2, 1],
     cardCategories: ["Utility"],
     effectNames: ["SPD", "STAT INC", "STAT inc"],
@@ -37,6 +39,7 @@ export const manaDetection = new Card({
 
 const parry = new Card({
     title: "Parry",
+    cardMetadata: { nature: Nature.Defense },
     description: ([def]) => `Priority+2. Increases DEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.LINIE_CARD,
     effects: [20],
@@ -48,51 +51,59 @@ const parry = new Card({
 
 export const a_erfassenAxe = new Card({
     title: "Erfassen: Axe",
-    description: ([dmg]) => `HP-3. DMG ${dmg}`,
+    description: ([dmg]) => `HP-4. DMG ${dmg}`,
     emoji: CardEmoji.LINIE_CARD,
-    effects: [11],
+    cardMetadata: { nature: Nature.Attack, signature: true },
+    effects: [12],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
     deck: "linie",
+    hpCost: 4,
 });
 
-export const a_erfassenSword = new Card({
-    title: "Erfassen: Sword",
-    description: ([dmg]) => `HP-2. DMG ${dmg}`,
+export const a_erfassenJavelin = new Card({
+    title: "Erfassen: Javelin",
+    description: ([dmg]) => `HP-3. DMG ${dmg}. Deal ${dmg} at the end of next turn.`,
     emoji: CardEmoji.LINIE_CARD,
-    effects: [9],
-    cardCategories: ["Attack"],
-    effectNames: ["DMG"],
-    deck: "linie",
-});
-
-export const a_erfassenSpear = new Card({
-    title: "Erfassen: Spear",
-    description: ([dmg]) => `HP-1. DMG ${dmg}`,
-    emoji: CardEmoji.LINIE_CARD,
-    effects: [7],
-    cardCategories: ["Attack"],
-    effectNames: ["DMG"],
-    deck: "linie",
-});
-
-export const a_erfassenKnife = new Card({
-    title: "Erfassen: Knife",
-    description: ([dmg]) => `DMG ${dmg}`,
-    emoji: CardEmoji.LINIE_CARD,
+    cardMetadata: { nature: Nature.Attack },
     effects: [5],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
     deck: "linie",
+    hpCost: 3,
+});
+
+export const a_erfassenSword = new Card({
+    title: "Erfassen: Sword",
+    cardMetadata: { nature: Nature.Attack },
+    description: ([dmg]) => `HP-2. DMG ${dmg}`,
+    emoji: CardEmoji.LINIE_CARD,
+    effects: [8],
+    cardCategories: ["Attack"],
+    effectNames: ["DMG"],
+    deck: "linie",
+    hpCost: 2,
+});
+
+export const a_erfassenKnife = new Card({
+    title: "Erfassen: Knife",
+    cardMetadata: { nature: Nature.Attack },
+    description: ([dmg]) => `HP-1. DMG ${dmg}. At the end of the next 2 turns, deal ${dmg}.`,
+    emoji: CardEmoji.LINIE_CARD,
+    effects: [2],
+    cardCategories: ["Attack"],
+    effectNames: ["DMG"],
+    deck: "linie",
+    hpCost: 1,
 });
 
 export const linieDeck = [
     { card: imitate, count: 2 },
     { card: adapt, count: 2 },
     { card: manaDetection, count: 2 },
-    { card: parry, count: 1 },
+    { card: parry, count: 2 },
     { card: a_erfassenAxe, count: 2 },
+    { card: a_erfassenJavelin, count: 2 },
     { card: a_erfassenSword, count: 2 },
-    { card: a_erfassenSpear, count: 2 },
     { card: a_erfassenKnife, count: 2 },
 ];

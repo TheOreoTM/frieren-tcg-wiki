@@ -105,6 +105,6 @@ export const laufenDeck = [
     { card: hide, count: 2 },
     { card: a_supersonicStrike, count: 2 },
     { card: quickDodge, count: 2 },
-    { card: parry, count: 1 },
+    { card: parry, count: 2 },
     { card: jilwer, count: 2 },
 ];
