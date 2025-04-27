@@ -106,6 +106,7 @@ export const ancientBarrierMagic = new Card({
     cardCategories: ["Utility", "Defense"],
     effectNames: ["ATK", "DEF", "-OpponentSPD"],
     deck: "serie",
+    hpCost: 20,
 });
 
 export const mock = new Card({
