@@ -81,7 +81,7 @@ export const stilleDeck = [
     { card: a_ironFeather, count: 3 },
     { card: hide, count: 2 },
     { card: roost, count: 2 },
-    { card: deflect, count: 1 },
+    { card: deflect, count: 2 },
     { card: flyAway, count: 3 },
     { card: a_geisel, count: 2 },
 ];
