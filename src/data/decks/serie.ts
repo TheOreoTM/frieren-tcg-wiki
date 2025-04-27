@@ -3,59 +3,75 @@ import { CardEmoji } from "@/lib/enums";
 import { fieldOfFlower } from "./frieren";
 import { Nature } from "@/lib/types";
 
-export const a_livingGrimoireOffensive = new Card({
-    title: "Living Grimoire: Offense Chapter",
-    description: () => "Use a random offensive magic.",
+export const a_livingGrimoireOffenseCommon = new Card({
+    title: "Living Grimoire: Offense Chapter. 3rd Class Magic section.",
+    cardMetadata: { nature: Nature.Attack },
+    description: () => "Use a random common offensive magic.",
     emoji: CardEmoji.SERIE_CARD,
-    cosmetic: {
-        cardImageUrl: "/cards/Living_Grimoire.webp",
-    },
     effects: [],
+    effectNames: [],
     cardCategories: ["Attack"],
-    effectNames: [],
     deck: "serie",
 });
 
-export const a_livingGrimoireUtility = new Card({
-    title: "Living Grimoire: Utility Chapter",
-    description: () => "Use a random utility magic.",
+export const a_livingGrimoireOffenseRare = new Card({
+    title: "Living Grimoire: Offense Chapter. 1st Class Magic section.",
+    cardMetadata: { nature: Nature.Attack },
+    description: () => "Use a random rare offensive magic.",
+    emoji: CardEmoji.SERIE_CARD,
+    effects: [],
+    effectNames: [],
+    cardCategories: ["Attack"],
+    deck: "serie",
+});
+
+export const a_livingGrimoireOffenseUnusual = new Card({
+    title: "Living Grimoire: Offense Chapter. Great Mage's Magic section.",
+    cardMetadata: { nature: Nature.Attack },
+    description: () => "Use a random unusual offensive magic.",
+    emoji: CardEmoji.SERIE_CARD,
+    effects: [],
+    effectNames: [],
+    cardCategories: ["Attack", "Utility"],
+    deck: "serie",
+});
+
+export const a_livingGrimoireUtilityTactics = new Card({
+    title: "Living Grimoire: Utility Chapter. Tactics Section.",
+    cardMetadata: { nature: Nature.Util },
+    description: () => "Use a random stats adjusting utility magic.",
+    emoji: CardEmoji.SERIE_CARD,
+    effects: [],
+    effectNames: [],
+    cardCategories: ["Utility"],
+    deck: "serie",
+});
+
+export const a_livingGrimoireUtilityRecovery = new Card({
+    title: "Living Grimoire: Utility Chapter. Recovery Section.",
+    cardMetadata: { nature: Nature.Util },
+    description: () => "Use a random HP recovery utility magic.",
     emoji: CardEmoji.SERIE_CARD,
     cosmetic: {
-        cardImageUrl: "/cards/Living_Grimoire.webp",
+        cardImageUrl:
+            "https://cdn.discordapp.com/attachments/1351391350398128159/1352873014785740800/Living_Grimoire_1.png?ex=6808772d&is=680725ad&hm=96a1d24a30264ade70debfc8ffe00506330d2b9ed559386e1a69a1c19bc647e9&",
     },
     effects: [],
-    cardCategories: ["Utility"],
     effectNames: [],
-    deck: "serie",
-});
-
-export const a_livingGrimoireOffensive1 = new Card({
-    ...a_livingGrimoireOffensive,
-    cosmetic: {
-        cardImageUrl: "/cards/Living_Grimoire1.webp",
-    },
-    empowerLevel: 1,
-    deck: "serie",
-});
-
-const a_livingGrimoireOffensive2 = new Card({
-    ...a_livingGrimoireOffensive,
-    empowerLevel: 2,
-    cosmetic: {
-        cardImageUrl: "/cards/Living_Grimoire2.webp",
-    },
+    cardCategories: ["Utility"],
     deck: "serie",
 });
 
 export const basicDefensiveMagic = new Card({
     title: "Basic Defensive Magic",
+    cardMetadata: { nature: Nature.Defense },
     description: ([def]) => `Priority+2. Increases DEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.SERIE_CARD,
+    effects: [30],
+    priority: 2,
     cosmetic: {
         cardImageUrl: "/cards/Basic_Defense_Magic.webp",
     },
-    effects: [30],
-    priority: 2,
     cardCategories: ["Utility", "Defense", "Block"],
     effectNames: ["DEF"],
     deck: "serie",
@@ -63,13 +79,15 @@ export const basicDefensiveMagic = new Card({
 
 export const unbreakableBarrier = new Card({
     title: "Unbreakable Barrier",
+    cardMetadata: { nature: Nature.Util },
     description: ([atk, def, oppSpd]) =>
         `HP-10. ATK+${atk} for 5 turns. DEF+${def} for 5 turns. Opponent's SPD-${oppSpd} for 5 turns.`,
     emoji: CardEmoji.SERIE_CARD,
+    effects: [5, 5, 5],
+    hpCost: 10,
     cosmetic: {
         cardImageUrl: "/cards/Unbreakable_Barrier.webp",
     },
-    effects: [5, 5, 5],
     cardCategories: ["Utility", "Defense"],
     effectNames: ["ATK", "DEF", "-OpponentSPD"],
     deck: "serie",
@@ -92,25 +110,27 @@ export const ancientBarrierMagic = new Card({
 
 export const mock = new Card({
     title: "Mock",
+    cardMetadata: { nature: Nature.Util },
     description: ([hp, def, spd]) => `HP+${hp}. Opponent's DEF-${def}. Opponent's SPD-${spd}`,
     emoji: CardEmoji.SERIE_CARD,
+    effects: [3, 2, 1],
     cosmetic: {
         cardImageUrl: "/cards/Mock.webp",
     },
-    effects: [3, 2, 1],
     cardCategories: ["Utility"],
     effectNames: ["HP", "-OpponentDEF", "-OpponentSPD"],
     deck: "serie",
 });
 
 export const serieDeck = [
-    { card: a_livingGrimoireOffensive, count: 2 },
-    { card: a_livingGrimoireOffensive1, count: 2 },
-    { card: a_livingGrimoireOffensive2, count: 2 },
-    { card: a_livingGrimoireUtility, count: 2 },
+    { card: a_livingGrimoireOffenseCommon, count: 3 },
+    { card: a_livingGrimoireOffenseRare, count: 2 },
+    { card: a_livingGrimoireOffenseUnusual, count: 1 },
+    { card: a_livingGrimoireUtilityTactics, count: 1 },
+    { card: a_livingGrimoireUtilityRecovery, count: 1 },
     { card: fieldOfFlower, count: 1 },
     { card: mock, count: 2 },
-    { card: basicDefensiveMagic, count: 1 },
+    { card: basicDefensiveMagic, count: 2 },
     { card: unbreakableBarrier, count: 2 },
     { card: ancientBarrierMagic, count: 1 },
 ];
