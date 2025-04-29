@@ -1,6 +1,7 @@
 "use client";
 import ReactMarkdown from "react-markdown";
 import { cn } from "@/lib/utils";
+import remarkGfm from "remark-gfm";
 
 interface MarkdownContentProps {
     content: string;
@@ -10,6 +11,7 @@ interface MarkdownContentProps {
 export default function MarkdownContent({ content, className }: MarkdownContentProps) {
     return (
         <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
             components={{
                 h1: ({ className, ...props }) => (
                     <h1 className={cn("text-3xl font-bold mt-8 mb-4", className)} {...props} />
