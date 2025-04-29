@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ArrowLeft, Calendar, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -57,7 +57,8 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ id
     const article = getNewsArticleById(id);
 
     if (!article) {
-        notFound();
+        // send to /news page
+        return redirect("/news");
     }
 
     const relatedArticles = getLatestNews(6)

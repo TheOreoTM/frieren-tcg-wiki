@@ -3,7 +3,7 @@ id: "tournament-4-25"
 title: "April 2025 Tournament Recap"
 excerpt: "See what happened at the April 2025 tournament!"
 date: "2025-04-19"
-author: "Oreo"
+author: "Mathz"
 category: "Community"
 image: "/assets/tournament-4-25-bracket.png"
 tags: ["community", "tournament"]
@@ -22,23 +22,24 @@ You can view the full bracket and match results [here](https://challonge.com/ahg
 ### Tournament Highlights
 
 **RO16**:
-- *Steampunk* nearly pulled off a Sense win against the offensive powerhouse in *jc*.
-- *Woomy*‘s Serie hit *poppy* ‘s Laufen with the double Castravania gambling special to claim a 1-0 lead.
-  
+
+-   _Steampunk_ nearly pulled off a Sense win against the offensive powerhouse in _jc_.
+-   _Woomy_‘s Serie hit _poppy_ ‘s Laufen with the double Castravania gambling special to claim a 1-0 lead.
+
 **Quarter Finals**:
-- *Hexa* narrowly knocked out the tournament favorite in *jc*.
-- *Yuuta* sent out both Stark bros in *Shtark** and *Leif* with a 2-0 scoreline to make semi finals.
-- *mathz* swept *poppy* 2-0 to advance (when honor is met with laufen).
-- *Mastusk* pulled off an impossible 2-0 win as Sein against his worst matchups: Serie and Laufen against *Franz*.
-  
+
+-   _Hexa_ narrowly knocked out the tournament favorite in _jc_.
+-   _Yuuta_ sent out both Stark bros in *Shtark\*\* and *Leif\* with a 2-0 scoreline to make semi finals.
+-   _mathz_ swept _poppy_ 2-0 to advance (when honor is met with laufen).
+-   _Mastusk_ pulled off an impossible 2-0 win as Sein against his worst matchups: Serie and Laufen against _Franz_.
+
 **Semi Finals**:
--  In a tight semi-final, *mathz* edged out *Mastusk* with a 2-1 victory.
-- *Yuuta* pulled off the upset of the tournament by beating *Hexa* in another close 2-1 match.
-  
-**Grand Finals**: 
-*mathz* faced *Yuuta* in the grand finals and secured the championship, pulling off a reverse sweep despite a commanding 2-0 lead from *Yuuta*. The final match ended with a canon Frieren vs Frieren clone matchup.
 
+-   In a tight semi-final, _mathz_ edged out _Mastusk_ with a 2-1 victory.
+-   _Yuuta_ pulled off the upset of the tournament by beating _Hexa_ in another close 2-1 match.
 
+**Grand Finals**:
+_mathz_ faced _Yuuta_ in the grand finals and secured the championship, pulling off a reverse sweep despite a commanding 2-0 lead from _Yuuta_. The final match ended with a canon Frieren vs Frieren clone matchup.
 
 Congratulations to all participants! 🏆  
 Achievements have been awarded to eligible players, along with the tournament prize of **Discord Nitro**.
