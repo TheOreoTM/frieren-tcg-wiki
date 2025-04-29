@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Toaster } from "@/components/ui/sonner";
+import { ErrorHandler } from "@/components/error-handler";
 
 export const metadata: Metadata = {
     title: {
@@ -49,6 +51,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ThemeProvider>
                 <Analytics />
                 <SpeedInsights />
+                <Toaster richColors position="bottom-center" />
+                <ErrorHandler />
             </body>
         </html>
     );

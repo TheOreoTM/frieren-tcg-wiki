@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { notFound, redirect } from "next/navigation";
 import { ArrowLeft, Calendar, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +8,7 @@ import { getNewsArticleById, getLatestNews, getCategoryColor } from "../../../li
 import MarkdownContent from "@/components/markdown-content";
 import type { Metadata, ResolvingMetadata } from "next";
 import { formatDate } from "@/lib/utils";
+import { redirect } from "next/navigation";
 
 export async function generateMetadata(
     { params }: { params: Promise<{ id: string }> },
@@ -57,8 +57,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ id
     const article = getNewsArticleById(id);
 
     if (!article) {
-        // send to /news page
-        return redirect("/news");
+        return redirect("/news?error=ArticleNotFound");
     }
 
     const relatedArticles = getLatestNews(6)

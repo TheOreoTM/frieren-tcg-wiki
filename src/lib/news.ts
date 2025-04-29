@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { toast } from "sonner";
 
 const newsDirectory = path.join(process.cwd(), "src/content/news");
 
@@ -44,7 +45,6 @@ export function getNewsArticleById(id: string): NewsArticle | undefined {
             tags: data.tags || [],
         };
     } catch (error) {
-        console.error(`Error reading news article ${id}:`, error);
         return undefined;
     }
 }
