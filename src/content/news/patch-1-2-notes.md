@@ -51,8 +51,8 @@ This patch brings two new characters to the game.
 -   Ability changed to **Proctor**:
 
 ```
-Every turn this character doesn't attack, gain 1 observation. Every turn this character attacks, lose 1 observation. (min 0)
-This character wins when the test is over after 15 observations.
+ Every turn this character doesn't attack, gain 1 observation. Every turn this character attacks, lose 1 observation. (min 0)
+ This character wins when the test is over after 15 observations.
 ```
 
 -   Sub-ability **Tea Time**: Now requires 3 Tea Time Snacks (instead of 2) to perform turn skip.
