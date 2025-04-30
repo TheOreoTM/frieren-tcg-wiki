@@ -38,7 +38,7 @@ export const Frieren: Character = {
     },
     subAbilities: [
         { abilityName: "Mana Suppresion", abilityEffectString: "Hide the amount of HP this character has." },
-        { abilityName: "Keen Eye", abilityEffectString: "See past the opponent's Mana Suppression." },
+        { abilityName: "Flamme's Teachings", abilityEffectString: "See past the opponent's Mana Suppression." },
     ],
     relatedCharacters: [CharacterID.Himmel, CharacterID.Serie, CharacterID.Sein],
     additionalMetadata: {

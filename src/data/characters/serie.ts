@@ -20,7 +20,7 @@ export const Serie: Character = {
         [Stat.HP]: 100.0,
         [Stat.ATK]: 14.0,
         [Stat.DEF]: 10.0,
-        [Stat.SPD]: 14.0,
+        [Stat.SPD]: 10.0,
         [Stat.Ability]: 0.0,
     },
     cards: serieDeck,
@@ -33,7 +33,7 @@ export const Serie: Character = {
     },
     subAbilities: [
         { abilityName: "Mana Suppresion", abilityEffectString: "Hide the amount of HP this character has." },
-        { abilityName: "Keen Eye", abilityEffectString: "See past the opponent's Mana Suppression." },
+        { abilityName: "Serie's Intuition", abilityEffectString: "See past the opponent's Mana Suppression." },
     ],
     relatedCharacters: [CharacterID.Frieren, CharacterID.Sense],
     additionalMetadata: {

@@ -5,9 +5,9 @@ import { Nature } from "@/lib/types";
 const a_axeSwipe = new Card({
     title: "Axe Swipe",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg]) => `HP-5. DMG ${dmg}.`,
+    description: ([dmg]) => `HP-5. DMG ${dmg}. Uses 0 Resolve.`,
     emoji: CardEmoji.STARK_CARD,
-    tags: { Resolve: -1 },
+    tags: { Resolve: 0 },
     effects: [9],
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
@@ -18,7 +18,7 @@ const a_axeSwipe = new Card({
 const offensiveStance = new Card({
     title: "Offensive Stance",
     cardMetadata: { nature: Nature.Util },
-    description: ([atk, spd]) => `ATK+${atk}. DEF-2 for 2 turns. SPD+${spd}. Gain <Resolve> for next 1 Attack.`,
+    description: ([atk, spd]) => `ATK+${atk}. DEF-2 for 2 turns. SPD+${spd}. Gain 1 <Resolve>.`,
     emoji: CardEmoji.STARK_CARD,
     effects: [2, 1],
     tags: { Resolve: 1 },
@@ -30,7 +30,7 @@ const offensiveStance = new Card({
 const defensiveStance = new Card({
     title: "Defensive Stance",
     cardMetadata: { nature: Nature.Util },
-    description: ([def, spd]) => `DEF+${def}. ATK-2 for 2 turns. SPD+${spd}. Gain <Resolve> for next 1 Attack.`,
+    description: ([def, spd]) => `DEF+${def}. ATK-2 for 2 turns. SPD+${spd}. Gain 1 <Resolve>.`,
     emoji: CardEmoji.STARK_CARD,
     effects: [2, 1],
     tags: { Resolve: 1 },
@@ -43,9 +43,9 @@ const jumboBerrySpecialBreak = new Card({
     title: "Jumbo Berry Special Break",
     cardMetadata: { nature: Nature.Util },
     description: ([def, hp]) =>
-        `SPD-2 for 2 turns. DEF+${def} for 2 turns. Heal ${hp} HP. Gain 1 Resolve at the end of next turn.`,
+        `SPD-2 for 2 turns. DEF+${def} for 2 turns. Heal ${hp} HP. Gain 1 <Resolve> at the end of next turn.`,
     emoji: CardEmoji.JUMBO_BERRY_CARD,
-    effects: [2, 10],
+    effects: [2, 7],
     cardCategories: ["Utility", "Healing"],
     effectNames: ["DEF", "HP"],
     deck: "stark",
@@ -66,7 +66,7 @@ export const block = new Card({
 const concentration = new Card({
     title: "Concentration",
     cardMetadata: { nature: Nature.Util },
-    description: ([spd]) => `Increases SPD by ${spd}. Gain <Resolve> for next 2 attacks`,
+    description: ([spd]) => `Increases SPD by ${spd}. Gain 2 <Resolve>.`,
     emoji: CardEmoji.STARK_CARD,
     effects: [3],
     tags: { Resolve: 2 },
@@ -91,12 +91,13 @@ const a_ordensSlashTechnique = new Card({
 const fearBroughtMeThisFar = new Card({
     title: "Fear Brought Me This Far",
     cardMetadata: { nature: Nature.Util },
-    description: ([atkDef]) => `Increases ATK and DEF by ${atkDef}. Gain <Resolve> for next 2 attacks.`,
+    description: ([atkDef, atkDefAdditional]) =>
+        `Increases ATK and DEF by ${atkDef}. Increases ATK and DEF by an addition ${atkDefAdditional} if HP <=60. Gain 2 <Resolve>.`,
     emoji: CardEmoji.STARK_CARD,
-    effects: [3],
+    effects: [2, 1],
     tags: { Resolve: 2 },
     cardCategories: ["Utility"],
-    effectNames: ["ATK+DEF"],
+    effectNames: ["ATK+DEF", "ATK+DEF"],
     deck: "stark",
 });
 const a_eisensAxeCleave = new Card({
@@ -115,12 +116,12 @@ const a_eisensAxeCleave = new Card({
 export const a_lightningStrike = new Card({
     title: "Lightning Strike",
     description: ([dmg]) =>
-        `Priorit+1. HP-14. DEF-5 and SPD-5 for 2 turns. At this turn's end, strike for ${dmg} DMG. Uses up 2 Resolve stack. Stark's HP cannot drop below 1 during the turn this move is used.`,
+        `HP-14. DEF-5 and SPD-5 for 2 turns. At this turn's end, strike for ${dmg} DMG. Uses up 2 Resolve stack. Stark's HP cannot drop below 1 during the turn this move is used.`,
     emoji: CardEmoji.STARK_CARD,
     cardMetadata: { nature: Nature.Attack, signature: true },
     tags: { Resolve: -2 },
     priority: 1,
-    effects: [24],
+    effects: [20],
     hpCost: 14,
     cardCategories: ["Attack"],
     effectNames: ["DMG"],

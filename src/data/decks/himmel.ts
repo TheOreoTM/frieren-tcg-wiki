@@ -4,11 +4,11 @@ import { CardCategory, Nature } from "@/lib/types";
 const a_FrierenStrikeTheirWeakpoint = new Card({
     title: "Frieren! Strike Their Weakpoint!",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg]) =>
-        `Frieren attacks for ${dmg} DMG. At next turn's end, Frieren attacks for an additional ${dmg} DMG.`,
+    description: ([dmg, oppDef]) =>
+        `Opponent's DEF-${oppDef} for 2 turns. Frieren attacks for ${dmg} DMG. At next turn's end, Frieren attacks for an additional ${dmg} DMG.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [7],
-    effectNames: ["DMG"],
+    effects: [7, 1],
+    effectNames: ["DMG", "-Opp DEF"],
     cardCategories: [CardCategory.ATTACK],
     deck: "himmel",
 });
@@ -16,10 +16,21 @@ const a_FrierenStrikeTheirWeakpoint = new Card({
 const a_FrierenBackMeUp = new Card({
     title: "Frieren! Back Me Up!",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg]) =>
-        `Frieren attacks for ${dmg} DMG. For the next 3 turn ends, Frieren attacks for an additional ${dmg} DMG.`,
+    description: ([dmg, oppDef]) =>
+        `Opponent's DEF-${oppDef} for 4 turns. Frieren attacks for ${dmg} DMG. For the next 4 turn ends, Frieren attacks for an additional ${dmg} DMG.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [3],
+    effects: [3, 2],
+    effectNames: ["DMG", "-Opp DEF"],
+    cardCategories: [CardCategory.ATTACK],
+    deck: "himmel",
+});
+
+export const a_FrierenNow = new Card({
+    title: "Frieren! Now!",
+    cardMetadata: { nature: Nature.Attack },
+    description: ([dmg]) => `DMG ${dmg}`,
+    emoji: CardEmoji.FRIEREN_CARD,
+    effects: [12],
     effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
     deck: "himmel",
@@ -107,9 +118,10 @@ export const quickBlock = new Card({
 const rally = new Card({
     title: "Rally",
     cardMetadata: { nature: Nature.Util },
-    description: ([hp, stat]) => `HP+${hp}. ATK+${stat}. DEF+${stat}. SPD+${stat} for each one of your active allies.`,
+    description: ([hp, stat]) =>
+        `HP+${hp}. ATK+${stat}. DEF+${stat}. SPD+${stat}. An additional HP+${hp}, ATK+${stat}, DEF+${stat}, SPD+${stat} for each one of your active allies.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [6, 1],
+    effects: [2, 1],
     effectNames: ["+ HP ", "+ STAT"],
     cardCategories: [CardCategory.ATTACK, CardCategory.HEALING, CardCategory.UTILITY],
     deck: "himmel",
@@ -118,12 +130,13 @@ const rally = new Card({
 export const a_extremeSpeed = new Card({
     title: "Extreme Speed",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg]) => `Priority+1. HP-12. DMG ${dmg}`,
+    description: ([dmg]) => `Priority+1. HP-8. DMG ${dmg}`,
     emoji: CardEmoji.HIMMEL_CARD,
     priority: 1,
     effects: [12],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
+    hpCost: 8,
     deck: "himmel",
 });
 
@@ -139,6 +152,7 @@ export const a_realHeroSwing = new Card({
 });
 
 export const himmelDeck = [
+    { card: a_FrierenNow, count: 1 },
     { card: a_FrierenStrikeTheirWeakpoint, count: 1 },
     { card: a_FrierenBackMeUp, count: 1 },
     { card: a_EisenTheEnemysOpen, count: 1 },
@@ -150,5 +164,5 @@ export const himmelDeck = [
     { card: quickBlock, count: 2 },
     { card: rally, count: 2 },
     { card: a_extremeSpeed, count: 2 },
-    { card: a_realHeroSwing, count: 2 },
+    { card: a_realHeroSwing, count: 1 },
 ];

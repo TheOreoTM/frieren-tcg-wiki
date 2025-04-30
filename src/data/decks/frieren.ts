@@ -5,9 +5,9 @@ import { CardCategory, Nature } from "@/lib/types";
 export const a_zoltraak = new Card({
     title: "Offensive Magic Analysis: Zoltraak",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg]) => `HP-5. DMG ${dmg}. 2 Analysis stacks will be gained after attack.`,
+    description: ([dmg]) => `HP-5. DMG ${dmg}. 1 Analysis stacks will be gained after attack.`,
     emoji: CardEmoji.FRIEREN_CARD,
-    tags: { PostAnalysis: 2 },
+    tags: { PostAnalysis: 1 },
     effects: [9],
     cosmetic: {
         cardImageUrl: "/cards/Offensive_Magic_Analysis_Zoltraak.webp",
@@ -36,14 +36,13 @@ export const fieldOfFlower = new Card({
 });
 
 export const a_judradjim = new Card({
-    title: "Destructive Lightning Analysis: Judradjim",
+    title: "Destructive Lightning: Judradjim",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg]) => `HP-7. DMG ${dmg}. 1 Analysis stack will be gained after attack.`,
+    description: ([dmg]) => `HP-7. DMG ${dmg}.`,
     emoji: CardEmoji.FRIEREN_CARD,
     cosmetic: {
         cardImageUrl: "/cards/Destructive_Lightning_Analysis_Judradjim.webp",
     },
-    tags: { PostAnalysis: 1 },
     effects: [13],
     hpCost: 7,
     cardCategories: [CardCategory.ATTACK],

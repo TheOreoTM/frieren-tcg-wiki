@@ -6,10 +6,10 @@ export const empathyFailureName = "Stalking";
 
 const a_reelseiden = new Card({
     title: "Shallow Slash",
-    description: ([dmg]) =>
-        `HP-4. If used by Übel, has a 20% of missing if the opponent didn't use an Attack card before this move is used. DMG ${dmg}.`,
+    description: ([dmg, atkSpd]) =>
+        `HP-4. DMG ${dmg}. If used by Übel, has a 20% of missing if the opponent didn't use an Attack card before this move is used. If the attack misses, ATK+${atkSpd}, SPD+${atkSpd}.`,
     emoji: CardEmoji.UBEL_CARD,
-    effects: [8],
+    effects: [8, 2],
     cardMetadata: {
         nature: Nature.Attack,
         ubelFailureRate: 20,
@@ -27,10 +27,10 @@ const a_reelseiden = new Card({
 
 const a_cleave = new Card({
     title: "Cleave",
-    description: ([dmg]) =>
-        `HP-6. If used by Übel,has a 40% of missing if the opponent didn't use an Attack card before this move is used. DMG ${dmg}.`,
+    description: ([dmg, atkSpd]) =>
+        `HP-6. DMG ${dmg}. If used by Übel,has a 40% of missing if the opponent didn't use an Attack card before this move is used. If the attack misses, ATK+${atkSpd}, SPD+${atkSpd}.`,
     emoji: CardEmoji.UBEL_CARD,
-    effects: [12],
+    effects: [12, 3],
     effectNames: ["DMG"],
     cardMetadata: { nature: Nature.Attack, ubelFailureRate: 40 },
     cardCategories: ["Attack"],
@@ -43,10 +43,10 @@ const a_cleave = new Card({
 
 const a_dismantle = new Card({
     title: "Dismantle",
-    description: ([dmg]) =>
-        `HP-8. If used by Übel, has a 60% of missing if the opponent didn't use an Attack card before this move is used. DMG ${dmg}.`,
+    description: ([dmg, atkSpd]) =>
+        `HP-8. DMG ${dmg}. If used by Übel, has a 60% of missing if the opponent didn't use an Attack card before this move is used. If the attack misses, ATK+${atkSpd}, SPD+${atkSpd}.`,
     emoji: CardEmoji.UBEL_CARD,
-    effects: [16],
+    effects: [16, 4],
     effectNames: ["DMG"],
     cardMetadata: { nature: Nature.Attack, ubelFailureRate: 60 },
     cardCategories: ["Attack"],
@@ -58,7 +58,7 @@ export const rushdown = new Card({
     title: "Rushdown",
     cardMetadata: { nature: Nature.Util },
     description: ([spd]) =>
-        `Increases SPD by ${spd} for 3 turns. Attacks will not miss during this period. At the end of every turn, HP-4.`,
+        `Increases SPD by ${spd} for 4 turns. Attacks will not miss during this period. At the end of every turn, HP-2.`,
     emoji: CardEmoji.UBEL_CARD,
     cardCategories: ["Utility"],
     effects: [10],
@@ -117,14 +117,15 @@ export const empathy = new Card({
 
 const a_malevolentShrine = new Card({
     title: "Malevolent Shrine",
-    description: ([dmg]) => `HP-11. Has a 80% of missing if the opponent didn't attack last turn. DMG ${dmg}.`,
+    description: ([dmg, atkSpd]) =>
+        `HP-11. DMG ${dmg}. If used by Übel, has a 80% of missing if the opponent didn't use an Attack card before this move is used. If the attack misses, ATK+${atkSpd}, SPD+${atkSpd}.`,
     cosmetic: {
         cardGif: "/cards/Malevolent_Shrine_Ubel.gif",
     },
     emoji: CardEmoji.UBEL_CARD,
     cardMetadata: { nature: Nature.Attack, signature: true, ubelFailureRate: 80 },
-    effects: [22],
-    effectNames: ["DMG"],
+    effects: [22, 5],
+    effectNames: ["DMG", "ATK+SPD"],
     cardCategories: ["Attack"],
     hpCost: 11,
     deck: "ubel",

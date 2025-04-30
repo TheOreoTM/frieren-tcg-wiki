@@ -7,7 +7,7 @@ const a_jab = new Card({
     cardMetadata: { nature: Nature.Attack },
     description: ([def, spd, dmg]) => `DEF+${def}. SPD+${spd}. Deal  ${dmg} DMG.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [1, 1, 2],
+    effects: [2, 2, 2],
     effectNames: ["DEF", "SPD", "DMG"],
     cardCategories: [CardCategory.ATTACK],
     deck: "denken",
@@ -18,7 +18,7 @@ const a_hook = new Card({
     cardMetadata: { nature: Nature.Attack },
     description: ([atk, dmg]) => `ATK+${atk}. Deal ${dmg} DMG.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [2, 2],
+    effects: [3, 2],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["ATK", "DMG"],
     deck: "denken",
@@ -29,7 +29,7 @@ const a_uppercut = new Card({
     cardMetadata: { nature: Nature.Attack },
     description: ([atk, spd, dmg]) => `ATK+${atk}. SPD+${spd}. Deal ${dmg} DMG.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [1, 1, 3],
+    effects: [2, 2, 3],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["ATK", "SPD", "DMG"],
     deck: "denken",
@@ -54,7 +54,7 @@ export const a_waldgose = new Card({
     description: ([dmg, multiDmg]) =>
         `HP-7. DMG ${dmg}. At the next 3 turn ends, deal ${multiDmg} DMG. Treat this card as "Jab" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [6, 2],
+    effects: [6, 3],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG", "DMG"],
     deck: "denken",
@@ -63,12 +63,12 @@ export const a_waldgose = new Card({
 export const a_daosdorg = new Card({
     title: "Hellfire: Daosdorg",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg, waldgoseDmgBonus]) =>
-        `HP-9. DMG ${dmg}. If Waldgose is active, increase its turn end damage by ${waldgoseDmgBonus}. Treat this card as "Hook" if the user's HP is <= 0.`,
+    description: ([dmg, waldgoseDmgBonus, oppDefDebuff]) =>
+        `HP-9. Opponent's DEF-${oppDefDebuff}. DMG ${dmg}. If Waldgose is active, increase its turn end damage by ${waldgoseDmgBonus}. Treat this card as "Hook" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [12, 3],
+    effects: [12, 3, 2],
     cardCategories: [CardCategory.ATTACK],
-    effectNames: ["DMG", "DMG"],
+    effectNames: ["DMG", "DMG", "-Opp DEF"],
     deck: "denken",
 });
 
@@ -113,7 +113,7 @@ export const thisIsNoPlaceToGiveUp = new Card({
     cardMetadata: { nature: Nature.Util },
     description: ([hp]) => `Heal ${hp}HP. Heal an additional ${hp}HP and gain 1 Preserverance stack if HP <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [7],
+    effects: [10],
     cardCategories: [CardCategory.HEALING],
     effectNames: ["HP"],
     deck: "denken",
@@ -122,12 +122,12 @@ export const thisIsNoPlaceToGiveUp = new Card({
 export const denkenDeck = [
     { card: a_jab, count: 2 },
     { card: a_hook, count: 2 },
-    { card: a_uppercut, count: 1 },
+    { card: a_uppercut, count: 2 },
     { card: bareHandedBlock, count: 1 },
     { card: a_waldgose, count: 2 },
     { card: a_daosdorg, count: 2 },
     { card: a_catastravia, count: 1 },
-    { card: elementaryDefensiveMagic, count: 2 },
+    { card: elementaryDefensiveMagic, count: 1 },
     { card: a_concentratedOffensiveMagicZoltraak, count: 2 },
     { card: thisIsNoPlaceToGiveUp, count: 1 },
 ];

@@ -67,7 +67,7 @@ export const basicDefensiveMagic = new Card({
     cardMetadata: { nature: Nature.Defense },
     description: ([def]) => `Priority+2. Increases DEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.SERIE_CARD,
-    effects: [30],
+    effects: [20],
     priority: 2,
     cosmetic: {
         cardImageUrl: "/cards/Basic_Defense_Magic.webp",
@@ -96,7 +96,7 @@ export const unbreakableBarrier = new Card({
 export const ancientBarrierMagic = new Card({
     title: "Ancient Barrier Magic",
     description: ([atk, def, oppSpd]) =>
-        `HP-20. ATK+${atk} for 7 turns. Opponent's DEF-${def} for 7 turns. Opponent's SPD -${oppSpd} for 7 turns.`,
+        `HP-10. HP-2 at the end of the next 5 turns. ATK+${atk}, Opponent's DEF-${def} and Opponent's SPD -${oppSpd} for 5 turns.`,
     emoji: CardEmoji.SERIE_CARD,
     cosmetic: {
         cardImageUrl: "/cards/Ancient_Barrier_Magic.webp",
@@ -106,7 +106,7 @@ export const ancientBarrierMagic = new Card({
     cardCategories: ["Utility", "Defense"],
     effectNames: ["ATK", "DEF", "-OpponentSPD"],
     deck: "serie",
-    hpCost: 20,
+    hpCost: 10,
 });
 
 export const mock = new Card({

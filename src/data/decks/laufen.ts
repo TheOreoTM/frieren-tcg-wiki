@@ -4,23 +4,23 @@ import { CardCategory, Nature } from "@/lib/types";
 
 const a_staffStrike = new Card({
     title: "Staff Strike",
-    description: ([spd, dmg]) => `SPD+${spd}. Afterwards, HP-7, attack for DMG ${dmg}+SPD/6`,
+    description: ([spd, dmg]) => `SPD+${spd}. Afterwards, HP-1, attack for DMG ${dmg}+SPD/7`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [3, 7],
     cardMetadata: { nature: Nature.Attack },
     cardCategories: ["Attack"],
     effectNames: ["SPD", "DMG"],
-    hpCost: 7,
+    hpCost: 1,
     deck: "laufen",
 });
 
 const a_staffBash = new Card({
     title: "Staff Bash",
     cardMetadata: { nature: Nature.Attack },
-    description: ([spd, dmg]) => `SPD+${spd}. Afterwards, HP-7, DMG ${dmg}+SPD/5`,
+    description: ([spd, dmg]) => `SPD+${spd}. Afterwards, HP-2, DMG ${dmg}+SPD/6`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [2, 8],
-    hpCost: 7,
+    hpCost: 2,
     cardCategories: ["Attack"],
     effectNames: ["SPD", "DMG"],
     deck: "laufen",
@@ -29,10 +29,10 @@ const a_staffBash = new Card({
 export const a_whip = new Card({
     title: "Whip",
     cardMetadata: { nature: Nature.Attack },
-    description: ([spd, dmg]) => `SPD+${spd}. Afterwards, HP-7, DMG ${dmg}+SPD/4`,
+    description: ([spd, dmg]) => `SPD+${spd}. Afterwards, HP-3, DMG ${dmg}+SPD/5`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [1, 9],
-    hpCost: 7,
+    hpCost: 3,
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["SPD", "DMG"],
     deck: "laufen",
@@ -51,11 +51,11 @@ export const hide = new Card({
 
 export const a_supersonicStrike = new Card({
     title: "Supersonic Strike",
-    description: ([dmg]) => `HP-7, DMG ${dmg}+SPD/3`,
+    description: ([dmg]) => `HP-4, DMG ${dmg}+SPD/4`,
     emoji: CardEmoji.LAUFEN_CARD,
     cardMetadata: { nature: Nature.Attack, signature: true },
     effects: [10],
-    hpCost: 7,
+    hpCost: 4,
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["SPD", "DMG"],
     deck: "laufen",

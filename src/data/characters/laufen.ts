@@ -17,15 +17,17 @@ export const Laufen: Character = {
     stats: {
         [Stat.HP]: 90.0,
         [Stat.ATK]: 10.0,
-        [Stat.DEF]: 7.0,
+        [Stat.DEF]: 8.0,
         [Stat.SPD]: 30.0,
         [Stat.Ability]: 0.0,
     },
     cards: laufenDeck,
     ability: {
         abilityName: "Graze",
-        abilityEffectString: `DMG to this character is reduced by (this character's SPD - the opponent's SPD)%.
-        The minimum damage reduction is 0%, and the maximum is 100%.`,
+        abilityEffectString: `
+        When the opponent attacks, roll a D100. The lower the roll, the less damage the move deals. 
+        The move deals maximum damage if the roll is higher than the difference between the 2 character’s SPD. 
+        The opponent’s attack deals at minimum 0% damage, and at maximum only (100 - This character’s SPD + Opponent’s SPD)% damage.`,
     },
     relatedCharacters: [CharacterID.Denken],
     additionalMetadata: {

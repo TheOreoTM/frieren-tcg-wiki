@@ -18,7 +18,7 @@ const a_fernConcentratedZoltraakSnipe = new Card({
     title: "Concentrated Zoltraak Snipe",
     cardMetadata: { nature: Nature.Attack },
     description: ([baseDmg, dmg]) =>
-        `HP-12. Deal ${baseDmg} + ${dmg} DMG x Barrage count, bypassing 1/2 of opponent's DEF. Reset Barrage count to 0.`,
+        `HP-12. Deal ${baseDmg} + ${dmg} DMG x Barrage count, with 50% Pierce. Reset Barrage count to 0.`,
     emoji: CardEmoji.FERN_CARD,
     effects: [6, 2],
     hpCost: 12,
@@ -30,10 +30,10 @@ const a_fernConcentratedZoltraakSnipe = new Card({
 const disapprovingPout = new Card({
     title: "Disapproving Pout",
     cardMetadata: { nature: Nature.Util },
-    description: ([hp, spd, oppAtkDecrease]) => `HP+${hp}. SPD+${spd}. Opp's ATK-${oppAtkDecrease}.`,
+    description: ([hp, spd, oppAtkDecrease]) => `HP+${hp}. Opp's ATK-${oppAtkDecrease}.`,
     emoji: CardEmoji.FERN_CARD,
-    effects: [3, 2, 2],
-    effectNames: ["HP", "SPD", "Opp ATK"],
+    effects: [3, 2],
+    effectNames: ["HP", "-Opp ATK"],
     cardCategories: ["Utility"],
     deck: "fern",
 });
@@ -41,9 +41,10 @@ const disapprovingPout = new Card({
 export const manaConcealment = new Card({
     title: "Mana Concealment",
     cardMetadata: { nature: Nature.Util },
-    description: ([atk, def]) => `ATK+${atk}. DEF+${def}. Receive Priority+1 on attacks for next turn.`,
+    description: ([atk, def]) =>
+        `ATK+${atk}. DEF+${def}. Receive Priority+1 and additional 50% Pierce on attacks for next turn.`,
     emoji: CardEmoji.FERN_CARD,
-    effects: [2, 2],
+    effects: [1, 2],
     effectNames: ["ATK", "DEF"],
     cardCategories: ["Utility"],
     deck: "fern",
@@ -79,9 +80,9 @@ export const a_fernBarrage = new Card({
     title: "Barrage",
     cardMetadata: { nature: Nature.Attack },
     description: ([dmg]) =>
-        `HP-4. DMG ${dmg}. Gain 1 Barrage count. At the end of each turn, -1 Barrage count, HP-4, deal ${dmg} DMG, until Barrage count reaches 0.`,
+        `HP-4. DMG ${dmg} with 25% Pierce. Gain 1 Barrage count. At the end of each turn, -1 Barrage count, HP-4, deal ${dmg} DMG with 25% Pierce, until Barrage count reaches 0.`,
     emoji: CardEmoji.FERN_CARD,
-    effects: [7],
+    effects: [5],
     effectNames: ["DMG"],
     cardCategories: ["Attack"],
     deck: "fern",
