@@ -11,6 +11,8 @@ import { Stat } from "@/lib/enums";
 
 const characters = Array.from(Characters.values());
 
+const SEPERATOR = "[#]";
+
 function getStatColor(stat: Stat) {
     switch (stat) {
         case Stat.HP:
@@ -33,14 +35,14 @@ export default function CharactersClientPage() {
 
     const filteredCharacters = characters.filter((character) => {
         const searchable =
-            `${character.name}/${character.id}/${character.description}/${character.title}`.toLowerCase();
+            `${character.name}${SEPERATOR}${character.id}${SEPERATOR}${character.description}${SEPERATOR}${character.title}`.toLowerCase();
 
         return (
             search.length === 0 ||
             (search.length > 0 &&
                 search
                     .toLowerCase()
-                    .split("/")
+                    .split(SEPERATOR)
                     .every((word) => searchable.includes(word)))
         );
     });

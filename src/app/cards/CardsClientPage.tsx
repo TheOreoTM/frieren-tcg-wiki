@@ -1,30 +1,41 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, Filter, X, Grid, List, Check, Car } from "lucide-react";
+import { Search, Filter, X, Grid, List, Check, Heart } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { allCards } from "@/data/cards";
 import CardPreview from "@/components/card/card-preview";
 import CardListItem from "@/components/card/card-list-item";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-    SheetFooter,
-    SheetClose,
-} from "@/components/ui/sheet";
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Checkbox } from "@/components/ui/checkbox";
-import Image from "next/image";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+
 import { CardCategory } from "@/lib/types";
 import { CharacterID, CharacterIdToName } from "@/lib/enums";
 
+// --- Mock Data (Replace with your actual imports if different) ---
+// Example structure for allCards if needed for testing
+// const allCards = [
+//   { card: { id: '1', title: 'Card One', deck: CharacterID.Frieren, priority: 1, hpCost: 0, cardCategories: [CardCategory.ATTACK], description: (args) => `Attack card`, effects: ['Effect1'] }, count: 3 },
+//   { card: { id: '2', title: 'Card Two', deck: CharacterID.Himmel, priority: 0, hpCost: 5, cardCategories: [CardCategory.DEFENSE, CardCategory.HEALING], description: (args) => `Defense/Healing card`, effects: ['Effect2'] }, count: 2 },
+//   { card: { id: '3', title: 'Card Three', deck: CharacterID.Frieren, priority: 2, hpCost: 2, cardCategories: [CardCategory.UTILITY], description: (args) => `Utility card`, effects: ['Effect3'] }, count: 1 },
+//   // ... more cards
+// ];
+
+// --- Constants (Keep as they are) ---
 const allCategories: CardCategory[] = [
     CardCategory.ATTACK,
     CardCategory.DEFAULT,
@@ -47,10 +58,14 @@ const allCharacters: CharacterID[] = [
     CharacterID.Stille,
 ];
 
+type HpCostFilterComparisonType = "=" | "<" | ">" | "<=" | ">=";
+
 export default function CardsClientPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [characterFilter, setCharacterFilter] = useState<string | null>(null);
     const [priorityFilter, setPriorityFilter] = useState<string | null>(null);
+    const [hpCostFilter, setHpCostFilter] = useState<number | null>(null);
+    const [hpCostFilterComparison, setHpCostFilterComparison] = useState<HpCostFilterComparisonType>(">=");
     const [categoryFilters, setCategoryFilters] = useState<CardCategory[]>([]);
     const [filteredCards, setFilteredCards] = useState(allCards);
     const [activeFilters, setActiveFilters] = useState(0);
@@ -65,6 +80,7 @@ export default function CardsClientPage() {
 
     // Apply filters whenever filter states change
     useEffect(() => {
+        // console.log("Filtering cards:", { /* ... filter states */ }); // Keep for debugging
         let result = [...allCards];
 
         // Apply search term filter
@@ -81,7 +97,7 @@ export default function CardsClientPage() {
             );
         }
 
-        // Apply emoji filter
+        // Apply character filter
         if (characterFilter) {
             result = result.filter((item) => item.card.deck === characterFilter);
         }
@@ -102,7 +118,27 @@ export default function CardsClientPage() {
             );
         }
 
-        setFilteredCards(result);
+        // Apply hp cost filter
+        if (hpCostFilter !== null && !isNaN(hpCostFilter)) {
+            // Ensure hpCostFilter is a valid number
+            result = result.filter((item) => {
+                const cost = item.card.hpCost ?? 0;
+                switch (hpCostFilterComparison) {
+                    case "=":
+                        return cost === hpCostFilter;
+                    case "<":
+                        return cost < hpCostFilter;
+                    case ">":
+                        return cost > hpCostFilter;
+                    case "<=":
+                        return cost <= hpCostFilter;
+                    case ">=":
+                        return cost >= hpCostFilter;
+                    default:
+                        return true;
+                }
+            });
+        }
 
         // Count active filters
         let count = 0;
@@ -110,8 +146,10 @@ export default function CardsClientPage() {
         if (characterFilter) count++;
         if (priorityFilter) count++;
         if (categoryFilters.length > 0) count++;
+        if (hpCostFilter !== null && !isNaN(hpCostFilter)) count++; // Count only if valid number
+        setFilteredCards(result);
         setActiveFilters(count);
-    }, [searchTerm, characterFilter, priorityFilter, categoryFilters]);
+    }, [searchTerm, characterFilter, priorityFilter, categoryFilters, hpCostFilter, hpCostFilterComparison]);
 
     // Reset all filters
     const resetFilters = () => {
@@ -119,21 +157,24 @@ export default function CardsClientPage() {
         setCharacterFilter(null);
         setPriorityFilter(null);
         setCategoryFilters([]);
+        setHpCostFilter(null);
+        setHpCostFilterComparison(">=");
     };
 
     return (
         <div className="container mx-auto px-4 py-12">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+            {/* Header */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
                 <div>
-                    <h1 className="text-3xl md:text-4xl font-bold mb-2">Cards</h1>
-                    <p className="text-muted-foreground">Browse all cards in the Frieren TCG</p>
+                    <h1 className="text-3xl md:text-4xl font-bold mb-2">Card Library</h1>
+                    <p className="text-muted-foreground">Browse and filter all cards in the Frieren TCG</p>
                 </div>
-
                 <div className="mt-4 md:mt-0">
                     <ToggleGroup
                         type="single"
                         value={viewMode}
                         onValueChange={(value) => value && setViewMode(value as "grid" | "list")}
+                        aria-label="View mode"
                     >
                         <ToggleGroupItem value="grid" aria-label="Grid view">
                             <Grid className="h-4 w-4" />
@@ -145,13 +186,21 @@ export default function CardsClientPage() {
                 </div>
             </div>
 
-            <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-lg mb-6">
-                <div className="flex flex-col md:flex-row gap-4 mb-8">
-                    <div className="w-full md:w-2/3 relative">
+            {/* Filters and Search Section */}
+            <Card className="mb-8">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <Filter className="h-5 w-5" />
+                        Filter & Search Cards
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    {/* Search Input */}
+                    <div className="relative">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                         <Input
-                            placeholder="Search cards..."
-                            className="pl-10 bg-white"
+                            placeholder="Search by card name or description..."
+                            className="pl-10"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -161,240 +210,262 @@ export default function CardsClientPage() {
                                 size="icon"
                                 className="absolute right-2 top-1/2 transform -translate-y-1/2 h-7 w-7"
                                 onClick={() => setSearchTerm("")}
+                                aria-label="Clear search"
                             >
                                 <X className="h-4 w-4" />
                             </Button>
                         )}
                     </div>
 
-                    <div className="w-full md:w-1/3 shrink flex gap-2">
-                        <Sheet>
-                            <SheetTrigger asChild>
-                                <Button variant="outline" className="w-full flex items-center gap-2">
-                                    <Filter className="h-4 w-4" />
-                                    Filters
-                                    {activeFilters > 0 && (
-                                        <Badge variant="secondary" className="ml-2">
-                                            {activeFilters}
-                                        </Badge>
-                                    )}
-                                </Button>
-                            </SheetTrigger>
+                    <Separator />
 
-                            <SheetContent>
-                                <SheetHeader>
-                                    <SheetTitle>Filter Cards</SheetTitle>
-                                    <SheetDescription>Refine your card search with these filters</SheetDescription>
-                                </SheetHeader>
+                    {/* Core Filters Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {/* Character Filter */}
+                        <div className="space-y-2">
+                            <Label htmlFor="character-filter">Character</Label>
+                            <Select
+                                value={characterFilter || "all"}
+                                onValueChange={(value) => setCharacterFilter(value === "all" ? null : value)}
+                            >
+                                <SelectTrigger id="character-filter">
+                                    <SelectValue placeholder="Select Character" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectItem value="all">All Characters</SelectItem>
+                                        {allCharacters.map((characterId) => (
+                                            <SelectItem key={characterId} value={characterId}>
+                                                {CharacterIdToName[characterId] || characterId}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
 
-                                <div className="py-6 space-y-6 px-3">
-                                    <div className="space-y-2">
-                                        <h3 className="text-sm font-medium">Card Type</h3>
-                                        <Select
-                                            value={characterFilter || "all"}
-                                            onValueChange={(value) =>
-                                                setCharacterFilter(value === "all" ? null : value)
-                                            }
+                        {/* Priority Filter */}
+                        <div className="space-y-2">
+                            <Label htmlFor="priority-filter">Priority</Label>
+                            <Select
+                                value={priorityFilter || "all"}
+                                onValueChange={(value) => setPriorityFilter(value === "all" ? null : value)}
+                            >
+                                <SelectTrigger id="priority-filter">
+                                    <SelectValue placeholder="Select Priority" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="all">All Cards</SelectItem>
+                                    <SelectItem value="has-priority">Has Priority</SelectItem>
+                                    <SelectItem value="no-priority">No Priority</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        {/* HP Cost Filter */}
+                        <div className="space-y-2">
+                            <Label htmlFor="hp-cost-value">HP Cost</Label>
+                            <div className="flex gap-2 items-center">
+                                <Select
+                                    value={hpCostFilterComparison}
+                                    onValueChange={(value) =>
+                                        setHpCostFilterComparison(value as HpCostFilterComparisonType)
+                                    }
+                                >
+                                    <SelectTrigger className="w-20" aria-label="HP Cost comparison">
+                                        <SelectValue placeholder="=" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="=">=</SelectItem>
+                                        <SelectItem value="<">&lt;</SelectItem>
+                                        <SelectItem value=">">&gt;</SelectItem>
+                                        <SelectItem value="<=">&le;</SelectItem>
+                                        <SelectItem value=">=">&ge;</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <div className="relative flex-1">
+                                    <Heart className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                                    <Input
+                                        id="hp-cost-value"
+                                        type="number"
+                                        min="0" // Prevent negative numbers
+                                        value={hpCostFilter ?? ""} // Use empty string for placeholder visibility
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            // Allow empty input to clear the filter
+                                            setHpCostFilter(value === "" ? null : parseInt(value, 10));
+                                        }}
+                                        placeholder="HP"
+                                        className="pl-10"
+                                    />
+                                    {hpCostFilter !== null && (
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            className="absolute right-2 top-1/2 transform -translate-y-1/2 h-7 w-7"
+                                            onClick={() => setHpCostFilter(null)}
+                                            aria-label="Clear HP cost filter"
                                         >
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="All characters" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="all">All characters</SelectItem>
-                                                {allCharacters.map((characterId, index) => (
-                                                    <SelectItem key={index} value={characterId}>
-                                                        <div>
-                                                            <p className="text-black text-sm">
-                                                                {CharacterIdToName[characterId]}
-                                                            </p>
-                                                        </div>
-                                                    </SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <h3 className="text-sm font-medium">Priority</h3>
-                                        <Select
-                                            value={priorityFilter || "all"}
-                                            onValueChange={(value) => setPriorityFilter(value === "all" ? null : value)}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="All priorities" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="all">All cards</SelectItem>
-                                                <SelectItem value="has-priority">Has priority</SelectItem>
-                                                <SelectItem value="no-priority">No priority</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-
-                                    <div className="space-y-3">
-                                        <div className="flex justify-between items-center">
-                                            <h3 className="text-sm font-medium">Categories</h3>
-                                            {categoryFilters.length > 0 && (
-                                                <Button
-                                                    variant="ghost"
-                                                    size="sm"
-                                                    className="h-8 text-xs"
-                                                    onClick={() => setCategoryFilters([])}
-                                                >
-                                                    Clear
-                                                </Button>
-                                            )}
-                                        </div>
-                                        <div className="space-y-2">
-                                            {allCategories.map((category) => (
-                                                <div key={category} className="flex items-center space-x-2">
-                                                    <Checkbox
-                                                        id={`category-${category}`}
-                                                        checked={categoryFilters.includes(category)}
-                                                        onCheckedChange={() => toggleCategory(category)}
-                                                    />
-                                                    <label
-                                                        htmlFor={`category-${category}`}
-                                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                                                    >
-                                                        {category}
-                                                    </label>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <SheetFooter>
-                                    <SheetClose asChild>
-                                        <Button variant="outline" onClick={resetFilters}>
-                                            Reset Filters
+                                            <X className="h-4 w-4" />
                                         </Button>
-                                    </SheetClose>
-                                    <SheetClose asChild>
-                                        <Button>Apply Filters</Button>
-                                    </SheetClose>
-                                </SheetFooter>
-                            </SheetContent>
-                        </Sheet>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                {/* <div className="flex flex-wrap gap-2 mb-4">
-                    {uniqueEmojis.map((emoji, index) => (
-                        <Badge
-                            key={index}
-                            className={`text-black bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 cursor-pointer ${
-                                emojiFilter === emoji ? "ring-2 ring-primary" : ""
-                            }`}
-                            onClick={() => setEmojiFilter(emojiFilter === emoji ? null : emoji)}
-                        >
-                            <Image src={emoji || "/placeholder.svg"} alt={emoji} width={40} height={40} />
-                        </Badge>
-                    ))}
-                </div> */}
 
-                {/* Category quick filters */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                    {allCategories.map((category) => (
-                        <Badge
-                            key={category}
-                            variant={categoryFilters.includes(category) ? "default" : "outline"}
-                            className="cursor-pointer"
-                            onClick={() => toggleCategory(category)}
-                        >
-                            {category}
-                            {categoryFilters.includes(category) && <Check className="ml-1 h-3 w-3" />}
-                        </Badge>
-                    ))}
-                </div>
+                    <Separator />
 
-                <div className="flex justify-end">
+                    {/* Category Filters */}
+                    <div className="space-y-3">
+                        <div className="flex justify-between items-center mb-2">
+                            <Label className="text-base font-medium">Categories</Label>
+                            {categoryFilters.length > 0 && (
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="h-8 text-xs"
+                                    onClick={() => setCategoryFilters([])}
+                                >
+                                    Clear Categories
+                                </Button>
+                            )}
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-3">
+                            {allCategories.map((category) => (
+                                <div key={category} className="flex items-center space-x-2">
+                                    <Checkbox
+                                        id={`category-${category}`}
+                                        checked={categoryFilters.includes(category)}
+                                        onCheckedChange={() => toggleCategory(category)}
+                                        aria-labelledby={`category-label-${category}`}
+                                    />
+                                    <Label
+                                        htmlFor={`category-${category}`}
+                                        id={`category-label-${category}`}
+                                        className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer capitalize" // Capitalize for display
+                                    >
+                                        {category.toLowerCase()}
+                                    </Label>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </CardContent>
+                <CardFooter className="flex justify-between items-center pt-4 border-t">
                     <div className="text-sm text-muted-foreground">
-                        Showing: {filteredCards.length} of {allCards.length} unique cards
+                        {activeFilters > 0 ? `${activeFilters} filter(s) active` : "No filters active"}
                     </div>
+                    <Button variant="outline" onClick={resetFilters} disabled={activeFilters === 0}>
+                        Reset All Filters
+                    </Button>
+                </CardFooter>
+            </Card>
+
+            {/* Active Filter Badges (Optional: Can be removed if CardFooter provides enough info) */}
+            {activeFilters > 0 &&
+                !resetFilters && ( // Only show if not resetting
+                    <div className="flex flex-wrap gap-2 mb-6 items-center">
+                        <span className="text-sm font-medium mr-2">Active:</span>
+                        {searchTerm && (
+                            <Badge variant="secondary" className="flex items-center gap-1">
+                                Search: "{searchTerm}"
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-4 w-4 ml-1 p-0 hover:bg-destructive/20"
+                                    onClick={() => setSearchTerm("")}
+                                >
+                                    {" "}
+                                    <X className="h-3 w-3" />{" "}
+                                </Button>
+                            </Badge>
+                        )}
+                        {characterFilter && (
+                            <Badge variant="secondary" className="flex items-center gap-1">
+                                Char: {CharacterIdToName[characterFilter as CharacterID]}
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-4 w-4 ml-1 p-0 hover:bg-destructive/20"
+                                    onClick={() => setCharacterFilter(null)}
+                                >
+                                    {" "}
+                                    <X className="h-3 w-3" />{" "}
+                                </Button>
+                            </Badge>
+                        )}
+                        {priorityFilter && (
+                            <Badge variant="secondary" className="flex items-center gap-1">
+                                Priority: {priorityFilter === "has-priority" ? "Yes" : "No"}
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-4 w-4 ml-1 p-0 hover:bg-destructive/20"
+                                    onClick={() => setPriorityFilter(null)}
+                                >
+                                    {" "}
+                                    <X className="h-3 w-3" />{" "}
+                                </Button>
+                            </Badge>
+                        )}
+                        {hpCostFilter !== null && !isNaN(hpCostFilter) && (
+                            <Badge variant="secondary" className="flex items-center gap-1">
+                                HP Cost: {hpCostFilterComparison} {hpCostFilter}
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-4 w-4 ml-1 p-0 hover:bg-destructive/20"
+                                    onClick={() => setHpCostFilter(null)}
+                                >
+                                    {" "}
+                                    <X className="h-3 w-3" />{" "}
+                                </Button>
+                            </Badge>
+                        )}
+                        {categoryFilters.length > 0 && (
+                            <Badge variant="secondary" className="flex items-center gap-1">
+                                Categories ({categoryFilters.length})
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-4 w-4 ml-1 p-0 hover:bg-destructive/20"
+                                    onClick={() => setCategoryFilters([])}
+                                >
+                                    {" "}
+                                    <X className="h-3 w-3" />{" "}
+                                </Button>
+                            </Badge>
+                        )}
+                        {/* The main reset button is in the CardFooter now */}
+                        {/* <Button variant="ghost" size="sm" className="text-xs text-destructive hover:bg-destructive/10" onClick={resetFilters}> Clear all </Button> */}
+                    </div>
+                )}
+
+            {/* Results Count */}
+            <div className="flex justify-end mb-4">
+                <div className="text-sm text-muted-foreground">
+                    Showing {filteredCards.length} of {allCards.length} unique cards
                 </div>
             </div>
 
-            {activeFilters > 0 && (
-                <div className="flex flex-wrap gap-2 mb-6">
-                    {searchTerm && (
-                        <Badge variant="outline" className="flex items-center gap-1">
-                            Search: {searchTerm}
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-4 w-4 ml-1 p-0"
-                                onClick={() => setSearchTerm("")}
-                            >
-                                <X className="h-3 w-3" />
-                            </Button>
-                        </Badge>
-                    )}
-
-                    {characterFilter && (
-                        <Badge variant="outline" className="flex items-center gap-1">
-                            Character: <p>{CharacterIdToName[characterFilter as CharacterID]}</p>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-4 w-4 ml-1 p-0"
-                                onClick={() => setCharacterFilter(null)}
-                            >
-                                <X className="h-3 w-3" />
-                            </Button>
-                        </Badge>
-                    )}
-
-                    {priorityFilter && (
-                        <Badge variant="outline" className="flex items-center gap-1">
-                            Priority: {priorityFilter === "has-priority" ? "Yes" : "No"}
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-4 w-4 ml-1 p-0"
-                                onClick={() => setPriorityFilter(null)}
-                            >
-                                <X className="h-3 w-3" />
-                            </Button>
-                        </Badge>
-                    )}
-
-                    {categoryFilters.length > 0 && (
-                        <Badge variant="outline" className="flex items-center gap-1">
-                            Categories: {categoryFilters.length}
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-4 w-4 ml-1 p-0"
-                                onClick={() => setCategoryFilters([])}
-                            >
-                                <X className="h-3 w-3" />
-                            </Button>
-                        </Badge>
-                    )}
-
-                    <Button variant="ghost" size="sm" className="text-xs" onClick={resetFilters}>
-                        Clear all
-                    </Button>
-                </div>
-            )}
-
+            {/* Card Display Area */}
             {filteredCards.length === 0 ? (
-                <div className="text-center py-12">
-                    <h3 className="text-lg font-medium mb-2">No cards found</h3>
-                    <p className="text-muted-foreground mb-4">Try adjusting your filters or search term</p>
+                <div className="text-center py-16 border rounded-lg bg-card">
+                    <h3 className="text-xl font-semibold mb-2">No Cards Found</h3>
+                    <p className="text-muted-foreground mb-6">Try adjusting your search or filters.</p>
                     <Button onClick={resetFilters}>Reset All Filters</Button>
                 </div>
             ) : viewMode === "grid" ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                     {filteredCards.map((item, index) => (
-                        <CardPreview key={index} card={item.card} count={item.count} />
+                        <CardPreview key={item.card.getId() || index} card={item.card} count={item.count} /> // Use unique ID if available
                     ))}
                 </div>
             ) : (
-                <div>
+                <div className="space-y-4">
                     {filteredCards.map((item, index) => (
-                        <CardListItem key={index} card={item.card} count={item.count} />
+                        <CardListItem key={item.card.getId() || index} card={item.card} count={item.count} /> // Use unique ID if available
                     ))}
                 </div>
             )}
