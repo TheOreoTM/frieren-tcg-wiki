@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
@@ -30,7 +30,7 @@ const errorMap: ErrorMap = {
     },
 };
 
-export function ErrorHandler() {
+function ErrorHandlerComponent() {
     const searchParams = useSearchParams();
     const errorCode = searchParams.get("error");
 
@@ -42,4 +42,12 @@ export function ErrorHandler() {
     }, [errorCode]);
 
     return null;
+}
+
+export function ErrorHandler() {
+    return (
+        <Suspense>
+            <ErrorHandlerComponent />
+        </Suspense>
+    );
 }
