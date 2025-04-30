@@ -1,41 +1,34 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, Filter, X, Grid, List, Check, Heart } from "lucide-react";
+import { Search, Filter, X, Grid, List, Check, Heart, ChevronDown, ChevronUp } from "lucide-react"; // Added Chevron icons
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { allCards } from "@/data/cards";
-import CardPreview from "@/components/card/card-preview";
-import CardListItem from "@/components/card/card-list-item";
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
+import { allCards } from "@/data/cards"; // Assuming this path is correct
+import CardPreview from "@/components/card/card-preview"; // Assuming this path is correct
+import CardListItem from "@/components/card/card-list-item"; // Assuming this path is correct
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"; // Added Collapsible components
 
+// Assuming these types/enums exist and paths are correct
 import { CardCategory } from "@/lib/types";
 import { CharacterID, CharacterIdToName } from "@/lib/enums";
+import { cn } from "@/lib/utils";
 
-// --- Mock Data (Replace with your actual imports if different) ---
+// --- Mock Data & Constants (Keep as they are or replace with actual imports) ---
 // Example structure for allCards if needed for testing
 // const allCards = [
-//   { card: { id: '1', title: 'Card One', deck: CharacterID.Frieren, priority: 1, hpCost: 0, cardCategories: [CardCategory.ATTACK], description: (args) => `Attack card`, effects: ['Effect1'] }, count: 3 },
-//   { card: { id: '2', title: 'Card Two', deck: CharacterID.Himmel, priority: 0, hpCost: 5, cardCategories: [CardCategory.DEFENSE, CardCategory.HEALING], description: (args) => `Defense/Healing card`, effects: ['Effect2'] }, count: 2 },
-//   { card: { id: '3', title: 'Card Three', deck: CharacterID.Frieren, priority: 2, hpCost: 2, cardCategories: [CardCategory.UTILITY], description: (args) => `Utility card`, effects: ['Effect3'] }, count: 1 },
-//   // ... more cards
+//   { card: { id: '1', title: 'Card One', deck: CharacterID.Frieren, priority: 1, hpCost: 0, cardCategories: [CardCategory.ATTACK], description: (args) => `Attack card`, effects: ['Effect1'], getId: () => '1' }, count: 3 },
+//   { card: { id: '2', title: 'Card Two', deck: CharacterID.Himmel, priority: 0, hpCost: 5, cardCategories: [CardCategory.DEFENSE, CardCategory.HEALING], description: (args) => `Defense/Healing card`, effects: ['Effect2'], getId: () => '2' }, count: 2 },
+//   { card: { id: '3', title: 'Card Three', deck: CharacterID.Frieren, priority: 2, hpCost: 2, cardCategories: [CardCategory.UTILITY], description: (args) => `Utility card`, effects: ['Effect3'], getId: () => '3' }, count: 1 },
 // ];
 
-// --- Constants (Keep as they are) ---
 const allCategories: CardCategory[] = [
     CardCategory.ATTACK,
     CardCategory.DEFAULT,
@@ -59,8 +52,10 @@ const allCharacters: CharacterID[] = [
 ];
 
 type HpCostFilterComparisonType = "=" | "<" | ">" | "<=" | ">=";
+// --- Component ---
 
 export default function CardsClientPage() {
+    // --- State Variables ---
     const [searchTerm, setSearchTerm] = useState("");
     const [characterFilter, setCharacterFilter] = useState<string | null>(null);
     const [priorityFilter, setPriorityFilter] = useState<string | null>(null);
@@ -70,6 +65,9 @@ export default function CardsClientPage() {
     const [filteredCards, setFilteredCards] = useState(allCards);
     const [activeFilters, setActiveFilters] = useState(0);
     const [viewMode, setViewMode] = useState<"grid" | "list">("list");
+    const [isFilterOpen, setIsFilterOpen] = useState(false); // State for Collapsible
+
+    // --- Helper Functions ---
 
     // Toggle a category in the filter
     const toggleCategory = (category: CardCategory) => {
@@ -78,9 +76,20 @@ export default function CardsClientPage() {
         );
     };
 
-    // Apply filters whenever filter states change
+    // Reset all filters
+    const resetFilters = () => {
+        setSearchTerm("");
+        setCharacterFilter(null);
+        setPriorityFilter(null);
+        setCategoryFilters([]);
+        setHpCostFilter(null);
+        setHpCostFilterComparison(">=");
+    };
+
+    // --- Effects ---
+
+    // Apply filters whenever filter states change (NO CHANGE IN LOGIC)
     useEffect(() => {
-        // console.log("Filtering cards:", { /* ... filter states */ }); // Keep for debugging
         let result = [...allCards];
 
         // Apply search term filter
@@ -90,10 +99,13 @@ export default function CardsClientPage() {
                     item.card.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                     (typeof item.card.getDescription === "function"
                         ? item.card.getDescription().toLowerCase().includes(searchTerm.toLowerCase())
-                        : item.card
-                              .description(item.card.effects.map((e) => e.toString()))
+                        : // Ensure item.card.description exists and is a function before calling
+                        typeof item.card.description === "function"
+                        ? item.card
+                              .description(item.card.effects?.map((e) => e.toString()) ?? [])
                               .toLowerCase()
-                              .includes(searchTerm.toLowerCase()))
+                              .includes(searchTerm.toLowerCase())
+                        : false) // Handle cases where description is not a function
             );
         }
 
@@ -114,13 +126,16 @@ export default function CardsClientPage() {
         // Apply category filters (multi-select)
         if (categoryFilters.length > 0) {
             result = result.filter((item) =>
-                item.card.cardCategories.some((category) => categoryFilters.includes(category as CardCategory))
+                item.card.cardCategories?.some(
+                    (
+                        category // Add optional chaining
+                    ) => categoryFilters.includes(category as CardCategory)
+                )
             );
         }
 
         // Apply hp cost filter
         if (hpCostFilter !== null && !isNaN(hpCostFilter)) {
-            // Ensure hpCostFilter is a valid number
             result = result.filter((item) => {
                 const cost = item.card.hpCost ?? 0;
                 switch (hpCostFilterComparison) {
@@ -146,21 +161,26 @@ export default function CardsClientPage() {
         if (characterFilter) count++;
         if (priorityFilter) count++;
         if (categoryFilters.length > 0) count++;
-        if (hpCostFilter !== null && !isNaN(hpCostFilter)) count++; // Count only if valid number
+        if (hpCostFilter !== null && !isNaN(hpCostFilter)) count++;
         setFilteredCards(result);
         setActiveFilters(count);
-    }, [searchTerm, characterFilter, priorityFilter, categoryFilters, hpCostFilter, hpCostFilterComparison]);
 
-    // Reset all filters
-    const resetFilters = () => {
-        setSearchTerm("");
-        setCharacterFilter(null);
-        setPriorityFilter(null);
-        setCategoryFilters([]);
-        setHpCostFilter(null);
-        setHpCostFilterComparison(">=");
-    };
+        // Automatically open filters if any are active and it's currently closed
+        if (count > 0 && !isFilterOpen) {
+            // setIsFilterOpen(true); // Optional: auto-open filters when active
+        }
+    }, [
+        searchTerm,
+        characterFilter,
+        priorityFilter,
+        categoryFilters,
+        hpCostFilter,
+        hpCostFilterComparison,
+        allCards,
+        isFilterOpen,
+    ]); // Added allCards and isFilterOpen to dependency array
 
+    // --- Render ---
     return (
         <div className="container mx-auto px-4 py-12">
             {/* Header */}
@@ -187,260 +207,199 @@ export default function CardsClientPage() {
             </div>
 
             {/* Filters and Search Section */}
-            <Card className="mb-8">
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <Filter className="h-5 w-5" />
-                        Filter & Search Cards
-                    </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    {/* Search Input */}
-                    <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                        <Input
-                            placeholder="Search by card name or description..."
-                            className="pl-10"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        {searchTerm && (
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="absolute right-2 top-1/2 transform -translate-y-1/2 h-7 w-7"
-                                onClick={() => setSearchTerm("")}
-                                aria-label="Clear search"
-                            >
-                                <X className="h-4 w-4" />
-                            </Button>
-                        )}
-                    </div>
+            <Collapsible open={isFilterOpen} onOpenChange={setIsFilterOpen} className="mb-8">
+                <Card>
+                    <CollapsibleTrigger asChild>
+                        <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors rounded-t-lg">
+                            <div className="flex justify-between items-center">
+                                <CardTitle className="flex items-center gap-2">
+                                    <Filter className="h-5 w-5 text-sm md:text-lg" />
+                                    <span className="text-sm md:text-lg">Filter & Search Cards</span>
+                                    {activeFilters > 0 && (
+                                        <Badge variant="secondary" className="ml-2">
+                                            {activeFilters} active
+                                        </Badge>
+                                    )}
+                                </CardTitle>
+                                <Button variant="ghost" size="sm" className="w-9 p-0">
+                                    {isFilterOpen ? (
+                                        <ChevronUp className="h-4 w-4" />
+                                    ) : (
+                                        <ChevronDown className="h-4 w-4" />
+                                    )}
+                                    <span className="sr-only">Toggle Filters</span>
+                                </Button>
+                            </div>
+                        </CardHeader>
+                    </CollapsibleTrigger>
 
-                    <Separator />
+                    <CollapsibleContent>
+                        <CardContent className="pt-6 space-y-6">
+                            {" "}
+                            {/* Search Input */}
+                            <div className="relative">
+                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                                <Input
+                                    placeholder="Search by card name or description..."
+                                    className="pl-10"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                                {searchTerm && (
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="absolute right-2 top-1/2 transform -translate-y-1/2 h-7 w-7"
+                                        onClick={() => setSearchTerm("")}
+                                        aria-label="Clear search"
+                                    >
+                                        <X className="h-4 w-4" />
+                                    </Button>
+                                )}
+                            </div>
+                            <Separator />
+                            {/* Core Filters Grid */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {/* Character Filter */}
+                                <div className="space-y-2">
+                                    <Label htmlFor="character-filter">Character</Label>
+                                    <Select
+                                        value={characterFilter || "all"}
+                                        onValueChange={(value) => setCharacterFilter(value === "all" ? null : value)}
+                                    >
+                                        <SelectTrigger id="character-filter">
+                                            <SelectValue placeholder="Select Character" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectItem value="all">All Characters</SelectItem>
+                                                {allCharacters.map((characterId) => (
+                                                    <SelectItem key={characterId} value={characterId}>
+                                                        {CharacterIdToName[characterId] || characterId}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
 
-                    {/* Core Filters Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {/* Character Filter */}
-                        <div className="space-y-2">
-                            <Label htmlFor="character-filter">Character</Label>
-                            <Select
-                                value={characterFilter || "all"}
-                                onValueChange={(value) => setCharacterFilter(value === "all" ? null : value)}
-                            >
-                                <SelectTrigger id="character-filter">
-                                    <SelectValue placeholder="Select Character" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectItem value="all">All Characters</SelectItem>
-                                        {allCharacters.map((characterId) => (
-                                            <SelectItem key={characterId} value={characterId}>
-                                                {CharacterIdToName[characterId] || characterId}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        </div>
+                                {/* Priority Filter */}
+                                <div className="space-y-2">
+                                    <Label htmlFor="priority-filter">Priority</Label>
+                                    <Select
+                                        value={priorityFilter || "all"}
+                                        onValueChange={(value) => setPriorityFilter(value === "all" ? null : value)}
+                                    >
+                                        <SelectTrigger id="priority-filter">
+                                            <SelectValue placeholder="Select Priority" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="all">All Cards</SelectItem>
+                                            <SelectItem value="has-priority">Has Priority</SelectItem>
+                                            <SelectItem value="no-priority">No Priority</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
 
-                        {/* Priority Filter */}
-                        <div className="space-y-2">
-                            <Label htmlFor="priority-filter">Priority</Label>
-                            <Select
-                                value={priorityFilter || "all"}
-                                onValueChange={(value) => setPriorityFilter(value === "all" ? null : value)}
-                            >
-                                <SelectTrigger id="priority-filter">
-                                    <SelectValue placeholder="Select Priority" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="all">All Cards</SelectItem>
-                                    <SelectItem value="has-priority">Has Priority</SelectItem>
-                                    <SelectItem value="no-priority">No Priority</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-
-                        {/* HP Cost Filter */}
-                        <div className="space-y-2">
-                            <Label htmlFor="hp-cost-value">HP Cost</Label>
-                            <div className="flex gap-2 items-center">
-                                <Select
-                                    value={hpCostFilterComparison}
-                                    onValueChange={(value) =>
-                                        setHpCostFilterComparison(value as HpCostFilterComparisonType)
-                                    }
-                                >
-                                    <SelectTrigger className="w-20" aria-label="HP Cost comparison">
-                                        <SelectValue placeholder="=" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="=">=</SelectItem>
-                                        <SelectItem value="<">&lt;</SelectItem>
-                                        <SelectItem value=">">&gt;</SelectItem>
-                                        <SelectItem value="<=">&le;</SelectItem>
-                                        <SelectItem value=">=">&ge;</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                                <div className="relative flex-1">
-                                    <Heart className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                                    <Input
-                                        id="hp-cost-value"
-                                        type="number"
-                                        min="0" // Prevent negative numbers
-                                        value={hpCostFilter ?? ""} // Use empty string for placeholder visibility
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            // Allow empty input to clear the filter
-                                            setHpCostFilter(value === "" ? null : parseInt(value, 10));
-                                        }}
-                                        placeholder="HP"
-                                        className="pl-10"
-                                    />
-                                    {hpCostFilter !== null && (
+                                {/* HP Cost Filter */}
+                                <div className="space-y-2">
+                                    <Label htmlFor="hp-cost-value">HP Cost</Label>
+                                    <div className="flex gap-2 items-center">
+                                        <Select
+                                            value={hpCostFilterComparison}
+                                            onValueChange={(value) =>
+                                                setHpCostFilterComparison(value as HpCostFilterComparisonType)
+                                            }
+                                        >
+                                            <SelectTrigger className="w-20" aria-label="HP Cost comparison">
+                                                <SelectValue placeholder="=" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="=">=</SelectItem>
+                                                <SelectItem value="<">&lt;</SelectItem>
+                                                <SelectItem value=">">&gt;</SelectItem>
+                                                <SelectItem value="<=">&le;</SelectItem>
+                                                <SelectItem value=">=">&ge;</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <div className="relative flex-1">
+                                            <Heart className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                                            <Input
+                                                id="hp-cost-value"
+                                                type="number"
+                                                min="0"
+                                                value={hpCostFilter ?? ""}
+                                                onChange={(e) => {
+                                                    const value = e.target.value;
+                                                    setHpCostFilter(value === "" ? null : parseInt(value, 10));
+                                                }}
+                                                placeholder="HP"
+                                                className={cn("pl-10", { "pr-10": hpCostFilter !== null })}
+                                            />
+                                            {hpCostFilter !== null && (
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className="absolute right-2 top-1/2 transform -translate-y-1/2 h-7 w-7"
+                                                    onClick={() => setHpCostFilter(null)}
+                                                    aria-label="Clear HP cost filter"
+                                                >
+                                                    <X className="h-4 w-4" />
+                                                </Button>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <Separator />
+                            {/* Category Filters */}
+                            <div className="space-y-3">
+                                <div className="flex justify-between items-center mb-2">
+                                    <Label className="text-base font-medium">Categories</Label>
+                                    {categoryFilters.length > 0 && (
                                         <Button
                                             variant="ghost"
-                                            size="icon"
-                                            className="absolute right-2 top-1/2 transform -translate-y-1/2 h-7 w-7"
-                                            onClick={() => setHpCostFilter(null)}
-                                            aria-label="Clear HP cost filter"
+                                            size="sm"
+                                            className="h-8 text-xs"
+                                            onClick={() => setCategoryFilters([])}
                                         >
-                                            <X className="h-4 w-4" />
+                                            Clear Categories
                                         </Button>
                                     )}
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <Separator />
-
-                    {/* Category Filters */}
-                    <div className="space-y-3">
-                        <div className="flex justify-between items-center mb-2">
-                            <Label className="text-base font-medium">Categories</Label>
-                            {categoryFilters.length > 0 && (
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className="h-8 text-xs"
-                                    onClick={() => setCategoryFilters([])}
-                                >
-                                    Clear Categories
-                                </Button>
-                            )}
-                        </div>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-3">
-                            {allCategories.map((category) => (
-                                <div key={category} className="flex items-center space-x-2">
-                                    <Checkbox
-                                        id={`category-${category}`}
-                                        checked={categoryFilters.includes(category)}
-                                        onCheckedChange={() => toggleCategory(category)}
-                                        aria-labelledby={`category-label-${category}`}
-                                    />
-                                    <Label
-                                        htmlFor={`category-${category}`}
-                                        id={`category-label-${category}`}
-                                        className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer capitalize" // Capitalize for display
-                                    >
-                                        {category.toLowerCase()}
-                                    </Label>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-3">
+                                    {allCategories.map((category) => (
+                                        <div key={category} className="flex items-center space-x-2">
+                                            <Checkbox
+                                                id={`category-${category}`}
+                                                checked={categoryFilters.includes(category)}
+                                                onCheckedChange={() => toggleCategory(category)}
+                                                aria-labelledby={`category-label-${category}`}
+                                            />
+                                            <Label
+                                                htmlFor={`category-${category}`}
+                                                id={`category-label-${category}`}
+                                                className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer capitalize"
+                                            >
+                                                {category.toLowerCase()}
+                                            </Label>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                </CardContent>
-                <CardFooter className="flex justify-between items-center pt-4 border-t">
-                    <div className="text-sm text-muted-foreground">
-                        {activeFilters > 0 ? `${activeFilters} filter(s) active` : "No filters active"}
-                    </div>
-                    <Button variant="outline" onClick={resetFilters} disabled={activeFilters === 0}>
-                        Reset All Filters
-                    </Button>
-                </CardFooter>
-            </Card>
+                            </div>
+                        </CardContent>
+                        <CardFooter className="flex justify-end pt-4 border-t">
+                            {" "}
+                            <Button variant="outline" onClick={resetFilters} disabled={activeFilters === 0}>
+                                Reset All Filters
+                            </Button>
+                        </CardFooter>
+                    </CollapsibleContent>
+                </Card>
+            </Collapsible>
 
-            {/* Active Filter Badges (Optional: Can be removed if CardFooter provides enough info) */}
-            {activeFilters > 0 &&
-                !resetFilters && ( // Only show if not resetting
-                    <div className="flex flex-wrap gap-2 mb-6 items-center">
-                        <span className="text-sm font-medium mr-2">Active:</span>
-                        {searchTerm && (
-                            <Badge variant="secondary" className="flex items-center gap-1">
-                                Search: "{searchTerm}"
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="h-4 w-4 ml-1 p-0 hover:bg-destructive/20"
-                                    onClick={() => setSearchTerm("")}
-                                >
-                                    {" "}
-                                    <X className="h-3 w-3" />{" "}
-                                </Button>
-                            </Badge>
-                        )}
-                        {characterFilter && (
-                            <Badge variant="secondary" className="flex items-center gap-1">
-                                Char: {CharacterIdToName[characterFilter as CharacterID]}
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="h-4 w-4 ml-1 p-0 hover:bg-destructive/20"
-                                    onClick={() => setCharacterFilter(null)}
-                                >
-                                    {" "}
-                                    <X className="h-3 w-3" />{" "}
-                                </Button>
-                            </Badge>
-                        )}
-                        {priorityFilter && (
-                            <Badge variant="secondary" className="flex items-center gap-1">
-                                Priority: {priorityFilter === "has-priority" ? "Yes" : "No"}
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="h-4 w-4 ml-1 p-0 hover:bg-destructive/20"
-                                    onClick={() => setPriorityFilter(null)}
-                                >
-                                    {" "}
-                                    <X className="h-3 w-3" />{" "}
-                                </Button>
-                            </Badge>
-                        )}
-                        {hpCostFilter !== null && !isNaN(hpCostFilter) && (
-                            <Badge variant="secondary" className="flex items-center gap-1">
-                                HP Cost: {hpCostFilterComparison} {hpCostFilter}
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="h-4 w-4 ml-1 p-0 hover:bg-destructive/20"
-                                    onClick={() => setHpCostFilter(null)}
-                                >
-                                    {" "}
-                                    <X className="h-3 w-3" />{" "}
-                                </Button>
-                            </Badge>
-                        )}
-                        {categoryFilters.length > 0 && (
-                            <Badge variant="secondary" className="flex items-center gap-1">
-                                Categories ({categoryFilters.length})
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="h-4 w-4 ml-1 p-0 hover:bg-destructive/20"
-                                    onClick={() => setCategoryFilters([])}
-                                >
-                                    {" "}
-                                    <X className="h-3 w-3" />{" "}
-                                </Button>
-                            </Badge>
-                        )}
-                        {/* The main reset button is in the CardFooter now */}
-                        {/* <Button variant="ghost" size="sm" className="text-xs text-destructive hover:bg-destructive/10" onClick={resetFilters}> Clear all </Button> */}
-                    </div>
-                )}
+            {/* Active Filter Badges (Removed as count is shown in collapsible header) */}
+            {/* Add them back here if preferred */}
 
             {/* Results Count */}
             <div className="flex justify-end mb-4">
@@ -459,13 +418,13 @@ export default function CardsClientPage() {
             ) : viewMode === "grid" ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                     {filteredCards.map((item, index) => (
-                        <CardPreview key={item.card.getId() || index} card={item.card} count={item.count} /> // Use unique ID if available
+                        <CardPreview key={item.card?.getId?.() ?? index} card={item.card} count={item.count} />
                     ))}
                 </div>
             ) : (
                 <div className="space-y-4">
                     {filteredCards.map((item, index) => (
-                        <CardListItem key={item.card.getId() || index} card={item.card} count={item.count} /> // Use unique ID if available
+                        <CardListItem key={item.card?.getId?.() ?? index} card={item.card} count={item.count} />
                     ))}
                 </div>
             )}
