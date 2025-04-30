@@ -12,7 +12,7 @@ export default function Loading() {
                     <Skeleton className="h-4 w-48 mb-6" />
                 </div>
 
-                <Skeleton className="h-96 w-full mb-8 rounded-lg" />
+                {/* <Skeleton className="h-96 w-full mb-8 rounded-lg" /> */}
 
                 <div className="space-y-4 mb-12">
                     <Skeleton className="h-6 w-full" />
