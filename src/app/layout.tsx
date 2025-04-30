@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ThemeProvider>
                 <Analytics />
                 <SpeedInsights />
-                <Toaster richColors position="bottom-center" />
+                <Toaster richColors position="top-center" />
                 <ErrorHandler />
             </body>
         </html>
