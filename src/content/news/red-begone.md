@@ -36,6 +36,6 @@ This patch was highly requested by the community, who frankly seemed tired of th
 
 This measure is currently **experimental** and its permanence depends on sustained positive changes in server atmosphere and potential future behavioral adjustments (unlikely).
 
-Thank you for your understanding during this critical server operation. May your chats be witty and your likes be free from unsolicited "dislikes."
+Thank you for your understanding during this critical server operation. May your chats be witty and your likes be free from unsolicited "Reds."
 
 ---
