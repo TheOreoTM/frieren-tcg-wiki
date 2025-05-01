@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 };
 
 export default function NewsPage() {
-    const allArticles = getAllNewsArticles();
+    const allArticles = getAllNewsArticles().filter((article) => article.hidden !== true);
 
     if (allArticles.length === 0) {
         return (

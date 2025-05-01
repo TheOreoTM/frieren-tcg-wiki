@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { toast } from "sonner";
 
 const newsDirectory = path.join(process.cwd(), "src/content/news");
 
@@ -15,6 +14,7 @@ export interface NewsArticle {
     category: "Patch" | "Tournament" | "Balance" | "Community" | "Feature";
     image?: string;
     pageImage?: boolean;
+    hidden: boolean;
     tags: string[];
 }
 
@@ -41,6 +41,7 @@ export function getNewsArticleById(id: string): NewsArticle | undefined {
             date: data.date,
             author: data.author,
             category: data.category,
+            hidden: data.hidden === "true",
             image: data.image,
             tags: data.tags || [],
         };
@@ -69,18 +70,21 @@ export function getAllNewsArticles(): NewsArticle[] {
                 author: data.author,
                 category: data.category,
                 image: data.image,
+                hidden: data.hidden === "true",
                 tags: data.tags || [],
             };
         });
 
         // Sort posts by date
-        return allNewsData.sort((a, b) => {
-            if (a.date < b.date) {
-                return 1;
-            } else {
-                return -1;
-            }
-        });
+        return allNewsData
+            .filter((article) => article.hidden !== true)
+            .sort((a, b) => {
+                if (a.date < b.date) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            });
     } catch (error) {
         console.error("Error getting all news articles:", error);
         return [];
