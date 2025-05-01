@@ -22,7 +22,7 @@ Following extensive community feedback and performance monitoring, Protocol 001a
 
 -   **Target:** The **'Red Anomaly'**, an unpredictable entity known to manifest within chat threads.
 -   **Anomaly Characteristics (Bug Description):** The 'Red Anomaly' exhibited peculiar behavior, including:
-    -   **Unsolicited Negativity Module:** A core function causing the anomaly to "freely dislike" various topics, opinions, or even server emojis without apparent logical parameters.
+    -   **Unsolicited Negativity Module:** A core function causing the anomaly to cause "community dislike" in various topics, opinions, or even server emojis without apparent logical parameters.
     -   **Unfunny Joke Generator:** A sub-process prone to injecting low-humor or contextually inappropriate jokes into conversations, often resulting in silence or confused reactions from nearby users.
     -   **General Disruptive Presence:** Tendency to slightly but consistently lower overall chat morale and divert discussion into less productive (and less funny) avenues.
 -   **Mitigation Strategy:** Implemented a non-destructive quarantine protocol. The 'Red Anomaly' has been temporarily shunted to a isolated dimension (or maybe just a muted corner) to prevent its characteristics from affecting the main server population.
