@@ -2,6 +2,8 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { stilleDeck } from "../decks/stille";
 
+const STILLE_REFLECT_SCALE = 0.75;
+
 export const Stille: Character = {
     id: "stille",
     name: CharacterName.Stille,
@@ -26,12 +28,16 @@ export const Stille: Character = {
         abilityName: "High-speed Escape",
         abilityEffectString: `When the opponent attacks, roll a D100. 
         If the result is less than the character's SPD minus the opponent's SPD, ignore the attack.
-        Afterwards, attack the opponent with DMG equivalent to 1/2 * (opponent's ATK + opponent's move DMG).`,
+        Afterwards, attack the opponent with DMG equivalent to ${(
+            STILLE_REFLECT_SCALE * 100
+        ).toFixed()}% of (opponent's ATK + opponent's move DMG).`,
     },
-    subAbilities: [{
-        abilityName: "Birdwatching",
-        abilityEffectString: "Both characters don't have access to default card options (Discard/Wait).",
-    }],
+    subAbilities: [
+        {
+            abilityName: "Birdwatching",
+            abilityEffectString: "Both characters don't have access to default card options (Discard/Wait).",
+        },
+    ],
     relatedCharacters: [CharacterID.Frieren],
     additionalMetadata: {
         accessToDefaultCardOptions: true,

@@ -17,7 +17,7 @@ const a_FrierenBackMeUp = new Card({
     title: "Frieren! Back Me Up!",
     cardMetadata: { nature: Nature.Attack },
     description: ([dmg, oppDef]) =>
-        `Opponent's DEF-${oppDef} for 4 turns. Frieren attacks for ${dmg} DMG. For the next 4 turn ends, Frieren attacks for an additional ${dmg} DMG.`,
+        `Opponent's DEF-${oppDef} for 3 turns. Frieren attacks for ${dmg} DMG. For the next 3 turn ends, Frieren attacks for an additional ${dmg} DMG.`,
     emoji: CardEmoji.HIMMEL_CARD,
     effects: [3, 2],
     effectNames: ["DMG", "-Opp DEF"],
@@ -30,7 +30,7 @@ export const a_FrierenNow = new Card({
     cardMetadata: { nature: Nature.Attack },
     description: ([dmg]) => `DMG ${dmg}`,
     emoji: CardEmoji.FRIEREN_CARD,
-    effects: [12],
+    effects: [8],
     effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
     deck: "himmel",
