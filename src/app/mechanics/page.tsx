@@ -1,5 +1,20 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Sparkles, Swords, Shield, Flame, Zap, HelpCircle, ShieldPlus } from "lucide-react";
+import {
+    ArrowRight,
+    BookOpen,
+    Sparkles,
+    Swords,
+    Shield,
+    Flame,
+    Zap,
+    HelpCircle,
+    ShieldPlus,
+    BookA,
+    Users,
+    Link as LinkIcon,
+    HandHeart,
+    Bird,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllMechanics } from "@/lib/mechanics";
@@ -23,9 +38,19 @@ export const renderLucideIcon = (iconName?: string): JSX.Element => {
         case "bookopen":
             return <BookOpen {...iconProps} className="text-purple-500" />;
         case "sparkles":
-            return <Sparkles {...iconProps} className="text-blue-500" />;
+            return <Sparkles {...iconProps} className="text-cyan-500" />;
         case "shield-plus":
             return <ShieldPlus {...iconProps} className="text-green-500" />;
+        case "book-a":
+            return <BookA {...iconProps} className="text-violet-500" />;
+        case "users":
+            return <Users {...iconProps} className="text-blue-500" />;
+        case "chain":
+            return <LinkIcon {...iconProps} className="text-lime-500" />;
+        case "heart-plus":
+            return <HandHeart {...iconProps} className="text-red-500" />;
+        case "bird":
+            return <Bird {...iconProps} className="text-amber-600" />;
         default:
             return <HelpCircle {...iconProps} className="text-gray-500" />; // Fallback icon
     }

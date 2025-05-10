@@ -91,21 +91,21 @@ export default function WikiPage() {
                     <Link key={mechanic.overview?.id} href={`/mechanics/${mechanic.overview?.id}`}>
                         <Button variant="outline" className="w-full justify-start h-auto py-3">
                             {renderLucideIcon(mechanic.overview?.icon)}
-                            <div className="text-left">
+                            <div className="text-left overflow-hidden">
                                 <div className="font-medium">{mechanic.overview?.name}</div>
                                 <div className="text-xs text-muted-foreground">{mechanic.overview?.description}</div>
                             </div>
                         </Button>
                     </Link>
                 ))}
-                <Link href="/mechanics">
+                {/* <Link href="/mechanics">
                     <Button variant="outline" className="w-full justify-start h-auto py-3">
                         <div className="text-left">
                             <div className="font-medium">View All Mechanics</div>
                             <div className="text-xs text-muted-foreground">Complete mechanics guide</div>
                         </div>
                     </Button>
-                </Link>
+                </Link> */}
             </div>
 
             <h2 className="text-2xl font-bold mb-6">Strategy Guides</h2>
