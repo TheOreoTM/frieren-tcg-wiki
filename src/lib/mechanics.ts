@@ -11,6 +11,7 @@ export interface Mechanic {
     author: string;
     content: string;
     authorAvatar: string;
+    icon?: string;
 }
 
 export function getAllMechanics() {
@@ -38,7 +39,6 @@ export function getMechanicFiles(mechanic: string) {
         return [];
     }
 }
-
 export function getMechanicOverview(mechanic: string): Mechanic | undefined {
     try {
         const fullPath = path.join(mechanicsDirectory, `${mechanic}/overview.md`);
@@ -52,9 +52,10 @@ export function getMechanicOverview(mechanic: string): Mechanic | undefined {
             author: data.author,
             content,
             authorAvatar: data.authorAvatar,
+            icon: data.icon as string | undefined,
         };
     } catch (error) {
-        console.error(`Error reading mechanic ${mechanic}:`, error);
+        console.error(`Error reading mechanic overview for ${mechanic}:`, error);
         return undefined;
     }
 }
@@ -62,6 +63,7 @@ export function getMechanicOverview(mechanic: string): Mechanic | undefined {
 export function getMechanicRules(mechanic: string): Mechanic | undefined {
     try {
         const fullPath = path.join(mechanicsDirectory, `${mechanic}/rules.md`);
+        if (!fs.existsSync(fullPath)) return undefined;
         const fileContents = fs.readFileSync(fullPath, "utf8");
         const { data, content } = matter(fileContents);
 
@@ -72,8 +74,10 @@ export function getMechanicRules(mechanic: string): Mechanic | undefined {
             author: data.author,
             content,
             authorAvatar: data.authorAvatar,
+            icon: data.icon as string | undefined,
         };
     } catch (error) {
+        console.error(`Error reading mechanic rules for ${mechanic}:`, error);
         return undefined;
     }
 }
@@ -81,6 +85,7 @@ export function getMechanicRules(mechanic: string): Mechanic | undefined {
 export function getMechanicExamples(mechanic: string): Mechanic | undefined {
     try {
         const fullPath = path.join(mechanicsDirectory, `${mechanic}/examples.md`);
+        if (!fs.existsSync(fullPath)) return undefined; // Handle missing file
         const fileContents = fs.readFileSync(fullPath, "utf8");
         const { data, content } = matter(fileContents);
 
@@ -91,8 +96,10 @@ export function getMechanicExamples(mechanic: string): Mechanic | undefined {
             author: data.author,
             content,
             authorAvatar: data.authorAvatar,
+            icon: data.icon as string | undefined,
         };
     } catch (error) {
+        console.error(`Error reading mechanic examples for ${mechanic}:`, error); // Less verbose for missing files
         return undefined;
     }
 }

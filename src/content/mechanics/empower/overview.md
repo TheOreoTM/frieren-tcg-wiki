@@ -2,7 +2,7 @@
 id: "empower"
 name: "Empower System"
 description: "Increase effect of cards as the game goes on."
-icon: "sword"
+icon: "sparkles"
 author: "TCG Bot"
 authorAvatar: "/assets/tcg-bot-pfp.png"
 ---

@@ -2,6 +2,7 @@
 import ReactMarkdown from "react-markdown";
 import { cn } from "@/lib/utils";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 interface MarkdownContentProps {
     content: string;

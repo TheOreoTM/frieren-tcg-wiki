@@ -9,6 +9,7 @@ export const Denken: Character = {
     id: "denken",
     name: CharacterName.Denken,
     description: "A character who specialize in multi-hit and extreme aggression.",
+    overview: `Denken is a resilient brawler who excels in drawn-out fights. His core mechanic revolves around "Preserverance" stacks, allowing him to survive potentially lethal situations and continue fighting. His deck features a mix of direct attacks, multi-turn damage effects, and defensive options that change entirely when his HP is low, reflecting his enduring nature`,
     title: "The Relentless",
     type: CharacterType.Hero,
     cosmetic: {

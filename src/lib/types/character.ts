@@ -18,6 +18,7 @@ export type Character = {
     id: `${CharacterID}`;
     name: CharacterName;
     description: string;
+    overview?: string;
     title: string;
     type: CharacterType;
     cosmetic: CharacterCosmetic;

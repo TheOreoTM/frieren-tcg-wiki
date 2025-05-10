@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, Home, Menu, WalletCardsIcon as Cards, ScrollText, X, Users, Newspaper } from "lucide-react";
+import { BookOpen, Home, Menu, WalletCardsIcon as Cards, ScrollText, X, Users, Newspaper, Swords } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -28,6 +28,11 @@ const navItems = [
         name: "Mechanics",
         href: "/mechanics",
         icon: <ScrollText className="h-5 w-5" />,
+    },
+    {
+        name: "Combat",
+        href: "/combat",
+        icon: <Swords className="h-5 w-5" />,
     },
     {
         name: "Wiki",

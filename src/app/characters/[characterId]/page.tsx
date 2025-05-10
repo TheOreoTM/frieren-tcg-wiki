@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Characters } from "@/data/characters";
 import { Stat } from "@/lib/enums";
-import StyledDescription from "@/components/styled-description";
+import StyledText from "@/components/styled-text";
 import CardPreview from "@/components/card/card-preview";
 import type { Metadata, ResolvingMetadata } from "next";
 
@@ -150,29 +150,47 @@ export default async function CharacterPage({ params }: PageProps) {
                     </div>
 
                     <Tabs defaultValue="ability">
-                        <TabsList className="grid w-full grid-cols-2">
+                        <TabsList className="grid w-full grid-cols-3">
                             <TabsTrigger value="ability">Ability</TabsTrigger>
+                            <TabsTrigger value="overview">Overview</TabsTrigger>
                             <TabsTrigger value="strategy">Strategy</TabsTrigger>
                         </TabsList>
                         <TabsContent value="ability" className="p-4 bg-slate-50 dark:bg-slate-900 rounded-md mt-2">
                             <h2 className="text-lg md:text-xl font-bold">
-                                <StyledDescription text={character.ability.abilityName} />
+                                <StyledText text={character.ability.abilityName} />
                             </h2>
 
                             <div className="text-sm">
-                                <StyledDescription text={character.ability.abilityEffectString} />
+                                <StyledText text={character.ability.abilityEffectString} />
                             </div>
                             {character.subAbilities &&
                                 character.subAbilities.map((subAbility, i) => (
                                     <div key={i}>
                                         <h2 className="text-md md:text-md font-bold pt-2">
-                                            <StyledDescription text={character.subAbilities![i].abilityName} />
+                                            <StyledText text={character.subAbilities![i].abilityName} />
                                         </h2>
                                         <div className="text-sm font-mono">
-                                            <StyledDescription text={character.subAbilities![i].abilityEffectString} />
+                                            <StyledText text={character.subAbilities![i].abilityEffectString} />
                                         </div>
                                     </div>
                                 ))}
+                        </TabsContent>
+                        <TabsContent value="overview" className="p-4 bg-slate-50 dark:bg-slate-900 rounded-md mt-2">
+                            {character.overview ? (
+                                <StyledText text={character.overview} />
+                            ) : (
+                                <p>
+                                    No overview available for this character. You can contribute to the wiki by adding
+                                    an overview for this character on{" "}
+                                    <Link
+                                        className="text-blue-600 hover:underline"
+                                        href={`https://github.com/TheOreoTM/frieren-tcg-wiki/tree/main/src/data/characters/${character.id}.ts`}
+                                    >
+                                        GitHub
+                                    </Link>{" "}
+                                    or by contacting Oreo on Discord.
+                                </p>
+                            )}
                         </TabsContent>
                         <TabsContent value="strategy" className="p-4 bg-slate-50 dark:bg-slate-900 rounded-md mt-2">
                             <p>{"Card Strategy"}</p>
