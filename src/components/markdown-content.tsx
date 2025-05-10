@@ -2,7 +2,9 @@
 import ReactMarkdown from "react-markdown";
 import { cn } from "@/lib/utils";
 import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
+import "katex/dist/katex.min.css";
 
 interface MarkdownContentProps {
     content: string;
@@ -12,7 +14,8 @@ interface MarkdownContentProps {
 export default function MarkdownContent({ content, className }: MarkdownContentProps) {
     return (
         <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
             components={{
                 h1: ({ className, ...props }) => (
                     <h1 className={cn("text-3xl font-bold mt-8 mb-4", className)} {...props} />

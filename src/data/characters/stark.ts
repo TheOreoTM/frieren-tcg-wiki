@@ -6,6 +6,7 @@ export const Stark: Character = {
     id: "stark",
     name: CharacterName.Stark,
     description: "A brave bruiser whose damage relies on finding the courage to commit.",
+    overview: `Stark is a powerful attacker focused on dealing heavy damage with his axe. He has a "Resolve" mechanic that influences the cost and power of some of his attacks. His playstyle is aggressive and straightforward, aimed at overwhelming the opponent.`,
     type: CharacterType.Hero,
     title: "The Fearful Brave",
     cosmetic: {

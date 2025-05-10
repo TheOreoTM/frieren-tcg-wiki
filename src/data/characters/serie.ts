@@ -8,6 +8,7 @@ export const Serie: Character = {
     id: "serie",
     name: CharacterName.Serie,
     description: "An offensive powerhouse who comes with many risks.",
+    overview: `Serie is a versatile mage who utilizes a variety of spells. Her kit includes both offensive and utility options, allowing for flexible playstyles.`,
     type: CharacterType.Hero,
     title: "The Reckless Force",
     cosmetic: {

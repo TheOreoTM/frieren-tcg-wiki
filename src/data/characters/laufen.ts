@@ -6,6 +6,7 @@ export const Laufen: Character = {
     id: "laufen",
     name: CharacterName.Laufen,
     description: "A glass cannon unique for her ability to dodge incoming attacks and high speed.",
+    overview: `Laufen is a fast and evasive character who utilizes a unique "Graze" mechanic to reduce incoming damage. Her playstyle revolves around speed and damage mitigation.`,
     type: CharacterType.Hero,
     title: "The Elusive Striker",
     cosmetic: {

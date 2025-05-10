@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Sparkles, Swords, Shield, Flame, Zap, HelpCircle } from "lucide-react";
+import { ArrowRight, BookOpen, Sparkles, Swords, Shield, Flame, Zap, HelpCircle, ShieldPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllMechanics } from "@/lib/mechanics";
@@ -24,6 +24,8 @@ export const renderLucideIcon = (iconName?: string): JSX.Element => {
             return <BookOpen {...iconProps} className="text-purple-500" />;
         case "sparkles":
             return <Sparkles {...iconProps} className="text-blue-500" />;
+        case "shield-plus":
+            return <ShieldPlus {...iconProps} className="text-green-500" />;
         default:
             return <HelpCircle {...iconProps} className="text-gray-500" />; // Fallback icon
     }

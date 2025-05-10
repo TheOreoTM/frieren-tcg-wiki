@@ -8,6 +8,7 @@ export const Ubel: Character = {
     id: "ubel",
     name: CharacterName.Ubel,
     description: "A reckless slasher who trades consistency for overwhelming offense and risky plays.",
+    overview: `Ubel is a complex and versatile character with a unique "Empathy" mechanic. She can copy the opponent's signature moves and has attacks with varying levels of accuracy. Her playstyle is adaptable and unpredictable.`,
     title: "Reckless Blade",
     type: CharacterType.Hero,
     cosmetic: {

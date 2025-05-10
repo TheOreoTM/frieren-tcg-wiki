@@ -9,6 +9,7 @@ export const Fern: Character = {
     id: "fern",
     name: CharacterName.Fern,
     description: "A relentless force that empowers her cards with each turn.",
+    overview: `Fern is an offensive powerhouse with a unique card empowerment mechanic. She gains power over time as her cards randomly get stronger each turn. She also has the sub-abilities "Mana Suppression" and "Keen Eye" which hide her HP and allow her to see past the opponent's "Mana Suppression". Her playstyle is aggressive, focusing on maximizing the damage output of her empowered cards.`,
     title: "The Prodigy",
     type: CharacterType.Hero,
     cosmetic: {

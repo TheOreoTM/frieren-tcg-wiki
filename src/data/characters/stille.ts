@@ -8,6 +8,7 @@ export const Stille: Character = {
     id: "stille",
     name: CharacterName.Stille,
     description: "A fragile but untouchable trickster who punishes attackers for trying.",
+    overview: `Stille is a fast and elusive character who excels at hit-and-run tactics. She gains speed and evasion, making it difficult to hit and allowing it to strike quickly. Its playstyle is agile and aggressive.`,
     type: CharacterType.Other,
     title: "Just play laufen",
     cosmetic: {

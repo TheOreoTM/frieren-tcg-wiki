@@ -10,6 +10,7 @@ export const Frieren: Character = {
     name: CharacterName.Frieren,
     description:
         "A setup character who can dish out ridiculous damage that requires careful planning and calculations.",
+    overview: `Frieren is a strategic character who accumulates "Analysis" stacks to boost her attack damage. She excels at both sustained damage output and burst potential. Her playstyle involves building up stacks and then unleashing powerful attacks. She also has the sub-abilities "Mana Suppression" and "Flamme's Teachings" which hide her HP and allow her to see past the opponent's "Mana Suppression".`,
     type: CharacterType.Hero,
     title: "The Calculated Cataclysm",
     cosmetic: {

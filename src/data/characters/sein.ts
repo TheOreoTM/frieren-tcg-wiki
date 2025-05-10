@@ -9,6 +9,7 @@ export const Sein: Character = {
     id: "sein",
     name: CharacterName.Sein,
     description: "A passive support who steadily heals and can overheal to outlast opponents.",
+    overview: `Sein is a healing-focused character who gradually increases his healing output over the course of the game. He can heal past his maximum HP, making him very resilient. His playstyle is defensive and supportive, focused on sustaining himself and potentially allies.`,
     type: CharacterType.Hero,
     title: "The Corrupt Priest",
     cosmetic: {

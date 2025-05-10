@@ -232,6 +232,11 @@
 
 /* Custom styles*/
 
+.katex {
+  font-size: 1em !important;
+  font-family: inherit !important;
+}
+
 .glow-effect {
   animation: glow-animation 1.2s infinite alternate;
 }

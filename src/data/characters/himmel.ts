@@ -8,6 +8,7 @@ export const Himmel: Character = {
     id: "himmel",
     name: CharacterName.Himmel,
     description: "A versatile setup character with access to (too) many tools.",
+    overview: `Himmel is a support-oriented character who gains strength from the presence of other specific characters ("The Hero Party") as timed effects. His damage output increases based on how many of these characters are active. His playstyle is focused on synergy and timed effects.`,
     type: CharacterType.Hero,
     title: "The Setup Hero",
     cosmetic: {

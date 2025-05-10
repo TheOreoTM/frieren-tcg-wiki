@@ -8,6 +8,7 @@ export const Linie: Character = {
     id: "linie",
     name: CharacterName.Linie,
     description: "A damage-scaling characters who grows stronger with every consecutive strike.",
+    overview: `Linie is an aggressive character who builds up "Chain" stacks by attacking. Her damage output increases with each stack, encouraging consecutive attacks. Her playstyle is high-risk, high-reward, focusing on maintaining momentum.`,
     title: "The Chain Weaver",
     type: CharacterType.Demon,
     cosmetic: {

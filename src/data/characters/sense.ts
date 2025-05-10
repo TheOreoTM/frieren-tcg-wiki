@@ -10,6 +10,7 @@ export const Sense: Character = {
     id: "sense",
     name: CharacterName.Sense,
     description: " A defensive character with a passive win condition, but still fully capable of fighting back.",
+    overview: `Sense has a unique win condition based on accumulating "Observation" stacks. She gains stacks by not attacking and loses them by attacking. She can also skip turns using "Tea Time Snacks". Her playstyle is control-oriented, focused on stalling and disrupting the opponent.`,
     type: CharacterType.Hero,
     title: "The Peaceful Victor",
     cosmetic: {
