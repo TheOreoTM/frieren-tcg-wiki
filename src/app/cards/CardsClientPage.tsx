@@ -65,7 +65,7 @@ export default function CardsClientPage() {
     const [filteredCards, setFilteredCards] = useState(allCards);
     const [activeFilters, setActiveFilters] = useState(0);
     const [viewMode, setViewMode] = useState<"grid" | "list">("list");
-    const [isFilterOpen, setIsFilterOpen] = useState(false); // State for Collapsible
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     // --- Helper Functions ---
 
@@ -88,7 +88,6 @@ export default function CardsClientPage() {
 
     // --- Effects ---
 
-    // Apply filters whenever filter states change (NO CHANGE IN LOGIC)
     useEffect(() => {
         let result = [...allCards];
 
@@ -178,9 +177,8 @@ export default function CardsClientPage() {
         hpCostFilterComparison,
         allCards,
         isFilterOpen,
-    ]); // Added allCards and isFilterOpen to dependency array
+    ]);
 
-    // --- Render ---
     return (
         <div className="container mx-auto px-4 py-12">
             {/* Header */}

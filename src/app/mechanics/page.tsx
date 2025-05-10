@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { getAllMechanics } from "@/lib/mechanics";
 import type { JSX } from "react";
 
-const renderLucideIcon = (iconName?: string): JSX.Element => {
+export const renderLucideIcon = (iconName?: string): JSX.Element => {
     const iconProps = { className: "h-6 w-6" };
 
     switch (iconName?.toLowerCase()) {

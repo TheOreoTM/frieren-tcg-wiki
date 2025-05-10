@@ -2,9 +2,9 @@ import Link from "next/link";
 import { BookOpen, WalletCardsIcon as Cards, FileText, Search, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { FrierenTCGWiki } from "@/components/frieren-tcg-wiki";
-import { getAllMechanics, getMechanicFiles } from "@/lib/mechanics";
+import { getAllMechanics } from "@/lib/mechanics";
+import { renderLucideIcon } from "../mechanics/page";
 
 export default function WikiPage() {
     const mechanics = getAllMechanics();
@@ -90,7 +90,7 @@ export default function WikiPage() {
                 {mechanics.map((mechanic) => (
                     <Link key={mechanic.overview?.id} href={`/mechanics/${mechanic.overview?.id}`}>
                         <Button variant="outline" className="w-full justify-start h-auto py-3">
-                            <Sparkles className="mr-2 h-4 w-4 text-blue-500" />
+                            {renderLucideIcon(mechanic.overview?.icon)}
                             <div className="text-left">
                                 <div className="font-medium">{mechanic.overview?.name}</div>
                                 <div className="text-xs text-muted-foreground">{mechanic.overview?.description}</div>
@@ -110,7 +110,7 @@ export default function WikiPage() {
 
             <h2 className="text-2xl font-bold mb-6">Strategy Guides</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <Link href="/wiki/strategy/combat">
+                <Link href="/combat">
                     <Card className="h-full hover:shadow-lg transition-shadow">
                         <CardHeader>
                             <CardTitle>Combat Guide</CardTitle>

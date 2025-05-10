@@ -98,14 +98,15 @@ export function Navbar() {
             {/* Mobile menu */}
             {mobileMenuOpen && (
                 <div className="md:hidden border-t">
-                    <div className="container mx-auto px-4 py-3 space-y-1">
+                    <div className="container mx-auto px-4 py-3 space-y-4">
+                        {" "}
                         {navItems.map((item) => (
                             <Link key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)}>
                                 <Button
                                     variant="ghost"
                                     className={cn(
                                         "w-full justify-start gap-2",
-                                        pathname.split("/")[0] === item.href && "bg-accent text-accent-foreground"
+                                        currentPath === item.href && "bg-accent text-accent-foreground"
                                     )}
                                 >
                                     {item.icon}
