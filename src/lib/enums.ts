@@ -134,6 +134,8 @@ export enum UbelHit {
 
 export const EXTERNAL_LINKS = {
     DISCORD: "https://discord.gg/YQ6VMuDCpA",
+    WIKI_GITHUB: "https://github.com/TheOreoTm/frieren-tcg-wiki",
+    TCG_GITHUB: "https://github.com/HxHexa/frieren-tcg",
     TOURNAMENTS: {
         APRIL_2025: "https://challonge.com/ahgu6yk7",
     },
