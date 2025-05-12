@@ -26,4 +26,3 @@ author: "Oreo ™️"
 
 5.  **Interaction with other effects:**
     * Effects that modify attack accuracy (both positively and negatively) will apply to Ubel's attacks with variable accuracy.
-    * Effects that prevent the use of special abilities might also prevent Ubel

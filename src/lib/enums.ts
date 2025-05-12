@@ -138,5 +138,6 @@ export const EXTERNAL_LINKS = {
     TCG_GITHUB: "https://github.com/HxHexa/frieren-tcg",
     TOURNAMENTS: {
         APRIL_2025: "https://challonge.com/ahgu6yk7",
+        MAY_2025: "https://challonge.com/gwoum11l",
     },
 };

@@ -22,6 +22,12 @@ const tournaments: Tournament[] = [
         winner: "Mathz",
         externalLink: EXTERNAL_LINKS.TOURNAMENTS.APRIL_2025,
     },
+    {
+        id: "may-2025",
+        name: "May TCG Tournament 2025",
+        status: "upcoming",
+        externalLink: EXTERNAL_LINKS.TOURNAMENTS.MAY_2025,
+    },
 ];
 
 function getStatusBadge(status: TournamentStatus) {
