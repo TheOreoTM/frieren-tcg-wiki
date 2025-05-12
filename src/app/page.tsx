@@ -3,7 +3,7 @@ import { ArrowRight, BookOpen, WalletCardsIcon as Cards, ScrollText, Sparkles } 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Metadata } from "next";
-import { getLatestNews } from "@/lib/news";
+import { getAllNews } from "@/lib/content/news";
 
 export const metadata: Metadata = {
     openGraph: {
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Home() {
-    const latestNews = getLatestNews(5);
+export default async function Home() {
+    const news = await getAllNews();
 
     return (
         <div className="container mx-auto px-4 py-12">
@@ -123,7 +123,7 @@ export default function Home() {
                     </Link>
                 </div>
                 <ul>
-                    {latestNews.map((article) => (
+                    {news.slice(0, 5).map((article) => (
                         <Link href={`/news/${article.id}`} key={article.id}>
                             <li className="flex items-start bg-accent/20 p-2.5 rounded-2xl hover:bg-secondary/60 transition-colors my-2">
                                 <div className="flex flex-row gap-2 items-center">

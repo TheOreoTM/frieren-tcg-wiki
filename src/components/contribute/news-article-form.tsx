@@ -13,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { TagInput } from "@/components/ui/tag-input";
 import MarkdownContent from "@/components/markdown-content";
+import { toast } from "sonner";
 
 const formSchema = z.object({
     title: z.string().min(5, {
@@ -71,6 +72,7 @@ export function NewsArticleForm() {
             if (response.ok) {
                 router.push("/contribute/success?type=news");
             } else {
+                toast.error(`Failed to submit news article`);
                 console.error("Failed to submit news article");
             }
         } catch (error) {

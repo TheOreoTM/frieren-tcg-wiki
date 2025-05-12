@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import slugify from "slugify";
 import { z } from "zod";
 
 const mechanicSchema = z.object({
@@ -25,15 +26,25 @@ export async function POST(req: Request) {
         const body = await req.json();
         const validatedData = mechanicSchema.parse(body);
 
-        const slug = validatedData.title
-            .toLowerCase()
-            .replace(/[^\w\s]/gi, "")
-            .replace(/\s+/g, "-");
+        const slug = slugify(validatedData.title, {
+            lower: true,
+            strict: true,
+        });
+
+        const existing = await prisma.mechanic.findFirst({
+            where: {
+                slug: slug,
+            },
+        });
+
+        if (existing) {
+            return NextResponse.json({ error: "Slug is already taken" }, { status: 400 });
+        }
 
         const mechanic = await prisma.mechanic.create({
             data: {
                 title: validatedData.title,
-                slug: `${slug}-${Date.now()}`,
+                slug: slug,
                 description: validatedData.description,
                 icon: validatedData.icon,
                 overview: validatedData.overview,

@@ -28,6 +28,7 @@ import {
     Users,
     Zap,
 } from "lucide-react";
+import { toast } from "sonner";
 
 const formSchema = z.object({
     name: z.string().min(3, {
@@ -100,6 +101,7 @@ export function MechanicForm() {
             if (response.ok) {
                 router.push("/contribute/success?type=mechanic");
             } else {
+                toast.error(`Failed to submit mechanic`);
                 console.error("Failed to submit mechanic");
             }
         } catch (error) {

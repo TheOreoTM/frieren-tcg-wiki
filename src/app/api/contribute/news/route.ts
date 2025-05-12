@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
+import slugify from "slugify";
 
 const newsSchema = z.object({
     title: z.string().min(5),
@@ -24,15 +25,25 @@ export async function POST(req: Request) {
         const body = await req.json();
         const validatedData = newsSchema.parse(body);
 
-        const slug = validatedData.title
-            .toLowerCase()
-            .replace(/[^\w\s]/gi, "")
-            .replace(/\s+/g, "-");
+        const slug = slugify(validatedData.title, {
+            lower: true,
+            strict: true,
+        });
+
+        const existing = await prisma.news.findFirst({
+            where: {
+                slug: slug,
+            },
+        });
+
+        if (existing) {
+            return NextResponse.json({ error: "Slug is already taken" }, { status: 400 });
+        }
 
         const news = await prisma.news.create({
             data: {
                 title: validatedData.title,
-                slug: `${slug}-${Date.now()}`,
+                slug: slug,
                 excerpt: validatedData.excerpt,
                 content: validatedData.content,
                 tags: validatedData.tags,

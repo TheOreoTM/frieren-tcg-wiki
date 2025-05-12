@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDistanceToNow } from "date-fns";
-import { getAllNews, getLatestNews } from "@/lib/content/news";
+import { convertCategoryToString, getAllNews, getLatestNews } from "@/lib/content/news";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { getCategoryColor } from "@/lib/news";
+import { getCategoryColor } from "@/lib/content/news";
 import { Calendar, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -111,7 +111,7 @@ export default async function NewsPage() {
                     <TabsTrigger value="all">All News</TabsTrigger>
                     {categories.map((category) => (
                         <TabsTrigger key={category} value={category}>
-                            {category}
+                            {convertCategoryToString(category)}
                         </TabsTrigger>
                     ))}
                 </TabsList>
@@ -130,7 +130,7 @@ export default async function NewsPage() {
                                         <div className="absolute top-0 left-0 right-0 h-32 rounded-t-lg bg-gradient-to-b from-black/70 to-transparent pointer-events-none" />
                                         <div className="absolute top-2 left-2">
                                             <Badge className={getCategoryColor(article.category)}>
-                                                {article.category}
+                                                {convertCategoryToString(article.category)}
                                             </Badge>
                                         </div>
                                     </div>

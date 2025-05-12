@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { prisma } from "@/lib/prisma";
 import type { NewsArticle } from "@/lib/types/content";
+import { NewsCategory } from "@prisma/client";
 
 const newsDirectory = path.join(process.cwd(), "src/content/news");
 
@@ -140,4 +141,38 @@ export async function getLatestNews(limit: number) {
     });
 
     return dbNews;
+}
+
+export function convertCategoryToString(category: NewsCategory) {
+    switch (category) {
+        case NewsCategory.TOURNAMENT:
+            return "Tournament";
+        case NewsCategory.BALANCE:
+            return "Balance";
+        case NewsCategory.COMMUNITY:
+            return "Community";
+        case NewsCategory.FEATURE:
+            return "Feature";
+        case NewsCategory.PATCH:
+            return "Patch Note";
+        default:
+            return "News";
+    }
+}
+
+export function getCategoryColor(category: NewsCategory): string {
+    switch (category) {
+        case NewsCategory.PATCH:
+            return "bg-purple-100 text-purple-800 hover:bg-purple-200";
+        case NewsCategory.TOURNAMENT:
+            return "bg-blue-100 text-blue-800 hover:bg-blue-200";
+        case NewsCategory.BALANCE:
+            return "bg-amber-100 text-amber-800 hover:bg-amber-200";
+        case NewsCategory.COMMUNITY:
+            return "bg-green-100 text-green-800 hover:bg-green-200";
+        case NewsCategory.FEATURE:
+            return "bg-red-100 text-red-800 hover:bg-red-200";
+        default:
+            return "bg-gray-100 text-gray-800 hover:bg-gray-200";
+    }
 }

@@ -15,6 +15,7 @@ import { TagInput } from "@/components/ui/tag-input";
 import MarkdownContent from "@/components/markdown-content";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Characters } from "@/data/characters";
+import { toast } from "sonner";
 
 const characters = Array.from(Characters.values());
 const formSchema = z.object({
@@ -64,6 +65,7 @@ export function StrategyGuideForm() {
             if (response.ok) {
                 router.push("/contribute/success?type=strategy");
             } else {
+                toast.error(`Failed to submit strategy guide`);
                 console.error("Failed to submit strategy guide");
             }
         } catch (error) {

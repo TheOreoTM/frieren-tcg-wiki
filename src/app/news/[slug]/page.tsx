@@ -1,13 +1,18 @@
 import { notFound, redirect } from "next/navigation";
 import MarkdownContent from "@/components/markdown-content";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { formatDistanceToNow } from "date-fns";
 import { Badge } from "@/components/ui/badge";
-import { getNewsBySlug, getAllNews, getLatestNews } from "@/lib/content/news";
+import {
+    getNewsBySlug,
+    getAllNews,
+    getLatestNews,
+    getCategoryColor,
+    convertCategoryToString,
+} from "@/lib/content/news";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, User } from "lucide-react";
-import { getCategoryColor } from "@/lib/news";
 import Image from "next/image";
 
 export async function generateStaticParams() {
@@ -40,7 +45,9 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
 
             <div className="max-w-4xl mx-auto">
                 <div className="mb-6">
-                    <Badge className={getCategoryColor(article.category)}>{article.category}</Badge>
+                    <Badge className={getCategoryColor(article.category)}>
+                        {convertCategoryToString(article.category)}
+                    </Badge>
                     <h1 className="text-3xl md:text-4xl font-bold mt-2 mb-4">{article.title}</h1>
 
                     <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
