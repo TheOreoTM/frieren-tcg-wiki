@@ -13,8 +13,9 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function MechanicPage({ params }: { params: { slug: string } }) {
-    const mechanic = await getMechanicBySlug(params.slug);
+export default async function MechanicPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const mechanic = await getMechanicBySlug(slug);
 
     if (!mechanic) {
         notFound();
@@ -31,7 +32,7 @@ export default async function MechanicPage({ params }: { params: { slug: string 
                             <MechanicIcon className="h-6 w-6 text-primary" />
                         </div>
                         <div>
-                            <CardTitle className="text-2xl">{mechanic.name}</CardTitle>
+                            <CardTitle className="text-2xl">{mechanic.title}</CardTitle>
                             <CardDescription>{mechanic.description}</CardDescription>
                         </div>
                     </div>

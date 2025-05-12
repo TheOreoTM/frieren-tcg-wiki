@@ -5,7 +5,7 @@ export default async function MechanicsPage() {
     const mechanics = await getAllMechanics();
 
     const mechanicsData = mechanics.map((mechanic) => ({
-        name: mechanic.name,
+        title: mechanic.title,
         slug: mechanic.slug,
         description: mechanic.description,
         icon: mechanic.icon,

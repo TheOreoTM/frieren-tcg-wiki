@@ -18,7 +18,7 @@ export async function getAllMechanics(includeUnpublished = false) {
             },
         },
         orderBy: {
-            name: "asc",
+            title: "asc",
         },
     });
 
@@ -54,7 +54,6 @@ export async function getAllMechanics(includeUnpublished = false) {
                     id: slug,
                     slug,
                     title: overviewData.name || slug,
-                    name: overviewData.name || slug,
                     description: overviewData.description || "",
                     icon: overviewData.icon || "help-circle",
                     overview: overviewText,

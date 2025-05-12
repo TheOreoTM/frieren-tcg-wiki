@@ -18,8 +18,9 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function NewsArticlePage({ params }: { params: { slug: string } }) {
-    const article = await getNewsBySlug(params.slug);
+export default async function NewsArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const article = await getNewsBySlug(slug);
 
     if (!article) {
         return redirect("/news?error=ArticleNotFound");

@@ -14,6 +14,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import MarkdownContent from "@/components/markdown-content";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+    Bird,
+    BookA,
+    BookOpen,
+    Flame,
+    HandHeart,
+    LinkIcon,
+    Shield,
+    ShieldPlus,
+    Sparkles,
+    Swords,
+    Users,
+    Zap,
+} from "lucide-react";
 
 const formSchema = z.object({
     name: z.string().min(3, {
@@ -35,17 +49,19 @@ const formSchema = z.object({
 });
 
 const iconOptions = [
-    { value: "mana", label: "Mana" },
-    { value: "combat", label: "Combat" },
-    { value: "spell", label: "Spell" },
-    { value: "element", label: "Element" },
-    { value: "hero", label: "Hero" },
-    { value: "analysis", label: "Analysis" },
-    { value: "resolve", label: "Resolve" },
-    { value: "nature", label: "Nature" },
-    { value: "custom", label: "Custom" },
+    { value: "sparkles", label: "Sparkles", icon: <Sparkles className="h-4 w-4" /> },
+    { value: "swords", label: "Swords", icon: <Swords className="h-4 w-4" /> },
+    { value: "zap", label: "Zap", icon: <Zap className="h-4 w-4" /> },
+    { value: "flame", label: "Flame", icon: <Flame className="h-4 w-4" /> },
+    { value: "shield", label: "Shield", icon: <Shield className="h-4 w-4" /> },
+    { value: "bookopen", label: "Book Open", icon: <BookOpen className="h-4 w-4" /> },
+    { value: "shield-plus", label: "Shield Plus", icon: <ShieldPlus className="h-4 w-4" /> },
+    { value: "book-a", label: "Book A", icon: <BookA className="h-4 w-4" /> },
+    { value: "users", label: "Users", icon: <Users className="h-4 w-4" /> },
+    { value: "chain", label: "Chain", icon: <LinkIcon className="h-4 w-4" /> },
+    { value: "heart-plus", label: "Heart Plus", icon: <HandHeart className="h-4 w-4" /> },
+    { value: "bird", label: "Bird", icon: <Bird className="h-4 w-4" /> },
 ];
-
 export function MechanicForm() {
     const { data: session } = useSession();
     const router = useRouter();
@@ -76,6 +92,7 @@ export function MechanicForm() {
                 },
                 body: JSON.stringify({
                     ...values,
+                    title: values.name,
                     authorId: session?.user?.id,
                 }),
             });
@@ -122,13 +139,16 @@ export function MechanicForm() {
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                             <FormControl>
                                                 <SelectTrigger>
-                                                    <SelectValue placeholder="Select an icon type" />
+                                                    <SelectValue placeholder="Select an icon" />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                {iconOptions.map((option) => (
-                                                    <SelectItem key={option.value} value={option.value}>
-                                                        {option.label}
+                                                {iconOptions.map((icon) => (
+                                                    <SelectItem key={icon.value} value={icon.value}>
+                                                        <div className="flex items-center gap-2">
+                                                            {icon.icon}
+                                                            <span>{icon.label}</span>
+                                                        </div>
                                                     </SelectItem>
                                                 ))}
                                             </SelectContent>

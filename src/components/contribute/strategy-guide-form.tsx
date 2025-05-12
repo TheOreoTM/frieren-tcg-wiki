@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,7 +17,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Characters } from "@/data/characters";
 
 const characters = Array.from(Characters.values());
-
 const formSchema = z.object({
     title: z.string().min(5, {
         message: "Title must be at least 5 characters.",
@@ -88,7 +87,9 @@ export function StrategyGuideForm() {
                                     <FormControl>
                                         <Input placeholder="Enter strategy guide title" {...field} />
                                     </FormControl>
-                                    <FormDescription>A descriptive title for your strategy guide</FormDescription>
+                                    <div className="text-muted-foreground text-sm">
+                                        A descriptive title for your strategy guide
+                                    </div>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -114,9 +115,9 @@ export function StrategyGuideForm() {
                                             ))}
                                         </SelectContent>
                                     </Select>
-                                    <FormDescription>
+                                    <div className="text-muted-foreground text-sm">
                                         If this guide is for a specific character, select them here
-                                    </FormDescription>
+                                    </div>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -157,16 +158,16 @@ export function StrategyGuideForm() {
                                             />
                                         </FormControl>
                                     )}
-                                    <FormDescription>
+                                    <div className="text-muted-foreground text-sm">
                                         You can use Markdown for formatting. Consider including sections like:
-                                        <ul className="list-disc pl-5 mt-2">
-                                            <li>Overview of the strategy</li>
-                                            <li>Key cards to use</li>
-                                            <li>Combos and synergies</li>
-                                            <li>Matchup advice</li>
-                                            <li>Tips and tricks</li>
-                                        </ul>
-                                    </FormDescription>
+                                    </div>
+                                    <ul className="list-disc pl-5 mt-2 text-muted-foreground text-sm">
+                                        <li>Overview of the strategy</li>
+                                        <li>Key cards to use</li>
+                                        <li>Combos and synergies</li>
+                                        <li>Matchup advice</li>
+                                        <li>Tips and tricks</li>
+                                    </ul>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -185,9 +186,9 @@ export function StrategyGuideForm() {
                                             setTags={field.onChange}
                                         />
                                     </FormControl>
-                                    <FormDescription>
+                                    <div className="text-muted-foreground text-sm">
                                         Add relevant tags like "beginner", "advanced", "combo", etc.
-                                    </FormDescription>
+                                    </div>
                                     <FormMessage />
                                 </FormItem>
                             )}

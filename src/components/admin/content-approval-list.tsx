@@ -99,7 +99,7 @@ export function ContentApprovalList({ items, contentType, renderPreview }: Conte
         if (contentType === "news" || contentType === "strategies") {
             return item.title;
         } else if (contentType === "mechanics") {
-            return (item as Mechanic).name;
+            return (item as Mechanic).title;
         }
         return "Untitled";
     };

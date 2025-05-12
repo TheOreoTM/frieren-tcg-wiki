@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
 const mechanicSchema = z.object({
-    name: z.string().min(3),
+    title: z.string().min(3),
     description: z.string().min(10),
     icon: z.string(),
     overview: z.string().min(50),
@@ -25,14 +25,14 @@ export async function POST(req: Request) {
         const body = await req.json();
         const validatedData = mechanicSchema.parse(body);
 
-        const slug = validatedData.name
+        const slug = validatedData.title
             .toLowerCase()
             .replace(/[^\w\s]/gi, "")
             .replace(/\s+/g, "-");
 
         const mechanic = await prisma.mechanic.create({
             data: {
-                name: validatedData.name,
+                title: validatedData.title,
                 slug: `${slug}-${Date.now()}`,
                 description: validatedData.description,
                 icon: validatedData.icon,

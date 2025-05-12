@@ -24,7 +24,6 @@ export interface NewsArticle extends BaseContent {
 }
 
 export interface Mechanic extends BaseContent {
-    name: string;
     description: string;
     icon: string;
     overview: string;

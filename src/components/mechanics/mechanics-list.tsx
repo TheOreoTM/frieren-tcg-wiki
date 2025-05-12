@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { getMechanicIcon } from "@/lib/utils";
 
 interface Mechanic {
-    name: string;
+    title: string;
     slug: string;
     description: string;
     icon: string;
@@ -29,7 +29,7 @@ export function MechanicsList({ mechanics }: MechanicsListProps) {
                                     <div className="bg-primary/10 p-2 rounded-full">
                                         <MechanicIcon className="h-5 w-5 text-primary" />
                                     </div>
-                                    <CardTitle>{mechanic.name}</CardTitle>
+                                    <CardTitle>{mechanic.title}</CardTitle>
                                 </div>
                             </CardHeader>
                             <CardContent>

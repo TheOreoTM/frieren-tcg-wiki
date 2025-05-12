@@ -93,7 +93,6 @@ model News {
 model Mechanic {
     id          String   @id @default(cuid())
     title       String
-    name        String
     slug        String   @unique
     description String
     icon        String
