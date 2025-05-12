@@ -356,7 +356,7 @@ export default function GettingStartedPage() {
                                     the discord.
                                 </p>
                                 <div className="flex justify-end">
-                                    <Link href="/wiki/tournaments">
+                                    <Link href="/tournaments">
                                         <Button variant="outline" size="sm">
                                             Find Events
                                         </Button>
@@ -372,7 +372,7 @@ export default function GettingStartedPage() {
                                     gameplay.
                                 </p>
                                 <div className="flex justify-end">
-                                    <Link href="/wiki/strategy">
+                                    <Link href="/combat">
                                         <Button variant="outline" size="sm">
                                             Strategy Guides
                                         </Button>

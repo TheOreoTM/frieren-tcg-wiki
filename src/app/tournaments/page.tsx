@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { EXTERNAL_LINKS } from "@/lib/enums";
+import { cn } from "@/lib/utils";
 
 type TournamentStatus = "ongoing" | "upcoming" | "ended";
 
@@ -60,15 +61,16 @@ export default function TournamentsPage() {
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            {tournament.status === "ended" && (
-                                <>
-                                    {tournament.winner && (
-                                        <p className="text-sm text-muted-foreground">
-                                            Winner: <span className="font-semibold">{tournament.winner}</span>
-                                        </p>
-                                    )}
-                                </>
-                            )}
+                            <p className="text-sm text-muted-foreground">
+                                Winner:{" "}
+                                <span
+                                    className={cn("font-semibold", {
+                                        italic: !tournament.winner,
+                                    })}
+                                >
+                                    {tournament.winner ?? "TBA"}
+                                </span>
+                            </p>
                             <div className="flex flex-row gap-4">
                                 {tournament.newsUrl && (
                                     <Link href={tournament.newsUrl} className="text-sm text-blue-600 hover:underline">
