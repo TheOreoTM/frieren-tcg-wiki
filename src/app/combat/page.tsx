@@ -47,7 +47,7 @@ export default function CombatPage() {
                         const character = characters.find((c) => c.name === (strategy.character as CharacterName));
                         console.log(strategy.character);
                         return (
-                            <Link href={`/combat/${strategy.id}`} key={strategy.id}>
+                            <Link href={`/strategies/${strategy.id}`} key={strategy.id}>
                                 <Card className="h-full hover:shadow-lg transition-shadow">
                                     <div className="relative aspect-video">
                                         <Image

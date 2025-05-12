@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Github, FileText } from "lucide-react";
+import { Github, FileText, Edit } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/enums";
 import { DiscordIcon } from "./svg/Discord";
 
-export default function Footer() {
+function Footer() {
     return (
         <footer className="py-8 px-4 mt-12 border-t border-primary/10 bg-background/60 backdrop-blur-sm">
             <div className="container mx-auto">
@@ -44,6 +44,13 @@ export default function Footer() {
                             <FileText className="h-4 w-4" />
                             <span className="hidden md:inline">Contribute</span>
                         </Link>
+                        <Link
+                            href="/contribute"
+                            className="flex items-center gap-1 hover:text-primary transition-colors"
+                        >
+                            <Edit className="h-4 w-4" />
+                            <span className="hidden md:inline">Contribute</span>
+                        </Link>
                     </div>
                 </div>
 
@@ -59,3 +66,5 @@ export default function Footer() {
         </footer>
     );
 }
+
+export { Footer };

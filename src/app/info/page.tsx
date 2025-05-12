@@ -260,7 +260,9 @@ This mechanic encourages aggressive play and creates a risk/reward dynamic where
                     <h3 className="text-xl font-semibold mb-4">File Structure</h3>
                     <p className="mb-4">
                         Combat strategies are stored as Markdown files in the{" "}
-                        <code className="bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded">src/content/combat</code>{" "}
+                        <code className="bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded">
+                            src/content/strategies
+                        </code>{" "}
                         directory.
                     </p>
                     <p className="mb-4">

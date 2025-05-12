@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { FrierenTCGWiki } from "@/components/frieren-tcg-wiki";
 import { getAllMechanics } from "@/lib/mechanics";
-import { renderLucideIcon } from "../mechanics/page";
+import { getMechanicIcon } from "@/lib/utils";
 
 export default function WikiPage() {
     const mechanics = getAllMechanics();
@@ -90,7 +90,7 @@ export default function WikiPage() {
                 {mechanics.map((mechanic) => (
                     <Link key={mechanic.overview?.id} href={`/mechanics/${mechanic.overview?.id}`}>
                         <Button variant="outline" className="w-full justify-start h-auto py-3">
-                            {renderLucideIcon(mechanic.overview?.icon)}
+                            {getMechanicIcon(mechanic.overview!.icon!)}
                             <div className="text-left overflow-hidden">
                                 <div className="font-medium">{mechanic.overview?.name}</div>
                                 <div className="text-xs text-muted-foreground">{mechanic.overview?.description}</div>
@@ -110,7 +110,7 @@ export default function WikiPage() {
 
             <h2 className="text-2xl font-bold mb-6">Strategy Guides</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <Link href="/combat">
+                <Link href="/strategies">
                     <Card className="h-full hover:shadow-lg transition-shadow">
                         <CardHeader>
                             <CardTitle>Combat Guide</CardTitle>

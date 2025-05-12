@@ -372,7 +372,7 @@ export default function GettingStartedPage() {
                                     gameplay.
                                 </p>
                                 <div className="flex justify-end">
-                                    <Link href="/combat">
+                                    <Link href="/strategies">
                                         <Button variant="outline" size="sm">
                                             Strategy Guides
                                         </Button>

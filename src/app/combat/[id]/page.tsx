@@ -57,7 +57,7 @@ export default async function CombatStrategyPage({ params }: PageProps) {
     return (
         <div className="container mx-auto px-4 py-12">
             <div className="mb-6">
-                <Link href="/combat">
+                <Link href="/strategies">
                     <Button variant="ghost" className="pl-0">
                         <ArrowLeft className="mr-2 h-4 w-4" /> Back to Combat Strategies
                     </Button>

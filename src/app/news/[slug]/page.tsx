@@ -1,68 +1,31 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowLeft, Calendar, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { getNewsArticleById, getLatestNews, getCategoryColor } from "../../../lib/news";
+import { notFound, redirect } from "next/navigation";
 import MarkdownContent from "@/components/markdown-content";
-import type { Metadata, ResolvingMetadata } from "next";
-import { formatDate } from "@/lib/utils";
-import { redirect } from "next/navigation";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { formatDistanceToNow } from "date-fns";
+import { Badge } from "@/components/ui/badge";
+import { getNewsBySlug, getAllNews, getLatestNews } from "@/lib/content/news";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Calendar, User } from "lucide-react";
+import { getCategoryColor } from "@/lib/news";
+import Image from "next/image";
 
-export async function generateMetadata(
-    { params }: { params: Promise<{ id: string }> },
-    parent: ResolvingMetadata
-): Promise<Metadata> {
-    const { id } = await params;
-    const article = getNewsArticleById(id);
+export async function generateStaticParams() {
+    const news = await getAllNews();
 
-    if (!article) {
-        return {
-            title: "Article Not Found",
-            description: "The requested news article could not be found",
-        };
-    }
-
-    return {
-        title: `${article.title}`,
-        description: article.excerpt,
-        openGraph: {
-            title: article.title,
-            description: article.excerpt,
-            type: "article",
-            publishedTime: article.date,
-            authors: [article.author],
-            tags: article.tags,
-            // images: [
-            //     {
-            //         url: article.image || "/placeholder.svg",
-            //         width: 1200,
-            //         height: 630,
-            //         alt: article.title,
-            //     },
-            // ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title: article.title,
-            description: article.excerpt,
-            images: [article.image || "/placeholder.svg"],
-        },
-    };
+    return news.map((article) => ({
+        slug: article.slug,
+    }));
 }
 
-export default async function NewsArticlePage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = await params;
-    const article = getNewsArticleById(id);
+export default async function NewsArticlePage({ params }: { params: { slug: string } }) {
+    const article = await getNewsBySlug(params.slug);
 
     if (!article) {
         return redirect("/news?error=ArticleNotFound");
     }
 
-    const relatedArticles = getLatestNews(6)
-        .filter((a) => a.id !== article.id)
-        .slice(0, 3);
+    const relatedArticles = (await getLatestNews(6)).filter((a) => a.id !== article.id).slice(0, 3);
 
     return (
         <div className="container mx-auto px-4 py-12">
@@ -82,18 +45,18 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ id
                     <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
                         <div className="flex items-center">
                             <Calendar className="h-4 w-4 mr-1" />
-                            {formatDate(article.date)}
+                            {formatDistanceToNow(article.createdAt)} ago
                         </div>
                         <div className="flex items-center">
                             <User className="h-4 w-4 mr-1" />
-                            {article.author}
+                            {article.author.name}
                         </div>
                     </div>
                 </div>
-                {article.pageImage && (
+                {article.imageUrl && (
                     <div className="relative aspect-video mb-8">
                         <Image
-                            src={article.image || "/placeholder.svg"}
+                            src={article.imageUrl || "/placeholder.svg"}
                             alt={article.title}
                             fill
                             className="object-cover rounded-lg"
@@ -118,7 +81,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ id
                                     <Card className="h-full hover:shadow-lg transition-shadow">
                                         <div className="relative aspect-video">
                                             <Image
-                                                src={relatedArticle.image || "/placeholder.svg"}
+                                                src={relatedArticle.imageUrl || "/placeholder.svg"}
                                                 alt={relatedArticle.title}
                                                 fill
                                                 className="object-cover rounded-t-lg"
