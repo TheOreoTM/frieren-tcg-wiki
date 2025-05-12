@@ -2,7 +2,6 @@ import Link from "next/link";
 import { BookOpen, WalletCardsIcon as Cards, FileText, Search, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { FrierenTCGWiki } from "@/components/frieren-tcg-wiki";
 import { getAllMechanics } from "@/lib/mechanics";
 import { getMechanicIcon } from "@/lib/utils";
 
@@ -12,7 +11,7 @@ export default function WikiPage() {
     return (
         <div className="container mx-auto px-4 py-12">
             <div className="flex flex-col items-center text-center mb-12">
-                <FrierenTCGWiki />
+                <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-4">Frieren TCG Wiki</h1>;
                 <p className="text-xl text-muted-foreground max-w-2xl">Your comprehensive guide to the Frieren TCG.</p>
             </div>
 
@@ -90,7 +89,6 @@ export default function WikiPage() {
                 {mechanics.map((mechanic) => (
                     <Link key={mechanic.overview?.id} href={`/mechanics/${mechanic.overview?.id}`}>
                         <Button variant="outline" className="w-full justify-start h-auto py-3">
-                            {getMechanicIcon(mechanic.overview!.icon!)}
                             <div className="text-left overflow-hidden">
                                 <div className="font-medium">{mechanic.overview?.name}</div>
                                 <div className="text-xs text-muted-foreground">{mechanic.overview?.description}</div>
