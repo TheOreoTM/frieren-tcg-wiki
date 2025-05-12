@@ -12,7 +12,7 @@ export default function UnauthorizedPage() {
                 </CardHeader>
                 <CardContent className="text-center">
                     <p className="mb-4">This area is restricted to authorized administrators only.</p>
-                    <p>If you believe you should have access, please contact the site administrator.</p>
+                    <p>If you believe you should have access, please contact Oreo ™️.</p>
                 </CardContent>
                 <CardFooter className="flex justify-center">
                     <Link href="/">

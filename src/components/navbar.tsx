@@ -13,12 +13,15 @@ import {
     Newspaper,
     Swords,
     Edit,
+    User,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
+import { useSession } from "next-auth/react";
 
+// Add a new item to the navItems array for the contribute page
 const navItems = [
     {
         name: "Home",
@@ -41,19 +44,19 @@ const navItems = [
         icon: <ScrollText className="h-5 w-5" />,
     },
     {
-        name: "Strategies",
-        href: "/strategies",
+        name: "Combat",
+        href: "/combat",
         icon: <Swords className="h-5 w-5" />,
-    },
-    {
-        name: "News",
-        href: "/news",
-        icon: <Newspaper className="h-5 w-5" />,
     },
     {
         name: "Wiki",
         href: "/wiki",
         icon: <BookOpen className="h-5 w-5" />,
+    },
+    {
+        name: "News",
+        href: "/news",
+        icon: <Newspaper className="h-5 w-5" />,
     },
     {
         name: "Contribute",
@@ -66,6 +69,7 @@ export function Navbar() {
     const pathname = usePathname();
     const currentPath = `/${pathname.split("/")[1]}`;
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { data: session } = useSession();
 
     return (
         <nav className="bg-background border-b sticky top-0 z-50">
@@ -94,6 +98,22 @@ export function Navbar() {
                                 </Button>
                             </Link>
                         ))}
+
+                        {/* {session?.user && (
+                            <Link href="/my-contributions">
+                                <Button
+                                    variant="ghost"
+                                    className={cn(
+                                        "flex items-center gap-2",
+                                        currentPath === "/my-contributions" && "bg-accent text-accent-foreground"
+                                    )}
+                                >
+                                    <User className="h-5 w-5" />
+                                    My Contributions
+                                </Button>
+                            </Link>
+                        )} */}
+
                         <ModeToggle />
                     </div>
 
@@ -115,7 +135,6 @@ export function Navbar() {
             {mobileMenuOpen && (
                 <div className="md:hidden border-t">
                     <div className="container mx-auto px-4 py-3 space-y-4">
-                        {" "}
                         {navItems.map((item) => (
                             <Link key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)}>
                                 <Button
@@ -130,6 +149,21 @@ export function Navbar() {
                                 </Button>
                             </Link>
                         ))}
+
+                        {/* {session?.user && (
+                            <Link href="/my-contributions" onClick={() => setMobileMenuOpen(false)}>
+                                <Button
+                                    variant="ghost"
+                                    className={cn(
+                                        "w-full justify-start gap-2",
+                                        currentPath === "/my-contributions" && "bg-accent text-accent-foreground"
+                                    )}
+                                >
+                                    <User className="h-5 w-5" />
+                                    My Contributions
+                                </Button>
+                            </Link>
+                        )} */}
                     </div>
                 </div>
             )}
