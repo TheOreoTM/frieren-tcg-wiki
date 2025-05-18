@@ -34,7 +34,7 @@ export const Fern: Character = {
         { abilityName: "Mana Suppresion", abilityEffectString: "Hide the amount of HP this character has." },
         { abilityName: "Keen Eye", abilityEffectString: "See past the opponent's Mana Suppression." },
     ],
-    relatedCharacters: [],
+    relatedCharacters: ["frieren", "stark"],
     additionalMetadata: {
         accessToDefaultCardOptions: true,
         manaSuppressed: true,

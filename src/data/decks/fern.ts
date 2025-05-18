@@ -22,7 +22,7 @@ const a_fernConcentratedZoltraakSnipe = new Card({
     emoji: CardEmoji.FERN_CARD,
     effects: [6, 2],
     hpCost: 12,
-    effectNames: ["DMG"],
+    effectNames: ["DMG", "DMG"],
     cardCategories: ["Attack"],
     deck: "fern",
 });

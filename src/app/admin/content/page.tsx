@@ -51,13 +51,13 @@ export default async function AdminContentPage() {
     });
 
     return (
-        <div className="space-y-6">
+        <div className="container mx-auto px-6 py-12">
             <div>
                 <h1 className="text-2xl font-bold">Content Management Dashboard</h1>
                 <p className="text-muted-foreground">Manage all content submissions and publications</p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-3 my-6">
                 <Card>
                     <CardHeader className="pb-2">
                         <CardTitle className="flex items-center">

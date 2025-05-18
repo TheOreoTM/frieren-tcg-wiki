@@ -12,6 +12,7 @@ export enum CharacterName {
     Himmel = "Himmel",
     Ubel = "Übel",
     Fern = "Fern",
+    Edel = "Edel",
 }
 
 export enum CharacterID {
@@ -28,6 +29,7 @@ export enum CharacterID {
     Himmel = "himmel",
     Ubel = "ubel",
     Fern = "fern",
+    Edel = "edel",
 }
 
 export const CharacterIdToName: Record<CharacterID, CharacterName> = {
@@ -44,6 +46,7 @@ export const CharacterIdToName: Record<CharacterID, CharacterName> = {
     himmel: CharacterName.Himmel,
     ubel: CharacterName.Ubel,
     fern: CharacterName.Fern,
+    edel: CharacterName.Edel,
 };
 
 export enum CharacterEmoji {
@@ -59,6 +62,7 @@ export enum CharacterEmoji {
     HIMMEL = "https://cdn.discordapp.com/emojis/1185700266452992010.webp", // HimmelCharming
     UBEL = "https://cdn.discordapp.com/emojis/1140592823243112468.webp", // UbelSnipSnip
     FERN = "https://cdn.discordapp.com/emojis/1179413599739986012.webp", // FernThink
+    EDEL = "https://cdn.discordapp.com/emojis/1258499320504914003.webp", // EdelMad
 
     STONE_GEISEL = "https://discord.com/assets/a64d26006d97d530.svg",
     FIRE_GOLEM = "https://discord.com/assets/20e498f90ddfc95f.svg",
@@ -96,6 +100,7 @@ export enum CardEmoji {
     HIMMEL_CARD = "/emojis/himmelCard.webp",
     UBEL_CARD = "/emojis/ubelCard.webp",
     FERN_CARD = "/emojis/fernCard.webp",
+    EDEL_CARD = "/emojis/edelCard.webp",
 
     FLOWER_FIELD = "/emojis/flowerFieldCard.webp",
     MANA_CARD = "/emojis/manaCard.webp",
