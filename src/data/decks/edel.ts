@@ -4,7 +4,7 @@ import { CardCategory, Nature } from "@/lib/types";
 
 export const telekinesis = new Card({
     title: "Telekinesis",
-    cardMetadata: { nature: Nature.Attack },
+    cardMetadata: { nature: Nature.Attack, signature: true },
     emoji: CardEmoji.EDEL_CARD,
     cosmetic: {
         cardGif: "/cards/Telekinesis.gif",
