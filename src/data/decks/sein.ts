@@ -35,12 +35,12 @@ export const a_trustInYourAllyFernsBarrage = new Card({
 const a_trustInYourAllyStarksLightningStrike = new Card({
     title: "Trust in Your Ally: Stark's Lightning Strike",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg]) => `Priority-1. HP-9. DMG ${dmg}+HP/7.`,
+    description: ([dmg]) => `Priority-1. HP-9. DMG ${dmg}+HP/8.`,
     emoji: CardEmoji.SEIN_CARD,
     cosmetic: {
         cardImageUrl: "/cards/Trust_in_your_Ally_Starks_Lightning_Strike.webp",
     },
-    effects: [7],
+    effects: [10],
     priority: -1,
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
@@ -51,12 +51,12 @@ const a_trustInYourAllyStarksLightningStrike = new Card({
 export const mugOfBeer = new Card({
     title: "Mug of Beer",
     cardMetadata: { nature: Nature.Util },
-    description: ([hp, atk]) => `HP+${hp}. ATK+${atk}. DEF-2. SPD-1.`,
+    description: ([hp, atk]) => `HP+${hp}. ATK+${atk}. DEF-2 and SPD-2 for 2 turns.`,
     emoji: CardEmoji.SEIN_CARD,
     cosmetic: {
         cardImageUrl: "/cards/Mug_of_Beer.webp",
     },
-    effects: [6, 2],
+    effects: [8, 3],
     effectNames: ["HP", "ATK"],
     cardCategories: ["Utility", "Healing"],
     deck: "sein",
@@ -65,7 +65,7 @@ export const mugOfBeer = new Card({
 export const smokeBreak = new Card({
     title: "Smoke Break",
     cardMetadata: { nature: Nature.Util },
-    description: ([atk, def, spd]) => `HP-5. ATK+${atk}. DEF+${def}. SPD+${spd}.`,
+    description: ([atk, def, spd]) => `HP-3. ATK+${atk}. DEF+${def}. SPD+${spd}.`,
     emoji: CardEmoji.SEIN_CARD,
     cosmetic: {
         cardImageUrl: "/cards/Smoke_Break.webp",
@@ -74,7 +74,7 @@ export const smokeBreak = new Card({
     effectNames: ["ATK", "DEF", "SPD"],
     cardCategories: ["Utility"],
     deck: "sein",
-    hpCost: 5,
+    hpCost: 3,
 });
 
 export const awakening = new Card({
@@ -98,7 +98,7 @@ export const poisonCure = new Card({
     cosmetic: {
         cardImageUrl: "/cards/Poison_Cure.webp",
     },
-    effects: [10],
+    effects: [12],
     cardCategories: ["Utility", "Healing"],
     effectNames: ["HP"],
     deck: "sein",

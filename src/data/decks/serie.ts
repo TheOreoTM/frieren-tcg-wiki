@@ -112,14 +112,14 @@ export const ancientBarrierMagic = new Card({
 export const mock = new Card({
     title: "Mock",
     cardMetadata: { nature: Nature.Util },
-    description: ([hp, def, spd]) => `HP+${hp}. Opponent's DEF-${def}. Opponent's SPD-${spd}`,
+    description: ([hp, spd, oppDef]) => `HP+${hp}. SPD+${spd}. Opponent's DEF-${oppDef}.`,
     emoji: CardEmoji.SERIE_CARD,
-    effects: [3, 2, 1],
+    effects: [3, 2, 2],
     cosmetic: {
         cardImageUrl: "/cards/Mock.webp",
     },
     cardCategories: ["Utility"],
-    effectNames: ["HP", "-OpponentDEF", "-OpponentSPD"],
+    effectNames: ["HP", "SPD", "-OpponentDEF"],
     deck: "serie",
 });
 
