@@ -44,8 +44,8 @@ const navItems = [
         icon: <ScrollText className="h-5 w-5" />,
     },
     {
-        name: "Combat",
-        href: "/combat",
+        name: "Strategies",
+        href: "/strategies",
         icon: <Swords className="h-5 w-5" />,
     },
     {
