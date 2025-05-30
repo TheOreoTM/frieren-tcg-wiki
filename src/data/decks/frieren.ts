@@ -43,7 +43,7 @@ export const a_judradjim = new Card({
     cosmetic: {
         cardImageUrl: "/cards/Destructive_Lightning_Analysis_Judradjim.webp",
     },
-    effects: [13],
+    effects: [12],
     hpCost: 7,
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
@@ -58,7 +58,7 @@ export const a_vollzanbel = new Card({
     cosmetic: {
         cardImageUrl: "/cards/Hellfire_Summoning_Vollzanbel.webp",
     },
-    effects: [18],
+    effects: [17],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     hpCost: 10,
