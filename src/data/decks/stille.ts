@@ -44,7 +44,7 @@ const roost = new Card({
 
 const deflect = new Card({
     title: "Deflect",
-    description: ([def]) => `Priority+2. Increases DEF by ${def} until the end of the turn.`,
+    description: ([def]) => `Priority+2. Increases TrueDEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.STILLE_CARD,
     effects: [20],
     priority: 2,

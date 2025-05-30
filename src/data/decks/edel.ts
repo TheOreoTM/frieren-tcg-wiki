@@ -22,7 +22,7 @@ export const one_step_ahead = new Card({
     cardMetadata: { nature: Nature.Defense },
     emoji: CardEmoji.EDEL_CARD,
     description: ([def, spd, dmg]) =>
-        `DEF+${def} for 1 turn. If this card is played the same turn your opponent plays a defensive card, their SPD-${spd}, they redraw 1 card, and attack with DMG ${dmg} ignoring all defense.`,
+        `Priority+3. TrueDEF+${def} for 1 turn. If this card is played the same turn your opponent plays a defensive card, their SPD-${spd}, they redraw 1 card, and attack with DMG ${dmg} ignoring all defense.`,
     effects: [20, 2, 10],
     priority: 3,
     effectNames: ["DEF", "SPD", "DMG"],

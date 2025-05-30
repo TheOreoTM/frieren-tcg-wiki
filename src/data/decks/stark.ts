@@ -54,7 +54,7 @@ const jumboBerrySpecialBreak = new Card({
 export const block = new Card({
     title: "Block",
     cardMetadata: { nature: Nature.Defense },
-    description: ([def]) => `Priority+2. Increases DEF by ${def} until the end of the turn.`,
+    description: ([def]) => `Priority+2. Increases TrueDEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.STARK_CARD,
     effects: [20],
     priority: 2,

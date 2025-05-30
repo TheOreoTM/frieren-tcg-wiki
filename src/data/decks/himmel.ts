@@ -106,7 +106,7 @@ const heiterTrustYou = new Card({
 export const quickBlock = new Card({
     title: "Quick Block",
     cardMetadata: { nature: Nature.Defense },
-    description: ([def]) => `Priority+3. Increases DEF by ${def} until the end of the turn.`,
+    description: ([def]) => `Priority+3. Increases TrueDEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.HIMMEL_CARD,
     priority: 3,
     effects: [20],

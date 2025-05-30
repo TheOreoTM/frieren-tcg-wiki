@@ -83,7 +83,7 @@ export const barrierMagicAnalysis = new Card({
 export const demonMagicAnalysis = new Card({
     title: "Demon Magic Analysis",
     cardMetadata: { nature: Nature.Util },
-    description: ([atk, spd, def]) => `ATK+${atk}. SPD+${spd}. DEF+${def}.`,
+    description: ([atk, spd, def]) => `Increases TrueDEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.FRIEREN_CARD,
     cosmetic: {
         cardImageUrl: "/cards/Demon_Magic_Analysis.webp",
@@ -98,7 +98,7 @@ export const demonMagicAnalysis = new Card({
 export const ordinaryDefensiveMagic = new Card({
     title: "Ordinary Defensive Magic",
     cardMetadata: { nature: Nature.Defense },
-    description: ([def]) => `Priority+2. Increases DEF by ${def} until the end of the turn.`,
+    description: ([def]) => `Priority+2. Increases TrueDEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.FRIEREN_CARD,
     cosmetic: {
         cardImageUrl: "/cards/Ordinary_Defensive_Magic.webp",

@@ -38,8 +38,7 @@ const a_uppercut = new Card({
 const bareHandedBlock = new Card({
     title: "Bare-handed Block",
     cardMetadata: { nature: Nature.Defense },
-    description: ([def, tempDef]) =>
-        `Priority+2. DEF+${def}. Increases DEF by an additional ${tempDef} until the end of the turn.`,
+    description: ([def, tempDef]) => `Priority+2. DEF+${def}. TruDEF+${tempDef} until the end of the turn.`,
     emoji: CardEmoji.DENKEN_CARD,
     priority: 2,
     effects: [2, 8],
@@ -88,7 +87,7 @@ export const elementaryDefensiveMagic = new Card({
     title: "Elementary Defensive Magic",
     cardMetadata: { nature: Nature.Defense },
     description: ([def]) =>
-        `Priority+2. Increases DEF by ${def} until the end of the turn. Treat this card as "Bare-handed Block" if the user's HP is <= 0.`,
+        `Priority+2. Increases TrueDEF by ${def} until the end of the turn. Treat this card as "Bare-handed Block" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
     priority: 2,
     effects: [20],

@@ -67,7 +67,8 @@ export const spellToCreateManaButterflies = new Card({
 export const commonDefensiveMagic = new Card({
     title: "Common Defensive Magic",
     cardMetadata: { nature: Nature.Defense },
-    description: ([def]) => `Priority+2. Increases DEF by ${def} until the end of the turn. Reduce 1 Barrage count.`,
+    description: ([def]) =>
+        `Priority+2. Increases TrueDEF by ${def} until the end of the turn. Reduce 1 Barrage count.`,
     emoji: CardEmoji.FERN_CARD,
     effects: [20],
     priority: 2,

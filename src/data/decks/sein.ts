@@ -106,7 +106,7 @@ export const poisonCure = new Card({
 export const braceYourself = new Card({
     title: "Brace Yourself",
     cardMetadata: { nature: Nature.Defense },
-    description: ([def]) => `Priority+2. Increases DEF by ${def} until the end of the turn.`,
+    description: ([def]) => `Priority+2. Increases TrueDEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.SEIN_CARD,
     cosmetic: {
         cardImageUrl: "/cards/Brace_Yourself.webp",

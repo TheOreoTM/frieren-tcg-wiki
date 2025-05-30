@@ -53,7 +53,7 @@ export const a_pierce = new Card({
 export const hairBarrier = new Card({
     title: "Hair Barrier",
     cardMetadata: { nature: Nature.Defense },
-    description: ([def]) => `Priority+2. Increases DEF by ${def} until the end of the turn.`,
+    description: ([def]) => `Priority+2. Increases TrueDEF by ${def} until the end of the turn.`,
     effects: [20],
     emoji: CardEmoji.HOURGLASS,
     priority: 2,
