@@ -19,6 +19,7 @@ export const Laufen: Character = {
         [Stat.HP]: 90.0,
         [Stat.ATK]: 10.0,
         [Stat.DEF]: 8.0,
+        [Stat.TrueDEF]: 0.0,
         [Stat.SPD]: 30.0,
         [Stat.Ability]: 0.0,
     },

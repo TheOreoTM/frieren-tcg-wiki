@@ -21,6 +21,7 @@ export const Linie: Character = {
         [Stat.HP]: 95.0,
         [Stat.ATK]: 13.0,
         [Stat.DEF]: 10.0,
+        [Stat.TrueDEF]: 0.0,
         [Stat.SPD]: 12.0,
         [Stat.Ability]: 0.0,
     },

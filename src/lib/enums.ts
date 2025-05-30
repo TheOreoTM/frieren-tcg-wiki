@@ -114,6 +114,7 @@ export enum Stat {
     ATK = "ATK",
     DEF = "DEF",
     SPD = "SPD",
+    TrueDEF = "TrueDEF",
     Ability = "Ability",
 }
 
@@ -121,6 +122,7 @@ export const StatEmoji: Record<Stat, string> = {
     [Stat.HP]: "❤️",
     [Stat.ATK]: "⚔️",
     [Stat.DEF]: "🛡️",
+    [Stat.TrueDEF]: "💠",
     [Stat.SPD]: "⚡",
     [Stat.Ability]: "✨",
 };

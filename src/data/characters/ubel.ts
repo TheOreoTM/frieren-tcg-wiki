@@ -21,6 +21,7 @@ export const Ubel: Character = {
         [Stat.HP]: 90.0,
         [Stat.ATK]: 12.0,
         [Stat.DEF]: 8.0,
+        [Stat.TrueDEF]: 0.0,
         [Stat.SPD]: 14.0,
         [Stat.Ability]: 0.0,
     },

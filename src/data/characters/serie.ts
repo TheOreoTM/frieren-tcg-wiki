@@ -21,6 +21,7 @@ export const Serie: Character = {
         [Stat.HP]: 100.0,
         [Stat.ATK]: 14.0,
         [Stat.DEF]: 10.0,
+        [Stat.TrueDEF]: 0.0,
         [Stat.SPD]: 10.0,
         [Stat.Ability]: 0.0,
     },

@@ -22,6 +22,7 @@ export const Edel: Character = {
     stats: {
         [Stat.HP]: 70.0,
         [Stat.ATK]: 7.0,
+        [Stat.TrueDEF]: 0.0,
         [Stat.DEF]: 7.0,
         [Stat.SPD]: 10.0,
         [Stat.Ability]: 0,
