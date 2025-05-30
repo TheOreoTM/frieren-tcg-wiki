@@ -2,7 +2,7 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { stilleDeck } from "../decks/stille";
 
-const STILLE_REFLECT_SCALE = 0.75;
+const STILLE_REFLECT_SCALE = 0.8;
 
 export const Stille: Character = {
     id: "stille",
@@ -22,7 +22,7 @@ export const Stille: Character = {
         [Stat.ATK]: 1.0,
         [Stat.DEF]: 20.0,
         [Stat.TrueDEF]: 0.0,
-        [Stat.SPD]: 99.0,
+        [StatsEnum.SPD]: 80.0,
         [Stat.Ability]: 0.0,
     },
     cards: stilleDeck,
