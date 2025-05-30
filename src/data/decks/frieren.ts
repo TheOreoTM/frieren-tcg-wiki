@@ -5,7 +5,7 @@ import { CardCategory, Nature } from "@/lib/types";
 export const a_zoltraak = new Card({
     title: "Offensive Magic Analysis: Zoltraak",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg]) => `HP-5. DMG ${dmg}. 1 Analysis stacks will be gained after attack.`,
+    description: ([dmg]) => `HP-4. DMG ${dmg}. 1 Analysis stacks will be gained after attack.`,
     emoji: CardEmoji.FRIEREN_CARD,
     tags: { PostAnalysis: 1 },
     effects: [9],
@@ -15,7 +15,7 @@ export const a_zoltraak = new Card({
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "frieren",
-    hpCost: 5,
+    hpCost: 4,
 });
 
 export const fieldOfFlower = new Card({

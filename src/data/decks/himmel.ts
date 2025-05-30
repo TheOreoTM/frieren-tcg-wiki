@@ -2,13 +2,13 @@ import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
 import { CardCategory, Nature } from "@/lib/types";
 const a_FrierenStrikeTheirWeakpoint = new Card({
-    title: "Frieren! Strike Their Weakpoint!",
+    title: "Frieren! Strike Their Weakpoints!",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg, oppDef]) =>
-        `Opponent's DEF-${oppDef} for 2 turns. Frieren attacks for ${dmg} DMG. At next turn's end, Frieren attacks for an additional ${dmg} DMG.`,
+    description: ([dmg]) =>
+        `Frieren attacks for ${dmg} DMG. At next turn's end, Frieren attacks for an additional ${dmg} DMG.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [7, 1],
-    effectNames: ["DMG", "-Opp DEF"],
+    effects: [7],
+    effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
     deck: "himmel",
 });
@@ -16,11 +16,11 @@ const a_FrierenStrikeTheirWeakpoint = new Card({
 const a_FrierenBackMeUp = new Card({
     title: "Frieren! Back Me Up!",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg, oppDef]) =>
-        `Opponent's DEF-${oppDef} for 3 turns. Frieren attacks for ${dmg} DMG. For the next 3 turn ends, Frieren attacks for an additional ${dmg} DMG.`,
+    description: ([dmg]) =>
+        `Frieren attacks for ${dmg} DMG. For the next 4 turn ends, Frieren attacks for an additional ${dmg} DMG.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [3, 2],
-    effectNames: ["DMG", "-Opp DEF"],
+    effects: [3],
+    effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
     deck: "himmel",
 });
@@ -30,7 +30,7 @@ export const a_FrierenNow = new Card({
     cardMetadata: { nature: Nature.Attack },
     description: ([dmg]) => `DMG ${dmg}`,
     emoji: CardEmoji.FRIEREN_CARD,
-    effects: [8],
+    effects: [10],
     effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
     deck: "himmel",
@@ -118,11 +118,11 @@ export const quickBlock = new Card({
 const rally = new Card({
     title: "Rally",
     cardMetadata: { nature: Nature.Util },
-    description: ([hp, stat]) =>
-        `HP+${hp}. ATK+${stat}. DEF+${stat}. SPD+${stat}. An additional HP+${hp}, ATK+${stat}, DEF+${stat}, SPD+${stat} for each one of your active allies.`,
+    description: ([stat, lessStat]) =>
+        `ATK+${stat}. DEF+${stat}. SPD+${stat}. An additional ATK+${lessStat}, DEF+${lessStat}, SPD+${lessStat} per ally active, or per active Timed Effect if not used by Himmel.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [2, 1],
-    effectNames: ["+ HP ", "+ STAT"],
+    effects: [1, 0.5],
+    effectNames: ["+ STAT ", "+ stat"],
     cardCategories: [CardCategory.ATTACK, CardCategory.HEALING, CardCategory.UTILITY],
     deck: "himmel",
 });

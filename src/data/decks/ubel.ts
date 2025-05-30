@@ -69,11 +69,11 @@ export const rushdown = new Card({
 const slowdown = new Card({
     title: "Slow Down",
     cardMetadata: { nature: Nature.Util },
-    description: ([hp, endOfTurnHp]) =>
-        `SPD-10 for 2 turns. Heal ${hp}HP, then ${endOfTurnHp} HP at the end of each turn. Attacks will not hit while this effect is active.`,
+    description: ([def, hp, endOfTurnHp]) =>
+        `SPD-10 and DEF+${def} for 2 turns. Heal ${hp}HP, then ${endOfTurnHp} HP at the end of each turn. Attacks will not hit while this effect is active.`,
     emoji: CardEmoji.UBEL_CARD,
-    effects: [10, 5],
-    effectNames: ["HP", "HP"],
+    effects: [5, 10, 5],
+    effectNames: ["DEF", "HP", "HP"],
     cardCategories: ["Utility", "Healing"],
     deck: "ubel",
 });

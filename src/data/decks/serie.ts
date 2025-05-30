@@ -114,7 +114,7 @@ export const mock = new Card({
     cardMetadata: { nature: Nature.Util },
     description: ([hp, spd, oppDef]) => `HP+${hp}. SPD+${spd}. Opponent's DEF-${oppDef}.`,
     emoji: CardEmoji.SERIE_CARD,
-    effects: [3, 2, 2],
+    effects: [3, 2, 1],
     cosmetic: {
         cardImageUrl: "/cards/Mock.webp",
     },

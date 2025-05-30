@@ -104,8 +104,7 @@ export const a_piercingDrill = new Card({
 export const senseDeck = [
     { card: a_hairWhip, count: 2 },
     { card: sharpen, count: 1 },
-    { card: manaConcealment, count: 1 },
-    { card: rest, count: 1 },
+    { card: manaConcealment, count: 2 },
     { card: a_pierce, count: 2 },
     { card: hairBarrier, count: 3 },
     { card: teaTime, count: 2 },

@@ -4,23 +4,23 @@ import { CardCategory, Nature } from "@/lib/types";
 
 const a_staffStrike = new Card({
     title: "Staff Strike",
-    description: ([spd, dmg]) => `SPD+${spd}. Afterwards, HP-1, attack for DMG ${dmg}+SPD/7`,
+    description: ([spd, dmg]) => `HP-7. SPD+${spd}. Afterwards, DMG ${dmg}+SPD/7 with SPDDiff% Pierce.`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [3, 7],
     cardMetadata: { nature: Nature.Attack },
     cardCategories: ["Attack"],
     effectNames: ["SPD", "DMG"],
-    hpCost: 1,
+    hpCost: 7,
     deck: "laufen",
 });
 
 const a_staffBash = new Card({
     title: "Staff Bash",
     cardMetadata: { nature: Nature.Attack },
-    description: ([spd, dmg]) => `SPD+${spd}. Afterwards, HP-2, DMG ${dmg}+SPD/6`,
+    description: ([spd, dmg]) => `HP-7. SPD+${spd}. Afterwards, DMG ${dmg}+SPD/6 with SPDDiff% Pierce.`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [2, 8],
-    hpCost: 2,
+    hpCost: 7,
     cardCategories: ["Attack"],
     effectNames: ["SPD", "DMG"],
     deck: "laufen",
@@ -29,10 +29,10 @@ const a_staffBash = new Card({
 export const a_whip = new Card({
     title: "Whip",
     cardMetadata: { nature: Nature.Attack },
-    description: ([spd, dmg]) => `SPD+${spd}. Afterwards, HP-3, DMG ${dmg}+SPD/5`,
+    description: ([spd, dmg]) => `HP-7, SPD+${spd}. Afterwards, DMG ${dmg}+SPD/5.`,
     emoji: CardEmoji.LAUFEN_CARD,
-    effects: [1, 9],
-    hpCost: 3,
+    effects: [2, 9],
+    hpCost: 7,
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["SPD", "DMG"],
     deck: "laufen",
@@ -51,11 +51,11 @@ export const hide = new Card({
 
 export const a_supersonicStrike = new Card({
     title: "Supersonic Strike",
-    description: ([dmg]) => `HP-4, DMG ${dmg}+SPD/4`,
+    description: ([dmg]) => `HP-7, DMG ${dmg}+SPD/4.`,
     emoji: CardEmoji.LAUFEN_CARD,
     cardMetadata: { nature: Nature.Attack, signature: true },
     effects: [10],
-    hpCost: 4,
+    hpCost: 7,
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["SPD", "DMG"],
     deck: "laufen",
