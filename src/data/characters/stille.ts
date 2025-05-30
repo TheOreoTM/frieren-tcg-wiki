@@ -22,7 +22,7 @@ export const Stille: Character = {
         [Stat.ATK]: 1.0,
         [Stat.DEF]: 20.0,
         [Stat.TrueDEF]: 0.0,
-        [StatsEnum.SPD]: 80.0,
+        [Stat.SPD]: 80.0,
         [Stat.Ability]: 0.0,
     },
     cards: stilleDeck,

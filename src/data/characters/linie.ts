@@ -2,7 +2,7 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { linieDeck } from "../decks/linie";
 
-const LINIE_CHAIN_BONUS = 0.07;
+const LINIE_CHAIN_BONUS = 0.08;
 
 export const Linie: Character = {
     id: "linie",
