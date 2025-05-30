@@ -1,12 +1,13 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
 import { Nature } from "@/lib/types";
+import { manaConcealment } from "./fern";
 
 export const a_hairWhip = new Card({
     title: "Hair Whip",
     cardMetadata: { nature: Nature.Attack },
     description: ([def, dmg]) => `DEF+${def}. Afterwards, HP-4, DMG ${dmg}+DEF/4.`,
-    effects: [3, 7],
+    effects: [2, 7],
     emoji: CardEmoji.PUNCH,
     cardCategories: ["Attack"],
     effectNames: ["DEF", "DMG"],
@@ -17,13 +18,13 @@ export const a_hairWhip = new Card({
 export const sharpen = new Card({
     title: "Sharpen",
     cardMetadata: { nature: Nature.Util },
-    description: ([def, atk]) => `HP-1. DEF+${def}. ATK+${atk}.`,
-    effects: [2, 2],
+    description: ([def, atk, spd]) => `DEF+${def}. ATK+${atk}. SPD+${spd}`,
+    effects: [2, 2, 2],
+    hpCost: 3,
     emoji: CardEmoji.PUNCH,
     cardCategories: ["Utility", "Defense"],
     effectNames: ["DEF"],
     deck: "sense",
-    hpCost: 1,
 });
 
 export const rest = new Card({
@@ -42,7 +43,7 @@ export const a_pierce = new Card({
     cardMetadata: { nature: Nature.Attack },
     description: ([def, dmg]) =>
         `HP-7. DEF+${def}. Afterwards, DMG ${dmg} + (DEF/4). Pierces through 1/4 of the opponent's defense.`,
-    effects: [2, 10],
+    effects: [1, 10],
     emoji: CardEmoji.PUNCH,
     cardCategories: ["Attack"],
     effectNames: ["DEF", "DMG"],
@@ -65,21 +66,22 @@ export const hairBarrier = new Card({
 export const teaTime = new Card({
     title: "Tea Time",
     cardMetadata: { nature: Nature.Util },
-    description: ([hp]) => `Empower both characters' hands. Heal ${hp} for both characters. Gain 1 Tea Time snack.`,
-    effects: [4],
+    description: ([spd, hp]) =>
+        `SPD+${spd}. Empower both characters' hands. Heal ${hp} for both characters. Gain 1 Tea Time snack.`,
+    effects: [1, 4],
     tags: { TeaTime: 1 },
     emoji: CardEmoji.HEART,
     cardCategories: ["Utility", "Healing"],
-    effectNames: ["ATK", "HP"],
+    effectNames: ["SPD", "HP"],
     deck: "sense",
 });
 
 export const teaParty = new Card({
     title: "Tea Party",
     cardMetadata: { nature: Nature.Util },
-    description: ([hp]) =>
-        `Empower both characters' hands twice. Heal ${hp} for both characters. Gain 2 Tea Time snacks.`,
-    effects: [7],
+    description: ([spd, hp]) =>
+        `SPD+${spd}. Empower both characters' hands twice. Heal ${hp} for both characters. Gain 2 Tea Time snacks.`,
+    effects: [2, 7],
     tags: { TeaTime: 2 },
     emoji: CardEmoji.RANDOM,
     cardCategories: ["Utility", "Healing"],
@@ -101,7 +103,8 @@ export const a_piercingDrill = new Card({
 
 export const senseDeck = [
     { card: a_hairWhip, count: 2 },
-    { card: sharpen, count: 2 },
+    { card: sharpen, count: 1 },
+    { card: manaConcealment, count: 1 },
     { card: rest, count: 1 },
     { card: a_pierce, count: 2 },
     { card: hairBarrier, count: 3 },
