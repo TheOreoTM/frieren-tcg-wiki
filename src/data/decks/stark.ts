@@ -20,7 +20,7 @@ const offensiveStance = new Card({
     cardMetadata: { nature: Nature.Util },
     description: ([atk, spd]) => `ATK+${atk}. DEF-2 for 2 turns. SPD+${spd}. Gain 1 <Resolve>.`,
     emoji: CardEmoji.STARK_CARD,
-    effects: [2, 1],
+    effects: [2, 2],
     tags: { Resolve: 1 },
     cardCategories: ["Utility"],
     effectNames: ["ATK", "SPD"],
@@ -32,7 +32,7 @@ const defensiveStance = new Card({
     cardMetadata: { nature: Nature.Util },
     description: ([def, spd]) => `DEF+${def}. ATK-2 for 2 turns. SPD+${spd}. Gain 1 <Resolve>.`,
     emoji: CardEmoji.STARK_CARD,
-    effects: [2, 1],
+    effects: [2, 2],
     tags: { Resolve: 1 },
     cardCategories: ["Utility"],
     effectNames: ["DEF", "SPD"],
@@ -45,7 +45,7 @@ const jumboBerrySpecialBreak = new Card({
     description: ([def, hp]) =>
         `SPD-2 for 2 turns. DEF+${def} for 2 turns. Heal ${hp} HP. Gain 1 <Resolve> at the end of next turn.`,
     emoji: CardEmoji.JUMBO_BERRY_CARD,
-    effects: [2, 7],
+    effects: [2, 10],
     cardCategories: ["Utility", "Healing"],
     effectNames: ["DEF", "HP"],
     deck: "stark",
@@ -91,10 +91,9 @@ const a_ordensSlashTechnique = new Card({
 const fearBroughtMeThisFar = new Card({
     title: "Fear Brought Me This Far",
     cardMetadata: { nature: Nature.Util },
-    description: ([atkDef, atkDefAdditional]) =>
-        `Increases ATK and DEF by ${atkDef}. Increases ATK and DEF by an addition ${atkDefAdditional} if HP <=60. Gain 2 <Resolve>.`,
+    description: ([atkDef]) => `Increases ATK and DEF by ${atkDef}. Gain 2 <Resolve>.`,
     emoji: CardEmoji.STARK_CARD,
-    effects: [2, 1],
+    effects: [3],
     tags: { Resolve: 2 },
     cardCategories: ["Utility"],
     effectNames: ["ATK+DEF", "ATK+DEF"],
@@ -113,15 +112,15 @@ const a_eisensAxeCleave = new Card({
     deck: "stark",
 });
 
-export const a_lightningStrike = new Card({
-    title: "Lightning Strike",
+export const a_lastStand = new Card({
+    title: "Last Stand",
     description: ([dmg]) =>
-        `HP-14. DEF-5 and SPD-5 for 2 turns. At this turn's end, strike for ${dmg} DMG. Uses up 2 Resolve stack. Stark's HP cannot drop below 1 during the turn this move is used.`,
+        `Priority+1. DEF-5 for 2 turns. This character's HP cannot drop below 1 for 2 turns. At the end of next turn, HP-20, use 2 Resolves, strike for DMG ${dmg}.`,
     emoji: CardEmoji.STARK_CARD,
     cardMetadata: { nature: Nature.Attack, signature: true },
     tags: { Resolve: -2 },
     priority: 1,
-    effects: [20],
+    effects: [25],
     hpCost: 14,
     cardCategories: ["Attack"],
     effectNames: ["DMG"],
@@ -138,5 +137,5 @@ export const starkDeck = [
     { card: a_ordensSlashTechnique, count: 2 },
     { card: fearBroughtMeThisFar, count: 1 },
     { card: a_eisensAxeCleave, count: 1 },
-    { card: a_lightningStrike, count: 1 },
+    { card: a_lastStand, count: 1 },
 ];

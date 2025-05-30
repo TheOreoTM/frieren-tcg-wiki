@@ -5,9 +5,9 @@ import { CardCategory, Nature } from "@/lib/types";
 const a_jab = new Card({
     title: "Jab",
     cardMetadata: { nature: Nature.Attack },
-    description: ([def, spd, dmg]) => `DEF+${def}. SPD+${spd}. Deal ${dmg} DMG, with 50% Pierce.`,
+    description: ([def, atk, spd, dmg]) => `DEF+${def}. ATK+${atk}. SPD+${spd}. Deal ${dmg} DMG.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [2, 2, 2],
+    effects: [1, 1, 1, 2],
     effectNames: ["DEF", "SPD", "DMG"],
     cardCategories: [CardCategory.ATTACK],
     deck: "denken",
@@ -16,9 +16,9 @@ const a_jab = new Card({
 const a_hook = new Card({
     title: "Hook",
     cardMetadata: { nature: Nature.Attack },
-    description: ([atk, dmg]) => `ATK+${atk}. Deal ${dmg} DMG, with 50% Pierce.`,
+    description: ([spd, atk, dmg]) => `SPD+${spd}. ATK+${atk}. Deal ${dmg} DMG.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [3, 2],
+    effects: [2, 1, 2],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["ATK", "DMG"],
     deck: "denken",
@@ -27,9 +27,9 @@ const a_hook = new Card({
 const a_uppercut = new Card({
     title: "Uppercut",
     cardMetadata: { nature: Nature.Attack },
-    description: ([atk, spd, dmg]) => `ATK+${atk}. SPD+${spd}. Deal ${dmg} DMG, with 50% Pierce.`,
+    description: ([atk, spd, dmg]) => `ATK+${atk}. SPD+${spd}. Deal ${dmg} DMG.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [2, 2, 3],
+    effects: [2, 1, 3],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["ATK", "SPD", "DMG"],
     deck: "denken",
@@ -51,9 +51,9 @@ export const a_waldgose = new Card({
     title: "Tornado Winds: Waldgose",
     cardMetadata: { nature: Nature.Attack },
     description: ([dmg, multiDmg]) =>
-        `HP-7. DMG ${dmg}. At the next 3 turn ends, deal ${multiDmg} DMG. Treat this card as "Jab" if the user's HP is <= 0.`,
+        `HP-7. DMG ${dmg}. At the next 5 turn ends, deal ${multiDmg} DMG. Treat this card as "Jab" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [6, 3],
+    effects: [6, 1],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG", "DMG"],
     deck: "denken",
@@ -62,10 +62,10 @@ export const a_waldgose = new Card({
 export const a_daosdorg = new Card({
     title: "Hellfire: Daosdorg",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg, waldgoseDmgBonus, oppDefDebuff]) =>
-        `HP-9. Opponent's DEF-${oppDefDebuff}. DMG ${dmg}. If Waldgose is active, increase its turn end damage by ${waldgoseDmgBonus}. Treat this card as "Hook" if the user's HP is <= 0.`,
+    description: ([dmg]) =>
+        `HP-9. DMG ${dmg}. Afterwards, all your attacks receive 20% Pierce for the duration of any currently active Waldgose. Treat this card as "Hook" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [12, 3, 2],
+    effects: [12],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG", "DMG", "-Opp DEF"],
     deck: "denken",
@@ -74,10 +74,10 @@ export const a_daosdorg = new Card({
 export const a_catastravia = new Card({
     title: "Lights of Judgment: Catastravia",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg, multiDmg]) =>
-        `HP-15. DMG ${dmg}. At the next 5 turn ends, deal ${multiDmg} DMG. Treat this card as "Uppercut" if the user's HP is <= 0.`,
+    description: ([dmg0, dmg1, dmg2, dmg3, dmg4]) =>
+        `HP-15. DMG ${dmg0}, ${dmg1}, ${dmg2}, ${dmg3}, ${dmg4}. Treat this card as "Uppercut" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [9, 3],
+    effects: [2, 3, 4, 5, 6],
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG", "DMG"],
     deck: "denken",
@@ -102,6 +102,7 @@ export const a_concentratedOffensiveMagicZoltraak = new Card({
     description: ([dmg]) => `HP-8. DMG ${dmg}.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [14],
+    hpCost: 8,
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "denken",
@@ -110,9 +111,10 @@ export const a_concentratedOffensiveMagicZoltraak = new Card({
 export const thisIsNoPlaceToGiveUp = new Card({
     title: "This Is No Place To Give Up",
     cardMetadata: { nature: Nature.Util },
-    description: ([hp]) => `Heal ${hp}HP. Heal an additional ${hp}HP and gain 1 Preserverance stack if HP <= 0.`,
+    description: ([hpFirst, hpSecond]) =>
+        `Heal ${hpFirst}HP. Heal an additional ${hpSecond}HP and gain 1 Preserverance stack if HP <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [10],
+    effects: [7, 7],
     cardCategories: [CardCategory.HEALING],
     effectNames: ["HP"],
     deck: "denken",
