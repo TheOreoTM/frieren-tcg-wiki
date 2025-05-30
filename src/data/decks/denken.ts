@@ -5,7 +5,7 @@ import { CardCategory, Nature } from "@/lib/types";
 const a_jab = new Card({
     title: "Jab",
     cardMetadata: { nature: Nature.Attack },
-    description: ([def, spd, dmg]) => `DEF+${def}. SPD+${spd}. Deal  ${dmg} DMG.`,
+    description: ([def, spd, dmg]) => `DEF+${def}. SPD+${spd}. Deal ${dmg} DMG, with 50% Pierce.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [2, 2, 2],
     effectNames: ["DEF", "SPD", "DMG"],
@@ -16,7 +16,7 @@ const a_jab = new Card({
 const a_hook = new Card({
     title: "Hook",
     cardMetadata: { nature: Nature.Attack },
-    description: ([atk, dmg]) => `ATK+${atk}. Deal ${dmg} DMG.`,
+    description: ([atk, dmg]) => `ATK+${atk}. Deal ${dmg} DMG, with 50% Pierce.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [3, 2],
     cardCategories: [CardCategory.ATTACK],
@@ -27,7 +27,7 @@ const a_hook = new Card({
 const a_uppercut = new Card({
     title: "Uppercut",
     cardMetadata: { nature: Nature.Attack },
-    description: ([atk, spd, dmg]) => `ATK+${atk}. SPD+${spd}. Deal ${dmg} DMG.`,
+    description: ([atk, spd, dmg]) => `ATK+${atk}. SPD+${spd}. Deal ${dmg} DMG, with 50% Pierce.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [2, 2, 3],
     cardCategories: [CardCategory.ATTACK],
