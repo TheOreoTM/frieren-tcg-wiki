@@ -28,7 +28,7 @@ export const Flamme: Character = {
     cards: flammeDeck,
     ability: {
         abilityName: "Founder of Humanity's Magic",
-        abilityEffectString: `After playing 4 Theory cards, add 1 "Pinnacle of Humanity's Magic" to your Discard pile.\n*Pinnacle of Humanity's Magic*: ATK+**100** DEF+**100** SPD+**100**. Deal **100** DMG.`,
+        abilityEffectString: `After playing 4 Theory cards, add 1 "Pinnacle of Humanity's Magic" to your Discard pile.\nPinnacle of Humanity's Magic: ATK+100 DEF+100 SPD+100. Deal 100 DMG.`,
     },
     subAbilities: [
         {
