@@ -12,6 +12,9 @@ import { starkDeck } from "./decks/stark";
 import { stilleDeck } from "./decks/stille";
 import { ubelDeck } from "./decks/ubel";
 import { fernDeck } from "./decks/fern";
+import { wirbelDeck } from "./decks/wirbel";
+import { edelDeck } from "./decks/edel";
+import { flammeDeck } from "./decks/flamme";
 
 type CardListItem = { card: Card; count: number };
 
@@ -29,6 +32,9 @@ export const rawCards: CardListItem[] = [
     ...stilleDeck,
     ...ubelDeck,
     ...fernDeck,
+    ...edelDeck,
+    ...wirbelDeck,
+    ...flammeDeck,
 ];
 
 /**
