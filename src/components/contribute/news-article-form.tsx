@@ -50,6 +50,7 @@ export function NewsArticleForm() {
     const router = useRouter();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [previewMode, setPreviewMode] = useState(false);
+    const [isSlugManuallyEdited, setIsSlugManuallyEdited] = useState(false);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -63,23 +64,34 @@ export function NewsArticleForm() {
         },
     });
 
-    // Auto-generate slug from title
+    // Watch both title and slug
     const watchTitle = form.watch("title");
+    const watchSlug = form.watch("slug");
+
     const generateSlug = (title: string) => {
         return title
             .toLowerCase()
+            .trim()
             .replace(/[^a-z0-9\s-]/g, "")
             .replace(/\s+/g, "-")
             .replace(/-+/g, "-")
             .trim();
     };
 
-    // Auto-update slug when title changes
+    // Auto-update slug when title changes (only if slug hasn't been manually edited)
     React.useEffect(() => {
-        if (watchTitle && !form.getValues("slug")) {
-            form.setValue("slug", generateSlug(watchTitle));
+        if (watchTitle && !isSlugManuallyEdited) {
+            const newSlug = generateSlug(watchTitle);
+            form.setValue("slug", newSlug);
         }
-    }, [watchTitle, form]);
+    }, [watchTitle, form, isSlugManuallyEdited]);
+
+    // Track if slug has been manually edited
+    const handleSlugChange = (value: string) => {
+        const expectedSlug = generateSlug(watchTitle);
+        setIsSlugManuallyEdited(value !== expectedSlug);
+        return value;
+    };
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         setIsSubmitting(true);
@@ -135,11 +147,21 @@ export function NewsArticleForm() {
                                 <FormItem>
                                     <FormLabel>URL Slug</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="article-url-slug" {...field} />
+                                        <Input
+                                            placeholder="article-url-slug"
+                                            {...field}
+                                            onChange={(e) => {
+                                                const value = handleSlugChange(e.target.value);
+                                                field.onChange(value);
+                                            }}
+                                        />
                                     </FormControl>
                                     <FormDescription>
                                         This will be used in the article URL. Use lowercase letters, numbers, and
                                         hyphens only.
+                                        {!isSlugManuallyEdited && (
+                                            <span className="text-muted-foreground"> (Auto-generated from title)</span>
+                                        )}
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>

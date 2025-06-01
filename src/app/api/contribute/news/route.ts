@@ -43,9 +43,6 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Slug is already taken" }, { status: 400 });
         }
 
-        console.log(validatedData);
-        console.log(session.user);
-
         const news = await prisma.news.create({
             data: {
                 title: validatedData.title,
