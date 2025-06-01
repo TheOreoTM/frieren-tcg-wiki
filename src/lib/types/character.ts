@@ -32,6 +32,7 @@ export type Character = {
 
 export type CharacterAdditionalMetadata = {
     manaSuppressed: boolean;
+    deceitful?: boolean;
     accessToDefaultCardOptions: boolean;
     teaTimeStacks?: number;
     pierceFactor?: number;

@@ -1,7 +1,6 @@
 import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from "@/lib/enums";
 import type { Character } from "@/lib/types";
 import { denkenDeck } from "../decks/denken";
-import { Stats } from "fs";
 
 const DENKEN_PRESERVERANCE_COUNT = 3;
 export const DENKEN_DEATH_HP = -50;
