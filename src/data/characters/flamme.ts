@@ -2,7 +2,7 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { flammeDeck } from "../decks/flamme";
 
-export const Denken: Character = {
+export const Flamme: Character = {
     id: "flamme",
     name: CharacterName.Flamme,
     description:
