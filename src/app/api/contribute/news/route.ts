@@ -7,6 +7,7 @@ import slugify from "slugify";
 
 const newsSchema = z.object({
     title: z.string().min(5),
+    slug: z.string().min(3),
     excerpt: z.string().min(10),
     content: z.string().min(50),
     tags: z.array(z.string()).min(1),
@@ -25,10 +26,12 @@ export async function POST(req: Request) {
         const body = await req.json();
         const validatedData = newsSchema.parse(body);
 
-        const slug = slugify(validatedData.title, {
-            lower: true,
-            strict: true,
-        });
+        const slug =
+            validatedData.slug ||
+            slugify(validatedData.title, {
+                lower: true,
+                strict: true,
+            });
 
         const existing = await prisma.news.findFirst({
             where: {
@@ -40,6 +43,9 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Slug is already taken" }, { status: 400 });
         }
 
+        console.log(validatedData);
+        console.log(session.user);
+
         const news = await prisma.news.create({
             data: {
                 title: validatedData.title,
@@ -48,8 +54,12 @@ export async function POST(req: Request) {
                 content: validatedData.content,
                 tags: validatedData.tags,
                 imageUrl: validatedData.imageUrl || null,
-                authorId: session.user.id,
                 published: false,
+                author: {
+                    connect: {
+                        discordId: session.user.discordId,
+                    },
+                },
             },
         });
 

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -13,12 +14,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { TagInput } from "@/components/ui/tag-input";
 import MarkdownContent from "@/components/markdown-content";
-import { toast } from "sonner";
 
 const formSchema = z.object({
     title: z.string().min(5, {
         message: "Title must be at least 5 characters.",
     }),
+    slug: z
+        .string()
+        .min(3, {
+            message: "Slug must be at least 3 characters.",
+        })
+        .regex(/^[a-z0-9-]+$/, {
+            message: "Slug can only contain lowercase letters, numbers, and hyphens.",
+        }),
     excerpt: z.string().min(10, {
         message: "Excerpt must be at least 10 characters.",
     }),
@@ -47,12 +55,31 @@ export function NewsArticleForm() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: "",
+            slug: "",
             excerpt: "",
             content: "",
             tags: [],
             imageUrl: "",
         },
     });
+
+    // Auto-generate slug from title
+    const watchTitle = form.watch("title");
+    const generateSlug = (title: string) => {
+        return title
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-")
+            .trim();
+    };
+
+    // Auto-update slug when title changes
+    React.useEffect(() => {
+        if (watchTitle && !form.getValues("slug")) {
+            form.setValue("slug", generateSlug(watchTitle));
+        }
+    }, [watchTitle, form]);
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         setIsSubmitting(true);
@@ -72,7 +99,6 @@ export function NewsArticleForm() {
             if (response.ok) {
                 router.push("/contribute/success?type=news");
             } else {
-                toast.error(`Failed to submit news article`);
                 console.error("Failed to submit news article");
             }
         } catch (error) {
@@ -97,6 +123,24 @@ export function NewsArticleForm() {
                                         <Input placeholder="Enter article title" {...field} />
                                     </FormControl>
                                     <FormDescription>A catchy title for your news article</FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="slug"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>URL Slug</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="article-url-slug" {...field} />
+                                    </FormControl>
+                                    <FormDescription>
+                                        This will be used in the article URL. Use lowercase letters, numbers, and
+                                        hyphens only.
+                                    </FormDescription>
                                     <FormMessage />
                                 </FormItem>
                             )}
