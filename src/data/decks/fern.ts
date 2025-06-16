@@ -41,11 +41,11 @@ const disapprovingPout = new Card({
 export const manaConcealment = new Card({
     title: "Mana Concealment",
     cardMetadata: { nature: Nature.Util },
-    description: ([atk, def]) =>
-        `ATK+${atk}. DEF+${def}. Receive Priority+1 and additional 50% Pierce on attacks for next turn.`,
+    description: ([atk, def, spd]) =>
+        `ATK+${atk}. DEF+${def}. SPD+${spd} Receive Priority+1 and additional 50% Pierce on attacks for next turn.`,
     emoji: CardEmoji.FERN_CARD,
-    effects: [1, 2],
-    effectNames: ["ATK", "DEF"],
+    effects: [1, 2, 2],
+    effectNames: ["ATK", "DEF", "SPD"],
     cardCategories: ["Utility"],
     deck: "fern",
 });
