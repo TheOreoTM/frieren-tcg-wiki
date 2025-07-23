@@ -1,28 +1,21 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
-import { Nature } from "@/lib/types";
+import { CardCategory, Nature } from "@/lib/types";
 
 export const empathyFailureName = "Stalking";
 
-const a_reelseiden = new Card({
+const a_shallowSlash = new Card({
     title: "Shallow Slash",
     description: ([dmg, atkSpd]) =>
         `HP-4. DMG ${dmg}. If used by Übel, has a 20% of missing if the opponent didn't use an Attack card before this move is used. If the attack misses, ATK+${atkSpd}, SPD+${atkSpd}.`,
     emoji: CardEmoji.UBEL_CARD,
     effects: [8, 2],
-    cardMetadata: {
-        nature: Nature.Attack,
-        ubelFailureRate: 20,
-    },
-    tags: {
-        FailureRate: 20,
-    },
-    cardCategories: ["Attack"],
-    effectNames: ["DMG"],
+    cardMetadata: { nature: Nature.Attack, ubelFailureRate: 20 },
+    tags: { FailureRate: 20 },
+    cardCategories: [CardCategory.ATTACK],
+    effectNames: ["DMG", "ATK+SPD"],
     deck: "ubel",
-    cosmetic: {
-        cardGif: "/cards/Reelseiden.gif",
-    },
+    hpCost: 4,
 });
 
 const a_cleave = new Card({
@@ -31,14 +24,12 @@ const a_cleave = new Card({
         `HP-6. DMG ${dmg}. If used by Übel,has a 40% of missing if the opponent didn't use an Attack card before this move is used. If the attack misses, ATK+${atkSpd}, SPD+${atkSpd}.`,
     emoji: CardEmoji.UBEL_CARD,
     effects: [12, 3],
-    effectNames: ["DMG"],
     cardMetadata: { nature: Nature.Attack, ubelFailureRate: 40 },
-    cardCategories: ["Attack"],
+    tags: { FailureRate: 40 },
+    cardCategories: [CardCategory.ATTACK],
+    effectNames: ["DMG", "ATK+SPD"],
     hpCost: 6,
     deck: "ubel",
-    cosmetic: {
-        // cardGif: "/cards/Cleave.gif", // This shit is 37MB
-    },
 });
 
 const a_dismantle = new Card({
@@ -47,9 +38,10 @@ const a_dismantle = new Card({
         `HP-8. DMG ${dmg}. If used by Übel, has a 60% of missing if the opponent didn't use an Attack card before this move is used. If the attack misses, ATK+${atkSpd}, SPD+${atkSpd}.`,
     emoji: CardEmoji.UBEL_CARD,
     effects: [16, 4],
-    effectNames: ["DMG"],
     cardMetadata: { nature: Nature.Attack, ubelFailureRate: 60 },
-    cardCategories: ["Attack"],
+    tags: { FailureRate: 60 },
+    cardCategories: [CardCategory.ATTACK],
+    effectNames: ["DMG", "ATK+SPD"],
     hpCost: 8,
     deck: "ubel",
 });
@@ -60,7 +52,7 @@ export const rushdown = new Card({
     description: ([spd]) =>
         `Increases SPD by ${spd} for 4 turns. Attacks will not miss during this period. At the end of every turn, HP-2.`,
     emoji: CardEmoji.UBEL_CARD,
-    cardCategories: ["Utility"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF],
     effects: [10],
     effectNames: ["SPD"],
     deck: "ubel",
@@ -74,7 +66,7 @@ const slowdown = new Card({
     emoji: CardEmoji.UBEL_CARD,
     effects: [5, 10, 5],
     effectNames: ["DEF", "HP", "HP"],
-    cardCategories: ["Utility", "Healing"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.HEALING, CardCategory.BUFF, CardCategory.DEBUFF],
     deck: "ubel",
 });
 
@@ -85,8 +77,8 @@ const defend = new Card({
     emoji: CardEmoji.UBEL_CARD,
     effects: [20],
     priority: 2,
-    cardCategories: ["Utility", "Defense", "Block"],
-    effectNames: ["DEF"],
+    cardCategories: [CardCategory.DEFENSE, CardCategory.BLOCK],
+    effectNames: ["TrueDEF"],
     deck: "ubel",
 });
 
@@ -94,11 +86,11 @@ export const sorganeil = new Card({
     title: "Sorganeil",
     cardMetadata: { nature: Nature.Util },
     description: () =>
-        `Priority-2. Will fail if the opponent's SPD is higher than your SPD by 35 or more. Set opponent's SPD to 1. Clear opponent's timed effects. Opponent can only wait next turn. Attacks will hit with 100% certainty.`,
+        `Priority-2. Will fail if the opponent's SPD is higher than your SPD by 35 or more. Set opponent's SPD to 1. Clear opponent's timed effects. Opponent can only use default actions next turn. Attacks will hit with 100% certainty.`,
     emoji: CardEmoji.UBEL_CARD,
     priority: -2,
     effects: [],
-    cardCategories: ["Utility"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.DEBUFF, CardCategory.DISRUPTION],
     effectNames: [],
     deck: "ubel",
 });
@@ -109,7 +101,7 @@ export const empathy = new Card({
     description: () =>
         `Will fail if used before turn 5. Use the opponent's signature move at this card's empower level -2.`,
     emoji: CardEmoji.UBEL_CARD,
-    cardCategories: ["Utility"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.UNIQUE],
     effects: [],
     effectNames: [],
     deck: "ubel",
@@ -124,15 +116,16 @@ const a_malevolentShrine = new Card({
     },
     emoji: CardEmoji.UBEL_CARD,
     cardMetadata: { nature: Nature.Attack, signature: true, ubelFailureRate: 80 },
+    tags: { FailureRate: 80 },
     effects: [22, 5],
     effectNames: ["DMG", "ATK+SPD"],
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK],
     hpCost: 11,
     deck: "ubel",
 });
 
 export const ubelDeck = [
-    { card: a_reelseiden, count: 3 },
+    { card: a_shallowSlash, count: 3 },
     { card: a_cleave, count: 2 },
     { card: a_dismantle, count: 2 },
     { card: a_malevolentShrine, count: 1 },

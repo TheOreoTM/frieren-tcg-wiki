@@ -5,31 +5,34 @@ import { CardCategory, Nature } from "@/lib/types";
 const a_jab = new Card({
     title: "Jab",
     cardMetadata: { nature: Nature.Attack },
-    description: ([def, atk, spd, dmg]) => `DEF+${def}. ATK+${atk}. SPD+${spd}. Deal ${dmg} DMG.`,
+    description: ([def, atk, spd, dmg]) => `HP-1. DEF+${def}. ATK+${atk}. SPD+${spd}. Deal ${dmg} DMG.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [1, 1, 1, 2],
-    effectNames: ["DEF", "SPD", "DMG"],
+    hpCost: 1,
     cardCategories: [CardCategory.ATTACK],
+    effectNames: ["DEF", "ATK", "SPD", "DMG"],
     deck: "denken",
 });
 
 const a_hook = new Card({
     title: "Hook",
     cardMetadata: { nature: Nature.Attack },
-    description: ([spd, atk, dmg]) => `SPD+${spd}. ATK+${atk}. Deal ${dmg} DMG.`,
+    description: ([spd, atk, dmg]) => `HP-1. SPD+${spd}. ATK+${atk}. Deal ${dmg} DMG.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [2, 1, 2],
+    hpCost: 1,
     cardCategories: [CardCategory.ATTACK],
-    effectNames: ["ATK", "DMG"],
+    effectNames: ["SPD", "ATK", "DMG"],
     deck: "denken",
 });
 
 const a_uppercut = new Card({
     title: "Uppercut",
     cardMetadata: { nature: Nature.Attack },
-    description: ([atk, spd, dmg]) => `ATK+${atk}. SPD+${spd}. Deal ${dmg} DMG.`,
+    description: ([atk, spd, dmg]) => `HP-2. ATK+${atk}. SPD+${spd}. Deal ${dmg} DMG.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [2, 1, 3],
+    hpCost: 2,
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["ATK", "SPD", "DMG"],
     deck: "denken",
@@ -38,28 +41,28 @@ const a_uppercut = new Card({
 const bareHandedBlock = new Card({
     title: "Bare-handed Block",
     cardMetadata: { nature: Nature.Defense },
-    description: ([def, tempDef]) => `Priority+2. DEF+${def}. TruDEF+${tempDef} until the end of the turn.`,
+    description: ([def, tempDef]) => `Priority+2. DEF+${def}. TrueDEF+${tempDef} until the end of the turn.`,
     emoji: CardEmoji.DENKEN_CARD,
     priority: 2,
     effects: [2, 8],
-    cardCategories: [CardCategory.DEFENSE, CardCategory.UTILITY, "Block"],
-    effectNames: ["DEF", "DEF"],
+    cardCategories: [CardCategory.DEFENSE],
+    effectNames: ["DEF", "TrueDEF"],
     deck: "denken",
 });
 
-export const a_waldgose = new Card({
+const a_waldgose = new Card({
     title: "Tornado Winds: Waldgose",
     cardMetadata: { nature: Nature.Attack },
     description: ([dmg, multiDmg]) =>
         `HP-7. DMG ${dmg}. At the next 5 turn ends, deal ${multiDmg} DMG. Treat this card as "Jab" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [6, 1],
-    cardCategories: [CardCategory.ATTACK],
-    effectNames: ["DMG", "DMG"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.DoT],
+    effectNames: ["DMG", "DoT"],
     deck: "denken",
 });
 
-export const a_daosdorg = new Card({
+const a_daosdorg = new Card({
     title: "Hellfire: Daosdorg",
     cardMetadata: { nature: Nature.Attack },
     description: ([dmg]) =>
@@ -67,23 +70,23 @@ export const a_daosdorg = new Card({
     emoji: CardEmoji.DENKEN_CARD,
     effects: [12],
     cardCategories: [CardCategory.ATTACK],
-    effectNames: ["DMG", "DMG", "-Opp DEF"],
+    effectNames: ["DMG", "Pierce"],
     deck: "denken",
 });
 
-export const a_catastravia = new Card({
-    title: "Lights of Judgment: Catastravia",
+const a_catastravia = new Card({
+    title: "Lights of Judgement: Catastravia",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg0, dmg1, dmg2, dmg3, dmg4]) =>
-        `HP-15. DMG ${dmg0}, ${dmg1}, ${dmg2}, ${dmg3}, ${dmg4}. Treat this card as "Uppercut" if the user's HP is <= 0.`,
+    description: ([initDmg, turn2DMG, turn3DMG]) =>
+        `HP-15. DMG ${initDmg}. At the end of the next 2 turns, deal DMG ${turn2DMG}x2 and DMG ${turn3DMG}x3 respectively. Treat this card as "Uppercut" if the user's HP is <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
-    effects: [2, 3, 4, 5, 6],
-    cardCategories: [CardCategory.ATTACK],
-    effectNames: ["DMG", "DMG"],
+    effects: [9, 3, 3],
+    cardCategories: [CardCategory.ATTACK, CardCategory.DoT],
+    effectNames: ["DMG", "DoT", "DoT"],
     deck: "denken",
 });
 
-export const elementaryDefensiveMagic = new Card({
+const elementaryDefensiveMagic = new Card({
     title: "Elementary Defensive Magic",
     cardMetadata: { nature: Nature.Defense, signature: true },
     description: ([def]) =>
@@ -91,12 +94,12 @@ export const elementaryDefensiveMagic = new Card({
     emoji: CardEmoji.DENKEN_CARD,
     priority: 2,
     effects: [20],
-    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE],
-    effectNames: ["DEF"],
+    cardCategories: [CardCategory.DEFENSE, CardCategory.UTILITY],
+    effectNames: ["TrueDEF"],
     deck: "denken",
 });
 
-export const a_concentratedOffensiveMagicZoltraak = new Card({
+const a_concentratedOffensiveMagicZoltraak = new Card({
     title: "Concentrated Offensive Magic: Zoltraak",
     cardMetadata: { nature: Nature.Attack },
     description: ([dmg]) => `HP-8. DMG ${dmg}.`,
@@ -108,15 +111,15 @@ export const a_concentratedOffensiveMagicZoltraak = new Card({
     deck: "denken",
 });
 
-export const thisIsNoPlaceToGiveUp = new Card({
+const thisIsNoPlaceToGiveUp = new Card({
     title: "This Is No Place To Give Up",
     cardMetadata: { nature: Nature.Util },
     description: ([hpFirst, hpSecond]) =>
         `Heal ${hpFirst}HP. Heal an additional ${hpSecond}HP and gain 1 Preserverance stack if HP <= 0.`,
     emoji: CardEmoji.DENKEN_CARD,
     effects: [7, 7],
-    cardCategories: [CardCategory.HEALING],
-    effectNames: ["HP"],
+    cardCategories: [CardCategory.HEALING, CardCategory.UTILITY],
+    effectNames: ["Heal", "Heal"],
     deck: "denken",
 });
 

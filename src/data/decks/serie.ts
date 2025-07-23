@@ -1,38 +1,47 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
 import { fieldOfFlower } from "./frieren";
-import { Nature } from "@/lib/types";
+import { CardCategory, Nature } from "@/lib/types";
 
 export const a_livingGrimoireOffenseCommon = new Card({
-    title: "Living Grimoire: Offense Chapter. 3rd Class Magic section.",
+    title: "Living Grimoire: Offense Chapter. 3rd Class Magic Section.",
     cardMetadata: { nature: Nature.Attack },
     description: () => "Use a random common offensive magic.",
     emoji: CardEmoji.SERIE_CARD,
+    cosmetic: {
+        cardImageUrl: "/cards/Living_Grimoire_1.webp",
+    },
     effects: [],
     effectNames: [],
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.UNIQUE],
     deck: "serie",
 });
 
 export const a_livingGrimoireOffenseRare = new Card({
-    title: "Living Grimoire: Offense Chapter. 1st Class Magic section.",
+    title: "Living Grimoire: Offense Chapter. 1st Class Magic Section.",
     cardMetadata: { nature: Nature.Attack },
     description: () => "Use a random rare offensive magic.",
     emoji: CardEmoji.SERIE_CARD,
+    cosmetic: {
+        cardImageUrl: "/cards/Living_Grimoire1_1.webp",
+    },
     effects: [],
     effectNames: [],
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.UNIQUE],
     deck: "serie",
 });
 
 export const a_livingGrimoireOffenseUnusual = new Card({
-    title: "Living Grimoire: Offense Chapter. Great Mage's Magic section.",
+    title: "Living Grimoire: Offense Chapter. Great Mage's Magic Section.",
     cardMetadata: { nature: Nature.Attack },
     description: () => "Use a random unusual offensive magic.",
     emoji: CardEmoji.SERIE_CARD,
+    cosmetic: {
+        cardImageUrl: "/cards/Living_Grimoire2_1.webp",
+    },
     effects: [],
     effectNames: [],
-    cardCategories: ["Attack", "Utility"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.UNIQUE],
     deck: "serie",
 });
 
@@ -41,9 +50,12 @@ export const a_livingGrimoireUtilityTactics = new Card({
     cardMetadata: { nature: Nature.Util },
     description: () => "Use a random stats adjusting utility magic.",
     emoji: CardEmoji.SERIE_CARD,
+    cosmetic: {
+        cardImageUrl: "/cards/Living_Grimoire_1.webp",
+    },
     effects: [],
     effectNames: [],
-    cardCategories: ["Utility"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.UNIQUE],
     deck: "serie",
 });
 
@@ -53,12 +65,25 @@ export const a_livingGrimoireUtilityRecovery = new Card({
     description: () => "Use a random HP recovery utility magic.",
     emoji: CardEmoji.SERIE_CARD,
     cosmetic: {
-        cardImageUrl:
-            "https://cdn.discordapp.com/attachments/1351391350398128159/1352873014785740800/Living_Grimoire_1.png?ex=6808772d&is=680725ad&hm=96a1d24a30264ade70debfc8ffe00506330d2b9ed559386e1a69a1c19bc647e9&",
+        cardImageUrl: "/cards/Living_Grimoire_1.webp",
     },
     effects: [],
     effectNames: [],
-    cardCategories: ["Utility"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.HEALING, CardCategory.UNIQUE],
+    deck: "serie",
+});
+
+export const mock = new Card({
+    title: "Mock",
+    cardMetadata: { nature: Nature.Util },
+    description: ([hp, spd, def]) => `HP+${hp}. SPD+${spd}. Opponent's DEF-${def}.`,
+    emoji: CardEmoji.SERIE_CARD,
+    cosmetic: {
+        cardImageUrl: "/cards/Mock.webp",
+    },
+    effects: [3, 2, 1],
+    cardCategories: [CardCategory.UTILITY, CardCategory.HEALING, CardCategory.BUFF, CardCategory.DEBUFF],
+    effectNames: ["HP", "SPD", "-Opp DEF"],
     deck: "serie",
 });
 
@@ -67,13 +92,13 @@ export const basicDefensiveMagic = new Card({
     cardMetadata: { nature: Nature.Defense },
     description: ([def]) => `Priority+2. Increases TrueDEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.SERIE_CARD,
-    effects: [20],
-    priority: 2,
     cosmetic: {
         cardImageUrl: "/cards/Basic_Defense_Magic.webp",
     },
-    cardCategories: ["Utility", "Defense", "Block"],
-    effectNames: ["DEF"],
+    effects: [20],
+    priority: 2,
+    cardCategories: [CardCategory.DEFENSE, CardCategory.BLOCK],
+    effectNames: ["TrueDEF"],
     deck: "serie",
 });
 
@@ -81,18 +106,19 @@ export const unbreakableBarrier = new Card({
     title: "Unbreakable Barrier",
     cardMetadata: { nature: Nature.Util },
     description: ([atk, def, oppSpd]) =>
-        `HP-10. ATK+${atk} for 5 turns. DEF+${def} for 5 turns. Opponent's SPD-${oppSpd} for 5 turns.`,
+        `HP-5. HP-2 at the end of the next 5 turns. ATK+${atk}, DEF+${def} and Opponent's SPD-${oppSpd} for 5 turns.`,
     emoji: CardEmoji.SERIE_CARD,
-    effects: [5, 5, 5],
-    hpCost: 10,
     cosmetic: {
         cardImageUrl: "/cards/Unbreakable_Barrier.webp",
     },
-    cardCategories: ["Utility", "Defense"],
-    effectNames: ["ATK", "DEF", "-OpponentSPD"],
+    effects: [5, 5, 5],
+    hpCost: 5,
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF, CardCategory.DEBUFF, CardCategory.DoT],
+    effectNames: ["ATK", "DEF", "-Opp SPD"],
     deck: "serie",
 });
 
+// This card's definition is based on the wiki code example provided.
 export const ancientBarrierMagic = new Card({
     title: "Ancient Barrier Magic",
     description: ([atk, def, oppSpd]) =>
@@ -103,24 +129,10 @@ export const ancientBarrierMagic = new Card({
     },
     effects: [7, 7, 7],
     cardMetadata: { nature: Nature.Attack, signature: true },
-    cardCategories: ["Utility", "Defense"],
-    effectNames: ["ATK", "DEF", "-OpponentSPD"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE, CardCategory.BUFF, CardCategory.DEBUFF],
+    effectNames: ["ATK", "-Opp DEF", "-Opp SPD"],
     deck: "serie",
     hpCost: 10,
-});
-
-export const mock = new Card({
-    title: "Mock",
-    cardMetadata: { nature: Nature.Util },
-    description: ([hp, spd, oppDef]) => `HP+${hp}. SPD+${spd}. Opponent's DEF-${oppDef}.`,
-    emoji: CardEmoji.SERIE_CARD,
-    effects: [3, 2, 1],
-    cosmetic: {
-        cardImageUrl: "/cards/Mock.webp",
-    },
-    cardCategories: ["Utility"],
-    effectNames: ["HP", "SPD", "-OpponentDEF"],
-    deck: "serie",
 });
 
 export const serieDeck = [

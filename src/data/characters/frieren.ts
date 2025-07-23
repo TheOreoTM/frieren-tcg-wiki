@@ -2,8 +2,8 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { frierenDeck } from "../decks/frieren";
 
-const ANALYSIS_BOOST = 0.05;
-const ANALYSIS_STACK_CAP = 20;
+const ANALYSIS_BOOST = 0.07;
+const ANALYSIS_STACK_CAP = 10;
 
 export const Frieren: Character = {
     id: "frieren",
@@ -39,13 +39,19 @@ export const Frieren: Character = {
         A maximum of ${ANALYSIS_STACK_CAP} Analysis stacks can be held at any time.`,
     },
     subAbilities: [
-        { abilityName: "Mana Suppresion", abilityEffectString: "Hide the amount of HP this character has." },
-        { abilityName: "Flamme's Teachings", abilityEffectString: "See past the opponent's Mana Suppression." },
+        {
+            abilityName: "Mana Suppresion",
+            abilityEffectString: "Hide the amount of HP this character has.",
+        },
+        {
+            abilityName: "Flamme's Teachings",
+            abilityEffectString: "See past the opponent's Mana Suppression.",
+        },
     ],
     relatedCharacters: [CharacterID.Himmel, CharacterID.Serie, CharacterID.Sein],
     additionalMetadata: {
         accessToDefaultCardOptions: true,
         manaSuppressed: true,
-        ignoreManaSuppressed: false,
+        ignoreManaSuppressed: true,
     },
 };

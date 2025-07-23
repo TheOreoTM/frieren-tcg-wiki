@@ -1,6 +1,7 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
 import { CardCategory, Nature } from "@/lib/types";
+
 const a_FrierenStrikeTheirWeakpoint = new Card({
     title: "Frieren! Strike Their Weakpoints!",
     cardMetadata: { nature: Nature.Attack },
@@ -8,8 +9,8 @@ const a_FrierenStrikeTheirWeakpoint = new Card({
         `Frieren attacks for ${dmg} DMG. At next turn's end, Frieren attacks for an additional ${dmg} DMG.`,
     emoji: CardEmoji.HIMMEL_CARD,
     effects: [7],
-    effectNames: ["DMG"],
-    cardCategories: [CardCategory.ATTACK],
+    effectNames: ["DMG", "DoT"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.DoT],
     deck: "himmel",
 });
 
@@ -19,9 +20,9 @@ const a_FrierenBackMeUp = new Card({
     description: ([dmg]) =>
         `Frieren attacks for ${dmg} DMG. For the next 4 turn ends, Frieren attacks for an additional ${dmg} DMG.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [3],
-    effectNames: ["DMG"],
-    cardCategories: [CardCategory.ATTACK],
+    effects: [4],
+    effectNames: ["DMG", "DoT"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.DoT],
     deck: "himmel",
 });
 
@@ -29,7 +30,7 @@ export const a_FrierenNow = new Card({
     title: "Frieren! Now!",
     cardMetadata: { nature: Nature.Attack },
     description: ([dmg]) => `DMG ${dmg}`,
-    emoji: CardEmoji.FRIEREN_CARD,
+    emoji: CardEmoji.HIMMEL_CARD,
     effects: [10],
     effectNames: ["DMG"],
     cardCategories: [CardCategory.ATTACK],
@@ -43,7 +44,7 @@ const a_EisenTheEnemysOpen = new Card({
     emoji: CardEmoji.HIMMEL_CARD,
     effects: [2, 10],
     effectNames: ["DEF", "DMG"],
-    cardCategories: [CardCategory.ATTACK],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF, CardCategory.ATTACK],
     deck: "himmel",
 });
 
@@ -54,7 +55,7 @@ const a_EisenCoverMyBack = new Card({
         `Eisen provides cover. DEF+${def} for 3 turns. Once per turn, when an opponent attacks, counter for ${dmg} DMG.`,
     emoji: CardEmoji.HIMMEL_CARD,
     effects: [3, 5],
-    cardCategories: [CardCategory.ATTACK],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF, CardCategory.COUNTER],
     effectNames: ["DEF", "DMG"],
     deck: "himmel",
 });
@@ -64,8 +65,8 @@ const eisenHoldTheLine = new Card({
     cardMetadata: { nature: Nature.Util },
     description: ([def]) => `Eisen holds the line. DEF+${def} for 4 turns.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [3],
-    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE],
+    effects: [4],
+    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE, CardCategory.BUFF],
     effectNames: ["DEF"],
     deck: "himmel",
 });
@@ -76,19 +77,19 @@ const heiterEmergency = new Card({
     description: ([heal]) => `Heiter heals the party for ${heal}HP. At next turn's end, heal an additional ${heal} HP.`,
     emoji: CardEmoji.HIMMEL_CARD,
     effects: [5],
-    effectNames: ["HP"],
-    cardCategories: [CardCategory.HEALING, CardCategory.UTILITY],
+    effectNames: ["HP", "HP"],
+    cardCategories: [CardCategory.HEALING, CardCategory.UTILITY, CardCategory.DoT],
     deck: "himmel",
 });
 
 const a_heiterThreeSpears = new Card({
     title: "Heiter! Don't give them an opening!",
     cardMetadata: { nature: Nature.Attack },
-    description: ([heal]) => `Heiter casts Three Spears of the Goddess! At next 3 turn's end, deal ${heal} DMG.`,
+    description: ([dmg]) => `Heiter casts Three Spears of the Goddess! At next 3 turn's end, deal ${dmg} DMG.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [5],
+    effects: [6],
     effectNames: ["DMG"],
-    cardCategories: [CardCategory.ATTACK],
+    cardCategories: [CardCategory.ATTACK, CardCategory.DoT],
     deck: "himmel",
 });
 
@@ -97,33 +98,33 @@ const heiterTrustYou = new Card({
     cardMetadata: { nature: Nature.Util },
     description: ([atkSpd]) => `Heiter supports the party. ATK+${atkSpd}, SPD+${atkSpd} for 4 turns.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [3],
-    cardCategories: [CardCategory.UTILITY],
-    effectNames: ["ATK +", "SPD +"],
+    effects: [4],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF],
+    effectNames: ["ATK", "SPD"],
     deck: "himmel",
 });
 
 export const quickBlock = new Card({
     title: "Quick Block",
     cardMetadata: { nature: Nature.Defense },
-    description: ([def]) => `Priority+3. Increases TrueDEF by ${def} until the end of the turn.`,
+    description: ([def]) => `Priority+2. Increases TrueDEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    priority: 3,
+    priority: 2,
     effects: [20],
-    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE, CardCategory.BLOCK],
-    effectNames: ["DEF"],
+    cardCategories: [CardCategory.DEFENSE, CardCategory.BLOCK],
+    effectNames: ["TrueDEF"],
     deck: "himmel",
 });
 
 const rally = new Card({
     title: "Rally",
     cardMetadata: { nature: Nature.Util },
-    description: ([stat, lessStat]) =>
-        `ATK+${stat}. DEF+${stat}. SPD+${stat}. An additional ATK+${lessStat}, DEF+${lessStat}, SPD+${lessStat} per ally active, or per active Timed Effect if not used by Himmel.`,
+    description: ([hp, lessHp, stat, lessStat]) =>
+        `HP+${hp}. ATK+${stat}. DEF+${stat}. SPD+${stat}. An additional HP+${lessHp}, ATK+${lessStat}, DEF+${lessStat}, SPD+${lessStat} per ally active, or per active Timed Effect if not used by Himmel.`,
     emoji: CardEmoji.HIMMEL_CARD,
-    effects: [1, 0.5],
-    effectNames: ["+ STAT ", "+ stat"],
-    cardCategories: [CardCategory.ATTACK, CardCategory.HEALING, CardCategory.UTILITY],
+    effects: [2, 1, 1, 0.5],
+    effectNames: ["HP", "HP", "Stat", "Stat"],
+    cardCategories: [CardCategory.HEALING, CardCategory.UTILITY, CardCategory.BUFF],
     deck: "himmel",
 });
 
@@ -146,6 +147,7 @@ export const a_realHeroSwing = new Card({
     emoji: CardEmoji.HIMMEL_CARD,
     cardMetadata: { nature: Nature.Attack, signature: true },
     effects: [18],
+    hpCost: 12,
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "himmel",

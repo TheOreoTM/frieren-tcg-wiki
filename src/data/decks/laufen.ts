@@ -4,24 +4,25 @@ import { CardCategory, Nature } from "@/lib/types";
 
 const a_staffStrike = new Card({
     title: "Staff Strike",
-    description: ([spd, dmg]) => `HP-7. SPD+${spd}. Afterwards, DMG ${dmg}+SPD/7 with SPDDiff% Pierce.`,
+    description: ([spd, dmg]) => `HP-5. SPD+${spd}. Afterwards, DMG ${dmg}+SPD/8 with SPDDiff% Pierce (max: 100%).`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [3, 7],
     cardMetadata: { nature: Nature.Attack },
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.PIERCE],
     effectNames: ["SPD", "DMG"],
-    hpCost: 7,
+    hpCost: 5,
     deck: "laufen",
 });
 
 const a_staffBash = new Card({
     title: "Staff Bash",
     cardMetadata: { nature: Nature.Attack },
-    description: ([spd, dmg]) => `HP-7. SPD+${spd}. Afterwards, DMG ${dmg}+SPD/6 with SPDDiff% Pierce.`,
+    description: ([spd, dmg]) =>
+        `HP-5. SPD+${spd}. Afterwards, DMG ${dmg}+SPD/6 with (SPDDiff / 2)% Pierce (max: 50%).`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [2, 8],
-    hpCost: 7,
-    cardCategories: ["Attack"],
+    hpCost: 5,
+    cardCategories: [CardCategory.ATTACK, CardCategory.PIERCE],
     effectNames: ["SPD", "DMG"],
     deck: "laufen",
 });
@@ -29,35 +30,35 @@ const a_staffBash = new Card({
 export const a_whip = new Card({
     title: "Whip",
     cardMetadata: { nature: Nature.Attack },
-    description: ([spd, dmg]) => `HP-7, SPD+${spd}. Afterwards, DMG ${dmg}+SPD/5.`,
+    description: ([spd, dmg]) => `HP-5. SPD+${spd}. Afterwards, DMG ${dmg}+SPD/5.`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [2, 9],
-    hpCost: 7,
+    hpCost: 5,
     cardCategories: [CardCategory.ATTACK],
     effectNames: ["SPD", "DMG"],
+    deck: "laufen",
+});
+
+export const a_supersonicStrike = new Card({
+    title: "Supersonic Strike",
+    description: ([dmg]) => `HP-5. DMG ${dmg}+SPD/4.`,
+    emoji: CardEmoji.LAUFEN_CARD,
+    cardMetadata: { nature: Nature.Attack, signature: true },
+    effects: [10],
+    hpCost: 5,
+    cardCategories: [CardCategory.ATTACK],
+    effectNames: ["DMG"],
     deck: "laufen",
 });
 
 export const hide = new Card({
     title: "Hide",
     cardMetadata: { nature: Nature.Util },
-    description: ([def, hp]) => `DEF+${def} for 2 turns. Heal ${hp} HP.`,
+    description: ([spd, hp]) => `SPD+${spd}. Heal ${hp} HP.`,
     emoji: CardEmoji.DONUT_CARD,
-    effects: [3, 10],
-    cardCategories: [CardCategory.UTILITY],
-    effectNames: ["SPD", "SPD Buff", "HP"],
-    deck: "laufen",
-});
-
-export const a_supersonicStrike = new Card({
-    title: "Supersonic Strike",
-    description: ([dmg]) => `HP-7, DMG ${dmg}+SPD/4.`,
-    emoji: CardEmoji.LAUFEN_CARD,
-    cardMetadata: { nature: Nature.Attack, signature: true },
-    effects: [10],
-    hpCost: 7,
-    cardCategories: [CardCategory.ATTACK],
-    effectNames: ["SPD", "DMG"],
+    effects: [2, 7],
+    cardCategories: [CardCategory.UTILITY, CardCategory.HEALING, CardCategory.BUFF],
+    effectNames: ["SPD", "HP"],
     deck: "laufen",
 });
 
@@ -67,22 +68,22 @@ const quickDodge = new Card({
     description: ([spd, spdBuff]) =>
         `Priority+2. SPD+${spd}. Increases SPD by an additional ${spdBuff} until the end of the turn.`,
     emoji: CardEmoji.LAUFEN_CARD,
-    effects: [3, 27],
+    effects: [5, 35],
     priority: 2,
-    cardCategories: [CardCategory.UTILITY],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF],
     effectNames: ["SPD", "SPD Buff"],
     deck: "laufen",
 });
 
-const parry = new Card({
+export const parry = new Card({
     title: "Parry",
     cardMetadata: { nature: Nature.Defense },
     description: ([def]) => `Priority+2. Increases TrueDEF by ${def} until the end of the turn.`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [20],
     priority: 2,
-    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE, "Block"],
-    effectNames: ["DEF"],
+    cardCategories: [CardCategory.DEFENSE, CardCategory.BLOCK],
+    effectNames: ["TrueDEF"],
     deck: "laufen",
 });
 
@@ -92,8 +93,7 @@ export const jilwer = new Card({
     description: ([spd]) => `Increases SPD by ${spd} for 2 turns. At the end of every turn, HP-10.`,
     emoji: CardEmoji.LAUFEN_CARD,
     effects: [50],
-    hpCost: 10,
-    cardCategories: [CardCategory.UTILITY],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF],
     effectNames: ["SPD"],
     deck: "laufen",
 });

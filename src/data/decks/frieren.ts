@@ -8,7 +8,7 @@ export const a_zoltraak = new Card({
     description: ([dmg]) => `HP-4. DMG ${dmg}. 1 Analysis stacks will be gained after attack.`,
     emoji: CardEmoji.FRIEREN_CARD,
     tags: { PostAnalysis: 1 },
-    effects: [9],
+    effects: [8],
     cosmetic: {
         cardImageUrl: "/cards/Offensive_Magic_Analysis_Zoltraak.webp",
     },
@@ -24,13 +24,11 @@ export const fieldOfFlower = new Card({
     description: ([hp, endHp]) => `Heal ${hp} HP. At the next 3 turn ends, heal ${endHp}.`,
     cosmetic: {
         cardGif: "/cards/FieldOfFlowers_Animated.webp",
-        cardImageUrl:
-            // "https://cdn.discordapp.com/attachments/1351391350398128159/1352873016660590653/Spell_to_make_a_field_of_flowers_4.png?ex=67df98ae&is=67de472e&hm=e5080e39c9818eee5f9a3d559a829b6f3ecab15be85b9897fb6c28ea27c6e674&",
-            "/cards/FieldOfFlowers.webp",
+        cardImageUrl: "/cards/FieldOfFlowers.webp",
     },
     emoji: CardEmoji.FLOWER_FIELD,
     effects: [5, 3],
-    cardCategories: [CardCategory.UTILITY, CardCategory.HEALING],
+    cardCategories: [CardCategory.UTILITY, CardCategory.HEALING, CardCategory.DoT],
     effectNames: ["HP", "HP"],
     deck: "frieren",
 });
@@ -75,22 +73,22 @@ export const barrierMagicAnalysis = new Card({
     cosmetic: {
         cardImageUrl: "/cards/Barrier_Magic_Analysis.webp",
     },
-    cardCategories: [CardCategory.UTILITY],
-    effectNames: ["ATK", "SPD", "DEF"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF, CardCategory.DEBUFF],
+    effectNames: ["ATK", "SPD", "-Opp DEF"],
     deck: "frieren",
 });
 
 export const demonMagicAnalysis = new Card({
     title: "Demon Magic Analysis",
     cardMetadata: { nature: Nature.Util },
-    description: ([atk, spd, def]) => `Increases TrueDEF by ${def} until the end of the turn.`,
+    description: ([atk, spd, def]) => `ATK+${atk}. SPD+${spd}. DEF+${def}.`,
     emoji: CardEmoji.FRIEREN_CARD,
     cosmetic: {
         cardImageUrl: "/cards/Demon_Magic_Analysis.webp",
     },
     effects: [2, 2, 1],
     tags: { Analysis: 2 },
-    cardCategories: [CardCategory.UTILITY],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF],
     effectNames: ["ATK", "SPD", "DEF"],
     deck: "frieren",
 });
@@ -104,8 +102,8 @@ export const ordinaryDefensiveMagic = new Card({
         cardImageUrl: "/cards/Ordinary_Defensive_Magic.webp",
     },
     effects: [20],
-    effectNames: ["DEF"],
-    cardCategories: [CardCategory.UTILITY, CardCategory.DEFENSE, CardCategory.BLOCK],
+    effectNames: ["TrueDEF"],
+    cardCategories: [CardCategory.DEFENSE, CardCategory.BLOCK],
     priority: 2,
     deck: "frieren",
 });
@@ -113,17 +111,16 @@ export const ordinaryDefensiveMagic = new Card({
 export const a_theHeightOfMagic = new Card({
     title: `"The Height of Magic"`,
     description: ([dmg]) =>
-        `When used with HP <= 25, Priority+1. Strike for DMG ${dmg}. Afterward, decreases DEF and SPD by 20, and set HP to 1. Treat this card as "Spell to make a Field of Flowers" when used with HP > 25.`,
+        `When used with HP <= 25, Priority+1. Strike for DMG ${dmg}. Afterward, decreases DEF and SPD by 20, and set HP to 1. Treat this card as "Spell to make a Field of Flowers+2" when used with HP > 25.`,
     emoji: CardEmoji.FRIEREN_CARD,
     cosmetic: {
         cardImageUrl: "/cards/The_Height_of_Magic.webp",
     },
     priority: 1,
-    effects: [30],
+    effects: [20],
     effectNames: ["DMG"],
     cardMetadata: { nature: Nature.Attack, signature: true },
     cardCategories: [CardCategory.ATTACK],
-    hpCost: 25,
     deck: "frieren",
 });
 

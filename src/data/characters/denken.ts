@@ -3,7 +3,7 @@ import type { Character } from "@/lib/types";
 import { denkenDeck } from "../decks/denken";
 
 const DENKEN_PRESERVERANCE_COUNT = 3;
-export const DENKEN_DEATH_HP = -50;
+export const DENKEN_DEATH_HP = -40;
 
 export const Denken: Character = {
     id: "denken",

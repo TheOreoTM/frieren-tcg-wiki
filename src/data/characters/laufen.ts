@@ -26,10 +26,7 @@ export const Laufen: Character = {
     cards: laufenDeck,
     ability: {
         abilityName: "Graze",
-        abilityEffectString: `
-        When the opponent attacks, roll a D100. The lower the roll, the less damage the move deals. 
-        The move deals maximum damage if the roll is higher than the difference between the 2 character’s SPD. 
-        The opponent’s attack deals at minimum 0% damage, and at maximum only (100 - This character’s SPD + Opponent’s SPD)% damage.`,
+        abilityEffectString: `Reduce the opponent's attack damage by SPDDiff%.`,
     },
     relatedCharacters: [CharacterID.Denken],
     additionalMetadata: {

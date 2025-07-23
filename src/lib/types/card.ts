@@ -27,10 +27,19 @@ export interface CardCosmetic {
 
 export enum CardCategory {
     ATTACK = "Attack",
+    DoT = "DoT",
+    WIN_CON = "Win Condition",
+    DISRUPTION = "Disruption",
+    STATUS = "Status",
     UTILITY = "Utility",
+    BUFF = "Buff",
+    DEBUFF = "Debuff",
     DEFENSE = "Defense",
+    UNIQUE = "Unique",
+    PIERCE = "Pierce",
     HEALING = "Healing",
     BLOCK = "Block",
+    COUNTER = "Counter",
     DEFAULT = "Default",
 }
 
@@ -46,6 +55,8 @@ export type CardMetadata = {
     resolve?: number;
     signatureMoveOf?: CharacterID;
     ubelFailureRate?: number;
+    theory?: boolean;
+    hideEmpower?: boolean;
 };
 
 export enum Nature {

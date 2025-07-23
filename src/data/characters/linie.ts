@@ -2,7 +2,7 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { linieDeck } from "../decks/linie";
 
-const LINIE_CHAIN_BONUS = 0.08;
+const LINIE_CHAIN_BONUS = 0.1;
 
 export const Linie: Character = {
     id: "linie",
@@ -29,7 +29,7 @@ export const Linie: Character = {
     ability: {
         abilityName: "Chain Attack",
         abilityEffectString: `After this character uses an attack, gain 1 Chain stack.
-        All attacks this character does has its damage increased by <#Chain> * ${LINIE_CHAIN_BONUS * 100}%.
+        All attacks this character does has its damage increased by <#Chain>*${(LINIE_CHAIN_BONUS * 100).toFixed(2)}%.
         When this character does not attack in a turn, reset the count to 0.`,
     },
     relatedCharacters: [CharacterID.Stark],

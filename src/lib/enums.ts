@@ -15,6 +15,7 @@ export enum CharacterName {
     Edel = "Edel",
     Wirbel = "Wirbel",
     Flamme = "Flamme",
+    Methode = "Methode",
 }
 
 export enum CharacterID {
@@ -34,6 +35,7 @@ export enum CharacterID {
     Edel = "edel",
     Wirbel = "wirbel",
     Flamme = "flamme",
+    Methode = "methode",
 }
 
 export const CharacterIdToName: Record<CharacterID, CharacterName> = {
@@ -53,6 +55,7 @@ export const CharacterIdToName: Record<CharacterID, CharacterName> = {
     edel: CharacterName.Edel,
     wirbel: CharacterName.Wirbel,
     flamme: CharacterName.Flamme,
+    methode: CharacterName.Methode,
 };
 
 export enum CharacterEmoji {
@@ -71,6 +74,7 @@ export enum CharacterEmoji {
     EDEL = "https://cdn.discordapp.com/emojis/1258499320504914003.webp", // EdelMad
     WIRBEL = "https://cdn.discordapp.com/emojis/1208067233411240068.webp", // WirbelSmug
     FLAMME = "https://cdn.discordapp.com/emojis/1159196263930146879.webp", // I dont care
+    METHODE = "https://cdn.discordapp.com/emojis/1210701480693075998.webp",
 
     STONE_GEISEL = "https://discord.com/assets/a64d26006d97d530.svg",
     FIRE_GOLEM = "https://discord.com/assets/20e498f90ddfc95f.svg",
@@ -111,6 +115,7 @@ export enum CardEmoji {
     EDEL_CARD = "/emojis/edelCard.webp",
     WIRBEL_CARD = "/emojis/wirbelCard.webp",
     FLAMME_CARD = "/emojis/flammeCard.webp",
+    METHODE_CARD = "/emojis/methodeCard.webp",
 
     FLOWER_FIELD = "/emojis/flowerFieldCard.webp",
     MANA_CARD = "/emojis/manaCard.webp",

@@ -1,6 +1,6 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
-import { Nature } from "@/lib/types";
+import { CardCategory, Nature } from "@/lib/types";
 
 const a_axeSwipe = new Card({
     title: "Axe Swipe",
@@ -9,7 +9,7 @@ const a_axeSwipe = new Card({
     emoji: CardEmoji.STARK_CARD,
     tags: { Resolve: 0 },
     effects: [9],
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "stark",
     hpCost: 5,
@@ -22,7 +22,7 @@ const offensiveStance = new Card({
     emoji: CardEmoji.STARK_CARD,
     effects: [2, 2],
     tags: { Resolve: 1 },
-    cardCategories: ["Utility"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF, CardCategory.DEBUFF],
     effectNames: ["ATK", "SPD"],
     deck: "stark",
 });
@@ -34,7 +34,7 @@ const defensiveStance = new Card({
     emoji: CardEmoji.STARK_CARD,
     effects: [2, 2],
     tags: { Resolve: 1 },
-    cardCategories: ["Utility"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF, CardCategory.DEBUFF],
     effectNames: ["DEF", "SPD"],
     deck: "stark",
 });
@@ -46,7 +46,7 @@ const jumboBerrySpecialBreak = new Card({
         `SPD-2 for 2 turns. DEF+${def} for 2 turns. Heal ${hp} HP. Gain 1 <Resolve> at the end of next turn.`,
     emoji: CardEmoji.JUMBO_BERRY_CARD,
     effects: [2, 10],
-    cardCategories: ["Utility", "Healing"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.HEALING, CardCategory.BUFF, CardCategory.DEBUFF],
     effectNames: ["DEF", "HP"],
     deck: "stark",
 });
@@ -58,8 +58,8 @@ export const block = new Card({
     emoji: CardEmoji.STARK_CARD,
     effects: [20],
     priority: 2,
-    cardCategories: ["Utility", "Defense", "Block"],
-    effectNames: ["DEF"],
+    cardCategories: [CardCategory.DEFENSE, CardCategory.BLOCK],
+    effectNames: ["TrueDEF"],
     deck: "stark",
 });
 
@@ -70,7 +70,7 @@ const concentration = new Card({
     emoji: CardEmoji.STARK_CARD,
     effects: [3],
     tags: { Resolve: 2 },
-    cardCategories: ["Utility"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF],
     effectNames: ["SPD"],
     deck: "stark",
 });
@@ -78,12 +78,12 @@ const concentration = new Card({
 const a_ordensSlashTechnique = new Card({
     title: "Orden's Slash Technique",
     cardMetadata: { nature: Nature.Attack },
-    description: ([dmg]) => `HP-8. DMG ${dmg}`,
+    description: ([dmg]) => `HP-8. DMG ${dmg}. Uses 1 Resolve.`,
     emoji: CardEmoji.STARK_CARD,
     tags: { Resolve: -1 },
     effects: [14],
     hpCost: 8,
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "stark",
 });
@@ -95,10 +95,11 @@ const fearBroughtMeThisFar = new Card({
     emoji: CardEmoji.STARK_CARD,
     effects: [3],
     tags: { Resolve: 2 },
-    cardCategories: ["Utility"],
-    effectNames: ["ATK+DEF", "ATK+DEF"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF],
+    effectNames: ["ATK", "DEF"],
     deck: "stark",
 });
+
 const a_eisensAxeCleave = new Card({
     title: "Eisen's Axe Cleave",
     cardMetadata: { nature: Nature.Attack },
@@ -107,7 +108,7 @@ const a_eisensAxeCleave = new Card({
     tags: { Resolve: -2 },
     effects: [19],
     hpCost: 11,
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "stark",
 });
@@ -115,14 +116,13 @@ const a_eisensAxeCleave = new Card({
 export const a_lastStand = new Card({
     title: "Last Stand",
     description: ([dmg]) =>
-        `Priority+1. DEF-5 for 2 turns. This character's HP cannot drop below 1 for 2 turns. At the end of next turn, HP-20, use 2 Resolves, strike for DMG ${dmg}.`,
+        `Priority+1. DEF-5 for 2 turns. This character's HP cannot drop below 1 for 2 turns. At the end of next turn, HP-20, use 2 Resolves, strike for DMG ${dmg}. This attack cannot be interrupted.`,
     emoji: CardEmoji.STARK_CARD,
     cardMetadata: { nature: Nature.Attack, signature: true },
     tags: { Resolve: -2 },
     priority: 1,
     effects: [25],
-    hpCost: 14,
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.UNIQUE],
     effectNames: ["DMG"],
     deck: "stark",
 });

@@ -2,8 +2,6 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { edelDeck } from "../decks/edel";
 
-export const DENKEN_DEATH_HP = -50;
-
 export const Edel: Character = {
     id: "edel",
     name: CharacterName.Edel,
@@ -20,17 +18,18 @@ export const Edel: Character = {
         icon: "https://static.wikia.nocookie.net/frieren/images/a/ab/Edel_anime_portrait.png/revision/latest?cb=20240119235404",
     },
     stats: {
-        [Stat.HP]: 70.0,
-        [Stat.ATK]: 7.0,
+        [Stat.HP]: 80.0,
+        [Stat.ATK]: 8.0,
+        [Stat.DEF]: 8.0,
         [Stat.TrueDEF]: 0.0,
-        [Stat.DEF]: 7.0,
         [Stat.SPD]: 10.0,
         [Stat.Ability]: 0,
     },
     cards: edelDeck,
     ability: {
-        abilityName: "Memory Transference Specialist",
-        abilityEffectString: `At the start of each turn, see a random card from your opponent's hand, and lower its empowerment by 1`,
+        abilityName: "A Superior Opponent",
+        abilityEffectString: `While you make Eye Contact with the opponent, all your moves have Priority+1.
+      \n*Sub-Ability (Memory Transference Specialist):* Your opponent's discards are visible.`,
     },
     relatedCharacters: [CharacterID.Fern],
     additionalMetadata: {

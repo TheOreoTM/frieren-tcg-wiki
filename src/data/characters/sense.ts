@@ -43,6 +43,5 @@ export const Sense: Character = {
     additionalMetadata: {
         accessToDefaultCardOptions: true,
         manaSuppressed: false,
-        teaTimeStacks: 0,
     },
 };

@@ -1,40 +1,29 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
-import { Nature } from "@/lib/types";
+import { CardCategory, Nature } from "@/lib/types";
 import { manaConcealment } from "./fern";
 
 export const a_hairWhip = new Card({
     title: "Hair Whip",
     cardMetadata: { nature: Nature.Attack },
-    description: ([def, dmg]) => `DEF+${def}. Afterwards, HP-4, DMG ${dmg}+DEF/4.`,
-    effects: [2, 7],
+    description: ([def, dmg]) => `HP-4. DEF+${def}. Afterwards, DMG ${dmg}+DEF/4.`,
+    effects: [3, 7],
+    hpCost: 4,
     emoji: CardEmoji.PUNCH,
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.BUFF],
     effectNames: ["DEF", "DMG"],
     deck: "sense",
-    hpCost: 4,
 });
 
 export const sharpen = new Card({
     title: "Sharpen",
     cardMetadata: { nature: Nature.Util },
-    description: ([def, atk, spd]) => `DEF+${def}. ATK+${atk}. SPD+${spd}`,
-    effects: [2, 2, 2],
+    description: ([def, atk, spd]) => `HP-3. DEF+${def}. ATK+${atk}. SPD+${spd}`,
+    effects: [1, 2, 2],
     hpCost: 3,
     emoji: CardEmoji.PUNCH,
-    cardCategories: ["Utility", "Defense"],
-    effectNames: ["DEF"],
-    deck: "sense",
-});
-
-export const rest = new Card({
-    title: "Rest",
-    cardMetadata: { nature: Nature.Util },
-    description: ([hp]) => `DEF-2 for 2 turns. Heal ${hp} HP`,
-    effects: [10],
-    emoji: CardEmoji.HEART,
-    cardCategories: ["Utility", "Healing"],
-    effectNames: ["Heal HP"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF],
+    effectNames: ["DEF", "ATK", "SPD"],
     deck: "sense",
 });
 
@@ -44,11 +33,11 @@ export const a_pierce = new Card({
     description: ([def, dmg]) =>
         `HP-7. DEF+${def}. Afterwards, DMG ${dmg} + (DEF/4). Pierces through 1/4 of the opponent's defense.`,
     effects: [1, 10],
+    hpCost: 7,
     emoji: CardEmoji.PUNCH,
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.PIERCE, CardCategory.BUFF],
     effectNames: ["DEF", "DMG"],
     deck: "sense",
-    hpCost: 7,
 });
 
 export const hairBarrier = new Card({
@@ -58,34 +47,32 @@ export const hairBarrier = new Card({
     effects: [20],
     emoji: CardEmoji.HOURGLASS,
     priority: 2,
-    cardCategories: ["Utility", "Defense", "Block"],
-    effectNames: ["DEF"],
+    cardCategories: [CardCategory.DEFENSE, CardCategory.BLOCK],
+    effectNames: ["TrueDEF"],
     deck: "sense",
 });
 
 export const teaTime = new Card({
     title: "Tea Time",
     cardMetadata: { nature: Nature.Util },
-    description: ([spd, hp]) =>
-        `SPD+${spd}. Empower both characters' hands. Heal ${hp} for both characters. Gain 1 Tea Time snack.`,
-    effects: [1, 4],
+    description: ([hp]) => `Heal ${hp}. Gain 1 Tea Time snack.`,
+    effects: [7],
     tags: { TeaTime: 1 },
     emoji: CardEmoji.HEART,
-    cardCategories: ["Utility", "Healing"],
-    effectNames: ["SPD", "HP"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.HEALING],
+    effectNames: ["HP"],
     deck: "sense",
 });
 
 export const teaParty = new Card({
     title: "Tea Party",
     cardMetadata: { nature: Nature.Util },
-    description: ([spd, hp]) =>
-        `SPD+${spd}. Empower both characters' hands twice. Heal ${hp} for both characters. Gain 2 Tea Time snacks.`,
-    effects: [2, 7],
+    description: ([hp]) => `Heal ${hp}. Gain 2 Tea Time snacks.`,
+    effects: [10],
     tags: { TeaTime: 2 },
-    emoji: CardEmoji.RANDOM,
-    cardCategories: ["Utility", "Healing"],
-    effectNames: ["ATK", "HP"],
+    emoji: CardEmoji.HEART,
+    cardCategories: [CardCategory.UTILITY, CardCategory.HEALING],
+    effectNames: ["HP"],
     deck: "sense",
 });
 
@@ -93,12 +80,12 @@ export const a_piercingDrill = new Card({
     title: "Piercing Drill",
     description: ([dmg]) => `HP-12. DMG ${dmg} + DEF/3. Pierces through 1/3 of the opponent's defense.`,
     effects: [14],
+    hpCost: 12,
     emoji: CardEmoji.PUNCH,
     cardMetadata: { nature: Nature.Attack, signature: true },
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.PIERCE],
     effectNames: ["DMG"],
     deck: "sense",
-    hpCost: 12,
 });
 
 export const senseDeck = [

@@ -1,15 +1,15 @@
 import { Card } from "@/lib/classes/Card";
 import { CardEmoji } from "@/lib/enums";
-import { Nature } from "@/lib/types";
+import { CardCategory, Nature } from "@/lib/types";
 
 export const imitate = new Card({
     title: "Imitate",
-    cardMetadata: { nature: Nature.Util },
+    cardMetadata: { nature: Nature.Util, signature: true },
     description: () => `Use the card the opponent used last turn at this card's empower level -2.`,
     emoji: CardEmoji.LINIE_CARD,
     effects: [],
     effectNames: [],
-    cardCategories: ["Utility"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.UNIQUE],
     deck: "linie",
 });
 
@@ -20,8 +20,8 @@ export const adapt = new Card({
         `SPD+${spd}. If HP > 50, ATK+${atkDef}, DEF+${atkDef}. If HP <= 50, heal ${hp} HP.`,
     emoji: CardEmoji.LINIE_CARD,
     effects: [2, 2, 10],
-    cardCategories: ["Utility"],
-    effectNames: ["SPD", "ATK+DEF", "HP"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF, CardCategory.HEALING],
+    effectNames: ["SPD", "ATK/DEF", "HP"],
     deck: "linie",
 });
 
@@ -32,8 +32,8 @@ export const manaDetection = new Card({
         `SPD+${spd}. If Opp's DEF >= Opp's ATK, ATK+${bigNumber}, DEF+${smallNumber}. Otherwise, ATK+${smallNumber}, DEF+${bigNumber}. Reveal the opponent's highest empowered card.`,
     emoji: CardEmoji.MANA_CARD,
     effects: [2, 2, 1],
-    cardCategories: ["Utility"],
-    effectNames: ["SPD", "STAT INC", "STAT inc"],
+    cardCategories: [CardCategory.UTILITY, CardCategory.BUFF, CardCategory.DISRUPTION],
+    effectNames: ["SPD", "ATK/DEF", "ATK/DEF"],
     deck: "linie",
 });
 
@@ -44,8 +44,8 @@ const parry = new Card({
     emoji: CardEmoji.LINIE_CARD,
     effects: [20],
     priority: 2,
-    cardCategories: ["Utility", "Defense", "Block"],
-    effectNames: ["DEF"],
+    cardCategories: [CardCategory.DEFENSE, CardCategory.BLOCK],
+    effectNames: ["TrueDEF"],
     deck: "linie",
 });
 
@@ -53,9 +53,9 @@ export const a_erfassenAxe = new Card({
     title: "Erfassen: Axe",
     description: ([dmg]) => `HP-4. DMG ${dmg}`,
     emoji: CardEmoji.LINIE_CARD,
-    cardMetadata: { nature: Nature.Attack, signature: true },
+    cardMetadata: { nature: Nature.Attack },
     effects: [12],
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "linie",
     hpCost: 4,
@@ -67,8 +67,8 @@ export const a_erfassenJavelin = new Card({
     emoji: CardEmoji.LINIE_CARD,
     cardMetadata: { nature: Nature.Attack },
     effects: [5],
-    cardCategories: ["Attack"],
-    effectNames: ["DMG"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.DoT],
+    effectNames: ["DMG", "DoT"],
     deck: "linie",
     hpCost: 3,
 });
@@ -79,7 +79,7 @@ export const a_erfassenSword = new Card({
     description: ([dmg]) => `HP-2. DMG ${dmg}`,
     emoji: CardEmoji.LINIE_CARD,
     effects: [8],
-    cardCategories: ["Attack"],
+    cardCategories: [CardCategory.ATTACK],
     effectNames: ["DMG"],
     deck: "linie",
     hpCost: 2,
@@ -91,8 +91,8 @@ export const a_erfassenKnife = new Card({
     description: ([dmg]) => `HP-1. DMG ${dmg}. At the end of the next 2 turns, deal ${dmg}.`,
     emoji: CardEmoji.LINIE_CARD,
     effects: [2],
-    cardCategories: ["Attack"],
-    effectNames: ["DMG"],
+    cardCategories: [CardCategory.ATTACK, CardCategory.DoT],
+    effectNames: ["DMG", "DoT"],
     deck: "linie",
     hpCost: 1,
 });

@@ -16,7 +16,7 @@ export const Stark: Character = {
         icon: "/icons/Stark.webp",
     },
     stats: {
-        [Stat.HP]: 120.0,
+        [Stat.HP]: 125.0,
         [Stat.ATK]: 10.0,
         [Stat.DEF]: 10.0,
         [Stat.TrueDEF]: 0.0,
@@ -27,8 +27,8 @@ export const Stark: Character = {
     ability: {
         abilityName: "Bravest Coward",
         abilityEffectString: `Using attacks while your (Resolve) is negative reduces its DMG by 20%.
-        Using attacks with (Resolve) increases its DMG by 20%.
-        Every attack costs 1 (Resolve) unless stated otherwise.`,
+        Using attacks while your (Resolve) is positive increases its DMG by 20%.
+        Your attacks stay the same when your (Resolve) is 0.`,
     },
     relatedCharacters: [CharacterID.Frieren],
     additionalMetadata: {

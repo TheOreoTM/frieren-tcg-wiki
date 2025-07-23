@@ -30,9 +30,9 @@ export const Stille: Character = {
         abilityName: "High-speed Escape",
         abilityEffectString: `When the opponent attacks, roll a D100. 
         If the result is less than the character's SPD minus the opponent's SPD, ignore the attack.
-        Afterwards, attack the opponent with DMG equivalent to ${(
-            STILLE_REFLECT_SCALE * 100
-        ).toFixed()}% of (opponent's ATK + opponent's move DMG).`,
+        Afterwards, attack the opponent with DMG equivalent to ${(STILLE_REFLECT_SCALE * 100).toFixed(
+            0
+        )}% of (opponent's ATK + opponent's move DMG).`,
     },
     subAbilities: [
         {
@@ -42,7 +42,7 @@ export const Stille: Character = {
     ],
     relatedCharacters: [CharacterID.Frieren],
     additionalMetadata: {
-        accessToDefaultCardOptions: true,
+        accessToDefaultCardOptions: false,
         manaSuppressed: false,
     },
 };

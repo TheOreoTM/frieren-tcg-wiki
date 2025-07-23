@@ -2,7 +2,7 @@ import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from 
 import type { Character } from "@/lib/types";
 import { himmelDeck } from "../decks/himmel";
 
-const HIMMEL_HERO_PARTY_DAMAGE_BONUS = 0.15;
+const HIMMEL_HERO_PARTY_DAMAGE_BONUS = 0.17;
 
 export const Himmel: Character = {
     id: "himmel",

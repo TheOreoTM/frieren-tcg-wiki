@@ -28,19 +28,21 @@ export const Flamme: Character = {
     cards: flammeDeck,
     ability: {
         abilityName: "Founder of Humanity's Magic",
-        abilityEffectString: `After playing 4 Theory cards, add 1 "Pinnacle of Humanity's Magic" to your Discard pile.\nPinnacle of Humanity's Magic: ATK+100 DEF+100 SPD+100. Deal 100 DMG.`,
+        abilityEffectString: `The Foundation of Humanity's Magic gets more developed for each Theory card you play.
+        After playing 4 Theory cards, add 1 "Pinnacle of Humanity's Magic" to your Discard pile.
+        \n*Pinnacle of Humanity's Magic*: Priority+100. ATK+**100** DEF+**100** SPD+**100**. Deal **100** DMG.`,
     },
     subAbilities: [
         {
-            abilityName: "Deceitful",
-            abilityEffectString:
-                "This character's stat is always displayed as 10/1/1/1. This character can also see past the opponent's Mana Suppression.",
+            abilityName: "All-Knowing",
+            abilityEffectString: "This character can see past the opponent's Mana Suppression.",
         },
     ],
     relatedCharacters: [CharacterID.Frieren, CharacterID.Serie],
     additionalMetadata: {
         accessToDefaultCardOptions: true,
         manaSuppressed: false,
-        deceitful: true,
+        deceitful: false,
+        ignoreManaSuppressed: true,
     },
 };

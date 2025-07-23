@@ -1,9 +1,6 @@
-import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat, UbelHit } from "@/lib/enums";
+import { CharacterEmoji, CharacterID, CharacterName, CharacterType, Stat } from "@/lib/enums";
 import type { Character } from "@/lib/types";
-import { ubelDeck } from "../decks/ubel";
 import { fernDeck } from "../decks/fern";
-
-const PIERCE_FACTOR = 0.5;
 
 export const Fern: Character = {
     id: "fern",
@@ -32,8 +29,14 @@ export const Fern: Character = {
         abilityEffectString: `One random card in your hand gets empowered every turn.`,
     },
     subAbilities: [
-        { abilityName: "Mana Suppresion", abilityEffectString: "Hide the amount of HP this character has." },
-        { abilityName: "Keen Eye", abilityEffectString: "See past the opponent's Mana Suppression." },
+        {
+            abilityName: "Mana Suppression",
+            abilityEffectString: "Hide the amount of HP this character has.",
+        },
+        {
+            abilityName: "Keen Eye",
+            abilityEffectString: "See past the opponent's Mana Suppression.",
+        },
     ],
     relatedCharacters: ["frieren", "stark"],
     additionalMetadata: {

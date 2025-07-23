@@ -36,7 +36,5 @@ export const Ubel: Character = {
     additionalMetadata: {
         accessToDefaultCardOptions: true,
         manaSuppressed: false,
-        pierceFactor: PIERCE_FACTOR,
-        sureHit: UbelHit.Regular,
     },
 };

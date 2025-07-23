@@ -39,4 +39,5 @@ export type CharacterAdditionalMetadata = {
     overheal?: boolean;
     sureHit?: UbelHit;
     ignoreManaSuppressed?: boolean;
+    methodeFindsCute?: boolean;
 };
