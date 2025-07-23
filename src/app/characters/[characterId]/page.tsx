@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BookOpen, Scroll } from "lucide-react";
+import { ArrowLeft, BookOpen, Scroll, Heart, Sword, Shield, Wind } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Characters } from "@/data/characters";
-import { Stat } from "@/lib/enums";
+import { CharacterIdToName, Stat, type CharacterID, type CharacterName } from "@/lib/enums";
 import StyledText from "@/components/styled-text";
 import CardPreview from "@/components/card/card-preview";
 import type { Metadata, ResolvingMetadata } from "next";
@@ -18,9 +18,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
     const { characterId } = await params;
-
-    const characters = Array.from(Characters.values());
-    const character = characters.find((c) => c.id === characterId);
+    const character = Characters.get(CharacterIdToName[characterId as CharacterID]);
 
     if (!character) {
         return {
@@ -45,183 +43,169 @@ export async function generateMetadata({ params }: PageProps, parent: ResolvingM
     };
 }
 
-const characters = Array.from(Characters.values());
-
-function getStatColor(stat: Stat) {
+// Theme-aware function for stat displays
+function getStatTheme(stat: Stat) {
     switch (stat) {
         case Stat.HP:
-            return "bg-emerald-100 text-emerald-800";
+            return "text-primary";
         case Stat.ATK:
-            return "bg-red-100 text-red-800";
+            return "text-accent";
         case Stat.DEF:
-            return "bg-blue-100 text-blue-800";
+            return "text";
         case Stat.SPD:
-            return "bg-purple-100 text-purple-800";
-        case Stat.Ability:
-            return "bg-amber-100 text-amber-800";
+            return "text-muted-foreground";
         default:
-            return "bg-gray-100 text-gray-800";
+            return "text-foreground";
     }
 }
 
 export default async function CharacterPage({ params }: PageProps) {
     const { characterId } = await params;
-
-    const character = characters.find((c) => c.id === characterId);
+    const character = Characters.get(CharacterIdToName[characterId as CharacterID]);
 
     if (!character) {
         notFound();
     }
 
+    const allCharacters = Array.from(Characters.values());
+
     return (
         <div className="container mx-auto px-4 py-12">
-            <div className="mb-6">
+            <div className="mb-8">
                 <Link href="/characters">
-                    <Button variant="ghost" className="pl-0">
-                        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Characters
+                    <Button variant="ghost" className="pl-0 text-muted-foreground hover:text-primary">
+                        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Character Collection
                     </Button>
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="relative aspect-[18/23] rounded-lg overflow-hidden shadow-lg">
-                    <Image
-                        src={character.cosmetic.imageUrl || "/placeholder.svg"}
-                        alt={character.name}
-                        fill
-                        className="object-cover"
-                    />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Left Column: Character Image */}
+                <div className="md:col-span-1">
+                    <div className="relative aspect-[18/23] rounded-xl overflow-hidden shadow-xl glass-card">
+                        <Image
+                            src={character.cosmetic.imageUrl || "/placeholder.svg"}
+                            alt={character.name}
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
                 </div>
 
-                <div>
-                    <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="outline">{character.type}</Badge>
+                {/* Right Column: Character Info */}
+                <div className="md:col-span-2 space-y-8">
+                    {/* Header */}
+                    <div className="space-y-2">
+                        <Badge
+                            variant="secondary"
+                            className="bg-secondary/20 text-secondary-foreground border-secondary/30"
+                        >
+                            {character.type}
+                        </Badge>
+                        <h1 className="text-4xl md:text-5xl font-bold gradient-text">{character.name}</h1>
+                        <p className="text-xl text-muted-foreground">{character.title}</p>
                     </div>
 
-                    <h1 className="text-3xl md:text-4xl font-bold mb-1">{character.name}</h1>
-                    <p className="text-xl text-muted-foreground mb-6">{character.title}</p>
-
-                    <div className="flex gap-6 mb-6">
-                        <div className="text-center">
+                    {/* Beautiful Stats Section */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {[Stat.HP, Stat.ATK, Stat.DEF, Stat.SPD].map((stat) => (
                             <div
-                                className={`${getStatColor(
-                                    Stat.HP
-                                )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
+                                key={stat}
+                                className="glass-card p-4 rounded-lg text-center space-y-2 border-border/20"
                             >
-                                {character.stats.HP}
+                                <div className={`inline-flex p-2 rounded-full bg-background/50 ${getStatTheme(stat)}`}>
+                                    {stat === Stat.HP && <Heart className="h-6 w-6" />}
+                                    {stat === Stat.ATK && <Sword className="h-6 w-6" />}
+                                    {stat === Stat.DEF && <Shield className="h-6 w-6" />}
+                                    {stat === Stat.SPD && <Wind className="h-6 w-6" />}
+                                </div>
+                                <p className={`text-2xl font-bold ${getStatTheme(stat)}`}>{character.stats[stat]}</p>
+                                <p className="text-sm text-muted-foreground capitalize">{stat.toLowerCase()}</p>
                             </div>
-                            <span className="text-sm text-muted-foreground">Health</span>
-                        </div>
-                        <div className="text-center">
-                            <div
-                                className={`${getStatColor(
-                                    Stat.ATK
-                                )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
-                            >
-                                {character.stats.ATK}
-                            </div>
-                            <span className="text-sm text-muted-foreground">Attack</span>
-                        </div>
-                        <div className="text-center">
-                            <div
-                                className={`${getStatColor(
-                                    Stat.DEF
-                                )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
-                            >
-                                {character.stats.DEF}
-                            </div>
-                            <span className="text-sm text-muted-foreground">Defense</span>
-                        </div>
-                        <div className="text-center">
-                            <div
-                                className={`${getStatColor(
-                                    Stat.SPD
-                                )} rounded-full h-12 w-12 flex items-center justify-center font-bold text-lg mb-1`}
-                            >
-                                {character.stats.SPD}
-                            </div>
-                            <span className="text-sm text-muted-foreground">Speed</span>
-                        </div>
+                        ))}
                     </div>
 
-                    <div className="mb-6">
+                    {/* Description */}
+                    <div className="glass-card p-6 rounded-xl border-border/20">
                         <h2 className="text-lg font-semibold mb-2">Description</h2>
-                        <p className="p-4 bg-slate-100 dark:bg-slate-800 rounded-md">{character.description}</p>
+                        <p className="leading-relaxed text-muted-foreground">{character.description}</p>
                     </div>
 
+                    {/* Abilities & Lore Tabs */}
                     <Tabs defaultValue="ability">
-                        <TabsList className="grid w-full grid-cols-3">
+                        <TabsList className="grid w-full grid-cols-3 bg-muted/20 p-1 rounded-lg border border-border/20 h-auto">
                             <TabsTrigger value="ability">Ability</TabsTrigger>
                             <TabsTrigger value="overview">Overview</TabsTrigger>
                             <TabsTrigger value="strategy">Strategy</TabsTrigger>
                         </TabsList>
-                        <TabsContent value="ability" className="p-4 bg-slate-50 dark:bg-slate-900 rounded-md mt-2">
-                            <h2 className="text-lg md:text-xl font-bold">
-                                <StyledText text={character.ability.abilityName} />
-                            </h2>
-
-                            <div className="text-sm">
-                                <StyledText text={character.ability.abilityEffectString} />
-                            </div>
-                            {character.subAbilities &&
-                                character.subAbilities.map((subAbility, i) => (
+                        <TabsContent value="ability" className="glass-card mt-4 p-6 rounded-xl border-border/20">
+                            <div className="space-y-4">
+                                <div>
+                                    <h3 className="text-lg font-bold text-primary">
+                                        <StyledText text={character.ability.abilityName} />
+                                    </h3>
+                                    <div className="text-sm text-muted-foreground leading-relaxed">
+                                        <StyledText text={character.ability.abilityEffectString} />
+                                    </div>
+                                </div>
+                                {character.subAbilities?.map((subAbility, i) => (
                                     <div key={i}>
-                                        <h2 className="text-md md:text-md font-bold pt-2">
-                                            <StyledText text={character.subAbilities![i].abilityName} />
-                                        </h2>
-                                        <div className="text-sm font-mono">
-                                            <StyledText text={character.subAbilities![i].abilityEffectString} />
+                                        <h4 className="font-semibold text-foreground">
+                                            <StyledText text={subAbility.abilityName} />
+                                        </h4>
+                                        <div className="text-sm text-muted-foreground leading-relaxed">
+                                            <StyledText text={subAbility.abilityEffectString} />
                                         </div>
                                     </div>
                                 ))}
+                            </div>
                         </TabsContent>
-                        <TabsContent value="overview" className="p-4 bg-slate-50 dark:bg-slate-900 rounded-md mt-2">
+                        <TabsContent value="overview" className="glass-card mt-4 p-6 rounded-xl border-border/20">
                             {character.overview ? (
                                 <StyledText text={character.overview} />
                             ) : (
-                                <p>
-                                    No overview available for this character. You can contribute to the wiki by adding
-                                    an overview for this character on{" "}
-                                    <Link
-                                        className="text-blue-600 hover:underline"
+                                <p className="text-muted-foreground">
+                                    No overview available. You can contribute on{" "}
+                                    <a
+                                        className="font-semibold text-primary hover:underline"
                                         href={`https://github.com/TheOreoTM/frieren-tcg-wiki/tree/main/src/data/characters/${character.id}.ts`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                     >
                                         GitHub
-                                    </Link>{" "}
-                                    or by contacting Oreo on Discord.
+                                    </a>
+                                    .
                                 </p>
                             )}
                         </TabsContent>
-                        <TabsContent value="strategy" className="p-4 bg-slate-50 dark:bg-slate-900 rounded-md mt-2">
-                            <p>{"Card Strategy"}</p>
+                        <TabsContent value="strategy" className="glass-card mt-4 p-6 rounded-xl border-border/20">
+                            <p className="text-muted-foreground">Strategy guides for this character are coming soon.</p>
                         </TabsContent>
                     </Tabs>
 
+                    {/* Related Characters */}
                     {character.relatedCharacters && character.relatedCharacters.length > 0 && (
-                        <div className="mt-6">
+                        <div>
                             <h3 className="text-lg font-semibold mb-3">Related Characters</h3>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
                                 {character.relatedCharacters.map((relatedId) => {
-                                    const relatedCard = characters.find((c) => c.id === relatedId);
-                                    if (!relatedCard) return null;
-
+                                    const relatedChar = allCharacters.find((c) => c.id === relatedId);
+                                    if (!relatedChar) return null;
                                     return (
-                                        <Link href={`/characters/${relatedId}`} key={relatedId}>
-                                            <Card className="w-24 hover:shadow-md transition-shadow">
-                                                <div className="relative pt-[130%]">
+                                        <Link href={`/characters/${relatedId}`} key={relatedId} className="block group">
+                                            <Card className="glass-card hover:shadow-lg transition-all duration-300 overflow-hidden border-border/20 hover:border-primary/30">
+                                                <div className="relative aspect-[18/23]">
                                                     <Image
-                                                        src={
-                                                            relatedCard.cosmetic.imageUrl ||
-                                                            "/placeholder.svg" ||
-                                                            "/placeholder.svg"
-                                                        }
-                                                        alt={relatedCard.name}
+                                                        src={relatedChar.cosmetic.icon || "/placeholder.svg"}
+                                                        alt={relatedChar.name}
                                                         fill
-                                                        className="object-cover rounded-t-md"
+                                                        className="object-cover group-hover:scale-105 transition-transform"
                                                     />
                                                 </div>
-                                                <CardContent className="p-2">
-                                                    <p className="text-xs font-medium truncate">{relatedCard.name}</p>
+                                                <CardContent className="p-2 text-center">
+                                                    <p className="text-xs font-medium truncate group-hover:text-primary transition-colors">
+                                                        {relatedChar.name}
+                                                    </p>
                                                 </CardContent>
                                             </Card>
                                         </Link>
@@ -230,38 +214,31 @@ export default async function CharacterPage({ params }: PageProps) {
                             </div>
                         </div>
                     )}
-
-                    <div className="mt-6">
-                        <Link href={`/wiki/characters/${character.id}`}>
-                            <Button variant="outline" className="w-full">
-                                <BookOpen className="mr-2 h-4 w-4" /> View Wiki Entry
-                            </Button>
-                        </Link>
-                    </div>
                 </div>
             </div>
 
             {/* Character's Deck Section */}
             {character.cards && character.cards.length > 0 && (
-                <div className="mt-12">
-                    <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                        <Scroll className="h-6 w-6 text-emerald-600" />
+                <div className="mt-16 cozy-section">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <Scroll className="h-6 w-6 text-primary" />
                         {character.name}'s Deck
                     </h2>
-
-                    <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-lg mb-6">
-                        <div className="flex justify-between pb-2">
-                            <div className="text-sm text-muted-foreground">
-                                Total Cards: {character.cards.reduce((acc, item) => acc + item.count, 0)}
-                            </div>
-                            <div className="text-sm text-muted-foreground">Unique Cards: {character.cards.length}</div>
+                    <div className="flex justify-between items-center mb-6 text-sm text-muted-foreground">
+                        <div>
+                            Total Cards:{" "}
+                            <span className="font-bold text-foreground">
+                                {character.cards.reduce((acc, item) => acc + item.count, 0)}
+                            </span>
                         </div>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            {character.cards.map((item, index) => (
-                                <CardPreview key={index} card={item.card} count={item.count} showCount />
-                            ))}
+                        <div>
+                            Unique Cards: <span className="font-bold text-foreground">{character.cards.length}</span>
                         </div>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        {character.cards.map((item, index) => (
+                            <CardPreview key={index} card={item.card} count={item.count} showCount />
+                        ))}
                     </div>
                 </div>
             )}
