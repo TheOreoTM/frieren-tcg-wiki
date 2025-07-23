@@ -72,6 +72,7 @@ export function NewsArticleForm() {
         return title
             .toLowerCase()
             .trim()
+            .replaceAll(".", "-")
             .replace(/[^a-z0-9\s-]/g, "")
             .replace(/\s+/g, "-")
             .replace(/-+/g, "-")
