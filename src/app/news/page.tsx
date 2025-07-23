@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDistanceToNow } from "date-fns";
-import { convertCategoryToString, getAllNews, getLatestNews } from "@/lib/content/news";
+import { convertCategoryToString, getAllNews } from "@/lib/content/news";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { getCategoryColor } from "@/lib/content/news";
-import { Calendar, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Calendar, User, Newspaper, ArrowRight, Megaphone } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { NewsCategory } from "@prisma/client";
 
 export const metadata: Metadata = {
     title: "News & Updates",
@@ -35,79 +34,117 @@ export const metadata: Metadata = {
     },
 };
 
+// NEW: Theme-aware function to style category badges
+function getCategoryTheme(category: NewsCategory) {
+    const baseClasses = "text-xs font-bold border backdrop-blur-sm shadow-lg";
+    switch (category) {
+        case NewsCategory.BALANCE:
+            return `${baseClasses} bg-primary/90 text-primary-foreground border-primary/50`;
+        case NewsCategory.TOURNAMENT:
+            return `${baseClasses} bg-accent/90 text-accent-foreground border-accent/50`;
+        case NewsCategory.PATCH:
+            return `${baseClasses} bg-secondary/90 text-secondary-foreground border-secondary/50`;
+        default:
+            return `${baseClasses} bg-muted/80 text-muted-foreground border-border`;
+    }
+}
+
 export default async function NewsPage() {
     const news = await getAllNews();
 
     if (news.length === 0) {
         return (
             <div className="container mx-auto px-4 py-12">
-                <h1 className="text-3xl md:text-4xl font-bold mb-2">News & Updates</h1>
-                <p className="text-muted-foreground mb-8">Stay up to date with the latest from Frieren TCG</p>
-
-                <div className="text-center py-12">
-                    <h2 className="text-xl font-medium mb-4">No news articles found</h2>
-                    <p className="text-muted-foreground mb-6">
-                        News articles will appear here once they are published.
+                <div className="text-center mb-12">
+                    <div className="inline-block rounded-full bg-primary/10 p-4 mb-6 border border-primary/20 shadow-inner">
+                        <Newspaper className="h-10 w-10 text-primary" />
+                    </div>
+                    <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-4">News & Updates</h1>
+                    <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                        Stay up to date with the latest from Frieren TCG.
                     </p>
+                </div>
+                <div className="text-center py-16 glass-card border-border/20 rounded-2xl">
+                    <div className="max-w-md mx-auto space-y-4">
+                        <div className="w-16 h-16 mx-auto bg-muted/20 rounded-full flex items-center justify-center">
+                            <Megaphone className="h-8 w-8 text-muted-foreground" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-foreground">No News Yet</h3>
+                        <p className="text-muted-foreground">
+                            The latest announcements and articles will appear here once they are published.
+                        </p>
+                    </div>
                 </div>
             </div>
         );
     }
 
-    const featuredNews = news.slice(0, 1)[0];
+    const featuredNews = news[0];
     const categories = Array.from(new Set(news.map((n) => n.category)));
 
     return (
         <div className="container mx-auto px-4 py-12">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">News & Updates</h1>
-            <p className="text-muted-foreground mb-8">Stay up to date with the latest from Frieren TCG</p>
+            {/* Enhanced Header */}
+            <div className="text-center mb-12">
+                <div className="inline-block rounded-full bg-primary/10 p-4 mb-6 border border-primary/20 shadow-inner">
+                    <Newspaper className="h-10 w-10 text-primary" />
+                </div>
+                <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-4">News & Updates</h1>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                    Stay up to date with the latest from Frieren TCG.
+                </p>
+            </div>
 
-            <div className="mb-12">
-                <h2 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="bg-secondary text-secondary-foreground px-2 py-1 rounded text-sm mr-2">
-                        Featured
-                    </span>
+            {/* Featured News Section */}
+            <div className="mb-16">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <Megaphone className="h-6 w-6 text-primary" />
                     Latest Update
                 </h2>
-                <Link href={`/news/${featuredNews.slug}`}>
-                    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-                        <div className="md:flex">
-                            <div className="md:w-1/3 relative">
-                                <div className="aspect-video md:h-full relative">
-                                    <Image
-                                        src={featuredNews.imageUrl || "/placeholder.svg"}
-                                        alt={featuredNews.title}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                </div>
-                            </div>
-                            <div className="md:w-2/3">
-                                <CardHeader>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <Badge className={getCategoryColor(featuredNews.category)}>
-                                            {featuredNews.category}
-                                        </Badge>
-                                        <div className="text-sm text-muted-foreground flex items-center">
-                                            <Calendar className="h-3 w-3 mr-1" />
-                                            {formatDistanceToNow(featuredNews.createdAt)} ago
-                                        </div>
+                <Link href={`/news/${featuredNews.slug}`} className="block group">
+                    <Card className="glass-card overflow-hidden hover:shadow-xl transition-all duration-300 border-border/20 hover:border-primary/30 grid grid-cols-1 md:grid-cols-2">
+                        <div className="relative aspect-video md:aspect-auto overflow-hidden">
+                            <Image
+                                src={featuredNews.imageUrl || "/placeholder.svg"}
+                                alt={featuredNews.title}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div className="flex flex-col p-6">
+                            <CardHeader className="p-0 mb-4">
+                                <div className="flex items-center gap-3 mb-3">
+                                    <Badge className={getCategoryTheme(featuredNews.category)}>
+                                        {convertCategoryToString(featuredNews.category)}
+                                    </Badge>
+                                    <div className="text-sm text-muted-foreground flex items-center gap-1.5">
+                                        <Calendar className="h-3.5 w-3.5" />
+                                        {formatDistanceToNow(featuredNews.createdAt, { addSuffix: true })}
                                     </div>
-                                    <CardTitle className="text-2xl">{featuredNews.title}</CardTitle>
-                                    <CardDescription>{featuredNews.excerpt}</CardDescription>
-                                </CardHeader>
-                                <CardFooter>
-                                    <Button variant="outline">Read More</Button>
-                                </CardFooter>
-                            </div>
+                                </div>
+                                <CardTitle className="text-2xl group-hover:text-primary transition-colors">
+                                    {featuredNews.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-0 flex-grow">
+                                <CardDescription className="leading-relaxed line-clamp-3">
+                                    {featuredNews.excerpt}
+                                </CardDescription>
+                            </CardContent>
+                            <CardFooter className="p-0 mt-6">
+                                <div className="flex items-center font-semibold text-primary">
+                                    Read More
+                                    <ArrowRight className="h-4 w-4 ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                                </div>
+                            </CardFooter>
                         </div>
                     </Card>
                 </Link>
             </div>
 
-            {/* All News */}
+            {/* All News Section with Tabs */}
             <Tabs defaultValue="all">
-                <TabsList className="mb-6">
+                <TabsList className="mb-8 bg-muted/20 p-1 rounded-lg border border-border/20 h-auto">
                     <TabsTrigger value="all">All News</TabsTrigger>
                     {categories.map((category) => (
                         <TabsTrigger key={category} value={category}>
@@ -115,132 +152,83 @@ export default async function NewsPage() {
                         </TabsTrigger>
                     ))}
                 </TabsList>
+
                 <TabsContent value="all">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {news.map((article) => (
-                        <Link href={`/news/${article.slug}`} key={article.id}>
-                                <Card className="h-full hover:shadow-lg transition-shadow">
-                                    <div className="relative aspect-video">
-                                        <Image
-                                            src={article.imageUrl || "/placeholder.svg"}
-                                            alt={article.title}
-                                            fill
-                                            className="object-cover rounded-t-lg "
-                                        />
-                                        <div className="absolute top-0 left-0 right-0 h-32 rounded-t-lg bg-gradient-to-b from-black/70 to-transparent pointer-events-none" />
-                                        <div className="absolute top-2 left-2">
-                                            <Badge className={getCategoryColor(article.category)}>
-                                                {convertCategoryToString(article.category)}
-                                            </Badge>
-                                        </div>
-                                    </div>
-                                    <CardHeader>
-                                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                                            <div className="flex items-center">
-                                                <Calendar className="h-3 w-3 mr-1" />
-                                                {formatDistanceToNow(article.createdAt)} ago
-                                            </div>
-                                            <div className="flex items-center">
-                                                <User className="h-3 w-3 mr-1" />
-                                                {article.author.name}
-                                            </div>
-                                        </div>
-                                        <CardTitle className="line-clamp-2">{article.title}</CardTitle>
-                                        <CardDescription className="line-clamp-3">{article.excerpt}</CardDescription>
-                                    </CardHeader>
-                                    <CardFooter>
-                                        <div className="flex flex-wrap gap-1">
-                                            {article.tags.slice(0, 3).map((tag) => (
-                                                <Badge key={tag} variant="outline" className="text-xs">
-                                                    {tag}
-                                                </Badge>
-                                            ))}
-                                            {article.tags.length > 3 && (
-                                                <Badge variant="outline" className="text-xs">
-                                                    +{article.tags.length - 3} more
-                                                </Badge>
-                                            )}
-                                        </div>
-                                    </CardFooter>
-                                </Card>
-                            </Link>
-                        ))}
-                    </div>
+                    <ArticleGrid articles={news} />
                 </TabsContent>
 
                 {categories.map((category) => (
                     <TabsContent key={category} value={category}>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {news
-                                .filter((article) => article.category === category)
-                                .map((article) => (
-                                    <Link href={`/news/${article.id}`} key={article.id}>
-                                        <Card className="h-full hover:shadow-lg transition-shadow">
-                                            <div className="relative aspect-video">
-                                                <Image
-                                                    src={article.imageUrl || "/placeholder.svg"}
-                                                    alt={article.title}
-                                                    fill
-                                                    className="object-cover rounded-t-lg"
-                                                />
-                                            </div>
-                                            <CardHeader>
-                                                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                                                    <div className="flex items-center">
-                                                        <Calendar className="h-3 w-3 mr-1" />
-                                                        {formatDistanceToNow(article.createdAt)}
-                                                    </div>
-                                                    <div className="flex items-center">
-                                                        <User className="h-3 w-3 mr-1" />
-                                                        {article.author.name}
-                                                    </div>
-                                                </div>
-                                                <CardTitle className="line-clamp-2">{article.title}</CardTitle>
-                                                <CardDescription className="line-clamp-3">
-                                                    {article.excerpt}
-                                                </CardDescription>
-                                            </CardHeader>
-                                            <CardFooter>
-                                                <div className="flex flex-wrap gap-1">
-                                                    {article.tags.slice(0, 3).map((tag) => (
-                                                        <Badge key={tag} variant="outline" className="text-xs">
-                                                            {tag}
-                                                        </Badge>
-                                                    ))}
-                                                    {article.tags.length > 3 && (
-                                                        <Badge variant="outline" className="text-xs">
-                                                            +{article.tags.length - 3} more
-                                                        </Badge>
-                                                    )}
-                                                </div>
-                                            </CardFooter>
-                                        </Card>
-                                    </Link>
-                                ))}
-                        </div>
+                        <ArticleGrid articles={news.filter((article) => article.category === category)} />
                     </TabsContent>
                 ))}
             </Tabs>
+        </div>
+    );
+}
 
-            {/* Basic All News */}
-            {/* <div className="grid grid-cols-1 gap-6">
-                {news.map((article) => (
-                    <Link key={article.id} href={`/news/${article.slug}`}>
-                        <Card className="hover:shadow-md transition-shadow cursor-pointer">
-                            <CardHeader>
-                                <CardTitle>{article.title}</CardTitle>
-                                <CardDescription>
-                                    {formatDistanceToNow(new Date(article.createdAt), { addSuffix: true })} by{" "}
-                                    {article.author.name || "Anonymous"}
-                                </CardDescription>
+// NEW: Reusable Article Grid Component
+function ArticleGrid({
+    articles,
+}: {
+    articles: (typeof getAllNews extends () => Promise<infer T> ? T : never)[number][];
+}) {
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {articles.map((article) => (
+                <Link href={`/news/${article.slug}`} key={article.id} className="block">
+                    <Card className="group h-full glass-card hover:shadow-xl transition-all duration-300 overflow-hidden border-border/20 hover:border-primary/30">
+                        <div className="relative aspect-video overflow-hidden">
+                            <Image
+                                src={article.imageUrl || "/placeholder.svg"}
+                                alt={article.title}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute top-3 left-3">
+                                <Badge className={getCategoryTheme(article.category)}>
+                                    {convertCategoryToString(article.category)}
+                                </Badge>
+                            </div>
+                        </div>
+                        <div className="p-6 flex flex-col h-[calc(100%-12rem)]">
+                            <CardHeader className="p-0 mb-4">
+                                <div className="flex items-center gap-3 text-sm text-muted-foreground mb-3">
+                                    <div className="flex items-center gap-1.5">
+                                        <Calendar className="h-3.5 w-3.5" />
+                                        {formatDistanceToNow(article.createdAt, { addSuffix: true })}
+                                    </div>
+                                    <div className="flex items-center gap-1.5">
+                                        <User className="h-3.5 w-3.5" />
+                                        {article.author.name}
+                                    </div>
+                                </div>
+                                <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                                    {article.title}
+                                </CardTitle>
                             </CardHeader>
-                            <CardContent>
-                                <p>{article.excerpt}</p>
+                            <CardContent className="p-0 flex-grow">
+                                <CardDescription className="line-clamp-3 leading-relaxed">
+                                    {article.excerpt}
+                                </CardDescription>
                             </CardContent>
-                        </Card>
-                    </Link>
-                ))}
-            </div> */}
+                            <CardFooter className="p-0 mt-4">
+                                <div className="flex flex-wrap gap-1.5">
+                                    {article.tags.slice(0, 3).map((tag) => (
+                                        <Badge
+                                            key={tag}
+                                            variant="outline"
+                                            className="text-xs bg-muted/15 text-muted-foreground border-muted-foreground/20"
+                                        >
+                                            {tag}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            </CardFooter>
+                        </div>
+                    </Card>
+                </Link>
+            ))}
         </div>
     );
 }

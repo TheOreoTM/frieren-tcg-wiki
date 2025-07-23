@@ -42,161 +42,154 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-
   /* Custom colors */
   --color-signature: oklch(0.88 0.17 95.33);
+  --color-glass: var(--glass);
+  --color-section-bg: var(--section-bg);
 }
 
+/* NEW: Crisp & Accessible Light Mode */
 :root {
-  /* Soft pastel color palette in OKLCH format */
   --radius: 1rem;
 
-  /* Background and foreground */
-  --background: oklch(0.98 0.02 80);
-  /* Soft cream background */
-  --foreground: oklch(0.45 0.04 340);
-  /* Soft mauve text */
+  /* Background and foreground with high contrast */
+  --background: oklch(0.99 0.005 240);
+  /* Very light, cool gray */
+  --foreground: oklch(0.25 0.015 240);
+  /* Dark, near-black with cool undertone */
 
-  /* Card colors */
-  --card: oklch(0.99 0.01 40);
-  /* Very light lavender */
-  --card-foreground: oklch(0.45 0.04 340);
-  /* Same as foreground */
+  /* Card colors - Pure white to lift off the background */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.25 0.015 240);
 
   /* Popover colors */
-  --popover: oklch(0.99 0.01 40);
-  --popover-foreground: oklch(0.45 0.04 340);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.015 240);
 
-  /* Primary colors - Soft lavender */
-  --primary: oklch(0.85 0.1 300);
-  /* Soft lavender */
-  --primary-foreground: oklch(0.3 0.05 280);
-  /* Dark lavender */
+  /* Primary colors - A vibrant, accessible blue */
+  --primary: oklch(0.6 0.15 250);
+  --primary-foreground: oklch(1 0 0);
+  /* White for high contrast on blue */
 
-  /* Secondary colors - Soft mint */
-  --secondary: oklch(0.9 0.05 160);
-  /* Soft mint */
-  --secondary-foreground: oklch(0.3 0.05 160);
-  /* Dark mint */
+  /* Secondary colors - Neutral grays */
+  --secondary: oklch(0.94 0.01 240);
+  --secondary-foreground: oklch(0.3 0.01 240);
 
-  /* Muted colors - Soft blue */
-  --muted: oklch(0.93 0.03 210);
-  /* Soft blue */
-  --muted-foreground: oklch(0.55 0.05 210);
-  /* Muted blue */
+  /* Muted colors - Lighter grays for subtle elements */
+  --muted: oklch(0.96 0.005 240);
+  --muted-foreground: oklch(0.5 0.01 240);
 
-  /* Accent colors - Soft pink */
-  --accent: oklch(0.9 0.1 340);
-  /* Soft pink */
-  --accent-foreground: oklch(0.4 0.15 340);
-  /* Deep pink */
+  /* Accent colors - A complementary, fresh teal */
+  --accent: oklch(0.7 0.1 180);
+  --accent-foreground: oklch(0.25 0.05 180);
 
-  /* Destructive colors */
-  --destructive: oklch(0.7 0.2 27.325);
-  /* Soft red */
+  /* Destructive colors - A clear, accessible red */
+  --destructive: oklch(0.6 0.2 20);
 
   /* Border, input, and ring colors */
-  --border: oklch(0.9 0.02 340);
-  /* Very light mauve */
-  --input: oklch(0.9 0.02 340);
-  --ring: oklch(0.8 0.1 300);
-  /* Light lavender */
+  --border: oklch(0.9 0.01 240);
+  --input: oklch(0.9 0.01 240);
+  --ring: oklch(0.6 0.15 250);
 
-  /* Chart colors */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* Chart colors - A vibrant, modern palette */
+  --chart-1: oklch(0.6 0.15 250);
+  /* Primary Blue */
+  --chart-2: oklch(0.7 0.1 180);
+  /* Accent Teal */
+  --chart-3: oklch(0.65 0.18 280);
+  /* Vibrant Purple */
+  --chart-4: oklch(0.75 0.15 80);
+  /* Bright Yellow-Green */
+  --chart-5: oklch(0.65 0.2 40);
+  /* Strong Orange */
 
   /* Sidebar colors */
-  --sidebar: oklch(0.99 0.01 40);
-  --sidebar-foreground: oklch(0.45 0.04 340);
-  --sidebar-primary: oklch(0.85 0.1 300);
-  --sidebar-primary-foreground: oklch(0.3 0.05 280);
-  --sidebar-accent: oklch(0.9 0.1 340);
-  --sidebar-accent-foreground: oklch(0.4 0.15 340);
-  --sidebar-border: oklch(0.9 0.02 340);
-  --sidebar-ring: oklch(0.8 0.1 300);
+  --sidebar: oklch(0.98 0.005 240);
+  --sidebar-foreground: oklch(0.25 0.015 240);
+  --sidebar-primary: oklch(0.6 0.15 250);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.7 0.1 180);
+  --sidebar-accent-foreground: oklch(0.25 0.05 180);
+  --sidebar-border: oklch(0.9 0.01 240);
+  --sidebar-ring: oklch(0.6 0.15 250);
 
-    /* Gradient variables for dynamic backgrounds */
-      --gradient-start: oklch(0.97 0.05 300);
-      /* Deep indigo */
-      --gradient-mid: oklch(0.98 0.02 80);
-      /* Near-black purple */
-      --gradient-end: oklch(0.97 0.05 340);
-      /* Royal violet */
+  /* Gradient variables for dynamic backgrounds */
+  --gradient-start: oklch(0.9 0.05 250);
+  /* Light primary blue */
+  --gradient-mid: oklch(0.99 0.005 240);
+  /* Light gray background */
+  --gradient-end: oklch(0.9 0.04 180);
+  /* Light accent teal */
+
+  /* Custom glass and section backgrounds */
+  --glass: oklch(1 0 0 / 0.8);
+  --section-bg: oklch(1 0 0 / 0.7);
 }
 
 .dark {
-  --background: oklch(0.18 0.02 260);
-  /* Deep navy */
-  --foreground: oklch(0.98 0.01 280);
-  /* Light lavender-gray */
+  /* Clean Monotone Dark Theme with Cool Tones (Unchanged) */
 
-  --card: oklch(0.22 0.015 260);
-  /* Slightly lighter than background */
-  --card-foreground: oklch(0.98 0.01 280);
+  /* Background - Deep cool gray */
+  --background: oklch(0.11 0.005 240);
+  --foreground: oklch(0.95 0.005 240);
 
-  --popover: oklch(0.22 0.015 260);
-  --popover-foreground: oklch(0.98 0.01 280);
+  /* Card colors - Slightly lighter cool gray */
+  --card: oklch(0.15 0.008 240);
+  --card-foreground: oklch(0.95 0.005 240);
 
-  --primary: oklch(0.7 0.12 280);
-  /* Muted purple */
-  --primary-foreground: oklch(0.15 0.03 260);
-  /* Almost black-purple */
+  /* Popover colors */
+  --popover: oklch(0.15 0.008 240);
+  --popover-foreground: oklch(0.95 0.005 240);
 
-  --secondary: oklch(0.45 0.08 180);
-  /* Muted teal */
-  --secondary-foreground: oklch(0.98 0.01 180);
-  /* Light mint */
+  /* Primary colors - Cool blue-gray */
+  --primary: oklch(0.7 0.08 240);
+  --primary-foreground: oklch(0.98 0.005 240);
 
-  --muted: oklch(0.26 0.03 250);
-  /* Dark slate blue */
-  --muted-foreground: oklch(0.6 0.05 260);
-  /* Desaturated violet */
+  /* Secondary colors - Subtle cool gray */
+  --secondary: oklch(0.6 0.05 220);
+  --secondary-foreground: oklch(0.98 0.005 220);
 
-  --accent: oklch(0.5 0.08 340);
-  /* Dusty rose */
-  --accent-foreground: oklch(0.98 0.01 340);
-  /* Very light pink */
+  /* Muted colors - Mid-tone gray */
+  --muted: oklch(0.25 0.01 240);
+  --muted-foreground: oklch(0.7 0.01 240);
 
-  --destructive: oklch(0.48 0.15 25);
-  /* Muted red-orange */
+  /* Accent colors - Slightly warmer but still neutral */
+  --accent: oklch(0.65 0.06 260);
+  --accent-foreground: oklch(0.98 0.005 260);
 
-  --border: oklch(0.25 0.02 260);
-  --input: oklch(0.25 0.02 260);
-  --ring: oklch(0.6 0.15 280);
-  /* Bright violet */
+  /* Destructive colors - Muted red */
+  --destructive: oklch(0.55 0.12 20);
 
-  --chart-1: oklch(0.5 0.22 300);
-  /* Orchid */
-  --chart-2: oklch(0.6 0.14 160);
-  /* Seafoam */
-  --chart-3: oklch(0.5 0.15 230);
-  /* Azure */
-  --chart-4: oklch(0.7 0.2 100);
-  /* Goldish */
-  --chart-5: oklch(0.65 0.18 20);
-  /* Rust red */
+  /* Border, input, and ring colors */
+  --border: oklch(0.28 0.01 240);
+  --input: oklch(0.28 0.01 240);
+  --ring: oklch(0.7 0.08 240);
 
-  --sidebar: oklch(0.2 0.01 260);
-  /* Near black with color hint */
-  --sidebar-foreground: oklch(0.98 0.01 280);
-  --sidebar-primary: oklch(0.7 0.12 280);
-  --sidebar-primary-foreground: oklch(0.15 0.03 260);
-  --sidebar-accent: oklch(0.5 0.08 340);
-  --sidebar-accent-foreground: oklch(0.98 0.01 340);
-  --sidebar-border: oklch(0.25 0.02 260);
-  --sidebar-ring: oklch(0.6 0.15 280);
+  /* Chart colors - Monotone with slight variations */
+  --chart-1: oklch(0.7 0.08 240);
+  --chart-2: oklch(0.65 0.06 260);
+  --chart-3: oklch(0.6 0.05 220);
+  --chart-4: oklch(0.75 0.04 200);
+  --chart-5: oklch(0.55 0.07 280);
 
-  /* Gradient variables for dynamic backgrounds */
-  --gradient-start: oklch(0.22 0.05 260);
-  /* Deep indigo */
-  --gradient-mid: oklch(0.18 0.02 250);
-  /* Near-black purple */
-  --gradient-end: oklch(0.26 0.04 300);
-  /* Royal violet */
+  /* Sidebar colors */
+  --sidebar: oklch(0.13 0.006 240);
+  --sidebar-foreground: oklch(0.95 0.005 240);
+  --sidebar-primary: oklch(0.7 0.08 240);
+  --sidebar-primary-foreground: oklch(0.98 0.005 240);
+  --sidebar-accent: oklch(0.65 0.06 260);
+  --sidebar-accent-foreground: oklch(0.98 0.005 260);
+  --sidebar-border: oklch(0.28 0.01 240);
+  --sidebar-ring: oklch(0.7 0.08 240);
+
+  /* Gradient variables - Cool monotone gradients */
+  --gradient-start: oklch(0.15 0.01 240);
+  --gradient-mid: oklch(0.11 0.005 240);
+  --gradient-end: oklch(0.18 0.008 260);
+
+  /* Custom glass and section backgrounds for dark mode */
+  --glass: oklch(0.16 0.008 240 / 0.85);
+  --section-bg: oklch(0.14 0.006 240 / 0.92);
 }
 
 @layer base {
@@ -204,16 +197,16 @@
     @apply border-border outline-ring/50;
   }
 
-    body {
-      @apply bg-background text-foreground;
-  
-      background: linear-gradient(135deg,
-          var(--gradient-start) 0%,
-          var(--gradient-mid) 50%,
-          var(--gradient-end) 100%);
-      background-attachment: fixed;
-      position: relative;
-    }
+  body {
+    @apply bg-background text-foreground;
+
+    background: linear-gradient(135deg,
+        var(--gradient-start) 0%,
+        var(--gradient-mid) 50%,
+        var(--gradient-end) 100%);
+    background-attachment: fixed;
+    position: relative;
+  }
 
   /* Add a subtle noise texture overlay */
   body::before {
@@ -226,7 +219,12 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: -1;
-    opacity: 0.4;
+    opacity: 0.3;
+  }
+
+  .dark body::before {
+    opacity: 0.15;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
   }
 }
 
@@ -243,15 +241,34 @@
 
 @keyframes glow-animation {
   0% {
-    box-shadow: 0 0 10px oklch(0.88 0.17 95.33 / 70%);
+    box-shadow: 0 0 10px oklch(0.6 0.15 250 / 50%);
   }
 
   40% {
-    box-shadow: 0 0 30px oklch(0.88 0.17 95.33 / 80%);
+    box-shadow: 0 0 30px oklch(0.6 0.15 250 / 60%);
   }
 
   100% {
-    box-shadow: 0 0 30px oklch(0.88 0.17 95.33);
+    box-shadow: 0 0 30px oklch(0.6 0.15 250 / 70%);
+  }
+}
+
+/* Dark mode glow effect - clean and minimal */
+.dark .glow-effect {
+  animation: glow-animation-dark 1.2s infinite alternate;
+}
+
+@keyframes glow-animation-dark {
+  0% {
+    box-shadow: 0 0 15px oklch(0.7 0.08 240 / 40%);
+  }
+
+  40% {
+    box-shadow: 0 0 25px oklch(0.7 0.08 240 / 50%);
+  }
+
+  100% {
+    box-shadow: 0 0 30px oklch(0.7 0.08 240 / 60%);
   }
 }
 
@@ -265,14 +282,51 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-[oklch(0.8_0.15_340)] via-[oklch(0.8_0.15_300)] to-[oklch(0.8_0.1_210)] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
   }
 
   .cozy-section {
-    @apply rounded-3xl p-8 shadow-md;
+    @apply rounded-3xl p-8 shadow-md bg-section-bg backdrop-blur-sm border border-border/20;
   }
 
   .cozy-border {
     @apply border-2 border-primary/20 rounded-2xl;
   }
+
+  .glass-card {
+    @apply backdrop-blur-sm bg-glass border border-border/20;
+  }
+
+  /* News item styles with monotone dark mode */
+  .news-item {
+    @apply bg-accent/8 hover:bg-accent/15 dark:bg-accent/8 dark:hover:bg-accent/12 transition-all duration-200;
+  }
+
+  /* Enhanced button styles for dark mode */
+  .dark .btn-cozy:hover {
+    @apply shadow-lg;
+    box-shadow: 0 10px 25px oklch(0.7 0.08 240 / 15%);
+  }
+}
+
+/* Additional dark mode enhancements */
+.dark {
+  /* Enhanced scrollbar styling */
+  scrollbar-color: oklch(0.7 0.08 240 / 40%) oklch(0.25 0.01 240);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg,
+      oklch(0.7 0.08 240 / 50%) 0%,
+      oklch(0.65 0.06 260 / 30%) 100%);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: oklch(0.25 0.01 240);
+}
+
+/* Selection styling for dark mode */
+.dark ::selection {
+  background: oklch(0.7 0.08 240 / 25%);
+  color: oklch(0.98 0.005 240);
 }

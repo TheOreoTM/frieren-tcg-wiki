@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, WalletCardsIcon as Cards, ScrollText, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, WalletCardsIcon as Cards, ScrollText, Sparkles, Newspaper } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Metadata } from "next";
 import { getAllNews } from "@/lib/content/news";
 
@@ -25,119 +25,123 @@ export default async function Home() {
     const news = await getAllNews();
 
     return (
-        <div className="container mx-auto px-4 py-12">
-            <div className="flex flex-col items-center text-center mb-12">
+        <div className="container mx-auto px-4 py-16">
+            {/* Header Section */}
+            <div className="flex flex-col items-center text-center mb-16">
                 <div className="mb-6 relative">
-                    <Sparkles className="absolute -top-6 -left-6 text-primary h-8 w-8 opacity-70" />
-                    <Sparkles className="absolute -bottom-4 -right-4 text-accent h-6 w-6 opacity-70" />
-                    <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-4">Frieren TCG</h1>
+                    <Sparkles className="absolute -top-8 -left-8 text-primary h-10 w-10 opacity-70" />
+                    <Sparkles className="absolute -bottom-6 -right-6 text-accent h-8 w-8 opacity-70" />
+                    <h1 className="text-5xl md:text-7xl font-bold gradient-text mb-4">Frieren TCG</h1>
                 </div>
                 <p className="text-xl text-muted-foreground max-w-2xl">
                     The trading card game inspired by the journey of the immortal mage Frieren and her companions.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <Card className="hover:shadow-lg transition-shadow border border-primary/20 rounded-3xl overflow-hidden backdrop-blur-sm bg-white/70">
-                    <CardHeader className="bg-gradient-to-br from-primary/10 to-transparent">
-                        <CardTitle className="flex items-center gap-2">
-                            <Cards className="h-5 w-5 text-primary" />
-                            Cards
-                        </CardTitle>
-                        <CardDescription>Browse the complete card collection</CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-6">
-                        <p>
-                            Discover cards featuring Frieren, Fern, Stark, Himmel and other characters from the series.
-                        </p>
-                    </CardContent>
-                    <CardFooter className="bg-gradient-to-t from-primary/5 to-transparent pt-6">
-                        <Link href="/cards" className="w-full">
-                            <Button
-                                variant="outline"
-                                className="w-full rounded-full border-primary/20 hover:bg-primary/10 hover:text-primary"
-                            >
-                                View Cards <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
-                        </Link>
-                    </CardFooter>
-                </Card>
+            {/* Main Navigation Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <Link href="/cards" className="block">
+                    <Card className="group h-full glass-card hover:shadow-xl transition-all duration-300 overflow-hidden border-border/20 hover:border-primary/30 hover:scale-[1.02]">
+                        <CardHeader>
+                            <div className="flex justify-between items-start">
+                                <div className="flex items-center gap-3">
+                                    <Cards className="h-6 w-6 text-primary" />
+                                    <CardTitle className="text-lg font-semibold group-hover:text-primary transition-colors">
+                                        Cards
+                                    </CardTitle>
+                                </div>
+                                <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300" />
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                Discover cards featuring Frieren, Fern, Stark, Himmel and other characters from the
+                                series.
+                            </p>
+                        </CardContent>
+                    </Card>
+                </Link>
 
-                <Card className="hover:shadow-lg transition-shadow border border-secondary/30 rounded-3xl overflow-hidden backdrop-blur-sm bg-white/70">
-                    <CardHeader className="bg-gradient-to-br from-secondary/20 to-transparent">
-                        <CardTitle className="flex items-center gap-2">
-                            <ScrollText className="h-5 w-5 text-secondary-foreground" />
-                            Mechanics
-                        </CardTitle>
-                        <CardDescription>Learn how to play the game</CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-6">
-                        <p>
-                            Understand the core mechanics, spell casting, combat, and special abilities in Frieren TCG.
-                        </p>
-                    </CardContent>
-                    <CardFooter className="bg-gradient-to-t from-secondary/10 to-transparent pt-6">
-                        <Link href="/mechanics" className="w-full">
-                            <Button
-                                variant="outline"
-                                className="w-full rounded-full border-secondary/30 hover:bg-secondary/20 hover:text-secondary-foreground"
-                            >
-                                Explore Mechanics <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
-                        </Link>
-                    </CardFooter>
-                </Card>
+                <Link href="/mechanics" className="block">
+                    <Card className="group h-full glass-card hover:shadow-xl transition-all duration-300 overflow-hidden border-border/20 hover:border-secondary/30 hover:scale-[1.02]">
+                        <CardHeader>
+                            <div className="flex justify-between items-start">
+                                <div className="flex items-center gap-3">
+                                    <ScrollText className="h-6 w-6 text-secondary-foreground" />
+                                    <CardTitle className="text-lg font-semibold group-hover:text-secondary-foreground transition-colors">
+                                        Mechanics
+                                    </CardTitle>
+                                </div>
+                                <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300" />
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                Understand the core mechanics, spell casting, combat, and special abilities in Frieren
+                                TCG.
+                            </p>
+                        </CardContent>
+                    </Card>
+                </Link>
 
-                <Card className="hover:shadow-lg transition-shadow border border-accent/20 rounded-3xl overflow-hidden backdrop-blur-sm bg-white/70">
-                    <CardHeader className="bg-gradient-to-br from-accent/10 to-transparent">
-                        <CardTitle className="flex items-center gap-2">
-                            <BookOpen className="h-5 w-5 text-accent-foreground" />
-                            Wiki
-                        </CardTitle>
-                        <CardDescription>Dive into the lore and strategy</CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-6">
-                        <p>Explore in-depth articles about game strategy, card synergies, and the world of Frieren.</p>
-                    </CardContent>
-                    <CardFooter className="bg-gradient-to-t from-accent/5 to-transparent pt-6">
-                        <Link href="/wiki" className="w-full">
-                            <Button
-                                variant="outline"
-                                className="w-full rounded-full border-accent/20 hover:bg-accent/10 hover:text-accent-foreground"
-                            >
-                                Visit Wiki <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
-                        </Link>
-                    </CardFooter>
-                </Card>
+                <Link href="/wiki" className="block">
+                    <Card className="group h-full glass-card hover:shadow-xl transition-all duration-300 overflow-hidden border-border/20 hover:border-accent/30 hover:scale-[1.02]">
+                        <CardHeader>
+                            <div className="flex justify-between items-start">
+                                <div className="flex items-center gap-3">
+                                    <BookOpen className="h-6 w-6 text-accent" />
+                                    <CardTitle className="text-lg font-semibold group-hover:text-accent transition-colors">
+                                        Wiki
+                                    </CardTitle>
+                                </div>
+                                <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300" />
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                Explore in-depth articles about game strategy, card synergies, and the world of Frieren.
+                            </p>
+                        </CardContent>
+                    </Card>
+                </Link>
             </div>
 
-            <div className="cozy-section bg-white/60 backdrop-blur-sm shadow-md border border-primary/10 mb-12">
-                <div className="flex justify-between items-center mb-4">
+            {/* Latest Updates Section */}
+            <div className="cozy-section mb-16">
+                <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold">Latest Updates</h2>
-
                     <Link href="/news">
-                        <Button variant="outline" size="sm" className="rounded-full hover:bg-primary/10">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            className="rounded-full hover:bg-primary/10 border-border/30"
+                        >
                             View All News
                         </Button>
                     </Link>
                 </div>
-                <ul>
+                <div className="space-y-4">
                     {news.slice(0, 5).map((article) => (
-                        <Link href={`/news/${article.id}`} key={article.id}>
-                            <li className="flex items-start bg-accent/20 p-2.5 rounded-2xl hover:bg-secondary/60 transition-colors my-2">
-                                <div className="flex flex-row gap-2 items-center">
-                                    <span className="text-primary">•</span>
-                                    <span className="font-semibold">{article.title}:</span>
-                                    <span className="text-muted-foreground text-sm">{article.excerpt}</span>
+                        <Link href={`/news/${article.slug}`} key={article.id}>
+                            <div className="group flex items-center gap-4 p-3 rounded-xl hover:bg-muted/20 dark:hover:bg-primary/5 transition-colors duration-200">
+                                <div className="bg-primary/10 p-2 rounded-lg border border-primary/20">
+                                    <Newspaper className="h-5 w-5 text-primary" />
                                 </div>
-                            </li>
+                                <div className="flex-grow">
+                                    <p className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                                        {article.title}
+                                    </p>
+                                    <p className="text-sm text-muted-foreground line-clamp-1">{article.excerpt}</p>
+                                </div>
+                                <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300" />
+                            </div>
                         </Link>
                     ))}
-                </ul>
+                </div>
             </div>
 
-            <div className="text-center cozy-section bg-white/60 backdrop-blur-sm shadow-md border border-primary/10">
+            {/* "Begin Your Journey" Section */}
+            <div className="text-center cozy-section">
                 <h2 className="text-2xl font-bold mb-4 gradient-text">Begin Your Journey</h2>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                     Whether you're a seasoned card player or new to TCGs, Frieren TCG offers a magical experience that
@@ -145,12 +149,19 @@ export default async function Home() {
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                     <Link href="/wiki/getting-started">
-                        <Button className="rounded-full bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all">
+                        <Button
+                            size="lg"
+                            className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-primary/20 transition-all duration-300"
+                        >
                             Getting Started Guide
                         </Button>
                     </Link>
                     <Link href="/cards">
-                        <Button variant="outline" className="rounded-full border-primary/20 hover:bg-primary/10">
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="rounded-full border-border/30 hover:bg-primary/10"
+                        >
                             Browse Cards
                         </Button>
                     </Link>

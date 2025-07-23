@@ -4,7 +4,7 @@ title: "April 2025 Tournament Recap"
 excerpt: "See what happened at the April 2025 tournament!"
 date: "2025-04-19"
 author: "Mathz"
-category: "Community"
+category: "TOURNAMENT"
 image: "/assets/tournament-4-25-bracket.png"
 tags: ["community", "tournament"]
 ---

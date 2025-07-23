@@ -4,7 +4,7 @@ title: "April Release - Patch 1.1 Notes"
 excerpt: "See what changed in the first patch of the game"
 date: "2025-04-05"
 author: "Hexa"
-category: "Patch Note"
+category: "PATCH"
 image: "/assets/himmel-v-linie-chain.png"
 tags: ["balance", "nerfs", "buffs", "characters"]
 ---

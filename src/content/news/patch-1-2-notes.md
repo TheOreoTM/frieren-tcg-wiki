@@ -4,7 +4,7 @@ title: "May Release - Patch 1.2 Notes: The Big Number Funnies Patch"
 excerpt: "See what changed in the SECOND patch of the game"
 date: "2025-04-30"
 author: "Hexa"
-category: "Patch Note"
+category: "PATCH"
 image: "/assets/patch-1-2-notes-fern-snipe.gif"
 tags: ["balance", "nerfs", "buffs", "characters"]
 ---

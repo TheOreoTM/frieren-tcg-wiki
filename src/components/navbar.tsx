@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-    BookOpen,
     Home,
     Menu,
     WalletCardsIcon as Cards,
@@ -11,58 +10,25 @@ import {
     X,
     Users,
     Newspaper,
-    Swords,
     Edit,
-    User,
+    Library,
+    BrainCircuit,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
 import { useSession } from "next-auth/react";
 
-// Add a new item to the navItems array for the contribute page
 const navItems = [
-    {
-        name: "Home",
-        href: "/",
-        icon: <Home className="h-5 w-5" />,
-    },
-    {
-        name: "Cards",
-        href: "/cards",
-        icon: <Cards className="h-5 w-5" />,
-    },
-    {
-        name: "Characters",
-        href: "/characters",
-        icon: <Users className="h-5 w-5" />,
-    },
-    {
-        name: "Mechanics",
-        href: "/mechanics",
-        icon: <ScrollText className="h-5 w-5" />,
-    },
-    {
-        name: "Strategies",
-        href: "/strategies",
-        icon: <Swords className="h-5 w-5" />,
-    },
-    {
-        name: "Wiki",
-        href: "/wiki",
-        icon: <BookOpen className="h-5 w-5" />,
-    },
-    {
-        name: "News",
-        href: "/news",
-        icon: <Newspaper className="h-5 w-5" />,
-    },
-    {
-        name: "Contribute",
-        href: "/contribute",
-        icon: <Edit className="h-5 w-5" />,
-    },
+    { name: "Home", href: "/", icon: <Home className="h-5 w-5" /> },
+    { name: "Cards", href: "/cards", icon: <Cards className="h-5 w-5" /> },
+    { name: "Characters", href: "/characters", icon: <Users className="h-5 w-5" /> },
+    { name: "Mechanics", href: "/mechanics", icon: <ScrollText className="h-5 w-5" /> },
+    { name: "Strategies", href: "/strategies", icon: <BrainCircuit className="h-5 w-5" /> },
+    { name: "Wiki", href: "/wiki", icon: <Library className="h-5 w-5" /> },
+    { name: "News", href: "/news", icon: <Newspaper className="h-5 w-5" /> },
+    { name: "Contribute", href: "/contribute", icon: <Edit className="h-5 w-5" /> },
 ];
 
 export function Navbar() {
@@ -71,13 +37,18 @@ export function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { data: session } = useSession();
 
+    // Close mobile menu on route change
+    useEffect(() => {
+        setMobileMenuOpen(false);
+    }, [pathname]);
+
     return (
-        <nav className="bg-background border-b sticky top-0 z-50">
+        <nav className="bg-background/80 backdrop-blur-lg border-b border-border/20 sticky top-0 z-50">
             <div className="container mx-auto px-4">
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo and brand */}
                     <div className="flex items-center">
-                        <Link href="/" className="flex items-center gap-2">
+                        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
                             <span className="font-bold text-xl gradient-text">Frieren TCG</span>
                         </Link>
                     </div>
@@ -89,8 +60,10 @@ export function Navbar() {
                                 <Button
                                     variant="ghost"
                                     className={cn(
-                                        "flex items-center gap-2",
-                                        currentPath === item.href && "bg-accent text-accent-foreground"
+                                        "flex items-center gap-2 rounded-full transition-all",
+                                        currentPath === item.href
+                                            ? "bg-primary/10 text-primary"
+                                            : "text-muted-foreground hover:text-foreground"
                                     )}
                                 >
                                     {item.icon}
@@ -98,22 +71,6 @@ export function Navbar() {
                                 </Button>
                             </Link>
                         ))}
-
-                        {/* {session?.user && (
-                            <Link href="/my-contributions">
-                                <Button
-                                    variant="ghost"
-                                    className={cn(
-                                        "flex items-center gap-2",
-                                        currentPath === "/my-contributions" && "bg-accent text-accent-foreground"
-                                    )}
-                                >
-                                    <User className="h-5 w-5" />
-                                    My Contributions
-                                </Button>
-                            </Link>
-                        )} */}
-
                         <ModeToggle />
                     </div>
 
@@ -124,6 +81,7 @@ export function Navbar() {
                             size="icon"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             aria-label="Toggle menu"
+                            className="rounded-full"
                         >
                             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                         </Button>
@@ -131,42 +89,32 @@ export function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile menu */}
-            {mobileMenuOpen && (
-                <div className="md:hidden border-t">
-                    <div className="container mx-auto px-4 py-3 space-y-4">
-                        {navItems.map((item) => (
-                            <Link key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)}>
-                                <Button
-                                    variant="ghost"
-                                    className={cn(
-                                        "w-full justify-start gap-2",
-                                        currentPath === item.href && "bg-accent text-accent-foreground"
-                                    )}
-                                >
-                                    {item.icon}
-                                    {item.name}
-                                </Button>
-                            </Link>
-                        ))}
-
-                        {/* {session?.user && (
-                            <Link href="/my-contributions" onClick={() => setMobileMenuOpen(false)}>
-                                <Button
-                                    variant="ghost"
-                                    className={cn(
-                                        "w-full justify-start gap-2",
-                                        currentPath === "/my-contributions" && "bg-accent text-accent-foreground"
-                                    )}
-                                >
-                                    <User className="h-5 w-5" />
-                                    My Contributions
-                                </Button>
-                            </Link>
-                        )} */}
-                    </div>
+            {/* Animated Mobile menu */}
+            <div
+                className={cn(
+                    "md:hidden border-t border-border/20 bg-background/95 backdrop-blur-xl transition-all duration-300 ease-in-out overflow-hidden",
+                    mobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+                )}
+            >
+                <div className="container mx-auto px-4 py-4 space-y-2">
+                    {navItems.map((item) => (
+                        <Link key={`mobile-${item.href}`} href={item.href}>
+                            <Button
+                                variant="ghost"
+                                className={cn(
+                                    "w-full justify-start gap-3 py-6 text-base",
+                                    currentPath === item.href
+                                        ? "bg-primary/10 text-primary"
+                                        : "text-muted-foreground hover:text-foreground"
+                                )}
+                            >
+                                {item.icon}
+                                {item.name}
+                            </Button>
+                        </Link>
+                    ))}
                 </div>
-            )}
+            </div>
         </nav>
     );
 }
