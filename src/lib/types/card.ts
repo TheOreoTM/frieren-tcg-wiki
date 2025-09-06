@@ -40,6 +40,7 @@ export enum CardCategory {
     HEALING = "Healing",
     BLOCK = "Block",
     COUNTER = "Counter",
+    SUMMON = "Summon",
     DEFAULT = "Default",
 }
 
@@ -56,6 +57,7 @@ export type CardMetadata = {
     signatureMoveOf?: CharacterID;
     ubelFailureRate?: number;
     theory?: boolean;
+    pagesOfHumanity?: boolean;
     hideEmpower?: boolean;
 };
 

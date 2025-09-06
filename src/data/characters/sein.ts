@@ -19,7 +19,7 @@ export const Sein: Character = {
         icon: "https://static.wikia.nocookie.net/frieren/images/3/3c/Sein_anime_portrait.png/revision/latest?cb=20231128092945",
     },
     stats: {
-        [Stat.HP]: 100.0,
+        [Stat.HP]: 90.0,
         [Stat.ATK]: 11.0,
         [Stat.DEF]: 11.0,
         [Stat.TrueDEF]: 0.0,

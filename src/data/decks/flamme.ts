@@ -131,15 +131,71 @@ const theoryOfSoul = new Card({
 export const a_foundationOfHumanitysMagic = new Card({
     title: "Foundation of Humanity's Magic",
     cardMetadata: { nature: Nature.Attack },
-    description: () => "This card's effect changes based on how many Theory cards you have played.",
+    description: ([stat, def]) => `ATK+${stat} DEF+${def} SPD+${stat}. Deal ${stat} DMG.`,
     emoji: CardEmoji.FLAMME_CARD,
-    effects: [],
+    effects: [1, 1],
     cardCategories: [CardCategory.ATTACK, CardCategory.UNIQUE],
     effectNames: [],
     deck: "flamme",
 });
 
-// NOTE: Definition for this card is based on the wiki code provided, as it was imported in the game code.
+export const a_foundationOfHumanitysMagicBase = new Card({
+    title: "Foundation of Humanity's Magic",
+    cardMetadata: { nature: Nature.Attack },
+    description: ([stat, def]) => `ATK+${stat} DEF+${def} SPD+${stat}. Deal ${stat} DMG.`,
+    emoji: CardEmoji.FLAMME_CARD,
+    effects: [1, 1],
+    cardCategories: [CardCategory.ATTACK, CardCategory.BUFF],
+    effectNames: ["Stat", "DEF"],
+    deck: "flamme",
+});
+
+export const a_firstPageOfHumanitysMagicBase = new Card({
+    title: "First Page of Humanity's Magic",
+    cardMetadata: { nature: Nature.Attack, pagesOfHumanity: true },
+    description: ([stat, dmg, def]) => `HP-4. ATK+${stat} DEF+${def} SPD+${stat}. DMG ${dmg}.`,
+    emoji: CardEmoji.FLAMME_CARD,
+    effects: [1, 8, 1],
+    hpCost: 4,
+    cardCategories: [CardCategory.ATTACK, CardCategory.BUFF],
+    effectNames: ["Stat", "DMG", "DEF"],
+    deck: "flamme",
+});
+
+export const a_secondPageOfHumanitysMagicBase = new Card({
+    title: "Second Page of Humanity's Magic",
+    cardMetadata: { nature: Nature.Attack, pagesOfHumanity: true },
+    description: ([stat, def]) => `ATK+${stat} DEF+${def} SPD+${stat}. Use a random rare offensive magic.`,
+    emoji: CardEmoji.FLAMME_CARD,
+    effects: [2, 1],
+    cardCategories: [CardCategory.ATTACK, CardCategory.BUFF, CardCategory.UNIQUE],
+    effectNames: ["Stat", "DEF"],
+    deck: "flamme",
+});
+
+export const a_thirdPageOfHumanitysMagicBase = new Card({
+    title: "Third Page of Humanity's Magic",
+    cardMetadata: { nature: Nature.Attack, pagesOfHumanity: true },
+    description: ([stat, dmg, def]) => `HP-10. ATK+${stat} DEF+${def} SPD+${stat}. Deal ${dmg} DMG.`,
+    emoji: CardEmoji.FLAMME_CARD,
+    effects: [2, 17, 2],
+    hpCost: 10,
+    cardCategories: [CardCategory.ATTACK, CardCategory.BUFF],
+    effectNames: ["Stat", "DMG", "DEF"],
+    deck: "flamme",
+});
+
+export const a_lastPageOfHumanitysMagicBase = new Card({
+    title: "Last Page of Humanity's Magic",
+    cardMetadata: { nature: Nature.Attack, pagesOfHumanity: true },
+    description: ([stat, def]) => `ATK+${stat} DEF+${def} SPD+${stat}. Use a random unusual offensive magic.`,
+    emoji: CardEmoji.FLAMME_CARD,
+    effects: [3, 2],
+    cardCategories: [CardCategory.ATTACK, CardCategory.BUFF, CardCategory.UNIQUE],
+    effectNames: ["Stat", "DEF"],
+    deck: "flamme",
+});
+
 export const incantationFieldOfFlowers = new Card({
     title: "Incantation: Field of Flowers",
     cardMetadata: { nature: Nature.Util, signature: true },
